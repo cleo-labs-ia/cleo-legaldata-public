@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-c-bg: #fafafa;
+  --color-c-surface: #ffffff;
+  --color-c-surface-2: #f4f4f6;
+  --color-c-border: #e6e6ea;
+  --color-c-border-strong: #d4d4dc;
+  --color-c-text: #0a0a14;
+  --color-c-text-muted: #5e5e6e;
+  --color-c-text-subtle: #8e8e9c;
+  --color-c-brand: #0008cf;
+  --color-c-brand-soft: #e5e6fb;
+  --color-c-brand-ink: #060686;
+  --color-c-success: #1a8a4a;
+  --color-c-success-soft: #d6f0e1;
+  --color-c-warn: #c47a00;
+  --color-c-warn-soft: #fcedcc;
+  --color-c-danger: #c4302b;
+  --color-c-danger-soft: #fadbd9;
+  --color-c-info: #2563eb;
+  --color-c-info-soft: #dde6fc;
+
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
+  font-display: swap;
+}
+
+@layer base {
+  html, body {
+    background: var(--color-c-bg);
+    color: var(--color-c-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  *::selection {
+    background: var(--color-c-brand-soft);
+    color: var(--color-c-brand-ink);
+  }
+}
+
+.leaflet-container {
+  background: var(--color-c-surface-2);
+  font-family: var(--font-sans);
+}
+
+.leaflet-control-attribution {
+  font-size: 10px !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.leaflet-tooltip.country-tooltip {
+  background: var(--color-c-text);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-tooltip.country-tooltip::before {
+  border-top-color: var(--color-c-text) !important;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-c-border-strong) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-c-border-strong);
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}

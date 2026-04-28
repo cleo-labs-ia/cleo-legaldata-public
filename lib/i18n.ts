@@ -1,0 +1,67 @@
+export type Lang = "fr" | "en";
+
+export const STRINGS = {
+  brand: { fr: "Cleo Legal Data Atlas", en: "Cleo Legal Data Atlas" },
+  tagline: {
+    fr: "Cartographie publique des sources de données juridiques ouvertes suivies par Cleo Comply.",
+    en: "Public map of open legal data sources tracked by Cleo Comply.",
+  },
+  totalSources: { fr: "Sources", en: "Sources" },
+  totalCountries: { fr: "Juridictions", en: "Jurisdictions" },
+  status: {
+    complete: { fr: "Opérationnel", en: "Complete" },
+    blocked: { fr: "Bloqué", en: "Blocked" },
+    planned: { fr: "Planifié", en: "Planned" },
+    needs_research: { fr: "À étudier", en: "Needs research" },
+    new: { fr: "Nouveau", en: "New" },
+  },
+  dataType: {
+    legislation: { fr: "Législation", en: "Legislation" },
+    case_law: { fr: "Jurisprudence", en: "Case law" },
+    doctrine: { fr: "Doctrine", en: "Doctrine" },
+    parliamentary_proceedings: { fr: "Travaux parlementaires", en: "Parliamentary proceedings" },
+  },
+  searchPlaceholder: { fr: "Rechercher une source, un pays…", en: "Search a source, a country…" },
+  filterStatus: { fr: "Statut", en: "Status" },
+  filterDataType: { fr: "Type de donnée", en: "Data type" },
+  filterCountry: { fr: "Pays", en: "Country" },
+  allStatuses: { fr: "Tous statuts", en: "All statuses" },
+  allDataTypes: { fr: "Tous types", en: "All types" },
+  allCountries: { fr: "Tous pays", en: "All countries" },
+  noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
+  resultCount: {
+    fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,
+    en: (n: number) => `${n.toLocaleString("en-US")} source${n !== 1 ? "s" : ""}`,
+  },
+  sourceColumn: { fr: "Source", en: "Source" },
+  countryColumn: { fr: "Juridiction", en: "Jurisdiction" },
+  statusColumn: { fr: "Statut", en: "Status" },
+  typesColumn: { fr: "Types", en: "Types" },
+  visit: { fr: "Voir le portail", en: "Visit portal" },
+  inThisJurisdiction: { fr: "Sources dans cette juridiction", en: "Sources in this jurisdiction" },
+  closeDrawer: { fr: "Fermer", en: "Close" },
+  completion: { fr: "Couverture", en: "Coverage" },
+  legend: { fr: "Légende", en: "Legend" },
+  exhaustiveList: { fr: "Liste exhaustive", en: "Exhaustive list" },
+  jurisdictionsHeader: { fr: "Toutes les juridictions", en: "All jurisdictions" },
+  github: { fr: "Code des collecteurs", en: "Collector source code" },
+  sourcesIn: {
+    fr: (n: number) => `${n} source${n > 1 ? "s" : ""}`,
+    en: (n: number) => `${n} source${n !== 1 ? "s" : ""}`,
+  },
+  notesHeading: { fr: "Notes du collecteur", en: "Collector notes" },
+  blockedReason: { fr: "Raison du blocage", en: "Blocked reason" },
+  authLabel: { fr: "Authentification", en: "Authentication" },
+  priorityLabel: { fr: "Priorité", en: "Priority" },
+  generatedAt: { fr: "Données du", en: "Data as of" },
+  filtersHeader: { fr: "Filtres", en: "Filters" },
+  resetFilters: { fr: "Réinitialiser", en: "Reset" },
+} as const;
+
+export function t(lang: Lang, key: keyof typeof STRINGS): string {
+  const v = STRINGS[key];
+  if (typeof v === "object" && "fr" in v && typeof v.fr === "string") {
+    return v[lang];
+  }
+  return String(key);
+}
