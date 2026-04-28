@@ -1,43 +1,46 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { CountryStats } from "@/lib/types";
+import type { CountryStats, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
 interface Props {
   countries: CountryStats[];
   lang: Lang;
+  domainFilter: Domain | null;
   onSelect: (code: string) => void;
 }
 
 type Sort = "sources_desc" | "sources_asc" | "completion_desc" | "name_asc";
 
-export default function CountriesGrid({ countries, lang, onSelect }: Props) {
+export default function CountriesGrid({ countries, lang, domainFilter, onSelect }: Props) {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("sources_desc");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     let out = countries;
+    if (domainFilter) out = out.filter((c) => (c.byDomain[domainFilter] || 0) > 0);
     if (q) {
       out = out.filter(
         (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
       );
     }
+    const score = (c: CountryStats) => (domainFilter ? c.byDomain[domainFilter] || 0 : c.total);
     return [...out].sort((a, b) => {
       switch (sort) {
         case "sources_asc":
-          return a.total - b.total;
+          return score(a) - score(b);
         case "completion_desc":
-          return b.completion - a.completion || b.total - a.total;
+          return b.completion - a.completion || score(b) - score(a);
         case "name_asc":
           return a.name.localeCompare(b.name);
         default:
-          return b.total - a.total;
+          return score(b) - score(a);
       }
     });
-  }, [countries, query, sort]);
+  }, [countries, query, sort, domainFilter]);
 
   return (
     <section className="mt-12">
@@ -72,6 +75,10 @@ export default function CountriesGrid({ countries, lang, onSelect }: Props) {
       <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {filtered.map((c) => {
           const completionPct = Math.round(c.completion * 100);
+          const value = domainFilter ? c.byDomain[domainFilter] || 0 : c.total;
+          const valueLabel = domainFilter
+            ? STRINGS.domain[domainFilter][lang].toLowerCase()
+            : STRINGS.totalSources[lang].toLowerCase();
           return (
             <li key={c.code}>
               <button
@@ -95,9 +102,9 @@ export default function CountriesGrid({ countries, lang, onSelect }: Props) {
                   </div>
                 </div>
                 <span className="shrink-0 text-right">
-                  <span className="block text-base font-semibold tabular-nums leading-none">{c.total}</span>
+                  <span className={`block text-base font-semibold tabular-nums leading-none ${domainFilter ? "text-c-brand" : ""}`}>{value}</span>
                   <span className="block text-[10px] uppercase tracking-wider text-c-text-subtle">
-                    {STRINGS.totalSources[lang].toLowerCase()}
+                    {valueLabel}
                   </span>
                 </span>
               </button>

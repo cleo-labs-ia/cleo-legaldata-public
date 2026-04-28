@@ -1,30 +1,55 @@
 "use client";
 
-import { useDeferredValue, useMemo, useState } from "react";
-import type { CountryStats, Source, SourceStatus, DataType } from "@/lib/types";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import type { CountryStats, Source, SourceStatus, DataType, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { StatusBadge, DataTypePill } from "./StatusBadge";
 
-interface Props {
-  countries: CountryStats[];
-  lang: Lang;
-  onCountrySelect: (code: string) => void;
-}
-
 const STATUSES: SourceStatus[] = ["complete", "blocked", "planned", "needs_research", "new"];
 const DATA_TYPES: DataType[] = ["legislation", "case_law", "doctrine", "parliamentary_proceedings"];
+const DOMAIN_ORDER: Domain[] = [
+  "ai",
+  "data_protection",
+  "cyber",
+  "health",
+  "safety",
+  "labor",
+  "finance",
+  "environment",
+  "competition",
+  "tax",
+  "consumer",
+  "ip",
+  "telecom",
+  "generalist",
+];
 
 const PAGE_SIZE = 50;
 
-export default function SourcesTable({ countries, lang, onCountrySelect }: Props) {
-  const [query, setQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<SourceStatus | "">("");
-  const [typeFilter, setTypeFilter] = useState<DataType | "">("");
-  const [countryFilter, setCountryFilter] = useState("");
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+interface Filters {
+  query: string;
+  status: SourceStatus | "";
+  dataType: DataType | "";
+  domain: Domain | "";
+  country: string;
+}
 
-  const deferredQuery = useDeferredValue(query);
+interface Props {
+  countries: CountryStats[];
+  lang: Lang;
+  filters: Filters;
+  onFiltersChange: (next: Filters) => void;
+  onCountrySelect: (code: string) => void;
+}
+
+export default function SourcesTable({ countries, lang, filters, onFiltersChange, onCountrySelect }: Props) {
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const deferredQuery = useDeferredValue(filters.query);
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [filters]);
 
   const flat = useMemo(() => {
     const out: (Source & { _country: CountryStats })[] = [];
@@ -35,9 +60,10 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
   const filtered = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
     return flat.filter((s) => {
-      if (statusFilter && s.status !== statusFilter) return false;
-      if (typeFilter && !s.data_types.includes(typeFilter)) return false;
-      if (countryFilter && s._country.code !== countryFilter) return false;
+      if (filters.status && s.status !== filters.status) return false;
+      if (filters.dataType && !s.data_types.includes(filters.dataType)) return false;
+      if (filters.domain && !s.domains.includes(filters.domain)) return false;
+      if (filters.country && s._country.code !== filters.country) return false;
       if (!q) return true;
       return (
         s.name.toLowerCase().includes(q) ||
@@ -46,25 +72,31 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
         s._country.code.toLowerCase().includes(q)
       );
     });
-  }, [flat, deferredQuery, statusFilter, typeFilter, countryFilter]);
+  }, [flat, deferredQuery, filters]);
 
   const sortedCountries = useMemo(
     () => [...countries].sort((a, b) => a.name.localeCompare(b.name)),
     [countries]
   );
 
+  const visibleDomains = useMemo(() => {
+    const counts: Partial<Record<Domain, number>> = {};
+    for (const c of countries) for (const d of DOMAIN_ORDER) counts[d] = (counts[d] || 0) + (c.byDomain[d] || 0);
+    return DOMAIN_ORDER.filter((d) => (counts[d] || 0) > 0);
+  }, [countries]);
+
   const visible = filtered.slice(0, visibleCount);
 
   function reset() {
-    setQuery("");
-    setStatusFilter("");
-    setTypeFilter("");
-    setCountryFilter("");
-    setVisibleCount(PAGE_SIZE);
+    onFiltersChange({ query: "", status: "", dataType: "", domain: "", country: "" });
+  }
+
+  function update<K extends keyof Filters>(key: K, value: Filters[K]) {
+    onFiltersChange({ ...filters, [key]: value });
   }
 
   return (
-    <section id="exhaustive" className="mt-12 scroll-mt-24">
+    <section id="exhaustive" className="mt-10 scroll-mt-24">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">{STRINGS.exhaustiveList[lang]}</h2>
@@ -81,23 +113,29 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
         </button>
       </div>
 
-      <div className="mb-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
         <input
           type="search"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setVisibleCount(PAGE_SIZE);
-          }}
+          value={filters.query}
+          onChange={(e) => update("query", e.target.value)}
           placeholder={STRINGS.searchPlaceholder[lang]}
-          className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft"
+          className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft sm:col-span-2 lg:col-span-1"
         />
         <select
-          value={statusFilter}
-          onChange={(e) => {
-            setStatusFilter(e.target.value as SourceStatus | "");
-            setVisibleCount(PAGE_SIZE);
-          }}
+          value={filters.domain}
+          onChange={(e) => update("domain", e.target.value as Domain | "")}
+          className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
+        >
+          <option value="">{STRINGS.allDomains[lang]}</option>
+          {visibleDomains.map((d) => (
+            <option key={d} value={d}>
+              {STRINGS.domain[d][lang]}
+            </option>
+          ))}
+        </select>
+        <select
+          value={filters.status}
+          onChange={(e) => update("status", e.target.value as SourceStatus | "")}
           className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
         >
           <option value="">{STRINGS.allStatuses[lang]}</option>
@@ -108,11 +146,8 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
           ))}
         </select>
         <select
-          value={typeFilter}
-          onChange={(e) => {
-            setTypeFilter(e.target.value as DataType | "");
-            setVisibleCount(PAGE_SIZE);
-          }}
+          value={filters.dataType}
+          onChange={(e) => update("dataType", e.target.value as DataType | "")}
           className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
         >
           <option value="">{STRINGS.allDataTypes[lang]}</option>
@@ -123,11 +158,8 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
           ))}
         </select>
         <select
-          value={countryFilter}
-          onChange={(e) => {
-            setCountryFilter(e.target.value);
-            setVisibleCount(PAGE_SIZE);
-          }}
+          value={filters.country}
+          onChange={(e) => update("country", e.target.value)}
           className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
         >
           <option value="">{STRINGS.allCountries[lang]}</option>
@@ -145,6 +177,7 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
             <tr>
               <th className="px-4 py-2.5 font-medium">{STRINGS.sourceColumn[lang]}</th>
               <th className="px-4 py-2.5 font-medium">{STRINGS.countryColumn[lang]}</th>
+              <th className="px-4 py-2.5 font-medium">{STRINGS.filterDomain[lang]}</th>
               <th className="px-4 py-2.5 font-medium">{STRINGS.statusColumn[lang]}</th>
               <th className="px-4 py-2.5 font-medium">{STRINGS.typesColumn[lang]}</th>
               <th className="px-4 py-2.5 text-right font-medium">{STRINGS.visit[lang]}</th>
@@ -166,6 +199,28 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
                     <span>{s._country.flag}</span>
                     <span className="font-medium">{s._country.name}</span>
                   </button>
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap gap-1">
+                    {s.domains.length === 0 ? (
+                      <span className="text-[10px] text-c-text-subtle">—</span>
+                    ) : (
+                      s.domains.map((d) => (
+                        <button
+                          key={d}
+                          type="button"
+                          onClick={() => update("domain", filters.domain === d ? "" : d)}
+                          className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                            filters.domain === d
+                              ? "bg-c-brand text-white"
+                              : "bg-c-brand-soft text-c-brand-ink hover:bg-c-brand hover:text-white"
+                          }`}
+                        >
+                          {STRINGS.domainShort[d][lang]}
+                        </button>
+                      ))
+                    )}
+                  </div>
                 </td>
                 <td className="px-4 py-3">
                   <StatusBadge status={s.status} lang={lang} />
@@ -193,7 +248,7 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
             ))}
             {visible.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-sm text-c-text-muted">
+                <td colSpan={6} className="px-4 py-8 text-center text-sm text-c-text-muted">
                   {STRINGS.noResults[lang]}
                 </td>
               </tr>
@@ -215,3 +270,5 @@ export default function SourcesTable({ countries, lang, onCountrySelect }: Props
     </section>
   );
 }
+
+export type { Filters };

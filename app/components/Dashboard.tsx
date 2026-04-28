@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import type { DashboardData } from "@/lib/types";
+import type { DashboardData, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import StatsHeader from "./StatsHeader";
 import CountriesGrid from "./CountriesGrid";
-import SourcesTable from "./SourcesTable";
+import SourcesTable, { type Filters } from "./SourcesTable";
 import CountryDrawer from "./CountryDrawer";
+import DomainMatrix from "./DomainMatrix";
 
 const MapView = dynamic(() => import("./MapView"), { ssr: false, loading: () => <MapPlaceholder /> });
 
@@ -20,19 +21,40 @@ function MapPlaceholder() {
   );
 }
 
+const EMPTY_FILTERS: Filters = {
+  query: "",
+  status: "",
+  dataType: "",
+  domain: "",
+  country: "",
+};
+
 export default function Dashboard({ data }: { data: DashboardData }) {
   const [lang, setLang] = useState<Lang>("fr");
-  const [selected, setSelected] = useState<string | null>(null);
+  const [drawer, setDrawer] = useState<string | null>(null);
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
 
-  const selectedCountry = useMemo(
-    () => (selected ? data.countries.find((c) => c.code === selected) ?? null : null),
-    [data.countries, selected]
+  const drawerCountry = useMemo(
+    () => (drawer ? data.countries.find((c) => c.code === drawer) ?? null : null),
+    [data.countries, drawer]
   );
 
   const generated = new Date(data.stats.generatedAt).toLocaleDateString(
     lang === "fr" ? "fr-FR" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
+
+  function setMatrixSelection(country: string | null, domain: Domain | null) {
+    setFilters((f) => ({
+      ...f,
+      country: country ?? "",
+      domain: (domain ?? "") as Filters["domain"],
+    }));
+    if (country) {
+      const el = document.getElementById("exhaustive");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
   return (
     <div className="min-h-screen pb-16">
@@ -81,9 +103,10 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           <div className="h-[560px] lg:h-[640px]">
             <MapView
               countries={data.countries}
-              selected={selected}
-              onSelect={setSelected}
+              selected={drawer}
+              onSelect={setDrawer}
               lang={lang}
+              domainFilter={(filters.domain || null) as Domain | null}
             />
           </div>
           <aside className="rounded-2xl border border-c-border bg-c-surface p-5">
@@ -98,9 +121,9 @@ export default function Dashboard({ data }: { data: DashboardData }) {
                   <li key={c.code}>
                     <button
                       type="button"
-                      onClick={() => setSelected(c.code)}
+                      onClick={() => setDrawer(c.code)}
                       className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
-                        selected === c.code ? "bg-c-brand-soft" : ""
+                        drawer === c.code ? "bg-c-brand-soft" : ""
                       }`}
                     >
                       <span className="flex min-w-0 items-center gap-2">
@@ -108,9 +131,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
                         <span className="truncate text-sm font-medium">{c.name}</span>
                       </span>
                       <span className="flex shrink-0 items-center gap-2">
-                        <span className="text-[10px] tabular-nums text-c-text-subtle">
-                          {completion}%
-                        </span>
+                        <span className="text-[10px] tabular-nums text-c-text-subtle">{completion}%</span>
                         <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
                           {c.total}
                         </span>
@@ -123,30 +144,40 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           </aside>
         </section>
 
-        <CountriesGrid countries={data.countries} lang={lang} onSelect={setSelected} />
-        <SourcesTable countries={data.countries} lang={lang} onCountrySelect={setSelected} />
+        <DomainMatrix
+          countries={data.countries}
+          lang={lang}
+          selectedCountry={filters.country || null}
+          selectedDomain={(filters.domain || null) as Domain | null}
+          onSelect={setMatrixSelection}
+        />
+
+        <CountriesGrid
+          countries={data.countries}
+          lang={lang}
+          domainFilter={(filters.domain || null) as Domain | null}
+          onSelect={setDrawer}
+        />
+
+        <SourcesTable
+          countries={data.countries}
+          lang={lang}
+          filters={filters}
+          onFiltersChange={setFilters}
+          onCountrySelect={setDrawer}
+        />
 
         <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
-              {STRINGS.generatedAt[lang]} {generated}
+              {STRINGS.generatedAt[lang]} {generated} · {STRINGS.classifierBadge[lang]}
             </span>
             <span>
-              <a
-                href="https://cleolabs.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-c-text-muted hover:text-c-brand"
-              >
+              <a href="https://cleolabs.co" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
                 Cleo Labs
               </a>
               {" · "}
-              <a
-                href="https://github.com/Cleo-Labs-IA/legal-sources"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-c-text-muted hover:text-c-brand"
-              >
+              <a href="https://github.com/Cleo-Labs-IA/legal-sources" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
                 Cleo-Labs-IA/legal-sources
               </a>
             </span>
@@ -154,11 +185,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
         </footer>
       </main>
 
-      <CountryDrawer
-        country={selectedCountry}
-        lang={lang}
-        onClose={() => setSelected(null)}
-      />
+      <CountryDrawer country={drawerCountry} lang={lang} onClose={() => setDrawer(null)} />
     </div>
   );
 }

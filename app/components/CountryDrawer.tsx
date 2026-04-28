@@ -118,6 +118,14 @@ export default function CountryDrawer({ country, lang, onClose }: Props) {
                   {s.data_types.map((d) => (
                     <DataTypePill key={d} type={d} lang={lang} />
                   ))}
+                  {s.domains.map((d) => (
+                    <span
+                      key={`d-${d}`}
+                      className="inline-flex items-center rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-medium text-c-brand-ink"
+                    >
+                      {STRINGS.domainShort[d][lang]}
+                    </span>
+                  ))}
                 </div>
                 {s.notes ? (
                   <details className="mt-2 text-xs text-c-text-muted">

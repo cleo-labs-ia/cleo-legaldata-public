@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
-import type { CountryStats } from "@/lib/types";
+import type { CountryStats, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
@@ -45,9 +45,10 @@ interface Props {
   selected: string | null;
   onSelect: (code: string) => void;
   lang: Lang;
+  domainFilter: Domain | null;
 }
 
-export default function MapView({ countries, selected, onSelect, lang }: Props) {
+export default function MapView({ countries, selected, onSelect, lang, domainFilter }: Props) {
   const visible = useMemo(() => countries.filter((c) => c.lat !== null && c.lng !== null), [countries]);
   const target = useMemo(() => {
     const c = countries.find((x) => x.code === selected);
@@ -81,29 +82,35 @@ export default function MapView({ countries, selected, onSelect, lang }: Props) 
         {visible.map((c) => {
           const status = dominantStatus(c);
           const isSelected = selected === c.code;
+          const domainCount = domainFilter ? c.byDomain[domainFilter] || 0 : c.total;
+          const dimmed = domainFilter !== null && domainCount === 0;
+          if (dimmed) return null;
+          const radius = radiusFor(domainCount);
+          const fillColor = domainFilter ? "#0008cf" : STATUS_COLOR[status];
+          const baseOpacity = isSelected ? 0.9 : domainFilter ? 0.65 : 0.55;
           return (
             <CircleMarker
               key={c.code}
               center={[c.lat as number, c.lng as number]}
-              radius={radiusFor(c.total)}
+              radius={radius}
               pathOptions={{
-                color: isSelected ? "#0008cf" : STATUS_COLOR[status],
+                color: isSelected ? "#060686" : fillColor,
                 weight: isSelected ? 3 : 1.5,
-                fillColor: STATUS_COLOR[status],
-                fillOpacity: isSelected ? 0.85 : 0.55,
+                fillColor,
+                fillOpacity: baseOpacity,
               }}
               eventHandlers={{
                 click: () => onSelect(c.code),
-                mouseover: (e) => e.target.setStyle({ fillOpacity: 0.85 }),
-                mouseout: (e) => e.target.setStyle({ fillOpacity: isSelected ? 0.85 : 0.55 }),
+                mouseover: (e) => e.target.setStyle({ fillOpacity: 0.9 }),
+                mouseout: (e) => e.target.setStyle({ fillOpacity: baseOpacity }),
               }}
             >
               <Tooltip className="country-tooltip" direction="top" offset={[0, -4]}>
                 <span className="font-semibold">{c.flag} {c.name}</span>
                 <span className="ml-2 opacity-80">
-                  {STRINGS.sourcesIn[lang](c.total)}
-                  {" · "}
-                  {Math.round(c.completion * 100)}% {STRINGS.completion[lang].toLowerCase()}
+                  {domainFilter
+                    ? `${domainCount} ${STRINGS.domain[domainFilter][lang].toLowerCase()}`
+                    : STRINGS.sourcesIn[lang](c.total)}
                 </span>
               </Tooltip>
             </CircleMarker>

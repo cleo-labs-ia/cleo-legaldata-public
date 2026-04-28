@@ -11,12 +11,29 @@ export type DataType =
   | "doctrine"
   | "parliamentary_proceedings";
 
+export type Domain =
+  | "ai"
+  | "data_protection"
+  | "cyber"
+  | "health"
+  | "safety"
+  | "labor"
+  | "finance"
+  | "environment"
+  | "competition"
+  | "tax"
+  | "consumer"
+  | "ip"
+  | "telecom"
+  | "generalist";
+
 export interface Source {
   id: string;
   name: string;
   country: string;
   status: SourceStatus;
   data_types: DataType[];
+  domains: Domain[];
   url: string;
   auth: string | null;
   priority: number | null;
@@ -34,6 +51,7 @@ export interface CountryStats {
   total: number;
   byStatus: Record<SourceStatus, number>;
   byDataType: Record<DataType, number>;
+  byDomain: Record<Domain, number>;
   sources: Source[];
   completion: number;
 }
@@ -43,6 +61,7 @@ export interface GlobalStats {
   totalCountries: number;
   byStatus: Record<SourceStatus, number>;
   byDataType: Record<DataType, number>;
+  byDomain: Record<Domain, number>;
   generatedAt: string;
 }
 
