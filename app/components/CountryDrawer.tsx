@@ -5,6 +5,8 @@ import type { CountryStats } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { StatusBadge, DataTypePill } from "./StatusBadge";
+import { groupOfDomain } from "@/lib/types";
+import type { DomainGroup } from "@/lib/types";
 
 interface Props {
   country: CountryStats | null;
@@ -136,12 +138,13 @@ export default function CountryDrawer({ country, lang, onClose }: Props) {
                   {s.data_types.map((d) => (
                     <DataTypePill key={d} type={d} lang={lang} />
                   ))}
-                  {s.domains.map((d) => (
+                  {([...new Set(s.domains.map((d) => groupOfDomain(d)))] as DomainGroup[]).map((g) => (
                     <span
-                      key={`d-${d}`}
+                      key={`g-${g}`}
                       className="inline-flex items-center rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-medium text-c-brand-ink"
+                      title={STRINGS.groupSubtitle[g][lang]}
                     >
-                      {STRINGS.domainShort[d][lang]}
+                      {STRINGS.groupShort[g][lang]}
                     </span>
                   ))}
                 </div>

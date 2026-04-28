@@ -1,29 +1,14 @@
 "use client";
 
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
-import type { CountryStats, Source, SourceStatus, DataType, Domain } from "@/lib/types";
+import type { CountryStats, Source, SourceStatus, DataType, DomainGroup } from "@/lib/types";
+import { DOMAIN_GROUPS, DOMAIN_GROUP_ORDER, groupOfDomain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { StatusBadge, DataTypePill } from "./StatusBadge";
 
 const STATUSES: SourceStatus[] = ["complete", "blocked", "planned", "needs_research", "new"];
 const DATA_TYPES: DataType[] = ["legislation", "case_law", "doctrine", "parliamentary_proceedings"];
-const DOMAIN_ORDER: Domain[] = [
-  "ai",
-  "data_protection",
-  "cyber",
-  "health",
-  "safety",
-  "labor",
-  "finance",
-  "environment",
-  "competition",
-  "tax",
-  "consumer",
-  "ip",
-  "telecom",
-  "generalist",
-];
 
 const PAGE_SIZE = 50;
 
@@ -31,7 +16,7 @@ interface Filters {
   query: string;
   status: SourceStatus | "";
   dataType: DataType | "";
-  domain: Domain | "";
+  group: DomainGroup | "";
   country: string;
 }
 
@@ -41,6 +26,17 @@ interface Props {
   filters: Filters;
   onFiltersChange: (next: Filters) => void;
   onCountrySelect: (code: string) => void;
+}
+
+function sourceMatchesGroup(s: Source, g: DomainGroup): boolean {
+  const ds = DOMAIN_GROUPS[g];
+  return s.domains.some((d) => ds.includes(d));
+}
+
+function sourceGroups(s: Source): DomainGroup[] {
+  const set = new Set<DomainGroup>();
+  for (const d of s.domains) set.add(groupOfDomain(d));
+  return [...set];
 }
 
 export default function SourcesTable({ countries, lang, filters, onFiltersChange, onCountrySelect }: Props) {
@@ -62,7 +58,7 @@ export default function SourcesTable({ countries, lang, filters, onFiltersChange
     return flat.filter((s) => {
       if (filters.status && s.status !== filters.status) return false;
       if (filters.dataType && !s.data_types.includes(filters.dataType)) return false;
-      if (filters.domain && !s.domains.includes(filters.domain)) return false;
+      if (filters.group && !sourceMatchesGroup(s, filters.group)) return false;
       if (filters.country && s._country.code !== filters.country) return false;
       if (!q) return true;
       return (
@@ -79,16 +75,16 @@ export default function SourcesTable({ countries, lang, filters, onFiltersChange
     [countries]
   );
 
-  const visibleDomains = useMemo(() => {
-    const counts: Partial<Record<Domain, number>> = {};
-    for (const c of countries) for (const d of DOMAIN_ORDER) counts[d] = (counts[d] || 0) + (c.byDomain[d] || 0);
-    return DOMAIN_ORDER.filter((d) => (counts[d] || 0) > 0);
+  const visibleGroups = useMemo(() => {
+    const counts: Partial<Record<DomainGroup, number>> = {};
+    for (const c of countries) for (const g of DOMAIN_GROUP_ORDER) counts[g] = (counts[g] || 0) + (c.byGroup[g] || 0);
+    return DOMAIN_GROUP_ORDER.filter((g) => (counts[g] || 0) > 0);
   }, [countries]);
 
   const visible = filtered.slice(0, visibleCount);
 
   function reset() {
-    onFiltersChange({ query: "", status: "", dataType: "", domain: "", country: "" });
+    onFiltersChange({ query: "", status: "", dataType: "", group: "", country: "" });
   }
 
   function update<K extends keyof Filters>(key: K, value: Filters[K]) {
@@ -122,14 +118,14 @@ export default function SourcesTable({ countries, lang, filters, onFiltersChange
           className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft sm:col-span-2 lg:col-span-1"
         />
         <select
-          value={filters.domain}
-          onChange={(e) => update("domain", e.target.value as Domain | "")}
+          value={filters.group}
+          onChange={(e) => update("group", e.target.value as DomainGroup | "")}
           className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
         >
           <option value="">{STRINGS.allDomains[lang]}</option>
-          {visibleDomains.map((d) => (
-            <option key={d} value={d}>
-              {STRINGS.domain[d][lang]}
+          {visibleGroups.map((g) => (
+            <option key={g} value={g}>
+              {STRINGS.group[g][lang]}
             </option>
           ))}
         </select>
@@ -184,68 +180,72 @@ export default function SourcesTable({ countries, lang, filters, onFiltersChange
             </tr>
           </thead>
           <tbody className="divide-y divide-c-border">
-            {visible.map((s) => (
-              <tr key={s.id} className="hover:bg-c-surface-2/50">
-                <td className="px-4 py-3">
-                  <div className="font-medium leading-tight">{s.name}</div>
-                  <code className="text-[11px] text-c-text-subtle">{s.id}</code>
-                </td>
-                <td className="px-4 py-3">
-                  <button
-                    type="button"
-                    onClick={() => onCountrySelect(s._country.code)}
-                    className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs hover:bg-c-brand-soft hover:text-c-brand-ink"
-                  >
-                    <span>{s._country.flag}</span>
-                    <span className="font-medium">{s._country.name}</span>
-                  </button>
-                </td>
-                <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-1">
-                    {s.domains.length === 0 ? (
-                      <span className="text-[10px] text-c-text-subtle">—</span>
-                    ) : (
-                      s.domains.map((d) => (
-                        <button
-                          key={d}
-                          type="button"
-                          onClick={() => update("domain", filters.domain === d ? "" : d)}
-                          className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
-                            filters.domain === d
-                              ? "bg-c-brand text-white"
-                              : "bg-c-brand-soft text-c-brand-ink hover:bg-c-brand hover:text-white"
-                          }`}
-                        >
-                          {STRINGS.domainShort[d][lang]}
-                        </button>
-                      ))
-                    )}
-                  </div>
-                </td>
-                <td className="px-4 py-3">
-                  <StatusBadge status={s.status} lang={lang} />
-                </td>
-                <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-1">
-                    {s.data_types.map((d) => (
-                      <DataTypePill key={d} type={d} lang={lang} />
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-3 text-right">
-                  {s.url ? (
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-c-text-muted hover:text-c-brand"
+            {visible.map((s) => {
+              const groups = sourceGroups(s);
+              return (
+                <tr key={s.id} className="hover:bg-c-surface-2/50">
+                  <td className="px-4 py-3">
+                    <div className="font-medium leading-tight">{s.name}</div>
+                    <code className="text-[11px] text-c-text-subtle">{s.id}</code>
+                  </td>
+                  <td className="px-4 py-3">
+                    <button
+                      type="button"
+                      onClick={() => onCountrySelect(s._country.code)}
+                      className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs hover:bg-c-brand-soft hover:text-c-brand-ink"
                     >
-                      ↗
-                    </a>
-                  ) : null}
-                </td>
-              </tr>
-            ))}
+                      <span>{s._country.flag}</span>
+                      <span className="font-medium">{s._country.name}</span>
+                    </button>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-wrap gap-1">
+                      {groups.length === 0 ? (
+                        <span className="text-[10px] text-c-text-subtle">—</span>
+                      ) : (
+                        groups.map((g) => (
+                          <button
+                            key={g}
+                            type="button"
+                            onClick={() => update("group", filters.group === g ? "" : g)}
+                            className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                              filters.group === g
+                                ? "bg-c-brand text-white"
+                                : "bg-c-brand-soft text-c-brand-ink hover:bg-c-brand hover:text-white"
+                            }`}
+                            title={STRINGS.groupSubtitle[g][lang]}
+                          >
+                            {STRINGS.groupShort[g][lang]}
+                          </button>
+                        ))
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusBadge status={s.status} lang={lang} />
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-wrap gap-1">
+                      {s.data_types.map((d) => (
+                        <DataTypePill key={d} type={d} lang={lang} />
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    {s.url ? (
+                      <a
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-c-text-muted hover:text-c-brand"
+                      >
+                        ↗
+                      </a>
+                    ) : null}
+                  </td>
+                </tr>
+              );
+            })}
             {visible.length === 0 ? (
               <tr>
                 <td colSpan={6} className="px-4 py-8 text-center text-sm text-c-text-muted">

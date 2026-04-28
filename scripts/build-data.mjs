@@ -5,6 +5,7 @@ import yaml from "js-yaml";
 import { COUNTRY_META, SUPRANATIONAL, flagFromIso2 } from "./countries-meta.mjs";
 import { classifyDomains, DOMAIN_CODES } from "./classify-domain.mjs";
 import { extractVolume } from "./extract-volume.mjs";
+import { DOMAIN_GROUPS, DOMAIN_GROUP_ORDER } from "./domain-groups.mjs";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const MANIFEST = path.join(ROOT, "manifest.yaml");
@@ -58,12 +59,21 @@ for (const [code, list] of grouped) {
   const byStatus = Object.fromEntries(STATUSES.map((s) => [s, 0]));
   const byDataType = Object.fromEntries(DATA_TYPES.map((d) => [d, 0]));
   const byDomain = Object.fromEntries(DOMAIN_CODES.map((d) => [d, 0]));
+  const byGroup = Object.fromEntries(DOMAIN_GROUP_ORDER.map((g) => [g, 0]));
   let countryVolume = 0;
   let countryVolumeKnown = 0;
   for (const s of list) {
     byStatus[s.status] = (byStatus[s.status] || 0) + 1;
     for (const d of s.data_types) byDataType[d] = (byDataType[d] || 0) + 1;
     for (const d of s.domains) byDomain[d] = (byDomain[d] || 0) + 1;
+    // a source counts ONCE per group even if it has several domains within it
+    const groups = new Set();
+    for (const d of s.domains) {
+      for (const g of DOMAIN_GROUP_ORDER) {
+        if (DOMAIN_GROUPS[g].includes(d)) groups.add(g);
+      }
+    }
+    for (const g of groups) byGroup[g] += 1;
     if (s.estimatedVolume) {
       countryVolume += s.estimatedVolume;
       countryVolumeKnown += 1;
@@ -85,6 +95,7 @@ for (const [code, list] of grouped) {
     byStatus,
     byDataType,
     byDomain,
+    byGroup,
     estimatedVolume: countryVolume,
     sourcesWithVolume: countryVolumeKnown,
     sources: list,
@@ -100,6 +111,7 @@ const stats = {
   byStatus: Object.fromEntries(STATUSES.map((s) => [s, 0])),
   byDataType: Object.fromEntries(DATA_TYPES.map((d) => [d, 0])),
   byDomain: Object.fromEntries(DOMAIN_CODES.map((d) => [d, 0])),
+  byGroup: Object.fromEntries(DOMAIN_GROUP_ORDER.map((g) => [g, 0])),
   estimatedTotalVolume: 0,
   sourcesWithVolume: 0,
   generatedAt: new Date().toISOString(),
@@ -108,6 +120,7 @@ for (const c of countries) {
   for (const s of STATUSES) stats.byStatus[s] += c.byStatus[s];
   for (const d of DATA_TYPES) stats.byDataType[d] += c.byDataType[d];
   for (const d of DOMAIN_CODES) stats.byDomain[d] += c.byDomain[d];
+  for (const g of DOMAIN_GROUP_ORDER) stats.byGroup[g] += c.byGroup[g];
   stats.estimatedTotalVolume += c.estimatedVolume;
   stats.sourcesWithVolume += c.sourcesWithVolume;
 }

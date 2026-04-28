@@ -1,71 +1,54 @@
 "use client";
 
 import { useMemo } from "react";
-import type { CountryStats, Domain } from "@/lib/types";
+import type { CountryStats, DomainGroup } from "@/lib/types";
+import { DOMAIN_GROUP_ORDER } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
-
-const ACTIVE_DOMAINS: Domain[] = [
-  "ai",
-  "data_protection",
-  "cyber",
-  "health",
-  "safety",
-  "labor",
-  "finance",
-  "environment",
-  "competition",
-  "tax",
-  "consumer",
-  "ip",
-  "telecom",
-];
 
 interface Props {
   countries: CountryStats[];
   lang: Lang;
   selectedCountry: string | null;
-  selectedDomain: Domain | null;
-  onSelect: (country: string | null, domain: Domain | null) => void;
+  selectedGroup: DomainGroup | null;
+  onSelect: (country: string | null, group: DomainGroup | null) => void;
 }
 
 export default function DomainMatrix({
   countries,
   lang,
   selectedCountry,
-  selectedDomain,
+  selectedGroup,
   onSelect,
 }: Props) {
-  const domainTotals = useMemo(() => {
-    const totals = Object.fromEntries(ACTIVE_DOMAINS.map((d) => [d, 0])) as Record<Domain, number>;
-    for (const c of countries) for (const d of ACTIVE_DOMAINS) totals[d] += c.byDomain[d] || 0;
+  const groupTotals = useMemo(() => {
+    const totals = Object.fromEntries(DOMAIN_GROUP_ORDER.map((g) => [g, 0])) as Record<DomainGroup, number>;
+    for (const c of countries) for (const g of DOMAIN_GROUP_ORDER) totals[g] += c.byGroup[g] || 0;
     return totals;
   }, [countries]);
 
-  const visibleDomains = useMemo(
-    () => ACTIVE_DOMAINS.filter((d) => domainTotals[d] > 0),
-    [domainTotals]
+  const visibleGroups = useMemo(
+    () => DOMAIN_GROUP_ORDER.filter((g) => groupTotals[g] > 0),
+    [groupTotals]
   );
 
   const rows = useMemo(() => {
-    const filtered = countries.filter((c) =>
-      visibleDomains.some((d) => (c.byDomain[d] || 0) > 0)
-    );
+    const filtered = countries.filter((c) => visibleGroups.some((g) => (c.byGroup[g] || 0) > 0));
     filtered.sort((a, b) => {
-      const aSum = visibleDomains.reduce((acc, d) => acc + (a.byDomain[d] || 0), 0);
-      const bSum = visibleDomains.reduce((acc, d) => acc + (b.byDomain[d] || 0), 0);
+      const aSum = visibleGroups.reduce((acc, g) => acc + (a.byGroup[g] || 0), 0);
+      const bSum = visibleGroups.reduce((acc, g) => acc + (b.byGroup[g] || 0), 0);
       return bSum - aSum;
     });
     return filtered.slice(0, 30);
-  }, [countries, visibleDomains]);
+  }, [countries, visibleGroups]);
 
   const maxByCol = useMemo(() => {
-    const max: Record<Domain, number> = {} as Record<Domain, number>;
-    for (const d of visibleDomains) {
-      max[d] = Math.max(1, ...rows.map((r) => r.byDomain[d] || 0));
+    const max: Record<DomainGroup, number> = {} as Record<DomainGroup, number>;
+    for (const g of visibleGroups) {
+      max[g] = Math.max(1, ...rows.map((r) => r.byGroup[g] || 0));
     }
     return max;
-  }, [rows, visibleDomains]);
+  }, [rows, visibleGroups]);
 
   function bg(value: number, max: number, isActive: boolean) {
     if (value === 0) return "transparent";
@@ -86,7 +69,7 @@ export default function DomainMatrix({
           </div>
           <p className="text-sm text-c-text-muted">{STRINGS.matrixHelp[lang]}</p>
         </div>
-        {(selectedCountry || selectedDomain) && (
+        {(selectedCountry || selectedGroup) && (
           <button
             type="button"
             onClick={() => onSelect(null, null)}
@@ -104,22 +87,23 @@ export default function DomainMatrix({
               <th className="sticky left-0 z-10 border-b border-c-border bg-c-surface px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-c-text-subtle">
                 {STRINGS.countryColumn[lang]}
               </th>
-              {visibleDomains.map((d) => {
-                const isActive = selectedDomain === d;
+              {visibleGroups.map((g) => {
+                const isActive = selectedGroup === g;
                 return (
                   <th
-                    key={d}
+                    key={g}
                     className={`border-b border-c-border px-2 py-3 text-center text-[10px] font-medium uppercase tracking-wider transition-colors ${
                       isActive ? "bg-c-brand-soft text-c-brand-ink" : "text-c-text-subtle"
                     }`}
                   >
                     <button
                       type="button"
-                      onClick={() => onSelect(selectedCountry, isActive ? null : d)}
+                      onClick={() => onSelect(selectedCountry, isActive ? null : g)}
                       className="flex w-full flex-col items-center gap-0.5 hover:text-c-brand"
+                      title={STRINGS.groupSubtitle[g][lang]}
                     >
-                      <span className="whitespace-nowrap">{STRINGS.domainShort[d][lang]}</span>
-                      <span className="text-[9px] tabular-nums opacity-70">{domainTotals[d]}</span>
+                      <span className="whitespace-nowrap">{STRINGS.groupShort[g][lang]}</span>
+                      <span className="text-[9px] tabular-nums opacity-70">{groupTotals[g]}</span>
                     </button>
                   </th>
                 );
@@ -131,7 +115,7 @@ export default function DomainMatrix({
           </thead>
           <tbody>
             {rows.map((c) => {
-              const rowSum = visibleDomains.reduce((acc, d) => acc + (c.byDomain[d] || 0), 0);
+              const rowSum = visibleGroups.reduce((acc, g) => acc + (c.byGroup[g] || 0), 0);
               const isActiveRow = selectedCountry === c.code;
               return (
                 <tr key={c.code} className="group">
@@ -143,21 +127,21 @@ export default function DomainMatrix({
                   >
                     <button
                       type="button"
-                      onClick={() => onSelect(isActiveRow ? null : c.code, selectedDomain)}
+                      onClick={() => onSelect(isActiveRow ? null : c.code, selectedGroup)}
                       className="flex w-full items-center gap-2 text-left"
                     >
                       <span className="text-base leading-none">{c.flag}</span>
                       <span className="truncate text-xs font-medium">{c.name}</span>
                     </button>
                   </th>
-                  {visibleDomains.map((d) => {
-                    const v = c.byDomain[d] || 0;
-                    const isActiveCell = selectedCountry === c.code && selectedDomain === d;
+                  {visibleGroups.map((g) => {
+                    const v = c.byGroup[g] || 0;
+                    const isActiveCell = selectedCountry === c.code && selectedGroup === g;
                     return (
                       <td
-                        key={d}
+                        key={g}
                         className="border-b border-c-border p-0"
-                        style={{ background: bg(v, maxByCol[d], isActiveRow || selectedDomain === d) }}
+                        style={{ background: bg(v, maxByCol[g], isActiveRow || selectedGroup === g) }}
                       >
                         <button
                           type="button"
@@ -165,7 +149,7 @@ export default function DomainMatrix({
                           onClick={() =>
                             onSelect(
                               isActiveCell ? null : c.code,
-                              isActiveCell ? null : d
+                              isActiveCell ? null : g
                             )
                           }
                           className={`flex h-9 w-full items-center justify-center text-[11px] font-medium tabular-nums transition-colors ${

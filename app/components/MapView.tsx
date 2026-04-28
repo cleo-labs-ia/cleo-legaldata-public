@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
-import type { CountryStats, Domain } from "@/lib/types";
+import type { CountryStats, DomainGroup } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
@@ -45,10 +45,10 @@ interface Props {
   selected: string | null;
   onSelect: (code: string) => void;
   lang: Lang;
-  domainFilter: Domain | null;
+  groupFilter: DomainGroup | null;
 }
 
-export default function MapView({ countries, selected, onSelect, lang, domainFilter }: Props) {
+export default function MapView({ countries, selected, onSelect, lang, groupFilter }: Props) {
   const visible = useMemo(() => countries.filter((c) => c.lat !== null && c.lng !== null), [countries]);
   const target = useMemo(() => {
     const c = countries.find((x) => x.code === selected);
@@ -82,12 +82,12 @@ export default function MapView({ countries, selected, onSelect, lang, domainFil
         {visible.map((c) => {
           const status = dominantStatus(c);
           const isSelected = selected === c.code;
-          const domainCount = domainFilter ? c.byDomain[domainFilter] || 0 : c.total;
-          const dimmed = domainFilter !== null && domainCount === 0;
+          const groupCount = groupFilter ? c.byGroup[groupFilter] || 0 : c.total;
+          const dimmed = groupFilter !== null && groupCount === 0;
           if (dimmed) return null;
-          const radius = radiusFor(domainCount);
-          const fillColor = domainFilter ? "#0008cf" : STATUS_COLOR[status];
-          const baseOpacity = isSelected ? 0.9 : domainFilter ? 0.65 : 0.55;
+          const radius = radiusFor(groupCount);
+          const fillColor = groupFilter ? "#0008cf" : STATUS_COLOR[status];
+          const baseOpacity = isSelected ? 0.9 : groupFilter ? 0.65 : 0.55;
           return (
             <CircleMarker
               key={c.code}
@@ -108,8 +108,8 @@ export default function MapView({ countries, selected, onSelect, lang, domainFil
               <Tooltip className="country-tooltip" direction="top" offset={[0, -4]}>
                 <span className="font-semibold">{c.flag} {c.name}</span>
                 <span className="ml-2 opacity-80">
-                  {domainFilter
-                    ? `${domainCount} ${STRINGS.domain[domainFilter][lang].toLowerCase()}`
+                  {groupFilter
+                    ? `${groupCount} ${STRINGS.group[groupFilter][lang].toLowerCase()}`
                     : STRINGS.sourcesIn[lang](c.total)}
                 </span>
               </Tooltip>

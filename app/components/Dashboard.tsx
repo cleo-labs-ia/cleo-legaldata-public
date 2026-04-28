@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import type { DashboardData, Domain } from "@/lib/types";
+import type { DashboardData, DomainGroup } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import AnimatedNumber from "./AnimatedNumber";
@@ -26,7 +26,7 @@ const EMPTY_FILTERS: Filters = {
   query: "",
   status: "",
   dataType: "",
-  domain: "",
+  group: "",
   country: "",
 };
 
@@ -61,11 +61,11 @@ export default function Dashboard({ data }: { data: DashboardData }) {
     { year: "numeric", month: "long", day: "numeric" }
   );
 
-  function setMatrixSelection(country: string | null, domain: Domain | null) {
+  function setMatrixSelection(country: string | null, group: DomainGroup | null) {
     setFilters((f) => ({
       ...f,
       country: country ?? "",
-      domain: (domain ?? "") as Filters["domain"],
+      group: (group ?? "") as Filters["group"],
     }));
     if (country) {
       const el = document.getElementById("exhaustive");
@@ -140,7 +140,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
               selected={drawer}
               onSelect={setDrawer}
               lang={lang}
-              domainFilter={(filters.domain || null) as Domain | null}
+              groupFilter={(filters.group || null) as DomainGroup | null}
             />
           </div>
           <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
@@ -188,14 +188,14 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           countries={data.countries}
           lang={lang}
           selectedCountry={filters.country || null}
-          selectedDomain={(filters.domain || null) as Domain | null}
+          selectedGroup={(filters.group || null) as DomainGroup | null}
           onSelect={setMatrixSelection}
         />
 
         <CountriesGrid
           countries={data.countries}
           lang={lang}
-          domainFilter={(filters.domain || null) as Domain | null}
+          groupFilter={(filters.group || null) as DomainGroup | null}
           onSelect={setDrawer}
         />
 
