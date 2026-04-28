@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import type { DashboardData, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
-import Hero from "./Hero";
+import AnimatedNumber from "./AnimatedNumber";
 import StatsHeader from "./StatsHeader";
 import CountriesGrid from "./CountriesGrid";
 import SourcesTable, { type Filters } from "./SourcesTable";
@@ -29,6 +29,22 @@ const EMPTY_FILTERS: Filters = {
   domain: "",
   country: "",
 };
+
+function formatVolume(n: number, lang: Lang): string {
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1).replace(".", lang === "fr" ? "," : ".")}B`;
+  if (n >= 1_000_000) {
+    const m = n / 1_000_000;
+    return m >= 100
+      ? `${Math.round(m)}M`
+      : `${m.toFixed(1).replace(".", lang === "fr" ? "," : ".")}M`;
+  }
+  if (n >= 1_000) return `${Math.round(n / 1_000)}k`;
+  return n.toString();
+}
+
+function formatNumber(n: number, lang: Lang): string {
+  return n.toLocaleString(lang === "fr" ? "fr-FR" : "en-US");
+}
 
 export default function Dashboard({ data }: { data: DashboardData }) {
   const [lang, setLang] = useState<Lang>("fr");
@@ -59,22 +75,66 @@ export default function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen pb-16">
-      <Hero stats={data.stats} lang={lang} onLangChange={setLang} />
-
-      <main id="explore" className="mx-auto max-w-7xl px-6 pt-12">
-        <div className="mb-10 border-l-2 border-c-brand pl-4">
-          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
-            {lang === "fr" ? "Atlas — section 1" : "Atlas — section 1"}
+      <header className="border-b border-c-border bg-c-surface">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-c-brand text-xs font-bold text-white">
+              c
+            </div>
+            <div className="leading-tight">
+              <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">{STRINGS.heroEyebrow[lang]}</div>
+            </div>
           </div>
-          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
-            {lang === "fr" ? "La photo globale" : "The global picture"}
-          </h2>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://github.com/Cleo-Labs-IA/legal-sources"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.github[lang]} ↗
+            </a>
+            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
+              {(["fr", "en"] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setLang(l)}
+                  className={`rounded px-2 py-0.5 transition-colors ${
+                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
+                  }`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
+      </header>
 
-        <StatsHeader stats={data.stats} lang={lang} />
+      <main className="mx-auto max-w-7xl px-6 pt-6">
+        {/* Compact intro: title + 3 animated KPIs inline + tagline. No full-screen hero. */}
+        <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
+              {STRINGS.heroTitleA[lang]}{" "}
+              <span className="italic text-c-brand">{STRINGS.heroTitleB[lang]}</span>
+            </h1>
+            <p className="mt-2 text-sm text-c-text-muted md:text-[15px]">
+              {STRINGS.heroSubtitleClean[lang]}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-end gap-x-8 gap-y-2">
+            <Kpi value={data.stats.estimatedTotalVolume} label={STRINGS.heroKpiDocuments[lang]} format={(n) => formatVolume(n, lang)} accent />
+            <Kpi value={data.stats.totalSources} label={STRINGS.heroKpiSources[lang]} format={(n) => formatNumber(n, lang)} />
+            <Kpi value={data.stats.totalCountries} label={STRINGS.heroKpiCountries[lang]} format={(n) => formatNumber(n, lang)} />
+          </div>
+        </section>
 
-        <section className="mt-8 grid gap-4 lg:grid-cols-[1fr_360px]">
-          <div className="h-[560px] lg:h-[640px]">
+        {/* The map is the first thing the visitor sees, full width */}
+        <section className="grid gap-4 lg:grid-cols-[1fr_320px]">
+          <div className="h-[520px] lg:h-[600px]">
             <MapView
               countries={data.countries}
               selected={drawer}
@@ -83,12 +143,14 @@ export default function Dashboard({ data }: { data: DashboardData }) {
               domainFilter={(filters.domain || null) as Domain | null}
             />
           </div>
-          <aside className="rounded-2xl border border-c-border bg-c-surface p-5">
-            <h3 className="text-sm font-semibold tracking-tight">{STRINGS.totalCountries[lang]}</h3>
-            <p className="mt-1 text-xs text-c-text-muted">
-              {data.stats.totalCountries} · {data.stats.totalSources.toLocaleString(lang === "fr" ? "fr-FR" : "en-US")} {STRINGS.totalSources[lang].toLowerCase()}
+          <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+              {STRINGS.totalCountries[lang]}
+            </h3>
+            <p className="mt-0.5 text-xs text-c-text-muted">
+              {STRINGS.heroVolumeNote[lang]}
             </p>
-            <ul className="mt-3 max-h-[520px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
+            <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
               {data.countries.slice(0, 30).map((c) => {
                 const completion = Math.round(c.completion * 100);
                 return (
@@ -118,14 +180,9 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           </aside>
         </section>
 
-        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
-          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
-            {lang === "fr" ? "Atlas — section 2" : "Atlas — section 2"}
-          </div>
-          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
-            {lang === "fr" ? "Par domaine réglementaire" : "By regulatory domain"}
-          </h2>
-        </div>
+        <section className="mt-10">
+          <StatsHeader stats={data.stats} lang={lang} />
+        </section>
 
         <DomainMatrix
           countries={data.countries}
@@ -135,30 +192,12 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           onSelect={setMatrixSelection}
         />
 
-        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
-          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
-            {lang === "fr" ? "Atlas — section 3" : "Atlas — section 3"}
-          </div>
-          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
-            {lang === "fr" ? "Par juridiction" : "By jurisdiction"}
-          </h2>
-        </div>
-
         <CountriesGrid
           countries={data.countries}
           lang={lang}
           domainFilter={(filters.domain || null) as Domain | null}
           onSelect={setDrawer}
         />
-
-        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
-          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
-            {lang === "fr" ? "Atlas — section 4" : "Atlas — section 4"}
-          </div>
-          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
-            {lang === "fr" ? "L'inventaire complet" : "The full inventory"}
-          </h2>
-        </div>
 
         <SourcesTable
           countries={data.countries}
@@ -168,7 +207,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           onCountrySelect={setDrawer}
         />
 
-        <footer className="mt-16 border-t border-c-border pt-6 text-xs text-c-text-subtle">
+        <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
               {STRINGS.generatedAt[lang]} {generated} · {STRINGS.classifierBadge[lang]}
@@ -187,6 +226,30 @@ export default function Dashboard({ data }: { data: DashboardData }) {
       </main>
 
       <CountryDrawer country={drawerCountry} lang={lang} onClose={() => setDrawer(null)} />
+    </div>
+  );
+}
+
+function Kpi({
+  value,
+  label,
+  format,
+  accent,
+}: {
+  value: number;
+  label: string;
+  format: (n: number) => string;
+  accent?: boolean;
+}) {
+  return (
+    <div className="flex flex-col">
+      <div className={`tabular-display text-3xl font-light leading-none md:text-4xl ${accent ? "text-c-brand" : "text-c-text"}`}>
+        <AnimatedNumber value={value} format={format} />
+        {accent ? <span className="text-c-glow">+</span> : null}
+      </div>
+      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
+        {label}
+      </div>
     </div>
   );
 }
