@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { DashboardData, Domain } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import Hero from "./Hero";
 import StatsHeader from "./StatsHeader";
 import CountriesGrid from "./CountriesGrid";
 import SourcesTable, { type Filters } from "./SourcesTable";
@@ -58,45 +59,18 @@ export default function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen pb-16">
-      <header className="border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-c-brand text-sm font-bold text-white">
-              c
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold tracking-tight">{STRINGS.brand[lang]}</h1>
-              <p className="text-xs text-c-text-muted">{STRINGS.tagline[lang]}</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://github.com/Cleo-Labs-IA/legal-sources"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-c-border bg-c-surface px-3 py-1.5 text-xs font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.github[lang]} ↗
-            </a>
-            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-xs font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2.5 py-1 transition-colors ${
-                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
+      <Hero stats={data.stats} lang={lang} onLangChange={setLang} />
 
-      <main className="mx-auto max-w-7xl px-6 pt-8">
+      <main id="explore" className="mx-auto max-w-7xl px-6 pt-12">
+        <div className="mb-10 border-l-2 border-c-brand pl-4">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
+            {lang === "fr" ? "Atlas — section 1" : "Atlas — section 1"}
+          </div>
+          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
+            {lang === "fr" ? "La photo globale" : "The global picture"}
+          </h2>
+        </div>
+
         <StatsHeader stats={data.stats} lang={lang} />
 
         <section className="mt-8 grid gap-4 lg:grid-cols-[1fr_360px]">
@@ -144,6 +118,15 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           </aside>
         </section>
 
+        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
+            {lang === "fr" ? "Atlas — section 2" : "Atlas — section 2"}
+          </div>
+          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
+            {lang === "fr" ? "Par domaine réglementaire" : "By regulatory domain"}
+          </h2>
+        </div>
+
         <DomainMatrix
           countries={data.countries}
           lang={lang}
@@ -152,12 +135,30 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           onSelect={setMatrixSelection}
         />
 
+        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
+            {lang === "fr" ? "Atlas — section 3" : "Atlas — section 3"}
+          </div>
+          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
+            {lang === "fr" ? "Par juridiction" : "By jurisdiction"}
+          </h2>
+        </div>
+
         <CountriesGrid
           countries={data.countries}
           lang={lang}
           domainFilter={(filters.domain || null) as Domain | null}
           onSelect={setDrawer}
         />
+
+        <div className="mt-16 mb-6 border-l-2 border-c-brand pl-4">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
+            {lang === "fr" ? "Atlas — section 4" : "Atlas — section 4"}
+          </div>
+          <h2 className="mt-1 font-display text-3xl font-light tracking-tight text-c-text">
+            {lang === "fr" ? "L'inventaire complet" : "The full inventory"}
+          </h2>
+        </div>
 
         <SourcesTable
           countries={data.countries}
@@ -167,7 +168,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           onCountrySelect={setDrawer}
         />
 
-        <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
+        <footer className="mt-16 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
               {STRINGS.generatedAt[lang]} {generated} · {STRINGS.classifierBadge[lang]}

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
 import { COUNTRY_META, SUPRANATIONAL, flagFromIso2 } from "./countries-meta.mjs";
 import { classifyDomains, DOMAIN_CODES } from "./classify-domain.mjs";
+import { extractVolume } from "./extract-volume.mjs";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const MANIFEST = path.join(ROOT, "manifest.yaml");
@@ -38,6 +39,7 @@ for (const s of sources) {
     blocked_reason: s.blocked_reason ?? null,
     preferred_for: Array.isArray(s.preferred_for) ? s.preferred_for : null,
     domains: [],
+    estimatedVolume: extractVolume(s.notes),
   };
   enriched.domains = classifyDomains(enriched);
   grouped.get(code).push(enriched);
@@ -56,10 +58,16 @@ for (const [code, list] of grouped) {
   const byStatus = Object.fromEntries(STATUSES.map((s) => [s, 0]));
   const byDataType = Object.fromEntries(DATA_TYPES.map((d) => [d, 0]));
   const byDomain = Object.fromEntries(DOMAIN_CODES.map((d) => [d, 0]));
+  let countryVolume = 0;
+  let countryVolumeKnown = 0;
   for (const s of list) {
     byStatus[s.status] = (byStatus[s.status] || 0) + 1;
     for (const d of s.data_types) byDataType[d] = (byDataType[d] || 0) + 1;
     for (const d of s.domains) byDomain[d] = (byDomain[d] || 0) + 1;
+    if (s.estimatedVolume) {
+      countryVolume += s.estimatedVolume;
+      countryVolumeKnown += 1;
+    }
   }
   list.sort((a, b) => {
     const order = { complete: 0, blocked: 1, planned: 2, needs_research: 3, new: 4 };
@@ -77,6 +85,8 @@ for (const [code, list] of grouped) {
     byStatus,
     byDataType,
     byDomain,
+    estimatedVolume: countryVolume,
+    sourcesWithVolume: countryVolumeKnown,
     sources: list,
     completion,
   });
@@ -90,12 +100,16 @@ const stats = {
   byStatus: Object.fromEntries(STATUSES.map((s) => [s, 0])),
   byDataType: Object.fromEntries(DATA_TYPES.map((d) => [d, 0])),
   byDomain: Object.fromEntries(DOMAIN_CODES.map((d) => [d, 0])),
+  estimatedTotalVolume: 0,
+  sourcesWithVolume: 0,
   generatedAt: new Date().toISOString(),
 };
 for (const c of countries) {
   for (const s of STATUSES) stats.byStatus[s] += c.byStatus[s];
   for (const d of DATA_TYPES) stats.byDataType[d] += c.byDataType[d];
   for (const d of DOMAIN_CODES) stats.byDomain[d] += c.byDomain[d];
+  stats.estimatedTotalVolume += c.estimatedVolume;
+  stats.sourcesWithVolume += c.sourcesWithVolume;
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });

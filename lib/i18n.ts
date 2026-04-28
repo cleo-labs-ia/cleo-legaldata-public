@@ -6,6 +6,24 @@ export const STRINGS = {
     fr: "Cartographie publique des sources de données juridiques ouvertes suivies par Cleo Comply.",
     en: "Public map of open legal data sources tracked by Cleo Comply.",
   },
+  heroEyebrow: {
+    fr: "Atlas public · Cleo Comply",
+    en: "Public atlas · Cleo Comply",
+  },
+  heroTitleA: { fr: "Le droit du monde,", en: "The world's law," },
+  heroTitleB: { fr: "lisible par machine.", en: "machine-readable." },
+  heroSubtitleClean: {
+    fr: "De Légifrance aux décisions de la Cour Suprême indienne — un inventaire public, exhaustif, vérifié à la source.",
+    en: "From Légifrance to the Indian Supreme Court — a public, exhaustive inventory, verified at source.",
+  },
+  heroKpiSources: { fr: "portails officiels", en: "official portals" },
+  heroKpiCountries: { fr: "juridictions", en: "jurisdictions" },
+  heroKpiDocuments: { fr: "documents recensés", en: "documents recensed" },
+  heroScrollHint: { fr: "Explorer", en: "Explore" },
+  heroVolumeNote: {
+    fr: "volumes déclarés par les portails sources",
+    en: "volumes declared by source portals",
+  },
   totalSources: { fr: "Sources", en: "Sources" },
   totalCountries: { fr: "Juridictions", en: "Jurisdictions" },
   status: {

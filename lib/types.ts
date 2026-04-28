@@ -40,6 +40,7 @@ export interface Source {
   notes: string | null;
   blocked_reason: string | null;
   preferred_for: string[] | null;
+  estimatedVolume: number | null;
 }
 
 export interface CountryStats {
@@ -52,6 +53,8 @@ export interface CountryStats {
   byStatus: Record<SourceStatus, number>;
   byDataType: Record<DataType, number>;
   byDomain: Record<Domain, number>;
+  estimatedVolume: number;
+  sourcesWithVolume: number;
   sources: Source[];
   completion: number;
 }
@@ -62,6 +65,8 @@ export interface GlobalStats {
   byStatus: Record<SourceStatus, number>;
   byDataType: Record<DataType, number>;
   byDomain: Record<Domain, number>;
+  estimatedTotalVolume: number;
+  sourcesWithVolume: number;
   generatedAt: string;
 }
 

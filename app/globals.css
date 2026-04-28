@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
+
 @theme {
   --color-c-bg: #fafafa;
   --color-c-surface: #ffffff;
@@ -13,6 +16,9 @@
   --color-c-brand: #0008cf;
   --color-c-brand-soft: #e5e6fb;
   --color-c-brand-ink: #060686;
+  --color-c-ink-deep: #02021a;
+  --color-c-ink-night: #06061a;
+  --color-c-glow: #6b74ff;
   --color-c-success: #1a8a4a;
   --color-c-success-soft: #d6f0e1;
   --color-c-warn: #c47a00;
@@ -23,13 +29,8 @@
   --color-c-info-soft: #dde6fc;
 
   --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", "Times New Roman", Georgia, serif;
   --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
-  font-display: swap;
 }
 
 @layer base {
@@ -89,4 +90,61 @@
 
 .scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.02em;
+}
+
+.tabular-display {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "ss01", "ss02";
+}
+
+@keyframes hero-grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, 1%); }
+  30% { transform: translate(1%, -2%); }
+  50% { transform: translate(-2%, 1%); }
+  70% { transform: translate(2%, 0); }
+  90% { transform: translate(-1%, -1%); }
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-fade {
+  animation: hero-fade-up 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-fade-1 { animation-delay: 0.05s; }
+.hero-fade-2 { animation-delay: 0.2s; }
+.hero-fade-3 { animation-delay: 0.4s; }
+.hero-fade-4 { animation-delay: 0.7s; }
+.hero-fade-5 { animation-delay: 1.0s; }
+.hero-fade-6 { animation-delay: 1.3s; }
+
+.hero-bg {
+  background:
+    radial-gradient(ellipse 90% 60% at 20% 0%, rgba(107, 116, 255, 0.35), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 100%, rgba(0, 8, 207, 0.5), transparent 70%),
+    linear-gradient(180deg, #02021a 0%, #06061a 60%, #06061a 100%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%);
 }
