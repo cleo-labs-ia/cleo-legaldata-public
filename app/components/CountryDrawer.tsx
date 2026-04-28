@@ -13,6 +13,8 @@ interface Props {
 }
 
 export default function CountryDrawer({ country, lang, onClose }: Props) {
+  const open = country !== null;
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -21,17 +23,33 @@ export default function CountryDrawer({ country, lang, onClose }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  // Lock body scroll while the drawer is open so the page underneath
+  // (Leaflet map, table) does not scroll behind the panel.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+    return () => {
+      document.body.style.overflow = prev;
+      document.body.style.paddingRight = prevPaddingRight;
+    };
+  }, [open]);
+
   if (!country) return null;
 
   const completionPct = Math.round(country.completion * 100);
 
   return (
     <>
+      {/* z-index above Leaflet (~700-1000 for controls) */}
       <div
-        className="fixed inset-0 z-40 bg-c-text/30 backdrop-blur-[2px] animate-in fade-in"
+        className="fixed inset-0 z-[1100] bg-c-text/40 backdrop-blur-[2px] transition-opacity duration-200"
         onClick={onClose}
       />
-      <aside className="fixed right-0 top-0 z-50 flex h-screen w-full max-w-xl flex-col border-l border-c-border bg-c-surface shadow-2xl">
+      <aside className="fixed right-0 top-0 z-[1101] flex h-[100dvh] w-full max-w-xl flex-col border-l border-c-border bg-c-surface shadow-2xl">
         <header className="flex items-start justify-between gap-4 border-b border-c-border px-6 py-5">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
