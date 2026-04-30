@@ -88,14 +88,6 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <a
-              href="https://github.com/Cleo-Labs-IA/legal-sources"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.github[lang]} ↗
-            </a>
             <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
               {(["fr", "en"] as Lang[]).map((l) => (
                 <button
@@ -218,10 +210,6 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             <span>
               <a href="https://cleolabs.co" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
                 Cleo Labs
-              </a>
-              {" · "}
-              <a href="https://github.com/Cleo-Labs-IA/legal-sources" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
-                Cleo-Labs-IA/legal-sources
               </a>
             </span>
           </div>
