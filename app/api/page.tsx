@@ -116,6 +116,104 @@ export default function ApiDocsPage() {
           </a>
         </div>
 
+        {/* Trust signals */}
+        <section className="mt-12">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+            {[
+              { title: STRINGS.trustGdpr[lang], desc: STRINGS.trustGdprDesc[lang] },
+              { title: STRINGS.trustEu[lang], desc: STRINGS.trustEuDesc[lang] },
+              { title: STRINGS.trustDaily[lang], desc: STRINGS.trustDailyDesc[lang] },
+              { title: STRINGS.trustSla[lang], desc: STRINGS.trustSlaDesc[lang] },
+              { title: STRINGS.trustSupport[lang], desc: STRINGS.trustSupportDesc[lang] },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl border border-c-border bg-c-surface p-4"
+              >
+                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand">
+                  ✓ {item.title}
+                </div>
+                <p className="mt-1.5 text-[11px] leading-relaxed text-c-text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section className="mt-20">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-c-brand">
+            {STRINGS.pricingHeader[lang]}
+          </div>
+          <h2 className="mt-1 font-display text-3xl font-light tracking-tight md:text-4xl">
+            {STRINGS.pricingTitle[lang]}
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-c-text-muted">
+            {STRINGS.pricingSubtitle[lang]}
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {/* Pro */}
+            <div className="rounded-2xl border border-c-border bg-c-surface p-6">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="font-display text-2xl font-light tracking-tight">
+                  {STRINGS.pricingPlanPro[lang]}
+                </h3>
+                <span className="rounded-full bg-c-brand-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-c-brand-ink">
+                  {STRINGS.pricingCustom[lang]}
+                </span>
+              </div>
+              <p className="mt-1 text-sm text-c-text-muted">{STRINGS.pricingPlanProTagline[lang]}</p>
+              <ul className="mt-5 space-y-2 text-sm text-c-text">
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>120 {lang === "fr" ? "requêtes/minute" : "requests/minute"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "6 endpoints catalog (sources, juridictions, catégories, stats)" : "6 catalog endpoints (sources, jurisdictions, categories, stats)"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Authentification Bearer + clés rotables" : "Bearer auth + rotatable keys"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Support technique sous 1 jour ouvré" : "Tech support within 1 business day"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Connecteur MCP pour Claude / Cursor / agents IA" : "MCP connector for Claude / Cursor / AI agents"}</span></li>
+              </ul>
+              <a
+                href={MEET_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-c-border bg-c-surface px-4 py-2.5 text-sm font-semibold text-c-text hover:border-c-brand hover:text-c-brand"
+              >
+                {STRINGS.bookACall[lang]} →
+              </a>
+            </div>
+
+            {/* Enterprise */}
+            <div className="relative rounded-2xl border-2 border-c-brand bg-c-surface p-6 shadow-sm">
+              <div className="absolute -top-3 left-6 rounded-full bg-c-brand px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+                {lang === "fr" ? "Recommandé" : "Recommended"}
+              </div>
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="font-display text-2xl font-light tracking-tight">
+                  {STRINGS.pricingPlanEnt[lang]}
+                </h3>
+                <span className="rounded-full bg-c-brand px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+                  {STRINGS.pricingCustom[lang]}
+                </span>
+              </div>
+              <p className="mt-1 text-sm text-c-text-muted">{STRINGS.pricingPlanEntTagline[lang]}</p>
+              <ul className="mt-5 space-y-2 text-sm text-c-text">
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "600 requêtes/minute (volumes custom au-delà)" : "600 requests/minute (custom volumes beyond)"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Tous les endpoints (catalog + signaux + régulations org-scoped)" : "All endpoints (catalog + signals + org-scoped regulations)"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "SLA d'uptime contractuel" : "Contractual uptime SLA"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Support dédié + Slack partagé" : "Dedicated support + shared Slack"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "DPA signé, hébergement custom possible" : "Signed DPA, custom hosting available"}</span></li>
+                <li className="flex items-start gap-2"><span className="text-c-brand">✓</span><span>{lang === "fr" ? "Onboarding accompagné par notre équipe" : "Hands-on onboarding by our team"}</span></li>
+              </ul>
+              <a
+                href={MEET_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-c-brand px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-c-brand-ink"
+              >
+                {STRINGS.bookACall[lang]} →
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Authentication */}
         <section className="mt-16">
           <h2 className="font-display text-2xl font-light tracking-tight">

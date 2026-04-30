@@ -163,6 +163,51 @@ export const STRINGS = {
     en: "List endpoints use cursor-based pagination: `limit` (1-100, default 25) and `after` (cursor from the previous response). Every response includes `has_more` and `next_cursor`.",
   },
   apiBackToAtlas: { fr: "Retour à l'atlas", en: "Back to atlas" },
+  navApi: { fr: "API", en: "API" },
+  pricingHeader: { fr: "Tarification", en: "Pricing" },
+  pricingTitle: { fr: "Deux plans, pas de surprise", en: "Two plans, no surprises" },
+  pricingSubtitle: {
+    fr: "Tarification sur mesure selon le volume et les besoins. On en discute en 20 minutes.",
+    en: "Custom pricing based on volume and use case. Let's chat for 20 minutes.",
+  },
+  pricingCustom: { fr: "Sur devis", en: "Custom" },
+  bookACall: { fr: "Prendre un call", en: "Book a call" },
+  pricingPlanPro: { fr: "Pro", en: "Pro" },
+  pricingPlanProTagline: {
+    fr: "Pour SaaS legal-tech, cabinets, vendors RegTech",
+    en: "For legal-tech SaaS, law firms, RegTech vendors",
+  },
+  pricingPlanEnt: { fr: "Enterprise", en: "Enterprise" },
+  pricingPlanEntTagline: {
+    fr: "Pour banques, big4, agences, AI labs",
+    en: "For banks, Big 4, agencies, AI labs",
+  },
+  trustHeader: { fr: "Garanties", en: "Guarantees" },
+  trustGdpr: { fr: "Conforme RGPD", en: "GDPR-compliant" },
+  trustGdprDesc: {
+    fr: "Données traitées dans le respect du RGPD, DPA disponible sur demande",
+    en: "Data handled per GDPR, DPA available on request",
+  },
+  trustEu: { fr: "Hébergé en Europe", en: "EU-hosted" },
+  trustEuDesc: {
+    fr: "Infrastructure Vercel + Supabase région Europe",
+    en: "Vercel + Supabase infrastructure, EU region",
+  },
+  trustDaily: { fr: "Mises à jour continues", en: "Continuous updates" },
+  trustDailyDesc: {
+    fr: "Catalogue rafraîchi en continu depuis nos collecteurs",
+    en: "Catalog refreshed continuously from our collectors",
+  },
+  trustSla: { fr: "SLA disponible", en: "SLA available" },
+  trustSlaDesc: {
+    fr: "Engagement de disponibilité et support dédié sur le plan Enterprise",
+    en: "Uptime guarantee and dedicated support on Enterprise plan",
+  },
+  trustSupport: { fr: "Support inclus", en: "Support included" },
+  trustSupportDesc: {
+    fr: "Réponse sous 1 jour ouvré, intégration accompagnée",
+    en: "Reply within 1 business day, integration support",
+  },
   noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
   resultCount: {
     fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,

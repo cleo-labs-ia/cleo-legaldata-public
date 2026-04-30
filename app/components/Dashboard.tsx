@@ -6,6 +6,7 @@ import type { DashboardData, DomainGroup } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import AnimatedNumber from "./AnimatedNumber";
+import Link from "next/link";
 import StatsHeader from "./StatsHeader";
 import CountriesGrid from "./CountriesGrid";
 import SourcesTable, { type Filters } from "./SourcesTable";
@@ -92,6 +93,12 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Link
+              href="/api"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.navApi[lang]} →
+            </Link>
             <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
               {(["fr", "en"] as Lang[]).map((l) => (
                 <button
