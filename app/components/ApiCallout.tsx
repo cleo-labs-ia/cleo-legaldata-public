@@ -4,19 +4,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
-const CONTACT_EMAIL = "contact@cleo.academy";
-
-function buildMailto(lang: Lang): string {
-  const subject =
-    lang === "fr"
-      ? "Demande d'accès à l'API Cleo Legal Data"
-      : "Cleo Legal Data API access request";
-  const body =
-    lang === "fr"
-      ? `Bonjour,\n\nJe souhaite accéder à l'API Cleo Legal Data.\n\n— Société :\n— Cas d'usage :\n— Volume estimé (requêtes/mois) :\n— Plan envisagé (Pro / Enterprise) :\n\nMerci !`
-      : `Hello,\n\nI'd like access to the Cleo Legal Data API.\n\n— Company:\n— Use case:\n— Estimated volume (requests/month):\n— Plan considered (Pro / Enterprise):\n\nThanks!`;
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
+const MEET_URL = "https://www.cleolabs.co/en/meet";
 
 export default function ApiCallout({ lang }: { lang: Lang }) {
   return (
@@ -45,7 +33,9 @@ export default function ApiCallout({ lang }: { lang: Lang }) {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href={buildMailto(lang)}
+                href={MEET_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
               >
                 {STRINGS.apiCtaPrimary[lang]} →
