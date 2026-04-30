@@ -208,6 +208,7 @@ export const STRINGS = {
     fr: "Réponse sous 1 jour ouvré, intégration accompagnée",
     en: "Reply within 1 business day, integration support",
   },
+  privacyLink: { fr: "Confidentialité", en: "Privacy" },
   noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
   resultCount: {
     fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,

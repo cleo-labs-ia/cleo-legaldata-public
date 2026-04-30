@@ -218,10 +218,14 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             <span>
               {STRINGS.generatedAt[lang]} {generated} · {STRINGS.classifierBadge[lang]}
             </span>
-            <span>
+            <span className="flex flex-wrap items-center gap-x-2">
               <a href="https://cleolabs.co" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
                 Cleo Labs
               </a>
+              <span>·</span>
+              <Link href="/privacy" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.privacyLink[lang]}
+              </Link>
             </span>
           </div>
         </footer>
