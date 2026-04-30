@@ -66,9 +66,13 @@ export default function ApiDocsPage() {
       <header className="border-b border-c-border bg-c-surface">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
           <Link href="/" className="flex items-center gap-3 text-c-text hover:text-c-brand">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-c-brand text-xs font-bold text-white">
-              c
-            </div>
+            <img
+              src="/cleo-icon.svg"
+              alt="Cleo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-md"
+            />
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
               <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
