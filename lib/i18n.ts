@@ -116,6 +116,53 @@ export const STRINGS = {
     fr: "Tags inférés du nom de la source",
     en: "Tags inferred from source name",
   },
+  apiCalloutEyebrow: { fr: "Accès programmatique", en: "Programmatic access" },
+  apiCalloutTitle: {
+    fr: "Cette donnée existe aussi en API",
+    en: "This data is also available as an API",
+  },
+  apiCalloutBody: {
+    fr: "Toutes les sources, juridictions et catégories de cette page sont accessibles via une API REST authentifiée — pour brancher Cleo dans vos pipelines de veille, votre produit ou vos agents IA.",
+    en: "All sources, jurisdictions and categories on this page are available through an authenticated REST API — to plug Cleo into your monitoring pipelines, product, or AI agents.",
+  },
+  apiCtaPrimary: { fr: "Demander un accès", en: "Request access" },
+  apiCtaSecondary: { fr: "Voir la doc", en: "View docs" },
+  apiPlansHeader: { fr: "Plans disponibles", en: "Available plans" },
+  apiPlanPro: { fr: "Pro", en: "Pro" },
+  apiPlanEnterprise: { fr: "Enterprise", en: "Enterprise" },
+  apiPlanProDesc: {
+    fr: "120 requêtes/min · idéal pour SaaS legal-tech, cabinets, recherche",
+    en: "120 requests/min · suited for legal-tech SaaS, law firms, research",
+  },
+  apiPlanEntDesc: {
+    fr: "600 requêtes/min · SLA, support dédié, volumes custom",
+    en: "600 requests/min · SLA, dedicated support, custom volumes",
+  },
+  apiDocsTitle: {
+    fr: "API Cleo Legal Data — documentation",
+    en: "Cleo Legal Data API — documentation",
+  },
+  apiDocsIntro: {
+    fr: "Une API REST pour accéder par programmation à l'intégralité du catalogue Cleo : 1 479 portails officiels, 177 juridictions, 234M+ documents juridiques recensés, classés en 7 catégories réglementaires.",
+    en: "A REST API for programmatic access to the entire Cleo catalog: 1,479 official portals, 177 jurisdictions, 234M+ legal documents recensed, classified into 7 regulatory categories.",
+  },
+  apiAuthHeader: { fr: "Authentification", en: "Authentication" },
+  apiAuthBody: {
+    fr: "Toutes les requêtes nécessitent un token Bearer. La clé est générée depuis votre tableau de bord Cleo (Settings → Integrations) une fois votre plan actif.",
+    en: "Every request requires a Bearer token. The key is generated from your Cleo dashboard (Settings → Integrations) once your plan is active.",
+  },
+  apiEndpointsHeader: { fr: "Points de terminaison", en: "Endpoints" },
+  apiRateHeader: { fr: "Limites de débit", en: "Rate limits" },
+  apiRateBody: {
+    fr: "Pro : 120 requêtes/minute. Enterprise : 600 requêtes/minute. Les en-têtes X-RateLimit-* sont retournés à chaque réponse. Un dépassement renvoie 429 avec Retry-After.",
+    en: "Pro: 120 requests/minute. Enterprise: 600 requests/minute. X-RateLimit-* headers are returned on every response. Exceeding the limit returns 429 with a Retry-After header.",
+  },
+  apiPaginationHeader: { fr: "Pagination", en: "Pagination" },
+  apiPaginationBody: {
+    fr: "Les listes utilisent une pagination par curseur : `limit` (1-100, défaut 25) et `after` (curseur retourné dans la réponse précédente). Chaque réponse contient `has_more` et `next_cursor`.",
+    en: "List endpoints use cursor-based pagination: `limit` (1-100, default 25) and `after` (cursor from the previous response). Every response includes `has_more` and `next_cursor`.",
+  },
+  apiBackToAtlas: { fr: "Retour à l'atlas", en: "Back to atlas" },
   noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
   resultCount: {
     fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,

@@ -11,6 +11,7 @@ import CountriesGrid from "./CountriesGrid";
 import SourcesTable, { type Filters } from "./SourcesTable";
 import CountryDrawer from "./CountryDrawer";
 import DomainMatrix from "./DomainMatrix";
+import ApiCallout from "./ApiCallout";
 
 const MapView = dynamic(() => import("./MapView"), { ssr: false, loading: () => <MapPlaceholder /> });
 
@@ -206,6 +207,8 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           onFiltersChange={setFilters}
           onCountrySelect={setDrawer}
         />
+
+        <ApiCallout lang={lang} />
 
         <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
