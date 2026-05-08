@@ -7,42 +7,30 @@ import { STRINGS } from "@/lib/i18n";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
 
-const ENDPOINTS = [
+const CAPABILITIES = [
   {
-    method: "GET",
-    path: "/api/v1/catalog/stats",
-    fr: "Compteurs globaux : 1 479 sources, 177 juridictions, 234M+ documents recensés, breakdowns par statut, type de document et catégorie.",
-    en: "Global counters: 1,479 sources, 177 jurisdictions, 234M+ recensed documents, breakdowns by status, data type and category.",
+    fr: { title: "Vue d'ensemble du catalogue", body: "Compteurs globaux et répartition par statut, type et catégorie réglementaire — pour piloter votre couverture en un coup d'œil." },
+    en: { title: "Catalog overview", body: "Global counters and breakdowns by status, type and regulatory category — to monitor your coverage at a glance." },
   },
   {
-    method: "GET",
-    path: "/api/v1/catalog/sources",
-    fr: "Liste paginée de toutes les sources du catalogue. Filtres : country, status, data_type, category, q (recherche texte).",
-    en: "Paginated list of every catalog source. Filters: country, status, data_type, category, q (free-text search).",
+    fr: { title: "Liste des sources", body: "Parcourir l'ensemble des sources avec des filtres simples : juridiction, statut, catégorie ou recherche texte libre." },
+    en: { title: "Source listing", body: "Browse every source with simple filters: jurisdiction, status, category, or free-text search." },
   },
   {
-    method: "GET",
-    path: "/api/v1/catalog/sources/{id}",
-    fr: "Détail complet d'une source (notes, raison de blocage, volume estimé, classification…).",
-    en: "Full detail for a single source (notes, blocked reason, estimated volume, classification…).",
+    fr: { title: "Détail d'une source", body: "Récupérer toutes les informations d'une source : portail officiel, classification, volume estimé, notes de couverture." },
+    en: { title: "Source detail", body: "Pull every detail on a single source: official portal, classification, estimated volume, coverage notes." },
   },
   {
-    method: "GET",
-    path: "/api/v1/catalog/jurisdictions",
-    fr: "Liste paginée des 177 juridictions avec compteurs agrégés (total sources, taux de couverture, volume estimé).",
-    en: "Paginated list of all 177 jurisdictions with aggregated counters (total sources, coverage ratio, estimated volume).",
+    fr: { title: "Toutes les juridictions", body: "Lister les juridictions couvertes avec leur taux de couverture et leur volume estimé de documents." },
+    en: { title: "All jurisdictions", body: "List every covered jurisdiction with its coverage ratio and estimated document volume." },
   },
   {
-    method: "GET",
-    path: "/api/v1/catalog/jurisdictions/{code}",
-    fr: "Détail d'une juridiction. Ajoute ?include_sources=true pour embarquer la liste complète des sources de la juridiction.",
-    en: "Detail of a jurisdiction. Add ?include_sources=true to embed the full list of its sources.",
+    fr: { title: "Détail d'une juridiction", body: "Voir le profil d'une juridiction et la liste complète des sources qui la couvrent, en un seul appel." },
+    en: { title: "Jurisdiction detail", body: "Get a jurisdiction's profile and the full list of sources covering it, in a single call." },
   },
   {
-    method: "GET",
-    path: "/api/v1/catalog/categories",
-    fr: "Les 7 catégories réglementaires : IA & Données, Santé & Sécurité, Finance & Marchés, Travail & Fiscal, Environnement, PI & Médias, Généraliste.",
-    en: "The 7 regulatory categories: AI & Data, Health & Safety, Finance & Markets, Labor & Tax, Environment, IP & Media, Generalist.",
+    fr: { title: "Catégories réglementaires", body: "Naviguer par grande famille : IA & Données, Santé & Sécurité, Finance & Marchés, Travail & Fiscal, Environnement, PI & Médias, Généraliste." },
+    en: { title: "Regulatory categories", body: "Navigate by major family: AI & Data, Health & Safety, Finance & Markets, Labor & Tax, Environment, IP & Media, Generalist." },
   },
 ];
 
@@ -105,14 +93,6 @@ export default function ApiDocsPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-c-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow"
           >
             {STRINGS.apiCtaPrimary[lang]} →
-          </a>
-          <a
-            href="https://insight.cleolabs.co/api/docs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-c-border bg-c-surface px-5 py-2.5 text-sm font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-          >
-            OpenAPI · Swagger UI ↗
           </a>
         </div>
 
@@ -214,74 +194,48 @@ export default function ApiDocsPage() {
           </div>
         </section>
 
-        {/* Authentication */}
+        {/* How it works */}
         <section className="mt-16">
           <h2 className="font-display text-2xl font-light tracking-tight">
             {STRINGS.apiAuthHeader[lang]}
           </h2>
           <p className="mt-2 max-w-3xl text-sm text-c-text-muted">{STRINGS.apiAuthBody[lang]}</p>
-          <pre className="mt-4 overflow-x-auto rounded-xl border border-c-border bg-c-ink-night p-4 text-xs leading-relaxed text-white/90">
-            <code>
-              <span className="text-white/50">$ </span>curl -H{" "}
-              <span className="text-emerald-300">&quot;Authorization: Bearer cleo_live_...&quot;</span>{" "}
-              \{"\n"}    https://insight.cleolabs.co/api/v1/catalog/stats
-            </code>
-          </pre>
+          <ol className="mt-6 grid gap-3 md:grid-cols-3">
+            {[
+              { title: STRINGS.apiStepAccessTitle[lang], body: STRINGS.apiStepAccessBody[lang] },
+              { title: STRINGS.apiStepCallTitle[lang], body: STRINGS.apiStepCallBody[lang] },
+              { title: STRINGS.apiStepDataTitle[lang], body: STRINGS.apiStepDataBody[lang] },
+            ].map((step, i) => (
+              <li key={step.title} className="rounded-xl border border-c-border bg-c-surface p-5">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-mono text-[11px] font-semibold tracking-wider text-c-brand">
+                    0{i + 1}
+                  </span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand">
+                    {step.title}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-c-text-muted">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        {/* Endpoints */}
+        {/* What you can do */}
         <section className="mt-16">
           <h2 className="font-display text-2xl font-light tracking-tight">
             {STRINGS.apiEndpointsHeader[lang]}
           </h2>
           <ul className="mt-4 divide-y divide-c-border overflow-hidden rounded-xl border border-c-border bg-c-surface">
-            {ENDPOINTS.map((ep) => (
-              <li key={ep.path} className="px-5 py-4">
-                <div className="flex items-baseline gap-3">
-                  <span className="rounded bg-c-success-soft px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-c-success">
-                    {ep.method}
-                  </span>
-                  <code className="text-sm font-medium tracking-tight text-c-text">{ep.path}</code>
-                </div>
-                <p className="mt-1.5 text-sm text-c-text-muted">{ep[lang]}</p>
+            {CAPABILITIES.map((cap) => (
+              <li key={cap.fr.title} className="px-5 py-4">
+                <h3 className="text-sm font-semibold tracking-tight text-c-text">
+                  {cap[lang].title}
+                </h3>
+                <p className="mt-1.5 text-sm text-c-text-muted">{cap[lang].body}</p>
               </li>
             ))}
           </ul>
-        </section>
-
-        {/* Example response */}
-        <section className="mt-16">
-          <h2 className="font-display text-2xl font-light tracking-tight">
-            {lang === "fr" ? "Exemple de réponse" : "Example response"}
-          </h2>
-          <p className="mt-2 max-w-3xl text-sm text-c-text-muted">
-            <code className="rounded bg-c-surface-2 px-1.5 py-0.5 text-xs">GET /api/v1/catalog/stats</code>
-          </p>
-          <pre className="mt-4 overflow-x-auto rounded-xl border border-c-border bg-c-ink-night p-4 text-xs leading-relaxed text-white/90">
-            <code>{`{
-  "total_sources": 1479,
-  "total_jurisdictions": 177,
-  "estimated_total_documents": 234502471,
-  "sources_with_estimated_volume": 257,
-  "by_status": {
-    "complete": 658,
-    "blocked": 480,
-    "planned": 228,
-    "needs_research": 76,
-    "new": 37
-  },
-  "by_category": {
-    "ai_data": 30,
-    "health_safety": 13,
-    "finance_markets": 70,
-    "labor_tax": 161,
-    "environment": 10,
-    "ip_media": 31,
-    "generalist": 232
-  },
-  "snapshot_taken_at": "2026-04-30T11:00:00Z"
-}`}</code>
-          </pre>
         </section>
 
         {/* Rate limits */}
