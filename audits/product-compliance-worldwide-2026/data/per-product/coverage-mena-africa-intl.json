@@ -1,0 +1,250 @@
+{
+  "zone": "MENA & Africa + International",
+  "generated_at": "2026-05-26",
+  "source_master_csv": "audits/product-compliance-worldwide-2026/data/master.csv",
+  "supabase_table": "legal_documents",
+  "notes": {
+    "SA_in_supabase": "country='SA' = 3837 docs = South Africa ISO-3166 conflict; 'Saudi Arabia' (full name) = 101 docs; GCC bloc = 13 docs",
+    "KE_in_supabase": "country='KE' = 1491 docs (likely includes other entities); 'Kenya' full name = 6 docs",
+    "International_in_supabase": "293 docs tagged country='International'; no dedicated ISO/OECD/WADA/CODEX/UNECE country codes — matched via title ILIKE",
+    "master_csv_note": "GCC (SA/Gulf) used as jurisdiction code for Saudi Arabia bloc in master.csv; no SA code in master"
+  },
+  "jurisdictions": {
+    "GCC": {
+      "jurisdiction_name": "Gulf Cooperation Council (incl. Saudi Arabia)",
+      "total_regs_in_master": 39,
+      "found_in_master": 0,
+      "not_found_in_master": 28,
+      "critical_regs": 16,
+      "supabase_docs": {
+        "exact_code_SA": 3837,
+        "full_name_saudi_arabia": 101,
+        "GCC_variants": 13,
+        "note": "SA code in Supabase conflicts with South Africa ISO-3166; Saudi Arabia named docs = 101; notable matches: SFDA Food Establishment Regulations, GSO Cosmetics Technical Regulation, GSO Technical Regulations for Electronics"
+      },
+      "gap": "critical — 0/39 master regs matched to API; SA country code ambiguity; GSO/SFDA regs present but not linked"
+    },
+    "IL": {
+      "jurisdiction_name": "Israel",
+      "total_regs_in_master": 26,
+      "found_in_master": 0,
+      "not_found_in_master": 22,
+      "critical_regs": 8,
+      "supabase_docs": {
+        "exact_code_IL": 4,
+        "full_name_israel": 7,
+        "total_usable": 7
+      },
+      "gap": "critical — 7 docs vs 26 needed; missing: MOC radio type approval, SI 1651 sunscreen, AMAR MD registration, PPL 1981 privacy"
+    },
+    "EG": {
+      "jurisdiction_name": "Egypt",
+      "total_regs_in_master": 24,
+      "found_in_master": 0,
+      "not_found_in_master": 20,
+      "critical_regs": 8,
+      "supabase_docs": {
+        "exact_code_EG": 69,
+        "full_name_egypt": 0,
+        "total_usable": 69
+      },
+      "gap": "major — 69 docs exist (EG exact code) but 0 matched in master; likely different document set; missing: MOH cosmetics decree 425/2010, EDA MD registration, NTRA radio type approval, e-waste law"
+    },
+    "MA": {
+      "jurisdiction_name": "Morocco",
+      "total_regs_in_master": 24,
+      "found_in_master": 0,
+      "not_found_in_master": 20,
+      "critical_regs": 5,
+      "supabase_docs": {
+        "exact_code_MA": 48,
+        "full_name_morocco": 98,
+        "total_usable": 98,
+        "note": "Full name matches higher due to multi-country 'International, France... Morocco (MA)' rows"
+      },
+      "gap": "major — 98 docs present but none matched in master; missing: ANRT radio homologation, Décret 2-04-762 cosmetics, Loi 09-08 data protection, Loi 17-04 pharma code"
+    },
+    "ZA": {
+      "jurisdiction_name": "South Africa",
+      "total_regs_in_master": 30,
+      "found_in_master": 0,
+      "not_found_in_master": 24,
+      "critical_regs": 10,
+      "supabase_docs": {
+        "exact_code_ZA": 143,
+        "full_name_south_africa": 107,
+        "total_usable": 143,
+        "note": "SA code = ambiguous (ISO-3166 = South Africa but Supabase uses it for South Africa correctly here); ICASA and SAHPRA docs confirmed present"
+      },
+      "regulation_matches_confirmed": [
+        "South Africa ICASA (radio type approval)",
+        "South Africa SAHPRA MD Regulations"
+      ],
+      "gap": "significant — ICASA + SAHPRA found; still missing: NRCS VC 8055, POPIA, NEMWA EPR, SANS 1557 sunscreen, SANS 1692 cosmetics, Foodstuffs Act 54/1972, VC 8052 toys"
+    },
+    "NG": {
+      "jurisdiction_name": "Nigeria",
+      "total_regs_in_master": 24,
+      "found_in_master": 0,
+      "not_found_in_master": 20,
+      "critical_regs": 5,
+      "supabase_docs": {
+        "exact_code_NG": 25,
+        "full_name_nigeria": 64,
+        "total_usable": 64,
+        "note": "NAFDAC Cosmetics Regulations doc confirmed present (country: Nigeria, NG)"
+      },
+      "regulation_matches_confirmed": [
+        "NAFDAC Cosmetics Regulations"
+      ],
+      "gap": "significant — NAFDAC cosmetics found; missing: NCC radio type approval, SON safety, NESREA e-waste, NAFDAC sunscreen, NAFDAC MD registration, NAFDAC dietary supplements"
+    },
+    "KE": {
+      "jurisdiction_name": "Kenya",
+      "total_regs_in_master": 25,
+      "found_in_master": 0,
+      "not_found_in_master": 21,
+      "critical_regs": 5,
+      "supabase_docs": {
+        "exact_code_KE": 1491,
+        "full_name_kenya": 6,
+        "note": "KE exact code = 1491 but likely includes unrelated entries (country code collision); 'Kenya' full name = 6 docs only"
+      },
+      "gap": "critical — KE code unreliable (1491 docs appear to be a code collision); only 6 Kenya-named docs; missing: CA Kenya type approval, PPB cosmetics, KEBS safety mark, NEMA e-waste 2021, Kenya DPA 2019, EAC EAS 758"
+    }
+  },
+  "international_orgs": {
+    "CODEX": {
+      "jurisdiction_name": "Codex Alimentarius (FAO/WHO)",
+      "total_regs_in_master": 20,
+      "found_in_master": 0,
+      "not_found_in_master": 17,
+      "critical_regs": 0,
+      "supabase_docs": {
+        "via_title_codex": 44,
+        "via_country_international": 293,
+        "confirmed_present": [
+          "Codex Alimentarius CAC/RCP 1-1969 (HACCP)",
+          "Codex Alimentarius CODEX STAN 146-1985",
+          "Codex Alimentarius CAC/GL 23-1997",
+          "Codex Alimentarius CXG 2-1985",
+          "Codex Alimentarius HACCP"
+        ]
+      },
+      "gap": "partial — Codex generic docs exist; product-specific Codex standards for our product mix (cosmetics/electronics/toys) not applicable per master (marked low)"
+    },
+    "ISO": {
+      "jurisdiction_name": "ISO/IEC",
+      "total_regs_in_master": 44,
+      "found_in_master": 0,
+      "not_found_in_master": 30,
+      "critical_regs": 0,
+      "supabase_docs": {
+        "via_title_iso": 25800,
+        "via_country_international": 293,
+        "confirmed_present": [
+          "ISO/IEC 27001 (International)",
+          "ETSI EN 303 645 (EU)"
+        ],
+        "not_confirmed": [
+          "ISO 22716:2007 (Cosmetics GMP)",
+          "ISO 24444:2019 (SPF testing)",
+          "ISO 24442:2011 (UVA in vivo)",
+          "ISO 24443:2012 (UVA in vitro)",
+          "ISO 21148:2017 (Microbiology)",
+          "IEC 62368-1:2023 (A/V/IT Safety)",
+          "ISO 8124 (Toy Safety)"
+        ]
+      },
+      "gap": "significant — ISO 27001 and ETSI EN 303 645 confirmed; core cosmetics ISO standards (22716, 24444, 24442, 21148) absent; IEC 62368-1 absent; ISO 8124 absent"
+    },
+    "UNECE": {
+      "jurisdiction_name": "UNECE WP.29",
+      "total_regs_in_master": 21,
+      "found_in_master": 0,
+      "not_found_in_master": 18,
+      "critical_regs": 1,
+      "supabase_docs": {
+        "via_title_unece": 8,
+        "confirmed_present": [
+          "UNECE WP.29 Cybersecurity Regulation (XX)",
+          "UNECE WP.29 Software Update Regulation (XX)"
+        ]
+      },
+      "gap": "partial — WP.29 cybersecurity + software update regs present; most master UNECE entries marked not_applicable for our product mix (cosmetics/toys); automotive critical reg missing context"
+    },
+    "WADA": {
+      "jurisdiction_name": "World Anti-Doping Agency",
+      "total_regs_in_master": 19,
+      "found_in_master": 2,
+      "not_found_in_master": 16,
+      "critical_regs": 0,
+      "supabase_docs": {
+        "via_title_wada": 22,
+        "confirmed_present": [
+          "World Anti-Doping Code (XX)",
+          "WADA Anti-Doping Code (voluntary compliance) (International)"
+        ]
+      },
+      "gap": "minimal — WADA code present; 2 master matches (FOUND); most WADA entries in master marked not_applicable or low for our product mix"
+    },
+    "OECD": {
+      "jurisdiction_name": "OECD",
+      "total_regs_in_master": 19,
+      "found_in_master": 0,
+      "not_found_in_master": 11,
+      "critical_regs": 0,
+      "supabase_docs": {
+        "via_title_oecd": 65,
+        "confirmed_present": [
+          "COUNCIL DECISION 97/530/EC (OECD export credits guidelines)",
+          "International (OECD) and International (OECD/G20) docs"
+        ],
+        "note": "OECD test guidelines for cosmetics/safety assessment (TG 404/406/428/439/455/457) not confirmed individually"
+      },
+      "gap": "moderate — OECD policy docs present; OECD test guidelines for ingredient safety (cosmetics TGs) not individually indexed"
+    }
+  },
+  "regulation_matches": [
+    {"jurisdiction": "ZA", "title": "South Africa ICASA", "match_method": "title ILIKE '%ICASA%'", "supabase_country": "South Africa", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "ZA", "title": "South Africa SAHPRA MD Regulations", "match_method": "title ILIKE '%SAHPRA%'", "supabase_country": "South Africa", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "NG", "title": "NAFDAC Cosmetics Regulations", "match_method": "title ILIKE '%NAFDAC%'", "supabase_country": "Nigeria, NG", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "GCC", "title": "SFDA Food Establishment Regulations", "match_method": "title ILIKE '%SFDA%'", "supabase_country": "Saudi Arabia, UAE", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "GCC", "title": "GSO Cosmetics Technical Regulation", "match_method": "title ILIKE '%GSO%'", "supabase_country": "Gulf Cooperation Council", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "GCC", "title": "GSO Technical Regulations for Electronics", "match_method": "title ILIKE '%GSO%'", "supabase_country": "GCC (Supranational)", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "WADA", "title": "World Anti-Doping Code", "match_method": "title ILIKE '%anti-doping%'", "supabase_country": "XX", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "WADA", "title": "WADA Anti-Doping Code (voluntary compliance)", "match_method": "title ILIKE '%wada%'", "supabase_country": "International", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "ISO", "title": "ISO/IEC 27001", "match_method": "title ILIKE '%ISO/IEC 27001%'", "supabase_country": "International", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "ISO", "title": "ETSI EN 303 645 (IoT Cybersecurity)", "match_method": "title ILIKE '%EN 303 645%'", "supabase_country": "European Union", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "CODEX", "title": "Codex Alimentarius CAC/RCP 1-1969", "match_method": "title ILIKE '%codex%'", "supabase_country": "International", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "UNECE", "title": "UNECE WP.29 Cybersecurity Regulation", "match_method": "title ILIKE '%UNECE WP.29%'", "supabase_country": "XX", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "UNECE", "title": "UNECE WP.29 Software Update Regulation", "match_method": "title ILIKE '%UNECE WP.29%'", "supabase_country": "XX", "status": "CONFIRMED_PRESENT"},
+    {"jurisdiction": "EG", "title": "Egypt regs (69 EG-coded docs)", "match_method": "country = 'EG'", "supabase_country": "EG", "status": "PARTIAL_CODE_MATCH — product-specific regs not confirmed individually"},
+    {"jurisdiction": "MA", "title": "Morocco regs (48 MA / 98 full-name docs)", "match_method": "country = 'MA' + ILIKE '%morocco%'", "supabase_country": "Morocco + multi-country", "status": "PARTIAL_CODE_MATCH"},
+    {"jurisdiction": "IL", "title": "Israel regs (4 IL + 7 full-name docs)", "match_method": "country = 'IL' + ILIKE '%israel%'", "supabase_country": "Israel", "status": "PARTIAL_CODE_MATCH — 7 docs vs 26 needed"},
+    {"jurisdiction": "KE", "title": "Kenya regs (6 full-name docs; KE code unreliable)", "match_method": "ILIKE '%kenya%'", "supabase_country": "Kenya", "status": "PARTIAL_CODE_MATCH — KE code collision suspected"},
+    {"jurisdiction": "GCC", "title": "Saudi Arabia regs (101 full-name + 13 GCC docs)", "match_method": "ILIKE '%saudi%' + ILIKE '%GCC%'", "supabase_country": "Saudi Arabia", "status": "PARTIAL_CODE_MATCH"}
+  ],
+  "summary": {
+    "total_regs_checked": 315,
+    "found_in_master_csv": 2,
+    "not_found_in_master_csv": 247,
+    "total_critical_regs": 73,
+    "critical_confirmed_in_supabase": 2,
+    "confirmed_present_in_supabase": 13,
+    "partial_code_matches": 5,
+    "not_confirmed": 297,
+    "coverage_rate_pct": 0.6,
+    "critical_coverage_rate_pct": 2.7,
+    "jurisdictions_analyzed": ["GCC", "IL", "EG", "MA", "ZA", "NG", "KE", "CODEX", "ISO", "UNECE", "WADA", "OECD"],
+    "key_issues": [
+      "KE country code (KE=1491) appears to be a collision — actual Kenya docs = ~6; needs schema fix",
+      "SA country code used for South Africa in Supabase (correct ISO-3166) but conflicts with expected Saudi Arabia (GCC handled separately)",
+      "No dedicated CODEX/ISO/OECD/WADA/UNECE country codes in Supabase — international standards spread across 'International', 'XX', and EU rows",
+      "Cosmetics-specific ISO standards (22716, 24444, 24442, 24443, 21148) absent from legal_documents despite being critical for MENA markets",
+      "IEC 62368-1 (electronic safety, basis for ZA/NG/KE/EG/IL type approvals) absent",
+      "NAFDAC confirmed but other NAFDAC product-specific regs not individually indexed (sunscreen, MD, dietary supplements)",
+      "GCC/GSO technical regulations present at bloc level but individual SFDA/SASO product-level regs missing"
+    ]
+  }
+}

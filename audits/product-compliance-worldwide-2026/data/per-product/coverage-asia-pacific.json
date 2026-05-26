@@ -1,0 +1,2045 @@
+{
+  "zone": "Asia-Pacific",
+  "generated_at": "2026-05-26",
+  "jurisdictions": {
+    "CN": {
+      "total_docs": 17682,
+      "sources": {
+        "pkulaw_cn": 17672,
+        "nmpa-cn": 10
+      },
+      "doc_types": {
+        "legislation": 17672,
+        "regulation": 10
+      },
+      "master_csv_rows": 65,
+      "critical_regs_in_master": 46
+    },
+    "HK": {
+      "total_docs": 34,
+      "sources": {
+        "elegislation_hk": 34
+      },
+      "doc_types": {
+        "legislation": 34
+      },
+      "master_csv_rows": 27,
+      "critical_regs_in_master": 7
+    },
+    "TW": {
+      "total_docs": 1568,
+      "sources": {
+        "law_tw": 1568
+      },
+      "doc_types": {
+        "legislation": 1568
+      },
+      "master_csv_rows": 30,
+      "critical_regs_in_master": 19
+    },
+    "JP": {
+      "total_docs": 8633,
+      "sources": {
+        "jlt_japan": 8633
+      },
+      "doc_types": {
+        "legislation": 8633
+      },
+      "master_csv_rows": 50,
+      "critical_regs_in_master": 26
+    },
+    "KR": {
+      "total_docs": 218640,
+      "sources": {
+        "klri_korea": 133131,
+        "kscourt": 85509
+      },
+      "doc_types": {
+        "legislation": 133131,
+        "case_law": 85509
+      },
+      "master_csv_rows": 39,
+      "critical_regs_in_master": 23
+    },
+    "SG": {
+      "total_docs": 16,
+      "sources": {
+        "sso_sg": 16
+      },
+      "doc_types": {
+        "legislation": 16
+      },
+      "master_csv_rows": 32,
+      "critical_regs_in_master": 14
+    },
+    "MY": {
+      "total_docs": 11,
+      "sources": {
+        "agc_my": 11
+      },
+      "doc_types": {
+        "legislation": 11
+      },
+      "master_csv_rows": 28,
+      "critical_regs_in_master": 11
+    },
+    "TH": {
+      "total_docs": 44642,
+      "sources": {
+        "ratchakitcha_th": 44642
+      },
+      "doc_types": {
+        "legislation": 44642
+      },
+      "master_csv_rows": 26,
+      "critical_regs_in_master": 12
+    },
+    "VN": {
+      "total_docs": 17,
+      "sources": {
+        "vbpl_vn": 17
+      },
+      "doc_types": {
+        "legislation": 17
+      },
+      "master_csv_rows": 26,
+      "critical_regs_in_master": 10
+    },
+    "ID": {
+      "total_docs": 7184,
+      "sources": {
+        "peraturan_id": 7184
+      },
+      "doc_types": {
+        "legislation": 7184
+      },
+      "master_csv_rows": 29,
+      "critical_regs_in_master": 10
+    },
+    "PH": {
+      "total_docs": 29,
+      "sources": {
+        "lawphil_ph": 29
+      },
+      "doc_types": {
+        "legislation": 29
+      },
+      "master_csv_rows": 26,
+      "critical_regs_in_master": 8
+    },
+    "IN": {
+      "total_docs": 38461,
+      "sources": {
+        "indiacode": 31431,
+        "indian_courts": 7030
+      },
+      "doc_types": {
+        "legislation": 31431,
+        "case_law": 7030
+      },
+      "master_csv_rows": 37,
+      "critical_regs_in_master": 25
+    },
+    "AU": {
+      "total_docs": 11260,
+      "sources": {
+        "legislation_au": 7317,
+        "hca_au_cases": 3943
+      },
+      "doc_types": {
+        "legislation": 7317,
+        "case_law": 3943
+      },
+      "master_csv_rows": 41,
+      "critical_regs_in_master": 25
+    },
+    "NZ": {
+      "total_docs": 12,
+      "sources": {
+        "legislation_nz": 12
+      },
+      "doc_types": {
+        "legislation": 12
+      },
+      "master_csv_rows": 26,
+      "critical_regs_in_master": 15
+    },
+    "ASEAN": {
+      "total_docs": 10,
+      "sources": {
+        "various": 10
+      },
+      "doc_types": {
+        "legislation": 10
+      },
+      "master_csv_rows": 23,
+      "critical_regs_in_master": 0,
+      "note": "Multiple country variants in country field"
+    }
+  },
+  "regulation_matches": [
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CSAR — Cosmetic Supervision and Administration Regulation",
+      "regulation_ref": "Decree No. 727 (CSAR, 2021)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Taiwan Cosmetics Hygiene and Safety Act",
+      "regulation_ref": "Act No. 6 (amended 2019, effective 2021)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "PMD Act — Pharmaceuticals and Medical Devices Act",
+      "regulation_ref": "Act No. 145 of 1960 (as amended, formerly PAL)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "49122b06-3e50-445e-a6d9-719e53b9545e",
+      "matched_title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Cosmetics Act",
+      "regulation_ref": "Act No. 18448 (2021 consolidation)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Malaysia Control of Drugs and Cosmetics Regulations 1984",
+      "regulation_ref": "P.U.(A) 247/1984 + amendments",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Thailand Cosmetics Act B.E. 2558 (2015)",
+      "regulation_ref": "Cosmetics Act B.E. 2558",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "Vietnam Circular 06/2011/TT-BYT — Cosmetics",
+      "regulation_ref": "Circular 06/2011/TT-BYT (as amended)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "Indonesia BPOM Regulation on Cosmetics",
+      "regulation_ref": "BPOM Reg. No. 12/2019 + No. 23/2019",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "4d604681-522a-4640-93f7-2baef67a06a8",
+      "matched_title": "Pengawasan BPOM atas Peredaran Online Obat dan Kosmetik",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "Philippines Cosmetics Regulation — FDA RA 9711",
+      "regulation_ref": "Republic Act 9711 (FDA Act 2009) + FDA Circular 2014-009",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "909a60f1-f459-4c47-94ee-63e4999a5c66",
+      "matched_title": "R.A. 9711",
+      "match_method": "exact_ref"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Drugs and Cosmetics Act 1940 + Rules 1945",
+      "regulation_ref": "Act No. 23 of 1940 + D&C Rules 1945 (Schedule S)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "8c5b55ae-c210-4ca7-abd2-57f5b678f01e",
+      "matched_title": "Drugs and Cosmetics Act, 1940",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Australian Consumer Law — Product Safety (cosmetics)",
+      "regulation_ref": "Competition and Consumer Act 2010, Schedule 2 (ACL)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "NZ Cosmetic Products Group Standard 2017",
+      "regulation_ref": "Cosmetic Products Group Standard 2017 (CPGS)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CSAR — Cosmetics Supervision and Administration Regulation (Sunscreen)",
+      "regulation_ref": "Regulations on Cosmetics Supervision and Administration (CSAR, 国务院令第727号, 2021)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "NMPA Technical Guideline on UV Filters (2022)",
+      "regulation_ref": "NMPA Guiding Principles for Safety and Efficacy Testing of Sunscreen Cosmetics (2022)",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "5f7a76b8-276f-4a09-926e-3df70ee9991f",
+      "matched_title": "Optimisation Measures for Cosmetic Safety Assessment Management (NMPA No. 50, 2024)",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Taiwan Cosmetics Hygiene and Safety Act — Sunscreen",
+      "regulation_ref": "Cosmetics Hygiene and Safety Act (化粧品衛生安全管理法, 2019)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Japan Quasi-Drug (Iyakubugaiyahin) Regime — Sunscreen under PMD Act",
+      "regulation_ref": "Pharmaceuticals and Medical Devices Act (PMD Act, 薬機法) — Quasi-drugs",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "49122b06-3e50-445e-a6d9-719e53b9545e",
+      "matched_title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Japan Quasi-Drug UV Absorber Permitted List",
+      "regulation_ref": "MHLW Quasi-Drug Ingredient Standards (医薬部外品原料規格) + MHLW Ministerial Notification",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "49122b06-3e50-445e-a6d9-719e53b9545e",
+      "matched_title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Korean Cosmetics Act — Functional Cosmetics (Sunscreen)",
+      "regulation_ref": "Cosmetics Act (화장품법) + Functional Cosmetics Review Standards",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Korea Functional Cosmetics UV Filter Permitted List (별표 4)",
+      "regulation_ref": "Cosmetics Act Annex 4 + MFDS Notification",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Singapore Health Sciences Authority (HSA) — Cosmetics Notification",
+      "regulation_ref": "Health Products Act + Cosmetic Products (Notification) Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Malaysia NPRA — Control of Drugs and Cosmetics Regulations (Sunscreen)",
+      "regulation_ref": "Control of Drugs and Cosmetics Regulations 1984 (CDCR 1984) + ASEAN ACD",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Thailand FDA — Cosmetics Act B.E. 2558 (2015) — Sunscreen",
+      "regulation_ref": "Cosmetics Act B.E. 2558 (2015) + Thai FDA notifications",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "Vietnam Circular 06/2011/TT-BYT — Cosmetics (Sunscreen)",
+      "regulation_ref": "Circular 06/2011/TT-BYT (Ministry of Health) + ASEAN ACD implementation",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "BPOM Indonesia — Cosmetics Regulation (Sunscreen)",
+      "regulation_ref": "Peraturan BPOM No. 12 Tahun 2019 (Cosmetics) + ASEAN ACD",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "4d604681-522a-4640-93f7-2baef67a06a8",
+      "matched_title": "Pengawasan BPOM atas Peredaran Online Obat dan Kosmetik",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "FDA Philippines — Cosmetics Regulation (Sunscreen)",
+      "regulation_ref": "Republic Act 9711 (FDA Act 2009) + FDA Circular 2016-003 (Cosmetics)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "909a60f1-f459-4c47-94ee-63e4999a5c66",
+      "matched_title": "R.A. 9711",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "India Cosmetics Rules 2020 — Sunscreen",
+      "regulation_ref": "Drugs and Cosmetics Act 1940 + New Cosmetics Rules 2020 (Schedule S)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "8c5b55ae-c210-4ca7-abd2-57f5b678f01e",
+      "matched_title": "Drugs and Cosmetics Act, 1940",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "TGA Sunscreen Standard (Therapeutic Goods) — Primary Standard",
+      "regulation_ref": "Therapeutic Goods (Standard for Sunscreens) (TGO 106) Order 2019",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "59949f5a-e65a-4b29-a11a-ec37b74f5e4e",
+      "matched_title": "Therapeutic Goods Act 1989",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "AS/NZS 2604:2012 — Sunscreen Products: Testing and Labeling",
+      "regulation_ref": "AS/NZS 2604:2012 (Standards Australia/Standards New Zealand)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "New Zealand Sunscreen Standard — AS/NZS 2604:2012",
+      "regulation_ref": "AS/NZS 2604:2012 + Medicines Act 1981 / Therapeutic Products Act (TPA 2023)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "China CSAR — Sunscreen Efficacy Evaluation Guideline",
+      "regulation_ref": "NMPA Guiding Principles for Efficacy Evaluation of Sunscreen Cosmetics (2022)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "TGA ARTG Listing Process — Sunscreen (AUST L)",
+      "regulation_ref": "Therapeutic Goods Act 1989 + Therapeutic Goods (Listing Criteria) Order 2019",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "59949f5a-e65a-4b29-a11a-ec37b74f5e4e",
+      "matched_title": "Therapeutic Goods Act 1989",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CCC — China Compulsory Certification",
+      "regulation_ref": "Decree AQSIQ 117/2009 (3C Catalogue) + CCC Technical Requirements",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "SRRC — Radio Type Approval",
+      "regulation_ref": "SRRC Administrative Regulations (MIIT Order No. 52; 2016)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CMIIT — Network Access License (NAL)",
+      "regulation_ref": "MIIT Regulation on Administration of Radio Stations + Telecom Equipment Network Access",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "China RoHS — Restriction of Hazardous Substances in EEE",
+      "regulation_ref": "Order No. 32 (2016) — Management Methods for Restriction of Use of Hazardous Substances in EEE (Revised)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "OFCA Type Approval — Radio",
+      "regulation_ref": "Telecommunications Ordinance (Cap. 106) + OFCA TA programme",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Electrical Products (Safety) Regulation",
+      "regulation_ref": "Cap. 406G — Electrical Products (Safety) Regulation",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "NCC — Radio Type Approval",
+      "regulation_ref": "Telecommunications Management Act (2019) + NCC Type Approval Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "BSMI — Commodity Inspection",
+      "regulation_ref": "Commodity Inspection Act + Enforcement Rules",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Radio Law — MIC Type Approval (Giteki)",
+      "regulation_ref": "Radio Act (電波法) No. 131 (1950) + MIC Ministerial Ordinance",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "DENAN — PSE Electrical Safety Mark",
+      "regulation_ref": "Electrical Appliance and Material Safety Act (電気用品安全法; DENAN Act)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KC Mark — RRA Radio Certification",
+      "regulation_ref": "Radio Waves Act (전파법) + NRA KC Radio Certification",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KC Mark — EMC + Safety (EK Mark)",
+      "regulation_ref": "Electromagnetic Compatibility Act + Electrical Safety Act",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "IMDA Type Approval — Radio",
+      "regulation_ref": "Telecommunications Act (Cap. 323) + IMDA TA Scheme",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Consumer Protection (Safety Requirements) — SAFETY Mark",
+      "regulation_ref": "Consumer Protection (Safety Requirements) Regulations 2011",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "58cc1578-a486-459c-ba71-b8639d35d609",
+      "matched_title": "Consumer Protection (Fair Trading) Act 2003",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "SIRIM / MCMC — Type Approval",
+      "regulation_ref": "Communications and Multimedia Act 1998 (CMA) + MCMC Equipment Registration Scheme",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "NBTC Type Approval — Radio",
+      "regulation_ref": "Telecommunication Business Act B.E. 2544 (2001) + NBTC Notifications",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "TIS / TISI Safety Certification",
+      "regulation_ref": "Thai Industrial Standard Act B.E. 2511 + Ministerial Notification (TIS 62368-1)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "VNPTIC — Radio Type Approval",
+      "regulation_ref": "Law on Radiocommunications No. 42/2009/QH12 + Circular 35/2017/TT-BTTTT",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "QUATEST — Safety Certification",
+      "regulation_ref": "STAMEQ (Directorate for Standards; Metrology and Quality) + Circular 09/2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "Kominfo — SDPPI Radio Certification",
+      "regulation_ref": "Law No. 36/1999 (Telecommunications) + Ministerial Regulation PM 16/2018",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "SNI — Standar Nasional Indonesia Safety",
+      "regulation_ref": "Government Regulation PP 34/2018 + SNI IEC 62368-1 (mandatory)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "IMEI Registration — Ministerial Regulation",
+      "regulation_ref": "Peraturan Menteri Perdagangan No. 82/2019 + Permenkominfo 1/2020",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "NTC Type Approval — Radio",
+      "regulation_ref": "Republic Act 7925 (Public Telecommunications Policy Act) + NTC MC 7-11-2006",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "BIS CRS — Compulsory Registration Scheme",
+      "regulation_ref": "Electronics & IT Goods (Requirements for Compulsory Registration) Order 2012 + S.O. No. 1022(E)/2021",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "WPC ETA — Wireless Planning & Coordination",
+      "regulation_ref": "Indian Wireless Telegraphy Act 1933 + WPC Licensing Regime",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "TEC Type Approval — Telecom Equipment",
+      "regulation_ref": "Indian Telegraph Act 1885 + TEC GR (Generic Requirements) 2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "ACMA RCM — Radiocommunications compliance",
+      "regulation_ref": "Radiocommunications Act 1992 + Radiocommunications (Compliance Labelling) Notice 2014",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "EESS — Electrical Equipment Safety System",
+      "regulation_ref": "Electrical Equipment Safety System (EESS) administered under state/territory EE Acts",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "RSM / RCM — Radio Spectrum Management",
+      "regulation_ref": "Radiocommunications Act 1989 + RSM Schedule",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Electrical (Safety) Regulations 2010",
+      "regulation_ref": "Electricity Act 1992 + Electrical (Safety) Regulations 2010",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 6675.1-2014 — Toy Safety General Requirements",
+      "regulation_ref": "GB 6675.1-2014 (national mandatory standard)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 6675.2-2014 — Mechanical and Physical Properties",
+      "regulation_ref": "GB 6675.2-2014",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 6675.3-2014 — Flammability",
+      "regulation_ref": "GB 6675.3-2014",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 6675.4-2014 — Migration of Certain Elements",
+      "regulation_ref": "GB 6675.4-2014",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CCC — China Compulsory Certification (3C) for Toys",
+      "regulation_ref": "CNCA-C09-01: 2014 (Toy CCC implementation rules)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Toys and Children's Products Safety Ordinance",
+      "regulation_ref": "Cap. 424 — Toys and Children's Products Safety Ordinance (as amended)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "CNS 4797 — Toy Safety General Requirements (Taiwan)",
+      "regulation_ref": "CNS 4797 (national standard aligned with ISO 8124-1)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "CNS 4798/4799 — Flammability and Chemical Migration (Taiwan)",
+      "regulation_ref": "CNS 4798 (flammability); CNS 4799 (chemical migration)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Food Sanitation Law — Toys for Children Under 6",
+      "regulation_ref": "Food Sanitation Law (食品衛生法) Article 62 + Ministerial Notification 336",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "어린이제품 공통안전기준 — Children's Products Common Safety Standard",
+      "regulation_ref": "고시 제2021-25호 — 어린이제품 공통안전기준 (Children's Products Act §20)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Quality Management and Safety Control of Industrial Products Act — Toy KC",
+      "regulation_ref": "산업제품 품질 관리 및 안전 관리에 관한 법률 (Enforcement Decree §26)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Consumer Protection (Safety Requirements) Regulations — Toys",
+      "regulation_ref": "Consumer Protection (Safety Requirements) Regulations 2004 (CPSR) Schedule 1",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "58cc1578-a486-459c-ba71-b8639d35d609",
+      "matched_title": "Consumer Protection (Fair Trading) Act 2003",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Malaysian Toy Safety Standard (MS ISO 8124)",
+      "regulation_ref": "MS ISO 8124-1; MS ISO 8124-2; MS ISO 8124-3 (SIRIM adoption)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "TIS 685 — Toy Safety Standard (Thailand)",
+      "regulation_ref": "TIS 685-2565 (2022 edition); previously TIS 685-2540",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "QCVN 3:2019/BKHCN — Technical Regulation for Toy Safety",
+      "regulation_ref": "QCVN 3:2019/BKHCN (replacing QCVN 3:2009)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "SNI ISO 8124 — Indonesian Toy Safety Standard",
+      "regulation_ref": "SNI ISO 8124-1:2020; SNI ISO 8124-2:2020; SNI ISO 8124-3:2020",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "PNS ISO 8124 — Philippine Toy Safety Standard + DTI MC 23-21",
+      "regulation_ref": "PNS ISO 8124-1/2/3 + DTI Memorandum Circular 23-21",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Toys (Quality Control) Order 2020",
+      "regulation_ref": "Toys (Quality Control) Order 2020 (Ministry of Commerce and Industry)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "IS 9873 series — BIS Toy Safety Standard",
+      "regulation_ref": "IS 9873-1 (2022); IS 9873-2 (2022); IS 9873-3 (2022); IS 9873-5 (2022)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Consumer Goods (Toys for Children up to and including 36 months of age) Safety Standard",
+      "regulation_ref": "Consumer Goods (Toys for Children up to and including 36 months of age) Safety Standard 2017 (Cth)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "cc5b7862-6eec-44cc-9303-b1846e3f9fc3",
+      "matched_title": "Industrial Chemicals Act 2019",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "AS/NZS ISO 8124 — Australian/New Zealand Toy Safety Standard",
+      "regulation_ref": "AS/NZS ISO 8124-1:2019; AS/NZS ISO 8124-2:2014; AS/NZS ISO 8124-3:2020",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Product Safety Standards (Toys) Regulations 2005",
+      "regulation_ref": "Product Safety Standards (Toys) Regulations 2005 (SR 2005/79)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "NMPA — Filing DM Classe I (备案 Bèi'àn)",
+      "regulation_ref": "Regulations on Supervision and Administration of Medical Devices (2021) + NMPA Order 47",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "0aaf0902-8382-482e-b890-e0582d29d2d8",
+      "matched_title": "Provisions on Supervision and Administration of Children's Cosmetics (NMPA No. 123, 2021)",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Hong Kong — Medical Devices Ordinance Cap. 760",
+      "regulation_ref": "Medical Devices Ordinance Cap. 760 (enacted 2014 phased in 2020)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "TFDA — Enregistrement DM Classe I Taiwan",
+      "regulation_ref": "Medical Device Act (2021) + TFDA Guidance",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "PMD Act — Notification Classe I (Todoke) PMDA",
+      "regulation_ref": "Pharmaceutical and Medical Device Act (PMD Act No. 145/1960 révisé 2014)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "49122b06-3e50-445e-a6d9-719e53b9545e",
+      "matched_title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "MFDS — Notification DM Classe I (신고)",
+      "regulation_ref": "Medical Devices Act (Act No. 17250/2020) + MFDS Notice",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "HSA — Enregistrement DM Classe A Singapore",
+      "regulation_ref": "Health Products Act (Cap. 122D) + HSA MD Classification Guidance",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "MDA — Medical Device Act 2012 Classe A Malaysia",
+      "regulation_ref": "Medical Device Act 2012 (Act 737) + Medical Device Regulations 2012",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Thai FDA — Notification DM Classe I Thailand",
+      "regulation_ref": "Medical Device Act B.E. 2562 (2019)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "DAV — Enregistrement DM Classe A Vietnam",
+      "regulation_ref": "Decree 98/2021/ND-CP on Medical Devices Management",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "BPOM — Notifikasi Alat Kesehatan Kelas A Indonesia",
+      "regulation_ref": "Permenkes No. 62/2017 (Medical Devices Registration)",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "4d604681-522a-4640-93f7-2baef67a06a8",
+      "matched_title": "Pengawasan BPOM atas Peredaran Online Obat dan Kosmetik",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "FDA-PH — Certificate of Device Registration Classe A",
+      "regulation_ref": "Republic Act 9711 (FDA Act 2009) + FDA Circular 2013-013",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "CDSCO — Medical Device Rules 2017 Classe A India",
+      "regulation_ref": "Medical Devices Rules 2017 (MDR 2017) under Drugs and Cosmetics Act",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "CDSCO Form MD-15 — Licence importateur Inde",
+      "regulation_ref": "MDR 2017 Rule 29 — Form MD-15",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "TGA — ARTG Listing Class I Australia",
+      "regulation_ref": "Therapeutic Goods Act 1989 + Therapeutic Goods (Medical Devices) Regulations 2002",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "STMA Order No. 1 (2022) — E-cigarettes regulated as tobacco",
+      "regulation_ref": "STMA Regulations on E-cigarettes (Guo Yan Fa No. 1 of 2022) effective Nov 2022",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 41700-2022 — Norme nationale e-cigarettes",
+      "regulation_ref": "GB 41700-2022 (E-cigarette National Standard effective Oct 2022)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Flavored Vapes — BANNED for domestic sale",
+      "regulation_ref": "STMA Order No. 1 + GB 41700-2022 Art. 6",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Smoking (Public Health) Ordinance — BANNED import/sale 2022",
+      "regulation_ref": "Cap. 371 Smoking (Public Health) Ordinance + Alternative Smoking Products Ordinance 2019 effective Apr 2022",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Tobacco Hazards Prevention Act 2023 — VAPES BANNED",
+      "regulation_ref": "Tobacco Hazards Prevention Act (revised 2023 effective Jan 2024)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Nicotine Vapes — BANNED (Pharmaceutical Affairs Law)",
+      "regulation_ref": "Pharmaceuticals and Medical Devices Act (PMD Act) + Tobacco Business Act",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Tobacco Products Control Act — BANNED",
+      "regulation_ref": "Tobacco (Control of Advertisements and Sale) Act (Cap. 309) + Tobacco Products Control Act amendments",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Customs Notification 2014 — BANNED import/sale",
+      "regulation_ref": "Customs Department Notification (2014) + Tobacco Product Control Act B.E. 2560 (2017)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "Resolution 173/NQ-CP 2024 — BANNED from 2025",
+      "regulation_ref": "Nghi quyet 173/NQ-CP (2024) — ban on e-cigarettes and heated tobacco products",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "PECA 2019 — Prohibition of Electronic Cigarettes Act — BANNED",
+      "regulation_ref": "The Prohibition of Electronic Cigarettes (Production Manufacture Import Export Transport Sale Distribution Storage and Advertisement) Act 2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Therapeutic Goods — E-cigarettes Prescription Only",
+      "regulation_ref": "Therapeutic Goods (Standard for Nicotine Vaping Products) (TGO 110) 2021 + Therapeutic Goods Act 1989",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "59949f5a-e65a-4b29-a11a-ec37b74f5e4e",
+      "matched_title": "Therapeutic Goods Act 1989",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Standard national GB 16740 Health Foods Chine",
+      "regulation_ref": "GB 16740-2014 (National Standard for Health Foods)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Food Safety Act + Health Food Control Act Taiwan",
+      "regulation_ref": "Loi sur la sécurité alimentaire (食品安全衛生管理法) + Loi sur les aliments de santé (健康食品管理法 1999)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Loi sur la sécurité sanitaire des aliments — Japon",
+      "regulation_ref": "食品衛生法 (Food Sanitation Act) + Règlement complémentaire",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Foods with Function Claims (FFC) — Japon",
+      "regulation_ref": "機能性表示食品 (Kinou-sei Hyouji Shokuhin) — régime CAA 2015",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Health Functional Food Act — Corée du Sud",
+      "regulation_ref": "건강기능식품에 관한 법률 (Health Functional Food Act 2002 + amendments 2022)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "FSSAI Nutraceuticals Regulations 2022 Inde",
+      "regulation_ref": "FSSAI (Food Safety and Standards — Nutraceuticals) Regulations 2022",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Therapeutic Goods Act 1989 — Complementary Medicine Listed (AUST L)",
+      "regulation_ref": "Therapeutic Goods Act 1989 + Therapeutic Goods Regulations 1990",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "59949f5a-e65a-4b29-a11a-ec37b74f5e4e",
+      "matched_title": "Therapeutic Goods Act 1989",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Dietary Supplement Regulations 1985 + Therapeutic Products Act 2023 NZ",
+      "regulation_ref": "Dietary Supplement Regulations 1985 (SR 1985/208) + Therapeutic Products Act 2023 (NZ)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 18401 - National Textile Safety Standard",
+      "regulation_ref": "GB 18401-2010 (Safety Requirements for National Textile Products)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Household Goods Quality Labelling Act - Textiles",
+      "regulation_ref": "Kaji Yohin no Hinshitsu Hyoji Nikannsuru Horitsu (Act No. 104/1962, amended 2014)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "64af38f2-5120-4fda-b15e-085acc3db0bd",
+      "matched_title": "Household Goods Quality Labeling Act",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Quality Management and Safety Control - KC Common Safety Standard (Apparel)",
+      "regulation_ref": "Act on Quality Management and Safety Control of Industrial Products + KC Common Safety Standard for Apparel",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "ACCC Mandatory Standard - Care Labelling (AS/NZS 1957)",
+      "regulation_ref": "Trade Practices (Consumer Product Safety Standard) (Care Labelling of Clothing and Household Textiles) Regulations 1991 (updated)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 24429-2009 — Bicycle and electric cycling helmets",
+      "regulation_ref": "GB 24429-2009 《运动头盔 自行车、滑板、轮滑运动头盔的安全要求和试验方法》",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "JIS T 8134 — Protective helmets for cyclists",
+      "regulation_ref": "JIS T 8134:2018 (自転車用ヘルメット)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KS G 6601 — Cyclists' protective helmet",
+      "regulation_ref": "KS G 6601 (자전거 이용자를 위한 보호 헬멧)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "AS/NZS 2063 — Bicycle helmets (mandatory)",
+      "regulation_ref": "AS/NZS 2063:2020 (Bicycle helmets — Safety requirements, test methods and labelling)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "AS/NZS 2063 + Land Transport (Road User) Rule 2004",
+      "regulation_ref": "AS/NZS 2063:2020 + Land Transport (Road User) Rule 2004 (NZ)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 15037 — Norme nationale vin Chine",
+      "regulation_ref": "GB 15037-2006 (Vin - specification nationale) + Food Safety Law (Loi n 28/2009 amendee)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GACC import filing + etiquetage douanier Chine",
+      "regulation_ref": "GACC Order 249/2021 (food importer registration) + Customs Law + Consumption Tax regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Tobacco and Alcohol Tax Act + TFDA labeling Taiwan",
+      "regulation_ref": "Tobacco and Alcohol Tax Act + Food Safety and Sanitation Act + TFDA regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Liquor Tax Act (酒税法) + labelling JFRA Japan",
+      "regulation_ref": "Liquor Tax Act (Sake-zei Hou) + Food Labeling Act (Shokuhin Hyoji Ho) + NTA notifications",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Liquor Tax Act + Food Sanitation Act Korea (Coree)",
+      "regulation_ref": "Liquor Tax Act (Juse-beop) + Food Sanitation Act (Sikpum-wisenggbeop) + NTS regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Food Act 1983 + restrictions halal — alcool restreint (Malaisie)",
+      "regulation_ref": "Food Act 1983 + Food Regulations 1985 + Customs Duties Order + Syariah law provisions",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Reglementation alcool par Etat — constitution indienne (State List)",
+      "regulation_ref": "Constitution of India - Seventh Schedule, List II, Entry 8 (State List - intoxicating liquors) + FSSAI Food Safety",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Wine Australia Act 2013 — production et export (Australie)",
+      "regulation_ref": "Wine Australia Act 2013 (formerly Australian Wine and Brandy Corporation Act 1980) + FSANZ Standard 2.7.4",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Wine Act 2003 + FSANZ Standard 2.7.4 (Nouvelle-Zelande)",
+      "regulation_ref": "Wine Act 2003 (NZ) + Sale and Supply of Alcohol Act 2012 (SSAA) + FSANZ Standard 2.7.4",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Food Safety Law of the PRC",
+      "regulation_ref": "中华人民共和国食品安全法 (2021 amendment)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 2707 — Hygienic standard for fresh and frozen meat",
+      "regulation_ref": "GB 2707-2016",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GACC import registration — Decree 248/249",
+      "regulation_ref": "GACC Decree 248 + 249 (2021)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "MARA Slaughterhouse Approval + Veterinary Supervision",
+      "regulation_ref": "MARA Order 2021-2",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Food Safety Ordinance Cap. 612 + Imported Meat Regulations",
+      "regulation_ref": "Cap. 612 (FSO) + Cap. 132AK",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Act Governing Food Safety and Sanitation + Animal Husbandry Act",
+      "regulation_ref": "Law n°112 2023 amendment + COA inspection",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Food Sanitation Law + Meat Inspection Act",
+      "regulation_ref": "食品衛生法 (Act No 233 1947 as amended 2018) + 食肉検査法",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Livestock Products Sanitary Control Act (LPSCA)",
+      "regulation_ref": "축산물 위생관리법 (Act No 19073 2022 amendment)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "SFA — meat import accreditation (approved country/establishment list)",
+      "regulation_ref": "SFA Accreditation Scheme (Food Regulations Reg. 31)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Food Act 1983 + DVS — Veterinary Services approval",
+      "regulation_ref": "Food Act 1983 (Act 281) + DVS Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Halal Certification Act 2011 + JAKIM Halal Standard MS 1500",
+      "regulation_ref": "Halal Industry Development Corporation Act 2006 + MS 1500:2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Food Act B.E. 2522 (1979) + DLD Meat Inspection",
+      "regulation_ref": "Food Act 1979 + DLD Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "Law on Animal Health (Luật Thú y) + MARD Circulars",
+      "regulation_ref": "Luật Thú y No 79/2015/QH13 + Nghị định 35/2016",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "Law No 18/2012 on Food + Government Regulation on Food Safety",
+      "regulation_ref": "UU 18/2012 + PP 86/2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "MUI Halal Certification mandatory — Law No 33/2014 (JPH Law)",
+      "regulation_ref": "UU 33/2014 + PP 39/2021 (fully effective Oct 2024)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "Republic Act 9296 — Meat Inspection Code + DA-NMIS",
+      "regulation_ref": "RA 9296 (Meat Inspection Code of the Philippines)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Food Safety and Standards Act 2006 + FSSAI Meat Regulations",
+      "regulation_ref": "FSSA 2006 + FSS (Food Products Standards) Regulations 2011",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "5e06ead7-913a-4b61-a02f-709b0acdc4ca",
+      "matched_title": "Food Safety and Standards Act, 2006",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "State-level cow slaughter ban laws (29 states/UTs restrictions)",
+      "regulation_ref": "Various State Acts (e.g. UP Cow Slaughter Prevention Act 1955; Karnataka Act 1964)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "Australian Standard for the Hygienic Production of Meat (AS 4696)",
+      "regulation_ref": "AS 4696-2007",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Animal Products Act 1999 + MPI Whānau",
+      "regulation_ref": "Animal Products Act 1999 + AP (Specifications for Products Intended for Human Consumption) Notice 2021",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "NMPA — Drug Administration Law 2019 + enregistrement médicament Chine",
+      "regulation_ref": "Drug Administration Law (DAL) 2019 (药品管理法 2019 修订)",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "0aaf0902-8382-482e-b890-e0582d29d2d8",
+      "matched_title": "Provisions on Supervision and Administration of Children's Cosmetics (NMPA No. 123, 2021)",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Pharmacopée Chinoise (ChP) 2020 — Monographie Paracetamolum",
+      "regulation_ref": "Chinese Pharmacopoeia (ChP) 2020 Vol. I — Paracetamolum",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "HK",
+      "regulation_name": "Pharmacy and Poisons Ordinance Cap. 138 Hong Kong",
+      "regulation_ref": "Cap. 138 Pharmacy and Poisons Ordinance (HK)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Pharmaceutical Affairs Act (PAA) Taiwan + TFDA licence",
+      "regulation_ref": "Pharmaceutical Affairs Act (PAA) 2023 Revision",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "PMD Act (薬機法) — Pharmaceutical and Medical Device Act Japon",
+      "regulation_ref": "PMD Act 2014 (revised 2021) (薬機法)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "49122b06-3e50-445e-a6d9-719e53b9545e",
+      "matched_title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Pharmacopée Japonaise (JP) 18ème éd. — Monographie Acetaminophen",
+      "regulation_ref": "Japanese Pharmacopoeia (JP) 18th Edition — Acetaminophen",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Pharmaceutical Affairs Act Corée + MFDS — AMM médicament",
+      "regulation_ref": "Pharmaceutical Affairs Act (약사법) Korea + MFDS Notices and Guidelines",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Health Products Act + Medicines Act Singapour — Enregistrement OTC",
+      "regulation_ref": "Health Products Act (Cap. 122D) + Medicines Act (Cap. 176)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "HSA — Therapeutic Product Registration + ACTD Singapore",
+      "regulation_ref": "HSA Guidance on Therapeutic Products Registration (HSA-TP-GDS001)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "DCA Malaysia — Drug Control Authority + Sale of Drugs Act 1952",
+      "regulation_ref": "Control of Drugs and Cosmetics Regulations 1984 + Sale of Drugs Act 1952",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Thai FDA — Drug Act B.E. 2510 (1967) Thaïlande",
+      "regulation_ref": "Drug Act B.E. 2510 (1967) and amendments",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "Pharmaceutical Law 2016 — DAV Vietnam — Enregistrement médicament",
+      "regulation_ref": "Law on Pharmacy No. 105/2016/QH13",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "ID",
+      "regulation_name": "BPOM — Loi 36/2009 + Registrasi Obat Indonésie",
+      "regulation_ref": "Law No. 36/2009 on Health + BPOM Regulation (Peraturan BPOM No. 14/2021)",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "4d604681-522a-4640-93f7-2baef67a06a8",
+      "matched_title": "Pengawasan BPOM atas Peredaran Online Obat dan Kosmetik",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "FDA Philippines — RA 9711 (FDA Act 2009) — CPR médicament OTC",
+      "regulation_ref": "Republic Act No. 9711 (FDA Act 2009) + FDA-PH AO No. 2016-0011",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "909a60f1-f459-4c47-94ee-63e4999a5c66",
+      "matched_title": "R.A. 9711",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Drugs and Cosmetics Act 1940 + CDSCO — Schedule K OTC Inde",
+      "regulation_ref": "Drugs and Cosmetics Act 1940 + Drugs Rules 1945 + Schedule K",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "8c5b55ae-c210-4ca7-abd2-57f5b678f01e",
+      "matched_title": "Drugs and Cosmetics Act, 1940",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "TGA — Therapeutic Goods Act 1989 + ARTG Registration Australie",
+      "regulation_ref": "Therapeutic Goods Act 1989 (Cth)",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "59949f5a-e65a-4b29-a11a-ec37b74f5e4e",
+      "matched_title": "Therapeutic Goods Act 1989",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "SUSMP — Standard Uniform Scheduling Medicines & Poisons Australie",
+      "regulation_ref": "Standard for the Uniform Scheduling of Medicines and Poisons (Poisons Standard 2024)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Medicines Act 1981 + Medsafe — Enregistrement médicaments Nouvelle-Zélande",
+      "regulation_ref": "Medicines Act 1981 (NZ) + Medicines Regulations 1984",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CCC Mark for Tyres — China Compulsory Certification",
+      "regulation_ref": "CNCA-C11-01 (GB 9743 — Compulsory Certification Scheme)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 9743 — Chinese National Standard for Passenger Car Tyres",
+      "regulation_ref": "GB 9743-2015 (Tires for Passenger Cars)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB 30510 — China Tyre Labelling (RR + Wet Grip + Noise)",
+      "regulation_ref": "GB 30510-2021 (revision of GB 30510-2014)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "CNS 4517 + BSMI Commodity Inspection Mark — Taiwan Tyre Standard",
+      "regulation_ref": "CNS 4517 (Chinese National Standard for Passenger Car Tyres) + Commodity Inspection Act",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Road Vehicle Act + JATMA Standards + JIS D 4202",
+      "regulation_ref": "Road Vehicle Act (Doro Unso Sharyo Ho) + JATMA Year Book + JIS D 4202",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KMVSS — Korean Motor Vehicle Safety Standards + KS M 6750",
+      "regulation_ref": "Korean Motor Vehicle Safety Standards + KS M 6750",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KOTSA — Korea Automobile Testing and Research Institute Approval",
+      "regulation_ref": "KOTSA Testing Certification (KATRI) + MOLIT",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "BIS IS 15633 + AIS 044 — India Mandatory Tyre Certification",
+      "regulation_ref": "BIS IS 15633:2019 (Passenger Car Tyres) + AIS 044 Rev.1",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "MoRTH Notification — Mandatory Tyre Performance Standard 2022",
+      "regulation_ref": "MoRTH Notification GSR 761(E) 2022 (Tyre Performance Standards)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "ADR 23/04 — Australian Design Rule for Passenger Car Tyres",
+      "regulation_ref": "Australian Design Rule ADR 23/04 (effective 2006)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Land Transport Rule: Tyres and Wheels 2001",
+      "regulation_ref": "Land Transport Rule: Tyres and Wheels 2001 (Rule 32013)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "MARA Pesticide Administration Regulation 2017",
+      "regulation_ref": "Guowuyuanling No. 677 (2017) + amendments 2022",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Toxic Chemical Substances Control Act + EPA TWA",
+      "regulation_ref": "Toxic Chemical Substances Control Act + Measures for Registration of Pesticides",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Environmental Agents Control Act",
+      "regulation_ref": "Huan jing yong yao guan li fa (Environmental Agents Control Act)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Agricultural Chemicals Regulation Act (Noyakuho)",
+      "regulation_ref": "Noyakuho Act No. 82 of 1948 (last amended 2018)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Biocide Safety Management Act 2019",
+      "regulation_ref": "Saengwal hwahakjepum mit salgyungje ui anjonggwanri e gwanhan beobeul (Act No. 16226, 2019)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "Control of Vectors and Pesticides Act + SS 539",
+      "regulation_ref": "Control of Vectors and Pesticides Act (Cap 59) + SS 539:2018",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "Pesticides Act 1974 (Act 149)",
+      "regulation_ref": "Pesticides Act 1974 (Act 149) + Pesticides Regulations 1974",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Hazardous Substance Act B.E. 2535 (1992)",
+      "regulation_ref": "Hazardous Substance Act B.E. 2535 (1992) + amendments",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "PH",
+      "regulation_name": "FPA Fertilizer and Pesticide Authority Act",
+      "regulation_ref": "PD 1144 (1977) + FPA Rules and Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "Insecticides Act 1968",
+      "regulation_ref": "Insecticides Act 1968 (No. 46 of 1968) + Insecticides Rules 1971",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "1f8793be-5d1e-4cc3-a121-2a691c2ab054",
+      "matched_title": "Insecticides Act, 1968",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "APVMA Registration — AgVet Code Act",
+      "regulation_ref": "Agricultural and Veterinary Chemicals Code Act 1994 + AgVet Code",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "ACVM Act 1997 + EPA NZ HSNO",
+      "regulation_ref": "Agricultural Compounds and Veterinary Medicines Act 1997 + HSNO Act 1996",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CAAC Civil UAV Manufacturer Registration",
+      "regulation_ref": "CAAC Regulations on Civil Unmanned Aircraft (2023) + Decree No. 239",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "MIIT SRRC Radio Type Approval",
+      "regulation_ref": "MIIT Radio Frequency Management Measures + SRRC Certification",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Real-Name Registration System (drones >250g)",
+      "regulation_ref": "CAAC Administrative Measures for Civil Unmanned Aircraft Real-Name Registration",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "CAA Civil Aviation Act Drone Amendments + NCC Type Approval",
+      "regulation_ref": "Civil Aviation Act (as amended 2023) + NCC Low Power Radio Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "MLIT UAV Regulations + Civil Aeronautics Act",
+      "regulation_ref": "Civil Aeronautics Act Amendment (Drone Law) 2022 + MLIT UAS Safety Guidelines",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Aviation Law Article 132 — No-fly zones",
+      "regulation_ref": "Aviation Law Art. 132 + 132-2 + 132-85",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "MIC Radio Law — Giteki Mark",
+      "regulation_ref": "Radio Law (電波法) + MIC Technical Standards Conformity Certification",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KOCA UAV Regulations + Aviation Safety Act",
+      "regulation_ref": "Aviation Safety Act (항공안전법) + MoLIT UAS Safety Standards 2023",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "CAAS Air Navigation Act + Unmanned Aircraft Order 2019",
+      "regulation_ref": "Air Navigation Act Cap 6 + Unmanned Aircraft (Public Safety and Security) Act 2015 + Unmanned Aircraft Order 2019",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "DGCA UAS Rules 2021 + DigitalSky Platform",
+      "regulation_ref": "UAS Rules 2021 (GSR 232E) + NPNT (No Permission No Takeoff) system",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "WPC Wireless Planning + ETA (Equipment Type Approval)",
+      "regulation_ref": "Indian Wireless Telegraphy Act 1933 + WPC guidelines + TEC ETA",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "CASA Part 101 + RPA Registration",
+      "regulation_ref": "Civil Aviation Safety Regulations Part 101 + CASA RPA Operations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "CAA Civil Aviation Rule Part 101/102 — UAS",
+      "regulation_ref": "CAR Part 101 (Gyrogliders) + CAR Part 102 (Unmanned Aircraft Operator) 2015",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CCC Certification (China Compulsory Certification)",
+      "regulation_ref": "CNCA-C18-01:2023 + CCC catalogue",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "SRRC Radio Type Approval",
+      "regulation_ref": "MIIT Order 11/2016 (Management of Radio Equipment)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "PIPL — Personal Information Protection Law",
+      "regulation_ref": "Ge Ren Xin Xi Bao Hu Fa (PIPL) 2021",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "BSMI Commodity Inspection + NCC Type Approval",
+      "regulation_ref": "Shang Pin Jian Yan Fa (Commodity Inspection Act) + NCC Xing Shi Ren Zheng",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "PSE Mark — DENAN Electrical Safety",
+      "regulation_ref": "Denki Yohin Anzen Ho (PSE Act) + Tokutei Denki Yohin Igai no Denki Yohin category",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "MIC Giteki Mark (Radio Type Approval)",
+      "regulation_ref": "Denpa Ho (Radio Act) + Gijutsu Kijun Tekigo Shomei",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "KC Mark — RRA Radio + EMC + Safety",
+      "regulation_ref": "Jeon Pa Beop (Radio Waves Act) + Jeon Gi Yong Pum Mit Saeng Hwal Yong Pum An Jeon Gwan Li Beop",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "PIPA — Personal Information Protection Act (Korea)",
+      "regulation_ref": "Gae In Jeong Bo Bo Ho Beop (PIPA) 2011 amended 2023",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "IMDA Telecommunication Equipment + Cybersecurity Act 2018",
+      "regulation_ref": "Telecommunications Act + Cybersecurity Act 2018 (Cap 50A)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "PDPA — Personal Data Protection Act",
+      "regulation_ref": "Personal Data Protection Act 2012 (No. 26 of 2012) amended 2021",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "0d0e3c21-7b96-487c-8d5e-9351fc62062d",
+      "matched_title": "Personal Data Protection Act 2012",
+      "match_method": "exact_title"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "WPC ETA — Wireless Planning and Coordination Wing",
+      "regulation_ref": "Indian Wireless Telegraphy Act + WPC ETA (Equipment Type Approval)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "DPDP Act 2023 — Digital Personal Data Protection Act",
+      "regulation_ref": "The Digital Personal Data Protection Act 2023 (No. 22 of 2023)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "ACMA RCM + EESS Electrical Equipment Safety",
+      "regulation_ref": "Radiocommunications Labelling (Electromagnetic Compatibility) Notice 2017 + EESS (Electrical Equipment Safety System)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "NMPA — Class III Medical Device Registration (Implant Dentaire)",
+      "regulation_ref": "Medical Device Supervision and Administration Regulations (State Council Order No. 739, 2021)",
+      "criticality": "critical",
+      "match_status": "PARTIAL",
+      "matched_doc_id": "0aaf0902-8382-482e-b890-e0582d29d2d8",
+      "matched_title": "Provisions on Supervision and Administration of Children's Cosmetics (NMPA No. 123, 2021)",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "CMDE — Technical Review for Dental Implant Systems (China)",
+      "regulation_ref": "CMDE Technical Review Guidance for Dental Implant Systems (2022)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Order 739 (2021) — China Medical Device Administration Reform",
+      "regulation_ref": "State Council Order No. 739 (2021) + NMPA Implementation Rules",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "PMDA — Class IV Highly Controlled Medical Device (Shonin)",
+      "regulation_ref": "Pharmaceutical and Medical Devices Act (PMD Act) + Cabinet Order",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "MFDS — Class IV Medical Device Registration (Korea)",
+      "regulation_ref": "Medical Device Act (Act No. 18610/2021) + MFDS Notifications",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "SG",
+      "regulation_name": "HSA — Class D Medical Device Registration (Highest Risk)",
+      "regulation_ref": "Health Products Act (Cap. 122D) + Health Products (Medical Devices) Regulations 2010",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "MY",
+      "regulation_name": "MDA Malaysia — Class D Medical Device (Act 737/2012)",
+      "regulation_ref": "Medical Device Act 2012 (Act 737) + Medical Device Regulations 2012",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Thai FDA — Class IV Medical Device Registration",
+      "regulation_ref": "Medical Device Act B.E. 2562 (2019) + Thai FDA Notifications",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "VN",
+      "regulation_name": "DAV Vietnam — Class D Medical Device Registration",
+      "regulation_ref": "Decree No. 98/2021/ND-CP (Quy dinh ve quan ly trang thiet bi y te)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "CDSCO — Medical Device Rules 2017 Class D Registration",
+      "regulation_ref": "Medical Device Rules 2017 (GSR 317(E)) as amended",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation_name": "CDSCO Form MD-15 (Import Licence) + Form MD-9 (Manufacturing)",
+      "regulation_ref": "Medical Device Rules 2017 Rules 13 and 19 (MDR 2017)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "TGA — Class III ARTG Registration + Conformity Assessment",
+      "regulation_ref": "Therapeutic Goods Act 1989 + Therapeutic Goods (Medical Devices) Regulations 2002",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "Medsafe — WAND + Class III Implantable Medical Device",
+      "regulation_ref": "Medicines Act 1981 + Medical Devices Safety Act 2023 (transitional)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "TFDA Taiwan — Class III Medical Device Registration (Highest Risk)",
+      "regulation_ref": "Medical Devices Act 2020 (Act No. 11810) + TFDA Enforcement Rules",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Norme nationale peintures intérieures - substances nocives",
+      "regulation_ref": "GB 18581-2020 (Harmful Substances Limits for Solvent-borne Coatings)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "Norme nationale peintures murales intérieures à l'eau",
+      "regulation_ref": "GB 18582-2020 (Harmful Substances Limits for Architectural Coating)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GB/T 23984 + GB 24410 - Peintures intérieures à faibles émissions",
+      "regulation_ref": "GB/T 23984-2009 + GB 24410-2009",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "APAS (Australian Paint Approval Scheme)",
+      "regulation_ref": "APAS specifications (e.g. APAS 0190 interior paints)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "AICIS - Australian Industrial Chemicals Introduction Scheme",
+      "regulation_ref": "Industrial Chemicals Act 2019 + AICIS categorisation",
+      "criticality": "critical",
+      "match_status": "FOUND",
+      "matched_doc_id": "cc5b7862-6eec-44cc-9303-b1846e3f9fc3",
+      "matched_title": "Industrial Chemicals Act 2019",
+      "match_method": "fuzzy_name"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "MARA Feed Hygiene Standards + GB 13078 mycotoxin limits",
+      "regulation_ref": "GB 13078-2017 + MARA Decree 26",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation_name": "GACC import filing — Decree 248 (overseas manufacturers)",
+      "regulation_ref": "GACC Decree 248 (2021)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TW",
+      "regulation_name": "Feed Control Act + COA inspection",
+      "regulation_ref": "Feed Control Act (飼料管理法) + COA Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "Pet Food Safety Act",
+      "regulation_ref": "Law No. 83 of 2008 (Pet Food Safety Act)",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "JP",
+      "regulation_name": "MAFF Pet Food Standards + Labelling Guidelines",
+      "regulation_ref": "MAFF Notification + JAS-aligned guidelines",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation_name": "Feed Control Act + APQA controls",
+      "regulation_ref": "Feed Control Act (사료관리법) + APQA Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "TH",
+      "regulation_name": "Animal Feed Quality Control Act + DLD controls",
+      "regulation_ref": "Animal Feed Quality Control Act B.E. 2525 (1982) + DLD Regulations",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "AU",
+      "regulation_name": "AS 5812 — Manufacturing and Marketing of Pet Food",
+      "regulation_ref": "Australian Standard AS 5812:2017",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    },
+    {
+      "jurisdiction": "NZ",
+      "regulation_name": "MPI Animal Products Act + Biosecurity Act",
+      "regulation_ref": "Animal Products Act 1999 + Biosecurity Act 1993",
+      "criticality": "critical",
+      "match_status": "NOT_FOUND"
+    }
+  ],
+  "summary": {
+    "total_jurisdictions": 15,
+    "total_master_csv_rows": 505,
+    "total_unique_critical_regs_checked": 249,
+    "found": 24,
+    "partial": 8,
+    "not_found": 217,
+    "coverage_rate_pct": 12.9,
+    "total_docs_in_supabase": 348199,
+    "coverage_gaps": {
+      "high_doc_count_but_low_regulation_match": [
+        "KR",
+        "TH"
+      ],
+      "low_doc_count_jurisdictions": [
+        "SG",
+        "MY",
+        "NZ",
+        "HK",
+        "VN"
+      ],
+      "no_docs": []
+    }
+  }
+}
