@@ -1,0 +1,22 @@
+[
+  {"id": 1,  "name": "Shampoing",                        "regime_tag": "Cosmétique rinse-off",        "category": "Personal Care"},
+  {"id": 2,  "name": "Crème solaire",                    "regime_tag": "Cosmétique leave-on + UV",    "category": "Personal Care"},
+  {"id": 3,  "name": "Smartphone",                       "regime_tag": "Électronique + télécom",      "category": "Electronics"},
+  {"id": 4,  "name": "Peluche bébé 0-3 ans",             "regime_tag": "Jouet enfant",                "category": "Toys & Children"},
+  {"id": 5,  "name": "Pansement adhésif",                "regime_tag": "Dispositif médical Cl. I",    "category": "Medical Devices"},
+  {"id": 6,  "name": "Vape / e-cigarette",               "regime_tag": "Tabac/Nicotine",              "category": "Tobacco & Vape"},
+  {"id": 7,  "name": "Capsule lessive (pod)",            "regime_tag": "Détergent + biocide",         "category": "Household Chemicals"},
+  {"id": 8,  "name": "Complément alimentaire vitamines", "regime_tag": "Food supplement",             "category": "Food & Supplements"},
+  {"id": 9,  "name": "Legging sport synthétique",        "regime_tag": "Textile + PFAS",              "category": "Textile & Apparel"},
+  {"id": 10, "name": "Casque vélo adulte",               "regime_tag": "EPI catégorie II",            "category": "PPE"},
+  {"id": 11, "name": "Bouteille de vin",                 "regime_tag": "Alcool",                      "category": "Alcohol"},
+  {"id": 12, "name": "Steak emballé (viande fraîche)",   "regime_tag": "Animal origin food",          "category": "Food (Animal)"},
+  {"id": 13, "name": "Paracétamol OTC",                  "regime_tag": "Pharma humain OTC",           "category": "Pharmaceuticals"},
+  {"id": 14, "name": "Pneumatique voiture",              "regime_tag": "Tyre + automotive parts",     "category": "Automotive"},
+  {"id": 15, "name": "Insecticide spray maison",         "regime_tag": "Biocide produit fini",        "category": "Biocides"},
+  {"id": 16, "name": "Drone grand public",               "regime_tag": "Drone + aviation civile",     "category": "Aviation & UAV"},
+  {"id": 17, "name": "Robot aspirateur connecté",        "regime_tag": "Machinery + IoT + AI Act",    "category": "Smart Appliances"},
+  {"id": 18, "name": "Implant dentaire",                 "regime_tag": "Dispositif médical Cl. III",  "category": "Medical Devices"},
+  {"id": 19, "name": "Peinture déco intérieure",         "regime_tag": "VOC + REACH SVHC",            "category": "Paint & Coatings"},
+  {"id": 20, "name": "Croquettes pour chien",            "regime_tag": "Pet food",                    "category": "Pet Products"}
+]
