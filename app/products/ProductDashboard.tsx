@@ -112,6 +112,24 @@ const PS = {
   sortAlpha: { fr: "A → Z", en: "A → Z" },
 } as const;
 
+const CAT_IMAGES: Record<string, string> = {
+  "Cosmetics & Personal Care": "/images/categories/cosmetics.png",
+  "Electronics & Telecom": "/images/categories/electronics.png",
+  "Toys & Children's Products": "/images/categories/toys.png",
+  "Medical Devices": "/images/categories/medical-devices.png",
+  "Tobacco & Vaping": "/images/categories/tobacco.png",
+  "Household Chemicals": "/images/categories/chemicals.png",
+  "Food & Supplements": "/images/categories/food.png",
+  "Textile & Apparel": "/images/categories/textile.png",
+  "PPE & Safety Equipment": "/images/categories/ppe.png",
+  "Alcohol & Beverages": "/images/categories/alcohol.png",
+  "Pharmaceuticals": "/images/categories/pharma.png",
+  "Automotive Parts": "/images/categories/automotive.png",
+  "Drones & Aviation": "/images/categories/drones.png",
+  "Paints & Coatings": "/images/categories/paints.png",
+  "Pet Food & Animal Feed": "/images/categories/petfood.png",
+};
+
 function pt(lang: Lang, key: keyof typeof PS): string {
   const v = PS[key];
   if (typeof v === "function" || (typeof v === "object" && "fr" in v && typeof v.fr === "function")) return "";
@@ -460,6 +478,9 @@ export default function ProductDashboard({
                     }`}
                   >
                     <span className="flex min-w-0 items-center gap-2">
+                      {CAT_IMAGES[cat.name] && (
+                        <img src={CAT_IMAGES[cat.name]} alt="" className="h-7 w-7 rounded-md object-cover" />
+                      )}
                       <span className="truncate text-sm font-medium">{cat.name}</span>
                     </span>
                     <span className="flex shrink-0 items-center gap-2">
@@ -572,6 +593,9 @@ export default function ProductDashboard({
                           onClick={() => selectCategory(isActiveRow ? null : cat.name)}
                           className="flex w-full items-center gap-2 text-left"
                         >
+                          {CAT_IMAGES[cat.name] && (
+                            <img src={CAT_IMAGES[cat.name]} alt="" className="h-5 w-5 rounded object-cover" />
+                          )}
                           <span className="truncate text-xs font-medium">{cat.name}</span>
                         </button>
                       </th>
@@ -1079,6 +1103,9 @@ function ProductDrawer({
           {categories.map((cat) => (
             <div key={cat} className="mb-4">
               <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
+                {CAT_IMAGES[cat] && (
+                  <img src={CAT_IMAGES[cat]} alt="" className="h-6 w-6 rounded-md object-cover" />
+                )}
                 {cat}
                 <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-c-text-subtle">
                   {grouped[cat].length}
