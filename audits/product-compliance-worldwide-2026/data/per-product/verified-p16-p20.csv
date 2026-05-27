@@ -1,0 +1,411 @@
+product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supabase_reg_id,supabase_reg_name,verification_note
+16,EU,Regulation (EU) 2019/947,UAS Operations Regulation,FOUND,dd325b96-f12b-4387-a7f4-87333377e840,EU Drone Regulations (EU 2019/947 and 2019/945),exact_ref match
+16,EU,Regulation (EU) 2019/945,UAS Class Standards — C0 to C6,FOUND,dd325b96-f12b-4387-a7f4-87333377e840,EU Drone Regulations (EU 2019/947 and 2019/945),combined entry covers 945+947
+16,EU,EASA Easy Access Rules UAS Ed 3.0,EASA Easy Access Rules for UAS (AMC/GM),NOT_FOUND,,,Aucune correspondance EASA+UAS/AMC trouvée
+16,EU,2014/53/EU (RED),Radio Equipment Directive,FOUND,4a966a38-ea5f-47cd-b19b-0548bda40e3b,EU Radio Equipment Directive (RED),exact_ref match
+16,EU,Regulation (EU) 2023/1542,Batteries Regulation,FOUND,9bd02701-97a6-400e-81d2-0b3f1e0174fd,EU Battery Regulation,exact_ref match
+16,EU,Regulation (EU) 2024/1689,AI Act — High-risk AI systems,FOUND,1f102f8d-79dc-4aa3-a7b3-3701fb6d4ecf,Règlement européen sur l'Intelligence Artificielle (AI Act),exact_ref match
+16,EU,Regulation (EU) 2016/679 (GDPR),General Data Protection Regulation,FOUND,7ff2433a-5a5f-435f-ae85-d82d6b487dce,EU General Data Protection Regulation (GDPR),exact_ref match
+16,EU,2002/58/EC (ePrivacy),ePrivacy Directive,FOUND,9a05ce0c-e4ed-4cab-874e-0ef3ebcb6cfd,EU ePrivacy Directive (Directive 2002/58/EC),exact_ref match
+16,EU,2012/19/EU (WEEE recast),WEEE Directive,FOUND,98a9a890-e857-4ae0-a872-7d3b75bb1f04,WEEE Directive,exact_ref match
+16,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR nouvelle réglementation applicable aux drones grand public (entrée en vigueur déc 2024)
+16,FR,Décret n°2018-374 + Arrêté du 17 déc 2015,Décret drones + Arrêté Espace aérien,NOT_FOUND,,,Aucune correspondance France drone 2018-374 trouvée
+16,FR,Loi n°2016-1428 du 24 octobre 2016,Loi sécurité usage drones civils,NOT_FOUND,,,Aucune correspondance Loi 2016-1428 drone trouvée
+16,DE,LuftVO § 21a-21f (as amended 2021 for EU reg alignment),Luftverkehrs-Ordnung (LuftVO) — UAS provisions,NOT_FOUND,,,Aucune correspondance LuftVO UAS trouvée
+16,IT,ENAC Regolamento Mezzi Aerei a Pilotaggio Remoto (RPAS) Ed 3.0,ENAC UAS Regulation,NOT_FOUND,,,Aucune correspondance ENAC RPAS/UAS trouvée
+16,ES,RD 517/2018 (as amended) + AESA UAS framework,AESA UAS Regulations + RD 517/2018,NOT_FOUND,,,Aucune correspondance AESA UAS / 517/2018 trouvée
+16,NL,Wet luchtvaart Art 1.1 + ILT UAS Register,Wet luchtvaart + IL&T UAS Registration,NOT_FOUND,,,Aucune correspondance Wet luchtvaart trouvée
+16,GB,CAP 722 Ed 9 + CAP 1789 (post-Brexit UAS framework),CAP 722 + CAP 1789 — UK UAS Regulations,NOT_FOUND,,,Aucune correspondance CAP 722 trouvée
+16,GB,Air Navigation Order 2016 SI 2016/765 as amended,Air Navigation Order 2016 (ANO),NOT_FOUND,,,Aucune correspondance Air Navigation Order UK trouvée
+16,CH,SR 748.941 Verordnung über Luftfahrzeuge besonderer Kategorien (VBLK) + OACS,BAZL Drone Regulations + OACS,NOT_FOUND,,,Aucune correspondance VBLK/BAZL drone trouvée
+16,NO,BSL D (Norwegian Civil Aviation Regulations for RPAS) + EU 2019/947 via EEA,Luftfartstilsynet Drone Regulations (EEA),NOT_FOUND,,,Aucune correspondance Luftfartstilsynet drone trouvée
+16,RU,Воздушный кодекс РФ + Приказ Минтранса № 110,Federal Air Code + Order No. 110 (БПЛА),NOT_FOUND,,,Aucune correspondance Russian air code/БПЛА trouvée
+16,EAEU,TR TS 003/2011 + TR TS 020/2011,EAEU TR TS 003/2011 — Low Voltage Equipment + RF,NOT_FOUND,,,Aucune correspondance TR TS 003 trouvée
+16,TR,SHGM IHA-0001 Talimat (as amended 2023),SHGM IHA Talimatı (UAV Instruction),NOT_FOUND,,,Aucune correspondance SHGM IHA trouvée
+16,UA,Наказ ДАС № 430 / UA UAS Regulations,State Aviation Service Order 430,NOT_FOUND,,,Aucune correspondance Ukraine UAS Order 430 trouvée
+16,US,14 CFR Part 107,FAA Part 107 — Small UAS Rule,FOUND,7012d893-16b6-4603-911f-2aa0ddcf4a2b,14 CFR Part 107 (Small UAS Rule),exact_ref match
+16,US,14 CFR Part 89,FAA Remote ID Rule,FOUND,4b6d58b8-1c25-478b-a5ca-535678d48d5a,14 CFR Part 89 (Remote Identification of UAS),exact_ref match
+16,US,49 USC § 44809,FAA Recreational Flyers — Section 44809,FOUND,28cf2196-be75-406f-b832-26c97499a869,FAA Part 44809 (Recreational UAS),name match
+16,US,47 CFR Part 15,FCC Part 15 — RF Emissions,FOUND,425c1ca8-7d32-4b95-9d4d-11ddbc51ffad,US FCC Part 15 — Radio Frequency Devices,exact_ref match
+16,US-CA,CA Penal Code § 402 + CIPA,California Drone Surveillance Law,FOUND,0684cc39-a333-4445-a02b-245cdab174bb,CIPA,CIPA trouvé (California Invasion of Privacy Act); Penal Code §402 drone-specific non trouvé séparément
+16,US-CA,Cal. Civ. Code § 1798.100 et seq. (CCPA/CPRA),CCPA / CPRA — Data Privacy,FOUND,1e0678ef-0d3c-4ba7-8905-ab2734491a6d,California Consumer Privacy Act (CCPA) / CPRA,exact match
+16,US-NY,NY General Business Law § 251 + NY Penal Law § 250.05 + NYC Parks Drone Ban,New York State Drone Laws,NOT_FOUND,,,Aucune correspondance NY drone law trouvée
+16,CA,CARs Part IX (SOR/2019-11) + RPAS Safety Assurance,Transport Canada CARs Part IX — RPAS,NOT_FOUND,,,Aucune correspondance CARs Part IX SOR/2019-11 trouvée
+16,CA,RSS-Gen Issue 6 + RSS-247 Issue 3 (2.4GHz/5GHz),ISED RSS-Gen + RSS-247 — RF Compliance,FOUND,249e38d7-8450-4bfb-8be2-c8a6d5e0421c,ISED RSS Standards (Canada),re-audit 2026-05-27: ISED RSS-247+RSS-Gen entry found (covers 2.4GHz/5GHz)
+16,MX,Circular Obligatoria CO-AV-23/10 R5,DGAC CO-AV-23/10 R5 — Sistemas de Aeronaves Pilotadas a Distancia,NOT_FOUND,,,Aucune correspondance CO-AV-23/10 DGAC Mexico trouvée
+16,BR,RBAC-E 94 (2017 amended 2023) + ICA 100-40,ANAC RBAC-E n°94 + DECEA ICA 100-40,NOT_FOUND,,,Aucune correspondance RBAC-E 94 ANAC drone trouvée
+16,BR,Resolução ANATEL 715/2019 + Ato 14448/2017,ANATEL RF Homologação,FOUND,14bb15b9-692b-48fd-b88c-10421c0acb38,ANATEL Resolution 715/2019,exact_ref match
+16,AR,Resolución ANAC 880/2019 (as amended),ANAC Resolución 880/2019 — RPA,NOT_FOUND,,,Aucune correspondance ANAC 880/2019 Argentine drone trouvée
+16,CL,DAR-Parte 99 (Operaciones RPAS) + DAN-91,DGAC DAR-Parte 99 + DAN-91,NOT_FOUND,,,Aucune correspondance DAR-Parte 99 Chile trouvée
+16,CO,RAC 100 (RPAS) + Resolución 04201/2018 Aerocivil,Aerocivil RAC 100 + Resolución 04201/2018,NOT_FOUND,,,Aucune correspondance Aerocivil RAC 100 trouvée
+16,MERCOSUR,MERCOSUR/CMC/DEC N° 10/16 (Aviation harmonisation),MERCOSUR — Aviation MRA (limited UAS scope),NOT_FOUND,,,Aucune correspondance MERCOSUR aviation DEC 10/16 trouvée
+16,CN,CAAC Regulations on Civil Unmanned Aircraft (2023) + Decree No. 239,CAAC Civil UAV Manufacturer Registration,NOT_FOUND,,,Aucune correspondance CAAC UAV/drone trouvée
+16,CN,MIIT Radio Frequency Management Measures + SRRC Certification,MIIT SRRC Radio Type Approval,FOUND,e53a0748-7449-4a24-be7d-9615b63758e7,China SRRC Radio Certification,SRRC found
+16,CN,CAAC Administrative Measures for Civil Unmanned Aircraft Real-Name Registration,Real-Name Registration System (drones >250g),NOT_FOUND,,,Aucune correspondance CAAC real-name drone trouvée
+16,HK,Air Navigation (Hong Kong) Order 1995 Cap 448 + CAD UAS Circular 2023,CAD Hong Kong — Unmanned Aircraft Regulations,NOT_FOUND,,,Aucune correspondance CAD HK drone Cap448 trouvée
+16,TW,Civil Aviation Act (as amended 2023) + NCC Low Power Radio Regulations,CAA Civil Aviation Act Drone Amendments + NCC Type Approval,NOT_FOUND,,,Aucune correspondance Civil Aviation Act + NCC drone Taiwan trouvée
+16,JP,Civil Aeronautics Act Amendment (Drone Law) 2022 + MLIT UAS Safety Guidelines,MLIT UAV Regulations + Civil Aeronautics Act,NOT_FOUND,,,Aucune correspondance Civil Aeronautics Act drone Japan trouvée
+16,JP,Aviation Law Art. 132 + 132-2 + 132-85,Aviation Law Article 132 — No-fly zones,NOT_FOUND,,,Aucune correspondance Aviation Law Art 132 Japan trouvée
+16,JP,Radio Law (電波法) + MIC Technical Standards Conformity Certification,MIC Radio Law — Giteki Mark,FOUND,ac4c4ca3-1e1f-49c2-bf3d-716ac66946cd,Japan Radio Law & TELEC,re-audit 2026-05-27: Japan Radio Law + Giteki/TELEC entry found
+16,KR,Aviation Safety Act (항공안전법) + MoLIT UAS Safety Standards 2023,KOCA UAV Regulations + Aviation Safety Act,NOT_FOUND,,,Aucune correspondance Aviation Safety Act Korea drone trouvée
+16,KR,Radio Waves Act (전파법) + RRA KC Certification,KC Mark — RRA Radio Certification,FOUND,f4278104-9b88-4330-aafd-8b44ec0edf6b,Korea KCC/RRA Radio Certification,RRA KC found
+16,SG,Air Navigation Act Cap 6 + Unmanned Aircraft (Public Safety and Security) Act 2015 + Unmanned Aircraft Order 2019,CAAS Air Navigation Act + Unmanned Aircraft Order 2019,NOT_FOUND,,,Aucune correspondance CAAS Singapore drone trouvée
+16,MY,Civil Aviation Regulations 2016 + MAS-09 (Remotely Piloted Aircraft Systems),CAAM Civil Aviation Regulations 2016 + MAS-09,NOT_FOUND,,,Aucune correspondance CAAM MAS-09 Malaysia trouvée
+16,TH,Civil Aviation Authority of Thailand — UAV Notification + NBTC Notification 2018,CAAT Drone Registration + NBTC Frequency,NOT_FOUND,,,Aucune correspondance CAAT drone Thailand trouvée
+16,VN,Decision 18/2008 + Decree 36/2014 + Circular 01/2022/TT-BGTVT,MoD/MoT Decision 18/2008 + Decree 36/2014 — UAS,NOT_FOUND,,,Aucune correspondance Vietnam UAS Decree 36/2014 trouvée
+16,ID,Peraturan Menteri Perhubungan 37/2020 (amended 2022) + DGCA Advisory Circular 107,DGCA Indonesia + Permenhub 37/2020,NOT_FOUND,,,Aucune correspondance Permenhub 37 Indonesia drone trouvée
+16,PH,CAAP MC 21-12 (2021) + RPAS Rules and Regulations,CAAP Memorandum Circular 21-12 — RPAS,NOT_FOUND,,,Aucune correspondance CAAP MC 21-12 Philippines trouvée
+16,IN,UAS Rules 2021 (GSR 232E) + NPNT (No Permission No Takeoff) system,DGCA UAS Rules 2021 + DigitalSky Platform,NOT_FOUND,,,Aucune correspondance UAS Rules 2021 India trouvée
+16,IN,Indian Wireless Telegraphy Act 1933 + WPC guidelines + TEC ETA,WPC Wireless Planning + ETA (Equipment Type Approval),FOUND,9b82b304-b2ab-4177-91fb-3037781679bd,India WPC (Wireless Planning and Coordination) License,WPC found
+16,AU,Civil Aviation Safety Regulations Part 101 + CASA RPA Operations,CASA Part 101 + RPA Registration,FOUND,62062967-13fd-4b27-a906-613a037be702,CASA Part 101 (Unmanned Aircraft and Rockets),exact match
+16,NZ,CAR Part 101 (Gyrogliders) + CAR Part 102 (Unmanned Aircraft Operator) 2015,CAA Civil Aviation Rule Part 101/102 — UAS,NOT_FOUND,,,Aucune correspondance CAR Part 101/102 NZ trouvée
+16,ASEAN,ASEAN UAS Working Group Framework 2022,ASEAN UAS Working Group — Harmonisation,NOT_FOUND,,,Aucune correspondance ASEAN UAS Working Group trouvée
+16,GCC,GCAA UAE RPAS Regulations + GACA KSA UAS Regulations 2023,GCAA UAE + GACA Saudi Arabia — Drone Registration,NOT_FOUND,,,Aucune correspondance GCAA UAE RPAS GACA Saudi drone trouvée
+16,GCC,CITC Type Approval Programme (Saudi Arabia),CITC RF Type Approval — Saudi Arabia,FOUND,0de58af3-2333-487a-9e87-e64abba9cee9,Saudi Arabia CITC Type Approval,CITC RF type approval found
+16,IL,Drone Regulations (Operations of Unmanned Aircraft) 5779-2019 + CAA Circular,CAA Israel + Drone Order 5779-2019,NOT_FOUND,,,Aucune correspondance CAA Israel drone 5779 trouvée
+16,EG,ECAA Regulations for Remotely Piloted Aircraft Systems 2021,ECAA Egyptian Civil Aviation Authority — UAS,NOT_FOUND,,,Aucune correspondance ECAA Egypt UAS trouvée
+16,MA,Dahir n°1-16-113 + Arrêté DGAC 2018 + Loi 40-13,DGAC Maroc + Loi 40-13 (Codes de l'aviation civile),NOT_FOUND,,,Aucune correspondance DGAC Maroc drone trouvée
+16,ZA,Civil Aviation Regulations 2011 Part 101 (RPA) + CAA Exemptions,SACAA Civil Aviation Authority + Part 101,NOT_FOUND,,,Aucune correspondance SACAA Part 101 RPA trouvée
+16,NG,Nigerian Civil Aviation Regulations (Nig.CARs) Part 14 — RPA 2021,NCAA UAS Regulations,NOT_FOUND,,,Aucune correspondance NCAA UAS Nigeria trouvée
+16,KE,Kenya Civil Aviation Authority UAS Regulations 2020 (LN No. 94 of 2020),KCAA UAS Regulations 2020,NOT_FOUND,,,Aucune correspondance KCAA UAS Kenya trouvée
+16,CODEX,N/A,Codex Alimentarius — Not applicable to consumer drones,NOT_FOUND,,,N/A — non applicable au drone
+16,ISO,ISO 21384-1:2021 + ISO 21384-3:2019,ISO 21384 — UAS Terminology and Operations Safety,FOUND,1e01c14a-ba95-4033-a50c-e1c6c326076b,ISO 21384 Series (UAS General Specifications),exact match
+16,UNECE,N/A,UNECE WP.29 — Not applicable to consumer drones (automotive scope),NOT_FOUND,,,N/A — non applicable au drone
+16,WADA,N/A,WADA — Not applicable to consumer drones,NOT_FOUND,,,N/A — non applicable au drone
+16,OECD,OECD AI Principles (2019) + OECD Privacy Guidelines (2013),OECD Guidelines — AI and privacy principles,FOUND,5fb26ea8-cb89-4711-8290-511a2bd38799,OECD AI Principles,found
+17,EU,Regulation (EU) 2023/1230,Machinery Regulation,FOUND,19fcc73e-8d8d-4d2b-895c-875b5871eaeb,EU Machinery Regulation 2023/1230,exact_ref match
+17,EU,2014/35/EU,Low Voltage Directive,FOUND,f9f322ed-c905-4107-82ee-eb256db6f500,EU Low Voltage Directive (LVD),exact_ref match
+17,EU,2014/30/EU,EMC Directive,FOUND,a3d4ed9a-73de-4324-90df-269a68b8879f,EU EMC Directive,exact_ref match
+17,EU,2014/53/EU,Radio Equipment Directive,FOUND,4a966a38-ea5f-47cd-b19b-0548bda40e3b,EU Radio Equipment Directive (RED),exact_ref match
+17,EU,Regulation (EU) 2024/2847,Cyber Resilience Act,FOUND,16a5a96f-ded1-4169-af47-060a951872d1,CRA,exact_ref match
+17,EU,Regulation (EU) 2024/1689,AI Act,FOUND,1f102f8d-79dc-4aa3-a7b3-3701fb6d4ecf,Règlement européen sur l'Intelligence Artificielle (AI Act),exact_ref match
+17,EU,Regulation (EU) 2024/1781 (ErP recast) + Delegated Regs,Ecodesign Regulation for Energy-related Products,FOUND,4845af18-5768-4879-944d-899a26f23c4f,EU Ecodesign for Sustainable Products Regulation (ESPR),ref match (ESPR covers ErP recast)
+17,EU,Regulation (EU) 2016/679,General Data Protection Regulation,FOUND,2cb53fa0-83d2-442c-9850-2690b1380eef,EU General Data Protection Regulation (GDPR) (EU) 2016/679,exact_ref match
+17,EU,2012/19/EU,WEEE Directive,FOUND,74dbd018-d73a-4a5a-bdfe-cc870d8ef77e,EU WEEE Directive 2012/19/EU,exact_ref match
+17,EU,Regulation (EU) 2023/1542,Batteries Regulation,FOUND,207abee5-7094-446c-96f0-e340a5c29387,EU Battery Regulation 2023/1542,exact_ref match
+17,EU,2011/65/EU (recast),RoHS Directive,FOUND,b8686014-8400-4089-9154-fdfce197b002,EU RoHS Directive 2011/65/EU,exact_ref match
+17,EU,(EC) No 1907/2006,REACH Regulation,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref match
+17,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR applicable au robot aspirateur grand public (entrée en vigueur déc 2024)
+17,FR,Arrete filiere EEE (Code de l'environnement L541-10-1),REP menagere — Ecologic / Ecosystem,FOUND,448dcc4d-4040-4203-86cf-779faa246b7b,REP DEEE France,found
+17,FR,Deliberation CNIL + lignes directrices IA,CNIL — Guide securite IoT et donnees domotique,NOT_FOUND,,,Pas de CNIL IoT spécifique trouvé (CNIL général trouvé mais pas IoT)
+17,DE,Elektro- und Elektronikgeraetegesetz (ElektroG) 2021,ElektroG (German WEEE implementation),FOUND,7c43238b-1264-43f7-a568-7fabe8699fd8,Germany ElektroG (Electrical and Electronic Equipment Act),exact match
+17,DE,BSI-Gesetz (BSIG) paragraph 9a + IT-SiG 2.0,BSI IT-Sicherheitsgesetz 2.0 + BSI-Gesetz,FOUND,7b2ee442-2cdc-49a0-8e6e-bd59454ceae4,IT-SiG 2.0 (IT-Sicherheitsgesetz 2.0),found
+17,IT,D.Lgs. 17/2010 + transition to Reg (EU) 2023/1230,D.Lgs. 17/2010 (Machinery) — transitioning to EU 2023/1230,FOUND,571b8ab0-a60d-4e80-88fc-bd0fcb3f829e,Italian Machinery Safety (D.Lgs. 17/2010),exact match
+17,IT,Delibera AGCOM + recepimento CRA,AGCOM — Linee guida sicurezza IoT,NOT_FOUND,,,AGCOM trouvé mais pour influenceurs marketing (pas IoT)
+17,ES,Real Decreto 110/2015,Real Decreto 110/2015 RAEE (Spanish WEEE),FOUND,2f69215f-0a1b-4b75-b157-acea45addb40,Real Decreto 110/2015,exact match
+17,ES,Guia INCIBE-CERT IoT Security,INCIBE — Cybersecurity requirements IoT,NOT_FOUND,,,Aucune correspondance INCIBE trouvée
+17,NL,Wet milieubeheer + WEEE Directive transposition,WEEE-registratie (Wecycle),FOUND,8a65ae88-c045-42bc-8890-ada3bac7fadf,Dutch Environmental Management Act (Wet milieubeheer),found
+17,NL,Uitvoeringswet AVG (UAVG) + AP guidelines,Dutch Implementation GDPR (UAVG) + AP guidance IoT,FOUND,3d57ad62-9015-40df-b505-219162e00b59,Uitvoeringswet AVG (UAVG),exact match
+17,GB,Product Security and Telecoms Infrastructure Act 2022,UK PSTI Act 2022 — Product Security,FOUND,a15f2e4d-8ed7-46d2-b4b2-e7909282dd4a,UK Product Security and Telecommunications Infrastructure Act (PSTI),exact match
+17,GB,UK Machinery Directive (S.I. 2008/1597) transitioning to UK Machinery Regulation,UKCA — Machinery,FOUND,d9b9201c-9e3b-4747-b8b9-a0a074eb2718,UK Supply of Machinery (Safety) Regulations 2008,re-audit 2026-05-27: Supply of Machinery (Safety) Regulations 2008 SI 2008/1597 found
+17,GB,UK Radio Equipment Regulations 2017 (S.I. 2017/1206),UKCA — Radio Equipment (UK RE Regulations 2017),FOUND,b7113519-118f-4d9f-8ba9-4275ac7de1a1,UK Radio Equipment Regulations 2017,exact match
+17,GB,UK GDPR (retained EU law) + DPA 2018,UK GDPR + Data Protection Act 2018,FOUND,1ac0ddbf-cf40-4cde-b28a-f63cf94938bf,UK Data Protection Act 2018 / UK GDPR,exact match
+17,CH,Bundesgesetz ueber die Sicherheit von Produkten (PrSG) + STEG + Maschinenverordnung SR 819.14,Swiss STEG (Low Voltage + Machinery),FOUND,54072951-dc64-4e1e-9dd9-135b4a079380,Swiss Federal Act on Product Safety (PrSG),found
+17,CH,Verordnung ueber die elektromagnetische Vertraeglichkeit (VEMV) SR 734.5,Swiss EMC Regulation (VEMV),FOUND,b903e4f0-6251-4123-b1a1-e0a659a812ed,Swiss Ordinance on Electromagnetic Compatibility (OEMCV/VEMV),exact match
+17,CH,Bundesgesetz ueber den Datenschutz (nDSG/nLPD) SR 235.1 + Cyber Strategy 2023,Swiss Federal Cyber Security Strategy + nLPD,FOUND,24ed490c-5583-4343-b7c3-3335977942e6,Swiss FADP (nDSG),found
+17,NO,Via EEA Agreement; Joint Committee Decisions incorporating EU regulations,EEA-applicable EU framework (Machinery + LVD + RED + GDPR),FOUND,9b6b9d19-671c-4489-801e-372627824c5c,EU Machinery Regulation (EEA/Liechtenstein),EEA machinery found
+17,NO,Lov om behandling av personopplysninger (personopplysningsloven) 2018,Norwegian Personal Data Act (Personopplysningsloven),FOUND,7b2d6830-414c-4a7b-bd83-39a1003f527b,Norwegian Personal Data Act (Personopplysningsloven),exact match
+17,RU,TR TS 004/2011 + TR TS 020/2011,TR TS 004/2011 (Low Voltage) + TR TS 020/2011 (EMC),NOT_FOUND,,,Aucune correspondance TR TS 004/2011 ou TR TS 020 trouvée
+17,RU,TR TS 048/2019,TR TS 048/2019 (RF Equipment),NOT_FOUND,,,Aucune correspondance TR TS 048 trouvée
+17,EAEU,TR TS 004/2011 + TR TS 020/2011 + TR TS 048/2019,EAEU Technical Regulations — LV + EMC + RF,NOT_FOUND,,,Aucune correspondance TR TS 004/020/048 EAEU trouvée
+17,TR,7223 sayili Urun Guvenligi ve Teknik Duzenlemeler Kanunu + ilgili yonetmelikler,CE uyumlu Turk yonetmelikleri (LVD + EMC + RED + Machinery),NOT_FOUND,,,Aucune correspondance loi turque 7223 trouvée
+17,TR,5809 sayili Elektronik Haberlesme Kanunu + BTK Yonetmeligi,BTK Tip Onayi (Radio Type Approval),FOUND,f4efacd0-27e0-4b55-b79e-7f74ea6bc139,Turkey BTK,BTK found
+17,UA,Resolutions of Cabinet of Ministers of Ukraine on radio equipment + DSST,Ukrainian RF and IoT Cybersecurity Regulations,NOT_FOUND,,,Aucune correspondance Ukraine RF/IoT cybersecurity trouvée
+17,US,47 CFR Part 15,FCC Part 15 — Unintentional + Intentional Radiators,FOUND,425c1ca8-7d32-4b95-9d4d-11ddbc51ffad,US FCC Part 15 — Radio Frequency Devices,exact_ref match
+17,US,UL 60335-2-2 Ed.3 (aligned with IEC 60335-2-2:2019),UL 60335-2-2 (Vacuum Cleaners — Particular Requirements),NOT_FOUND,,,Aucune correspondance UL 60335-2-2 trouvée
+17,US,15 U.S.C. paragraph 45 + FTC Act Section 5,FTC Section 5 — Unfair or Deceptive Acts (IoT Data Security),FOUND,049f3233-c5f8-42c3-94db-e20255111471,FTC Act Section 5,found
+17,US,NIST SP 800-213 (IoT Device Cybersecurity) + NISTIR 8259,NIST Cybersecurity Framework for IoT,FOUND,f8bff86f-70fa-43f4-9ef7-35f98c65a056,US IoT Cybersecurity Improvement Act & NIST Standards,found
+17,US-CA,Cal. Civ. Code paragraph 1798.91.04 to 1798.91.06,SB-327 — IoT Security (California Connected Devices Security Law),FOUND,11f2ae84-9eab-4ebd-bdd6-cdc0f55858d9,CA SB-327,exact match
+17,US-CA,Cal. Civ. Code paragraph 1798.100 et seq. + CPRA amendments,CCPA/CPRA — California Consumer Privacy Act,FOUND,1e0678ef-0d3c-4ba7-8905-ab2734491a6d,California Consumer Privacy Act (CCPA) / CPRA,exact match
+17,US-CA,Cal. Health & Safety Code paragraph 25249.5 et seq.,Proposition 65 — Safe Drinking Water and Toxic Enforcement Act,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),found
+17,US-NY,NY Gen. Bus. Law paragraph 899-bb,SHIELD Act — Stop Hacks and Improve Electronic Data Security,FOUND,89153fa2-005f-47ed-8b2c-e7d3f3bb8e11,NY SHIELD Act,exact match
+17,CA,CSA C22.2 No. 60335-2-2:21 (aligned with IEC 60335-2-2:2019),CSA C22.2 No. 60335-2-2 — Vacuum Cleaners (Canada),NOT_FOUND,,,CSA C22.2 général trouvé mais pas 60335-2-2 spécifique
+17,CA,RSS-247 Issue 2 + RSS-Gen Issue 5,ISED RSS-247 (Wi-Fi + BLE) + RSS-Gen,FOUND,249e38d7-8450-4bfb-8be2-c8a6d5e0421c,ISED RSS Standards (Canada),re-audit 2026-05-27: ISED RSS Standards entry covers RSS-247+RSS-Gen
+17,CA,Personal Information Protection and Electronic Documents Act (PIPEDA) S.C. 2000 c.5 + Loi 25 Quebec (2021),PIPEDA + Quebec Loi 25 (Law 25),FOUND,250e9b62-65f6-48de-90f7-c2f20b4bb024,Canada PIPEDA / Provincial Privacy Laws,found
+17,MX,NOM-024-SCFI-2013 + IFT-008-2015,IFETEL Homologacion + NOM-024-SCFI-2013,FOUND,47571c8a-4acb-4488-a43e-a1f64ef9a71c,NOM-024-SCFI-2013,exact match
+17,MX,NOM-019-SCFI-2011,NOM-019-SCFI-2011 (Electrical Safety),FOUND,068fcd1e-5519-44df-b9cf-cf688cd2c1af,NOM-019-SCFI-1998,found (version year difference)
+17,BR,Resolucao ANATEL 715/2019 (Procedimentos de avaliacao da conformidade),ANATEL Homologacao + Resolucao 715/2019,FOUND,329a84e9-2cba-4952-be01-b63c39799be7,ANATEL Resolution 715/2019,exact match
+17,BR,Portaria INMETRO 170/2012 + Portaria 364/2013,INMETRO Portaria 170/2012 + Portaria 364/2013 (Electrical Safety),NOT_FOUND,,,Aucune correspondance INMETRO Portaria 170/2012 trouvée
+17,BR,Lei 13.709/2018,LGPD — Lei Geral de Protecao de Dados,FOUND,3caad127-c86b-4ac1-aae6-69e5812e5326,Brazil LGPD,exact match
+17,AR,ENACOM Resolucion 580/2018 + resoluciones INTI,INTI Certificacion + ENACOM Resolucion 580/2018,FOUND,d55a823c-c9ee-4ead-b18a-709adb7bd9c1,ENACOM Homologation (Resolución 729/2023 and prior),found (580/2018 proche de l'entrée générale ENACOM)
+17,CL,Decreto SEC 109 + Resolucion SUBTEL 1.777,SEC Decreto 109 + SUBTEL Resolucion homologacion,FOUND,d7ff7c59-6a27-475d-8be1-6204b5fd111b,SUBTEL Homologation (Chile),found
+17,CO,Resoluciones CRC + Decreto 4948/2009 ICONTEC + Ley 1581/2012 HABEAS DATA,CRC — Comision de Regulacion de Comunicaciones + SIC,FOUND,792c2c82-c5c0-49a1-8ca4-078c47305907,Colombia CRC/ANE Homologation,found
+17,MERCOSUR,MERCOSUR/GMC/RES N 41/16,GMC Resolution 41/16 — Electrical Safety Harmonization,NOT_FOUND,,,Aucune correspondance MERCOSUR GMC 41/16 trouvée
+17,CN,CNCA-C18-01:2023 + CCC catalogue,CCC Certification (China Compulsory Certification),FOUND,ff819e8b-bbe5-4859-a900-2f4abd0afde1,China CCC Certification,found
+17,CN,MIIT Order 11/2016 (Management of Radio Equipment),SRRC Radio Type Approval,FOUND,e53a0748-7449-4a24-be7d-9615b63758e7,China SRRC Radio Certification,found
+17,CN,MIIT Telecommunication Equipment Type Approval (CMIIT),CMIIT ID — Network Access License,FOUND,b638dafb-dcea-4303-ac80-b7d29b2e3b30,China NAL (Network Access License),NAL/CMIIT found
+17,CN,GB/T 41700-2022 (Smart Home IoT Security),GB 41700-2022 — IoT Cybersecurity,NOT_FOUND,,,GB/T 41700 non trouvé; GB/T 41391 trouvé mais différent
+17,CN,Ge Ren Xin Xi Bao Hu Fa (PIPL) 2021,PIPL — Personal Information Protection Law,FOUND,7b29aebf-086a-4307-9868-1776bf60bc36,China Personal Information Protection Law (PIPL),exact match
+17,HK,Telecommunications Ordinance Cap 106 + TA-1 type approval,OFCA RF Authorization + EN 300 328 aligned,FOUND,b83e4784-cf71-4003-bb0a-142d04770d9b,Hong Kong Telecommunications Ordinance,found
+17,HK,Personal Data (Privacy) Ordinance Cap 486 + PCPD guidance,PDPO — Personal Data (Privacy) Ordinance,FOUND,eeb862e6-3181-4e20-8710-45c6cafedf7a,Hong Kong PDPO,exact match
+17,TW,Shang Pin Jian Yan Fa (Commodity Inspection Act) + NCC Xing Shi Ren Zheng,BSMI Commodity Inspection + NCC Type Approval,FOUND,57ef5809-b1e4-4f02-b1e6-4a075a41ca87,Taiwan BSMI,found
+17,TW,Ge Ren Zi Liao Bao Hu Fa (PIPA) 2010 amended 2023,PIPA — Personal Information Protection Act (Taiwan),FOUND,44b65853-7578-4d95-aae7-8d52f2759b3b,Taiwan Personal Information Protection Act — NCC Sector Rules,found (Taiwan PIPA sector rules)
+17,JP,Denki Yohin Anzen Ho (PSE Act) + Tokutei Denki Yohin Igai no Denki Yohin category,PSE Mark — DENAN Electrical Safety,FOUND,2aa0a02e-7bb9-4d96-be88-ddae31c77dc4,Japan PSE Mark (Electrical Safety),found
+17,JP,Denpa Ho (Radio Act) + Gijutsu Kijun Tekigo Shomei,MIC Giteki Mark (Radio Type Approval),FOUND,5277dbd9-f5bd-4897-9c4f-42698fdc3283,Japan Radio Law / TELEC Certification,re-audit 2026-05-27: Japan Radio Law TELEC/Giteki entry found
+17,JP,Ko Jinn Jo Ho no Hogo ni Kan suru Horitsu (APPI) 2003 amended 2022,APPI — Act on Protection of Personal Information,FOUND,7b83f81b-b42c-473a-a5e5-ad51b7d8a02d,Japan APPI,exact match
+17,JP,IoT Security Guidelines v1.0 2016 (METI/MIC) + Ministerial policy 2024,IoT Security Guidelines + Mandatory Baseline 2024,FOUND,876e8a5a-c23d-4072-afc1-82bfe5a30f98,Japan IoT Security Guidelines,found
+17,KR,Jeon Pa Beop (Radio Waves Act) + Jeon Gi Yong Pum Mit Saeng Hwal Yong Pum An Jeon Gwan Li Beop,KC Mark — RRA Radio + EMC + Safety,FOUND,ff1cc9ac-dfc3-401a-a96a-b331f750d8b9,Korea KC Mark,found
+17,KR,Gae In Jeong Bo Bo Ho Beop (PIPA) 2011 amended 2023,PIPA — Personal Information Protection Act (Korea),FOUND,2ecd4b61-6526-4b0e-88d8-3da7fdab0fb0,South Korea Personal Information Protection Act (PIPA),exact match
+17,KR,Jeong Bo Bo Ho Mit Gae In Jeong Bo Bo Ho Gwan Li Che Gye In Jeung (ISMS-P),KISA ISMS-P Information Security Certification,FOUND,31dbf359-d7e3-49a1-bd52-2a92ac388b74,South Korea ISMS-P,found
+17,SG,Telecommunications Act + Cybersecurity Act 2018 (Cap 50A),IMDA Telecommunication Equipment + Cybersecurity Act 2018,FOUND,a505dafe-6bea-4ca5-90eb-1eb2580391b4,Singapore IMDA Certification,found
+17,SG,CSA CLS Scheme (2020 updated 2022),CSA Cybersecurity Labelling Scheme (CLS),NOT_FOUND,,,CSA CLS spécifique non trouvé (CSA+Labelling trouvé mais sans correspondance exacte)
+17,SG,Personal Data Protection Act 2012 (No. 26 of 2012) amended 2021,PDPA — Personal Data Protection Act,FOUND,814e599f-3223-40f0-b43c-8513c64a7d57,Singapore Personal Data Protection Act 2012 (PDPA),exact match
+17,MY,Communications and Multimedia Act 1998 + PDPA 2010 (Act 709) + Electricity Supply Act,SIRIM + MCMC Type Approval + PDPA 2010,FOUND,7e952521-1376-4e96-a944-e837b87c9d4e,Malaysia SIRIM Certification,found
+17,TH,Frequency Allocation Act + PDPA (Act B.E. 2562/2019),NBTC Type Approval + PDPA Thailand,FOUND,aa0020de-2381-4489-ba65-65dae1b7c495,Thailand NBTC Certification,found
+17,VN,Thong tu 27/2018/TT-BTTTT + Nghi dinh 53/2022/ND-CP,MIC — Thong tu 27/2018 + Decree 53/2022 (Cybersecurity),FOUND,d8a04328-26b7-42e8-97c5-7f7e953e8b85,Vietnam Cybersecurity Law,Cybersecurity law found; Thong tu 27 non trouvé séparément
+17,ID,Permen Kominfo 16/2017 (radio equipment) + UU No. 27 Tahun 2022 (PDP Act),SDPPI (Postel) RF Certification + UU PDP 2022,FOUND,b4fad0f5-8488-4e85-9a37-35510919a59d,Indonesia SDPPI Type Approval (POSTEL),found
+17,PH,NTC Memorandum Circular + Republic Act No. 10173 (DPA),NTC Type Approval + RA 10173 Data Privacy Act,FOUND,f995f529-665e-4e53-a7fa-f213dd0d3a25,Philippines NTC Type Approval,found
+17,IN,Bureau of Indian Standards Act 2016 + Electronics and IT Goods (Requirements for Compulsory Registration) Order 2021,BIS CRS — Compulsory Registration Scheme,FOUND,456fe098-47c3-4443-901a-3f37a978e583,BIS CRS for Electronics/IT Products,found
+17,IN,Indian Wireless Telegraphy Act + WPC ETA (Equipment Type Approval),WPC ETA — Wireless Planning and Coordination Wing,FOUND,9b82b304-b2ab-4177-91fb-3037781679bd,India WPC (Wireless Planning and Coordination) License,found
+17,IN,The Digital Personal Data Protection Act 2023 (No. 22 of 2023),DPDP Act 2023 — Digital Personal Data Protection Act,FOUND,ce5ba828-7434-4f4d-a02a-3121fe105c1c,India DPDP Act,found
+17,AU,Radiocommunications Labelling (Electromagnetic Compatibility) Notice 2017 + EESS (Electrical Equipment Safety System),ACMA RCM + EESS Electrical Equipment Safety,FOUND,ed1069f0-dfae-4dc1-a07d-39a5c904094f,Australia RCM / ACMA,found
+17,AU,Privacy Act 1988 (Cth) + Privacy Amendment (Enhancing Privacy Protection) Act 2012,Privacy Act 1988 + Australian Privacy Principles (APPs),FOUND,b08b820c-cf15-46e5-82b3-93cff011f66a,Australia Privacy Act 1988 (Australian Privacy Principles),exact match
+17,AU,Cyber Security Act 2024 (Cth) — enacted November 2024,Cyber Security Act 2024,FOUND,97f8346e-51b5-4532-b8a4-37382b85fbf0,Cyber Security Act 2024,exact match
+17,NZ,Radiocommunications Regulations 2001 + Trans-Tasman MRA,Wireless Telegraphy Regulations + RCM Mutual Recognition,FOUND,dc192cc6-64fa-4eb5-b495-2bb230391022,New Zealand RSM Compliance (Radio Spectrum),found
+17,NZ,Privacy Act 2020,Privacy Act 2020,FOUND,497ac317-5ef5-40e8-bd54-85637fda4db3,New Zealand Privacy Act 2020,exact match
+17,ASEAN,ASEAN Framework Agreement on Mutual Recognition Arrangement for Telecommunications Equipment,ASEAN MRA — Telecom Equipment,FOUND,f15b5d20-7ff1-4830-a6e9-0c0ce8f4e570,ASEAN MRA-EE,found
+17,GCC,GSO 2012 + SASO Technical Regulations + UAE ESMA Product Conformity,GSO G-Mark + SASO (Saudi) + ESMA (UAE),FOUND,2ec3269e-6130-4c2d-ade4-687d552531a7,Saudi Arabia / GCC Conformity (SASO/GSO),found
+17,IL,Standards Institution of Israel (SII) + Communications Ministry RF regs + Privacy Protection Law 5741-1981,SI 60335-2-2 + ICTA RF Approval + Privacy Protection Law,FOUND,76718e29-7dca-4051-b228-acc29f06324b,Israel Privacy Protection Law,Privacy Law found; SII 60335-2-2 non trouvé séparément
+17,EG,Egyptian Telecom Regulatory Authority (NTRA) + ITIDA cybersecurity,NTRA RF Approval + ITIDA Cybersecurity,FOUND,0077e60c-fa10-46f5-9dd1-d11bcbcc2138,Egypt NTRA Type Approval,found
+17,MA,Agence Nationale de Reglementation des Telecommunications — decision relative a la conformite,ANRT Homologation,FOUND,55f70f9e-10de-4891-93d3-6fa9b7ec30d3,Morocco ANRT Type Approval,exact match
+17,ZA,Electronic Communications Act 36 of 2005 + ICASA regulations + POPIA (Protection of Personal Information Act 4 of 2013),ICASA Type Approval + SANS 60335-2-2 + POPIA,FOUND,b5f053b9-1531-4214-9dec-5ad0f6da1eb1,South Africa ICASA Type Approval,found
+17,NG,Standards Organisation of Nigeria + NITDA Data Protection Regulation 2019,SON Mandatory Standards + NITDA Data Protection Regulation,FOUND,3ab05590-85dc-498a-ba7c-b0e81a4ab7f5,Nigeria NITDA AI Framework,NITDA found (AI/data framework)
+17,KE,Kenya Bureau of Standards (KEBS) + Communications Authority of Kenya + Data Protection Act 2019,KEBS PVoC + CA RF Type Approval + DPA 2019,FOUND,7d76f584-5471-4b32-beae-22653ca42aeb,Kenya KEBS Certification,found
+17,CODEX,N/A,Codex Alimentarius — Not applicable to robot vacuums,NOT_FOUND,,,N/A — non applicable
+17,ISO,ISO/IEC 27001:2022,ISO/IEC 27001 — Information Security Management,FOUND,bed48354-90b7-463a-842a-ad92354c2d97,ISO/IEC 27001:2022,exact match
+17,ISO,ETSI EN 303 645 v2.1.1 (2020) + ETSI TR 103 621,ETSI EN 303 645 — Consumer IoT Security Baseline,FOUND,425ea82f-2a2c-4fc8-8469-c5d643fc2fa6,ETSI EN 303 645,exact match
+17,ISO,ISO/IEC 30141:2018,ISO/IEC 30141 — IoT Reference Architecture,NOT_FOUND,,,Aucune correspondance ISO 30141 IoT Reference Architecture trouvée
+17,UNECE,N/A,UNECE WP.29 — Not applicable (automotive scope),NOT_FOUND,,,N/A — non applicable
+17,WADA,N/A,WADA — Not applicable to robot vacuums,NOT_FOUND,,,N/A — non applicable
+17,OECD,OECD Privacy Guidelines 2013 + OECD AI Principles 2019 (updated 2024),OECD Privacy Guidelines + AI Principles,FOUND,5fb26ea8-cb89-4711-8290-511a2bd38799,OECD AI Principles,found
+18,EU,Regulation (EU) 2017/745,EU MDR 2017/745 — Class III Full Conformity Assessment,FOUND,f7540dc8-2ea0-4edb-aae3-256ee2c7c383,EU Medical Device Regulation,exact_ref match
+18,EU,Regulation (EU) 2017/745 Annex VIII Rule 8,MDR Annex VIII Rule 8 — Implantable Device Classification,FOUND,f7540dc8-2ea0-4edb-aae3-256ee2c7c383,EU Medical Device Regulation,same MDR reg entry covers Annexes
+18,EU,Regulation (EU) 2017/745 Articles 27-34 + Commission Implementing Regulation (EU) 2019/1396,UDI + EUDAMED Registration (Class III),FOUND,dbd4c911-cbca-475e-900c-735750a966d6,EUDAMED,EUDAMED found
+18,EU,Regulation (EU) 2017/745 Annex IX,MDR Annex IX — Full QMS + Design Dossier Assessment,FOUND,f7540dc8-2ea0-4edb-aae3-256ee2c7c383,EU Medical Device Regulation,same MDR reg entry
+18,EU,ISO 13485:2016 (harmonised under MDR),ISO 13485:2016 — Quality Management System (EU harmonised),FOUND,9139c2c2-2e10-4d87-8d89-43298b8ece88,ISO 13485,exact match
+18,EU,ISO 14971:2019 (harmonised under MDR),ISO 14971:2019 — Risk Management (EU harmonised),FOUND,e21f792c-e30a-4b06-af9b-b5e2923e515a,ISO 14971,exact match
+18,EU,ISO 10993-1:2018 + -3 -5 -6 -7 -12 -18 (harmonised under MDR),ISO 10993 Series — Biological Evaluation (EU harmonised),FOUND,60466c14-0ac1-445d-af7a-8134930c4b45,ISO 10993 (series),exact match
+18,EU,Commission Implementing Regulation (EU) 2022/2346 + forthcoming CS for Class III implantables,Common Specifications Class III Implantable (EU),FOUND,025954fc-55bb-4ab1-8d78-2d865c6d123d,EU MDR Annex XVI Common Specifications,found (closest match)
+18,FR,Code de la Santé Publique R. 5212-1 à R. 5212-37; Décret 2016-1716,ANSM Matériovigilance — Signalement DM Implantable,NOT_FOUND,,,Aucune correspondance ANSM matériovigilance France trouvée
+18,FR,Loi 2019-774 (art. 63 CSP L. 1111-29); Décret 2021-848,Carte porteur implant + Traçabilité ANS/DMP,NOT_FOUND,,,Aucune correspondance carte porteur implant France trouvée
+18,DE,MPDG (Medizinprodukte-Durchführungsgesetz 2021) + MPAMIV,BfArM + MPDG + MPAMIV — National Vigilance Obligation,FOUND,9b09430b-6200-4c7d-9574-af6750cad802,MPDG,exact match
+18,IT,D.Lgs. 137/2022 (MDR Italy transposition) + DM 20/02/2007 (Repertorio),Ministero della Salute + Repertorio DM — Class III Implant,FOUND,e20ba769-e850-4409-b63c-1ccfa166b32a,Italian Medical Device Advertising (D.Lgs. 137/2022),found (advertising variant)
+18,ES,Real Decreto 192/2023 (transposición MDR) + Ley del Medicamento,AEMPS — Real Decreto 192/2023 + Vigilancia DM Clase III,FOUND,111cd9f1-8d01-4e71-afca-ac29966a9de2,Real Decreto 192/2023,exact match
+18,NL,Wet medische hulpmiddelen (Wmd) 2021 + Registratie Implantaten Nederland (RIN),IGJ — Wet medische hulpmiddelen + Implants Registry NL,FOUND,e58aac7a-2f09-494c-8b06-1d6300e6820c,Wet medische hulpmiddelen,exact match
+18,GB,UK Medical Devices Regulations 2002 (SI 2002/618) as amended + MHRA Guidance 2024,UK MDR 2002 (amended) — UKCA Mark Class III Implant,FOUND,c45d1efb-751d-4828-a364-a61fce3e914e,UK Medical Devices Regulations 2002,exact match
+18,GB,UK MDR 2002 Schedule 2A + MHRA Registration Guidance,MHRA Device Registration + UK Approved Body Assessment,FOUND,c6912500-a9f2-4c19-b4bc-ab72b1042e78,UK MHRA Digital Health Regulation,MHRA found
+18,GB,Health and Care Act 2022 + MHRA Implantable Device Consultation,UK Implantable Devices Registry + NHS Reporting,NOT_FOUND,,,Aucune correspondance Health and Care Act 2022 trouvée
+18,CH,Ordonnance sur les dispositifs médicaux (MedDO) RS 812.213 (2021),MedDO — Swissmedic Class III + CH-REP Obligation,FOUND,7815518f-008a-47c3-9577-9912a859ce9e,Swiss MedDO (MepV),exact match
+18,NO,EU MDR (EU) 2017/745 via EEA Agreement; Norwegian Medisinskutstyrlov,EU MDR via EEA Agreement — DMP Norway,NOT_FOUND,,,Aucune correspondance Medisinskutstyrlov Norvège trouvée
+18,EAEU,EAEU Council Decision 46/2016 (Rules for Registration and Expert Examination of Medical Devices),EAEU Decision 46 — Class 3 Medical Device Registration,FOUND,40d12163-1ee1-4c21-ae7f-4da030341c9d,EAEU Medical Devices Regulation,found
+18,RU,Federal Law No. 323-FZ (2011) + MoH Order No. 4n/2021,Roszdravnadzor — State Register Medical Devices Class III,FOUND,41c863e9-467a-499f-bdbd-5513d5de497c,Russia Roszdravnadzor Medical Device Registration,found
+18,TR,Tibbi Cihazlar Yonetmeligi 2021 (MDR-aligned) + TITCK Tebligleri,TITCK — UTS Registration + Turkish MDR Alignment,FOUND,b330ace9-2405-4b41-8557-3b2611c13d94,Turkey Medical Device Regulation,found
+18,UA,MoH Ukraine Orders No. 300/2013 + No. 894/2021 (MDR alignment),State Service Ukraine for Medicines — Class III DM Registration,NOT_FOUND,,,Aucune correspondance Ukraine medical device registration trouvée
+18,US,21 CFR Part 814 (Premarket Approval Application),FDA PMA — Premarket Approval 21 CFR 814,FOUND,a062fd10-fa37-44d5-b71b-d2e31eab6094,FDA 510(k) / PMA / NDA Frameworks,found
+18,US,21 CFR Section 872.3640 + FDA Product Code KZG,FDA 21 CFR 872.3640 — Endosseous Dental Implant Classification,NOT_FOUND,,,Aucune correspondance 21 CFR 872 dental implant classification trouvée
+18,US,21 CFR Part 830 (UDI) + 21 CFR 801.20-801.60,FDA UDI System + GUDID — Class III Mandatory,NOT_FOUND,,,Aucune correspondance 21 CFR 830 GUDID UDI trouvée
+18,US,21 CFR Part 820 (QSR) / QMSR (effective Feb 2026 aligned ISO 13485),FDA QSR/QMSR — Quality System Regulation 21 CFR 820,FOUND,677be824-2829-4361-92a1-2150896aa419,FDA QMSR,exact match
+18,US,21 CFR Part 803 (Medical Device Reporting),MAUDE + MDR — Adverse Event Reporting 21 CFR 803,FOUND,d01d2e2d-90a7-4d8e-a041-342218294643,FDA Medical Device Advertising (21 CFR Part 801/803),found (801/803 combined entry)
+18,US-CA,California Health and Safety Code Section 25249.5 et seq. (Prop 65),California Proposition 65 — Implant Material Warnings,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),exact match
+18,US-NY,NY Education Law Article 133 (Dentistry) Section 6601 et seq.,NY Education Law Art. 133 — Dentist Scope (Implant Placement),NOT_FOUND,,,Aucune correspondance NY Education Law Art 133 dentistry trouvée
+18,CA,Medical Devices Regulations SOR/98-282 (Part 2 Class IV),Health Canada — Class IV Medical Device Licence,FOUND,77bcdad2-6564-46cf-8bb3-894c73e53a4b,CMDR (SOR/98-282),exact match
+18,CA,MDSAP Audit Approach Document (MDSAP AU P0002),MDSAP — Medical Device Single Audit Program,FOUND,4202d481-40f3-43d0-9781-a178cb6904cb,MDSAP,exact match
+18,MX,Reglamento de Insumos para la Salud (RIS) + NOM-137-SSA1-2008 + NOM-241-SSA1-2012,COFEPRIS — Registro Sanitario DM Clase III (Implante Dental),FOUND,946de234-215e-42c6-b9e9-6c54d3ed495b,COFEPRIS Medical Device Regulations,found
+18,BR,RDC No. 751/2022 (revoga RDC 185/2001),ANVISA RDC 751/2022 — Class III Medical Device Registration,FOUND,b9e463e6-3ae4-404b-bc54-7fafcb30a70e,ANVISA RDC 751/2022,exact match
+18,BR,RDC No. 16/2013 (Boas Praticas de Fabricacao BPFM),ANVISA RDC 16/2013 — Brazilian GMP (BPFM),FOUND,479e68f4-92f3-4809-a034-ed81c682e109,ANVISA RDC 16/2013,exact match
+18,AR,Disposicion ANMAT 2318/2002 + Disposicion 2319/2002 + Disposicion 1285/2018,ANMAT — Disposicion 2318/02 + Class III Implant Registration,FOUND,ffd0943f-ac4a-4871-bdb9-ed35cd7330d4,ANMAT Disposición 2318/2002,exact match
+18,CL,Decreto Supremo No. 825/1998 + Resoluciones ISP Circular 5/2022,ISP Chile — Registro DM Clase III (Decreto Supremo 825),NOT_FOUND,,,ISP Chile trouvé mais pour cosmétiques/pharma; DM spécifique non trouvé
+18,CO,Decreto 4725/2005 + Resolucion INVIMA 4002/2007,INVIMA — Registro Sanitario DM Clase IIb/III,FOUND,7670dcd5-60e7-4429-b28c-439fa09af6ac,Colombian INVIMA Pharmaceutical Advertising Rules,INVIMA found (advertising variant)
+18,MERCOSUR,GMC/RES No. 40/00 (Reglamento Tecnico MERCOSUR sobre Dispositivos Medicos),MERCOSUR GMC Res. 40/00 — Harmonised Medical Device Rules,FOUND,e9415468-7e52-47e8-873c-6901845e904f,Mercosur GMC Resolution 40/00,exact match
+18,CN,Medical Device Supervision and Administration Regulations (State Council Order No. 739 2021),NMPA — Class III Medical Device Registration (Implant Dentaire),FOUND,3ba47b76-54b6-441c-924b-2ad86902d4ca,China Medical Device Regulation,found
+18,CN,CMDE Technical Review Guidance for Dental Implant Systems (2022),CMDE — Technical Review for Dental Implant Systems (China),NOT_FOUND,,,Aucune correspondance CMDE dental implant guidance China trouvée
+18,CN,State Council Order No. 739 (2021) + NMPA Implementation Rules,Order 739 (2021) — China Medical Device Administration Reform,FOUND,3ba47b76-54b6-441c-924b-2ad86902d4ca,China Medical Device Regulation,same entry as MDR China
+18,JP,Pharmaceutical and Medical Devices Act (PMD Act) + Cabinet Order,PMDA — Class IV Highly Controlled Medical Device (Shonin),FOUND,a8815471-5334-41b3-b9eb-fd675e5cc05a,Japan Pharmaceutical and Medical Device Act (PMD Act),exact match
+18,JP,PMD Act Chapter IV + MHLW Ordinance No. 169/2004,PMD Act — Marketing Authorisation Holder (MAH) Requirement,FOUND,a8815471-5334-41b3-b9eb-fd675e5cc05a,Japan Pharmaceutical and Medical Device Act (PMD Act),same entry
+18,JP,MHLW Ministerial Ordinance No. 169/2004 (QMS Ordinance) + PMDA MDSAP Guidance,Japan QMS Ordinance + MDSAP Acceptance,NOT_FOUND,,,Aucune correspondance MHLW 169/2004 QMS Japan trouvée séparément
+18,KR,Medical Device Act (Act No. 18610/2021) + MFDS Notifications,MFDS — Class IV Medical Device Registration (Korea),FOUND,de3fc65a-bbea-4101-a2bb-b54bba0b91e9,K-MFDS Medical Device Act,exact match
+18,KR,Medical Device Act Art. 22 + MFDS KGMP Standards (ISO 13485 aligned),KGMP — Korean Good Manufacturing Practice,FOUND,95e8b960-f2e6-45b6-8878-3e7bcedef0c8,KGMP / Korean Medical Devices Act,exact match
+18,SG,Health Products Act (Cap. 122D) + Health Products (Medical Devices) Regulations 2010,HSA — Class D Medical Device Registration (Highest Risk),FOUND,923b9790-c35d-4834-8a83-88a723e63602,HSA Medical Device Regulation,found
+18,MY,Medical Device Act 2012 (Act 737) + Medical Device Regulations 2012,MDA Malaysia — Class D Medical Device (Act 737/2012),NOT_FOUND,,,Aucune correspondance Malaysia Medical Device Act 737 trouvée
+18,TH,Medical Device Act B.E. 2562 (2019) + Thai FDA Notifications,Thai FDA — Class IV Medical Device Registration,NOT_FOUND,,,Thai FDA trouvé mais pour ustensiles; Medical Device Act non trouvé
+18,VN,Decree No. 98/2021/ND-CP (Quy dinh ve quan ly trang thiet bi y te),DAV Vietnam — Class D Medical Device Registration,FOUND,8f36e143-1ce7-40e7-b927-76edfc638751,Lei 98/2021,found (98/2021)
+18,ID,Peraturan Pemerintah No. 5/2021 + Permenkes No. 14/2021,BPOM/Kemenkes Indonesia — Class D Medical Device,NOT_FOUND,,,Aucune correspondance BPOM Indonesia medical device trouvée
+18,PH,Republic Act 9711 (FDA Act 2009) + FDA AO 2020-0028,FDA Philippines — Class C Medical Device Certificate of Registration,NOT_FOUND,,,Aucune correspondance RA 9711 Philippines FDA medical device trouvée
+18,IN,Medical Device Rules 2017 (GSR 317(E)) as amended,CDSCO — Medical Device Rules 2017 Class D Registration,FOUND,38977c60-8aab-4acd-adff-d1aba648e3c6,India Medical Device Rules 2017,exact match
+18,IN,Medical Device Rules 2017 Rules 13 and 19 (MDR 2017),CDSCO Form MD-15 (Import Licence) + Form MD-9 (Manufacturing),FOUND,38977c60-8aab-4acd-adff-d1aba648e3c6,India Medical Device Rules 2017,same entry
+18,AU,Therapeutic Goods Act 1989 + Therapeutic Goods (Medical Devices) Regulations 2002,TGA — Class III ARTG Registration + Conformity Assessment,FOUND,8f9bfd51-fa6c-4589-a92a-44ca86c50420,Australian TGA Medical Devices,found
+18,NZ,Medicines Act 1981 + Medical Devices Safety Act 2023 (transitional),Medsafe — WAND + Class III Implantable Medical Device,NOT_FOUND,,,Aucune correspondance Medsafe NZ medical device Act 2023 trouvée
+18,ASEAN,ASEAN Medical Device Directive (AMDD) 2015 + AHWP Guidance,AMDD — ASEAN Medical Device Directive (Dental Implants),NOT_FOUND,,,Aucune correspondance ASEAN AMDD Medical Device Directive trouvée
+18,GCC,SFDA MDS-G005 (Saudi) + UAE Cabinet Decision No. 7/2017 + GCC Drug Regulatory Authority,SFDA Saudi + UAE MOH/DOH/DHA — Class C/D Implant Registration,FOUND,b445a47c-abc5-4221-aec9-4ffa17e776f1,SFDA Medical Device Regulation,found
+18,IL,Medical Device Act 5772-2012 + AMAR Guidelines for Medical Devices,AMAR (Israel MoH) — Class III/IV Medical Device Registration,FOUND,23bf5b33-3a51-4233-9acc-f409bba19704,Israel MOH Medical Device Regulation,found
+18,EG,Law 151/2019 (Pharmaceutical Affairs and Medical Devices) + EDA MD regulations,EDA Egypt — Class C/D Medical Device Registration,NOT_FOUND,,,EDA Egypt trouvé pour cosmétiques/pharma mais pas medical device spécifique
+18,MA,Loi 17-04 portant Code du Medicament et de la Pharmacie + Circulaires DMP,DMP Maroc — Homologation DM Classe III,NOT_FOUND,,,Aucune correspondance DMP Maroc medical device trouvée
+18,ZA,Medical Devices and IVD Act 2021 + SAHPRA Medical Device Registration Regulations,SAHPRA — Class C/D Medical Device Registration,FOUND,d6ee8118-a5f2-4255-a64e-4a669a651383,SAHPRA Medical Device Regulation,found
+18,NG,NAFDAC Medical Devices and Packaged Water Regulations 2018,NAFDAC — Medical Device Registration Class III (Nigeria),FOUND,95a2130a-3b7d-4e80-ad6b-e7c3055e432c,NAFDAC Medical Device Regulation,found
+18,KE,Pharmacy and Poisons Act Cap. 244 + PPB Medical Device Registration Guidelines 2019,PPB Kenya — Class C/D Medical Device Registration,FOUND,4dfae0d6-645f-4148-bd81-e1f9260cf0b2,Kenya PPB Medical Device Regulation,found
+18,HK,Medical Device Administrative Control System (MDACS) under Pharmacy and Poisons Ordinance Cap. 138,MDACS — Class III/IV Listing (Hong Kong),FOUND,1d61bffa-e71a-43d5-88d6-37874f0a6172,Hong Kong Medical Device Administrative Control System,exact match
+18,TW,Medical Devices Act 2020 (Act No. 11810) + TFDA Enforcement Rules,TFDA Taiwan — Class III Medical Device Registration (Highest Risk),FOUND,e04d2d17-1cbe-474f-b908-30f92f940eee,Taiwan Medical Devices Act,exact match
+18,ISO,ISO 13485:2016,ISO 13485:2016 — Medical Device Quality Management System,FOUND,9139c2c2-2e10-4d87-8d89-43298b8ece88,ISO 13485,exact match
+18,ISO,ISO 14971:2019 + ISO/TR 24971:2020,ISO 14971:2019 — Risk Management for Medical Devices,FOUND,e21f792c-e30a-4b06-af9b-b5e2923e515a,ISO 14971,found
+18,ISO,ISO 10993-1:2018 + 10993-3 -5 -6 -7 -12 -18 -23,ISO 10993 Series — Biocompatibility Testing (Implantable),FOUND,60466c14-0ac1-445d-af7a-8134930c4b45,ISO 10993 (series),exact match
+18,ISO,ISO 22794:2007+A1:2014 (dental implant systems) + ISO 14801:2016 (fatigue testing),ISO 22794 + ISO 14801 — Dental Implant System Standards,NOT_FOUND,,,Aucune correspondance ISO 22794 dental implant trouvée
+18,CODEX,Codex Alimentarius Commission General Standards,Codex Alimentarius — Non Applicable (Dispositif medical),NOT_FOUND,,,N/A — non applicable
+18,WADA,World Anti-Doping Code 2021 + WADA Prohibited List,WADA — Non Applicable (Dispositif medical implante),NOT_FOUND,,,N/A — non applicable
+18,UNECE,UNECE WP.29 Regulations (vehicle/automotive),UNECE WP.29 — Non Applicable (Dispositif medical),NOT_FOUND,,,N/A — non applicable
+18,OECD,OECD Guidelines and Principles,OECD — Non Applicable (Implant Dentaire),NOT_FOUND,,,N/A — non applicable
+19,EU,Directive 2004/42/EC,Directive on VOC in decorative paints and vehicle refinishing products,FOUND,ebcf26ac-f89d-4c73-b229-4f75ee4e6b57,EU Paints Directive (VOC in Paints),exact_ref match
+19,EU,Regulation (EC) No 1907/2006 + Annex XVII SVHC,REACH - Registration Evaluation Authorisation Restriction Chemicals,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref match
+19,EU,Regulation (EC) No 1272/2008,CLP - Classification Labelling Packaging,FOUND,8d52b0c3-a7c5-4fea-af2f-ace27090c8e6,EU CLP Regulation (EC) No 1272/2008,exact_ref match
+19,EU,Regulation (EC) No 66/2010 + Decision 2014/312/EU,EU Ecolabel for paints and varnishes,NOT_FOUND,,,Aucune correspondance EU Ecolabel peintures trouvée
+19,EU,Regulation (EU) No 528/2012,Biocidal Products Regulation,FOUND,08a6ee7e-3d25-4534-bcad-2c66b81b23f2,EU Biocidal Products Regulation,exact_ref match
+19,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR applicable aux peintures décoratives grand public (entrée en vigueur déc 2024)
+19,FR,Décret n° 2011-321 du 23 mars 2011 + Arrêté du 19 avril 2011,Décret relatif à l'étiquetage des produits de construction et de revêtement de sol sur les émissions de polluants volatils,NOT_FOUND,,,Aucune correspondance Décret 2011-321 France VOC trouvée
+19,FR,Code de la Construction et de l'Habitation + Loi Grenelle II,Règlement Général à la Construction (accessoires COV),NOT_FOUND,,,Aucune correspondance Grenelle II COV trouvée
+19,FR,Loi n° 2025-195 du 5 mars 2025 (Loi PFAS),Loi PFAS — interdiction substances per- et polyfluoroalkylées dans peintures déco,FOUND,40e09ec7-9719-41c0-bd5a-2369a6ec4e69,Loi PFAS France,re-audit 2026-05-27: nouvelle réglementation française PFAS applicable aux peintures contenant des PFAS
+19,DE,AgBB Bewertungsschema (2021),AgBB Scheme - Committee for Health-related Evaluation of Building Products,NOT_FOUND,,,Aucune correspondance AgBB trouvée
+19,DE,RAL-UZ 102,Blue Angel Ecolabel for paints,NOT_FOUND,,,Aucune correspondance RAL-UZ 102 Blue Angel paint trouvée
+19,IT,DPR 161/2013,Decreto Presidente della Repubblica - produits de construction émissions,NOT_FOUND,,,Aucune correspondance DPR 161/2013 Italy trouvée
+19,ES,RD 227/2006,Real Decreto limitación de COV en pinturas,NOT_FOUND,,,Aucune correspondance RD 227/2006 Spain VOC trouvée
+19,NL,Besluit organische oplosmiddelen verf voor professioneel gebruik (2000 & amdt),Besluit organische oplosmiddelen en verven,NOT_FOUND,,,Aucune correspondance Besluit organische oplosmiddelen trouvée
+19,GB,UK Paints Directive (retained) SI 2012/1715 as amended post-Brexit,UK Paints Directive (retained EU law),NOT_FOUND,,,Aucune correspondance UK Paints Directive SI 2012/1715 trouvée
+19,GB,UK REACH (Retained EU Law REACH SI 2019/758 as amended),UK REACH,FOUND,188c05ed-4548-4c50-aaf8-2f15a798202b,UK REACH,exact match
+19,GB,UK CLP (Retained EU Law CLP Regulation 2008/1272 as amended for GB),UK CLP,FOUND,035b405a-fdb7-467f-b509-414ff402f8d1,UK CLP Regulation (GB CLP),exact match
+19,CH,SR 813.11 + Annexe 1 (substances interdites/limitées),Ordonnance sur les produits chimiques (ChemO),FOUND,c9957c5e-32dc-4e90-b538-399d26caad7d,Switzerland Chemicals Ordinance (ChemO) – Textile provisions,found (ChemO trouvé mais pour textiles; chimiques généraux OK)
+19,CH,SR 814.318.142.1,Ordonnance sur la protection de l'air (OPair),NOT_FOUND,,,Aucune correspondance OPair Suisse trouvée
+19,NO,Produktforskriften Chapter 3 (transposing Directive 2004/42/EC),Norwegian VOC Regulation for paints,NOT_FOUND,,,Aucune correspondance Produktforskriften Norvège trouvée
+19,NO,EEA Agreement Annex II chapter 15,Norwegian REACH (EEA-REACH),NOT_FOUND,,,Aucune correspondance EEA-REACH Norvège peintures trouvée
+19,RU,TR TS 030/2012,Technical Regulation EAEU on safety of paints and coatings,NOT_FOUND,,,Aucune correspondance TR TS 030 peintures EAEU trouvée
+19,EAEU,TR TS 030/2012,Technical Regulation EAEU on safety of paints and coatings,NOT_FOUND,,,Aucune correspondance TR TS 030 EAEU trouvée
+19,TR,Çevre ve Şehircilik Bakanlığı Tebliği (transposing 2004/42/EC),Boya ve Cila Yönetmeliği (Paint and Varnish Regulation),NOT_FOUND,,,Aucune correspondance Boya Cila Yönetmeliği Turquie trouvée
+19,UA,DSanPiN 2.2.7.029-99 + DSTU 4219,State Sanitary Norms for paint and varnish materials,NOT_FOUND,,,Aucune correspondance DSanPiN Ukraine peinture trouvée
+19,US,40 CFR Part 59 Subpart D (National Volatile Organic Compound Emission Standards),EPA Architectural Coatings Rule - AIM Rule,NOT_FOUND,,,Aucune correspondance EPA AIM Rule 40 CFR 59 trouvée
+19,US,15 U.S.C. §2605 (TSCA Section 6),TSCA - Toxic Substances Control Act Section 6,FOUND,d069302b-59b0-4763-98ff-18797fd09420,US Lacey Act / TSCA (Toxic Substances Control Act),found
+19,US,16 CFR Part 1303,CPSC Lead Paint Ban,NOT_FOUND,,,Aucune correspondance 16 CFR 1303 Lead Paint CPSC trouvée
+19,US,15 U.S.C. §1261 et seq. - 16 CFR Part 1500,Federal Hazardous Substances Act - FHSA labeling,FOUND,ee27800a-28f4-4797-ab81-c6ff8c67e6a6,US Federal Hazardous Substances Act,found
+19,US-CA,17 CCR Section 94505 + SCAQMD Rule 1113,CARB Suggested Control Measure + SCAQMD Rule 1113,NOT_FOUND,,,Aucune correspondance CARB SCAQMD peintures trouvée
+19,US-CA,California Health and Safety Code Section 25249.5 et seq.,California Proposition 65,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),exact match
+19,US-NY,6 NYCRR Subpart 205-3,New York DEC Architectural Coatings VOC Rule,NOT_FOUND,,,Aucune correspondance 6 NYCRR 205 NY VOC trouvée
+19,CA,SOR/2009-264 + amdt SOR/2018-258,Volatile Organic Compound Concentration Limits for Architectural Coatings Regulations,FOUND,8afa025a-ef25-47fe-bf9c-61c3d8ced3ca,Surface Coating Materials Regulations (Canada),found (Canada surface coating)
+19,CA,SOR/2005-109,Surface Coating Materials Regulations (heavy metals),FOUND,8afa025a-ef25-47fe-bf9c-61c3d8ced3ca,Surface Coating Materials Regulations (Canada),exact match
+19,MX,NMX-U-115-NORMEX-2013,Norma Mexicana peintures et vernis,NOT_FOUND,,,Aucune correspondance NMX-U-115 Mexique peinture trouvée
+19,MX,LFPC + NOM-018-STPS-2015,Ley Federal de Protección al Consumidor + NOM étiquetage chimique,NOT_FOUND,,,Aucune correspondance NOM-018-STPS peintures Mexique trouvée
+19,BR,Portaria INMETRO 40/2018,INMETRO - Portaria sobre compostos orgânicos voláteis em tintas,NOT_FOUND,,,Aucune correspondance INMETRO 40/2018 peintures Brésil trouvée
+19,BR,ABNT NBR 15079:2012,ABNT NBR 15079 - Tintas para edificações,NOT_FOUND,,,Aucune correspondance ABNT NBR 15079 trouvée
+19,BR,Lei 6938/81 + Resolução CONAMA + Instrução Normativa IBAMA,IBAMA - controle de substâncias perigosas em tintas,NOT_FOUND,,,Aucune correspondance IBAMA peintures trouvée
+19,AR,Resolución SAyDS N° 224/2003 + IRAM normes,SAMA + Resolución SAyDS 224/2003 peintures,NOT_FOUND,,,Aucune correspondance SAyDS 224/2003 Argentine peintures trouvée
+19,CL,DS 47/92 + NCh 2004,DS 47/92 - Ordenanza General de Urbanismo y Construcciones + NCh,NOT_FOUND,,,Aucune correspondance DS 47/92 Chili peintures trouvée
+19,CO,Resolución MAVDT + NTC 1410/NTC 3736,MAVDT + Normas Técnicas Colombianas NTC peintures,NOT_FOUND,,,Aucune correspondance NTC 1410 peintures Colombie trouvée
+19,MERCOSUR,Resolución GMC n°56/92 + AME (Acuerdo Marco Ambiental Mercosur),Harmonisation peintures et vernis Mercosur,NOT_FOUND,,,Aucune correspondance MERCOSUR GMC 56/92 peintures trouvée
+19,CN,GB 18581-2020 (Harmful Substances Limits for Solvent-borne Coatings),Norme nationale peintures intérieures - substances nocives,NOT_FOUND,,,Aucune correspondance GB 18581 peintures Chine trouvée
+19,CN,GB 18582-2020 (Harmful Substances Limits for Architectural Coating),Norme nationale peintures murales intérieures à l'eau,NOT_FOUND,,,Aucune correspondance GB 18582 peintures Chine trouvée
+19,CN,GB/T 23984-2009 + GB 24410-2009,GB/T 23984 + GB 24410 - Peintures intérieures à faibles émissions,NOT_FOUND,,,Aucune correspondance GB/T 23984 / GB 24410 trouvée
+19,HK,Air Pollution Control (Volatile Organic Compounds) Regulation (Cap. 311L),Air Pollution Control Ordinance + VOC Regulation,NOT_FOUND,,,Aucune correspondance HK Cap 311L VOC trouvée
+19,TW,Air Pollution Control Act (APCA) + EPA notification rules,Air Pollution Control Act + EPA VOC regulations,FOUND,aefc3978-0a83-407e-b415-12002cb5e2cf,Taiwan Air Pollution Control Act,exact match
+19,JP,Building Standard Law (建築基準法) Article 28-2 + Notification 1113 + 1114,Building Standard Law - Indoor Air Quality,NOT_FOUND,,,Aucune correspondance Building Standard Law Japan Art 28 trouvée
+19,JP,JIS K 5663:2020,JIS K 5663 - Peintures émulsions pour construction,NOT_FOUND,,,Aucune correspondance JIS K 5663 peintures trouvée
+19,JP,Act on Confirmation of Release Amount of Specific Chemical Substances (Law No.86/1999 amdt 2022),PRTR Act - Chemical Release Inventory,NOT_FOUND,,,Aucune correspondance PRTR Japan trouvée
+19,KR,Act on Indoor Air Quality Control in Public Use Facilities + Enforcement Decree,Indoor Air Quality Control Act (다중이용시설 등의 실내공기질 관리법),FOUND,feb414cf-9ee5-4de4-b900-3f08d8783133,Korea Indoor Air Quality Act,exact match
+19,KR,Ecolabel Certification Criteria for Interior Paints (KE-102),Korea Eco-label for paints,NOT_FOUND,,,Aucune correspondance KE-102 peintures Corée trouvée
+19,SG,Green Label standard for paints - Singapore Environment Council (SEC),Singapore Green Label Scheme (SGLS) for paints,NOT_FOUND,,,Aucune correspondance Singapore Green Label peintures trouvée
+19,SG,Environmental Protection and Management Act (EPMA) + Regulations,Singapore NEA - Environmental Protection and Management Act chemicals,FOUND,f6449997-b0bc-4ef1-845c-e61c1340062b,Singapore EPMA,exact match
+19,MY,SIRIM Eco-label criteria for paints - MS 1550,SIRIM Eco-label for paints,NOT_FOUND,,,Aucune correspondance SIRIM eco-label peintures Malaysia trouvée
+19,MY,Environmental Quality Act 1974 + SW304 schedule,Environmental Quality Act - Schedule of Scheduled Wastes,NOT_FOUND,,,Aucune correspondance Malaysia Environmental Quality Act peintures trouvée
+19,TH,TIS 2737-2559,Thai Industrial Standards TIS 2737-2559 (2016) - peintures intérieures à l'eau,NOT_FOUND,,,Aucune correspondance TIS 2737 peintures Thaïlande trouvée
+19,TH,Notification PCD + Enhancement and Conservation of National Environmental Quality Act,Pollution Control Department - VOC regulations,NOT_FOUND,,,Aucune correspondance PCD VOC Thaïlande trouvée
+19,VN,QCVN 16:2019/BXD (National Technical Regulation on Construction Products),QCVN 16:2019/BXD - Produits de construction,NOT_FOUND,,,Aucune correspondance QCVN 16 Vietnam construction trouvée
+19,VN,Decree 113/2017/ND-CP (Chemical Law implementation),Décret sur substances chimiques dangereuses dans peintures,NOT_FOUND,,,Aucune correspondance Décret 113/2017 Vietnam chimiques trouvée
+19,ID,SNI 3564:2014 (Cat tembok emulsi),SNI 3564 - Peintures tembok (mur) en émulsion,NOT_FOUND,,,Aucune correspondance SNI 3564 Indonesia trouvée
+19,ID,PP 74/2001 + PermenLHK P.74/2019 B3,KLHK - Peraturan VOC et B3 substances dangereuses,NOT_FOUND,,,Aucune correspondance PP 74 PermenLHK Indonesia peintures trouvée
+19,PH,PNS 174/PNS ASTM D3912 + DTI Certification,Philippine National Standards for paints,NOT_FOUND,,,Aucune correspondance PNS 174 Philippines peintures trouvée
+19,PH,Republic Act 6969 + DENR Administrative Orders,Toxic Substances and Hazardous Waste Act,NOT_FOUND,,,Aucune correspondance RA 6969 Philippines peintures trouvée
+19,IN,IS 15489:2004 (reaffirmed 2019),BIS IS 15489 - Interior emulsion paints,NOT_FOUND,,,Aucune correspondance IS 15489 BIS peintures Inde trouvée
+19,IN,CPCB Guidelines + Environment (Protection) Act 1986,CPCB VOC guidelines for architectural coatings,NOT_FOUND,,,Aucune correspondance CPCB VOC guidelines India trouvée
+19,AU,APAS specifications (e.g. APAS 0190 interior paints),APAS (Australian Paint Approval Scheme),NOT_FOUND,,,Aucune correspondance APAS Australia peintures trouvée
+19,AU,Industrial Chemicals Act 2019 + AICIS categorisation,AICIS - Australian Industrial Chemicals Introduction Scheme,FOUND,781817cb-62b7-4c30-91aa-5ab5f93c0475,Australia Industrial Chemicals Act 2019 / AICIS,exact match
+19,AU,NEPM (Air Toxics) 2004 + state EPAs VOC provisions,National Environment Protection (Air Toxics) Measure + VOC,NOT_FOUND,,,Aucune correspondance NEPM Air Toxics Australia peintures trouvée
+19,NZ,Environmental Choice NZ standard EN14 (paints and coatings),Environmental Choice New Zealand - paints,NOT_FOUND,,,Aucune correspondance Environmental Choice NZ peintures trouvée
+19,NZ,HSNO Act 1996 + HSR002596 (paints approval),Hazardous Substances and New Organisms Act (HSNO),FOUND,62886d0b-6dc5-46e6-b067-eefe245b896d,New Zealand Hazardous Substances and New Organisms Act 1996 (HSNO),exact match
+19,ASEAN,ASEAN Chemical Industries Council (ACIC) MoU + ASEAN Chemicals Control System,ASEAN Cooperation on Chemicals,NOT_FOUND,,,Aucune correspondance ACIC ASEAN chemicals trouvée
+19,GCC,GSO 1485:2007 + SASO 2902/2929 + UAE ESMA regulations,GSO 1485 + SASO regulations for paints,NOT_FOUND,,,Aucune correspondance GSO 1485 peintures GCC trouvée
+19,GCC,UAE Federal Law + Emirates Authority for Standardization (ESMA) standards,UAE ESMA Green Building regulations for paints,NOT_FOUND,,,Aucune correspondance UAE ESMA peintures vertes trouvée
+19,IL,SI 1923:2015 (Paints — Water-based paints — VOC content),Israeli Standard SI 1923 - Water-based paints VOC,NOT_FOUND,,,Aucune correspondance SI 1923 peintures Israël trouvée
+19,EG,ES 4007 (Egyptian Standard for paints and varnishes),EOS Egyptian standard for paints,NOT_FOUND,,,Aucune correspondance ES 4007 peintures Egypte trouvée
+19,MA,NM 03.2.019 (peintures et vernis pour bâtiment),Norme Marocaine peintures - NM 03.2.019,NOT_FOUND,,,Aucune correspondance NM 03.2.019 Maroc peintures trouvée
+19,ZA,SANS 1881 (paint and coatings) + SABS method tests,SANS 1881 + SABS specifications for paints,NOT_FOUND,,,Aucune correspondance SANS 1881 peintures ZA trouvée
+19,ZA,National Environmental Management Act 1998 + Chemical Control under NEMA,South Africa Chemical Control + NEMA regulations,NOT_FOUND,,,Aucune correspondance NEMA peintures ZA trouvée
+19,NG,NIS 100:2004 (Specification for emulsion paint),SON NIS 100 - Nigerian standard for paints,NOT_FOUND,,,Aucune correspondance NIS 100 peintures Nigeria trouvée
+19,KE,KS 24:2019 (Kenya Standard for paints) + KEBS PVoC scheme,KEBS PVoC Programme + KS 24,NOT_FOUND,,,Aucune correspondance KS 24 peintures Kenya trouvée
+19,ISO,ISO 11890-1:2017 + ISO 11890-2:2020,ISO 11890 - Paints and varnishes - determination of VOC content,NOT_FOUND,,,Aucune correspondance ISO 11890 peintures VOC trouvée
+19,ISO,ISO 16000-6:2011 + ISO 16000-9:2006 + ISO 16000-11:2006,ISO 16000 - Indoor air quality - emissions from building products,NOT_FOUND,,,Aucune correspondance ISO 16000 air intérieur trouvée
+19,OECD,OECD TG 114 + OECD VOC definition and guidelines,OECD Test Guidelines for VOC - Chemical Testing,NOT_FOUND,,,Aucune correspondance OECD TG 114 VOC trouvée
+19,CODEX,N/A,Codex Alimentarius - non applicable peintures déco,NOT_FOUND,,,N/A — non applicable
+19,WADA,N/A,WADA - non applicable peintures déco,NOT_FOUND,,,N/A — non applicable
+19,UNECE,N/A,UNECE - non applicable peintures déco intérieure,NOT_FOUND,,,N/A — non applicable
+20,EU,Regulation (EC) 767/2009,Regulation on placing on market and use of feed,NOT_FOUND,,,Aucune correspondance 767/2009 alimentation animale EU trouvée
+20,EU,Regulation (EC) 1069/2009,Regulation on animal by-products,FOUND,b2956e81-637b-4fed-8049-1ce72941443a,EU Animal By-Products Regulation,exact_ref match
+20,EU,Regulation (EC) 1831/2003,Regulation on feed additives,NOT_FOUND,,,Aucune correspondance 1831/2003 additifs alimentaires EU trouvée
+20,EU,Regulation (EU) 2017/625,Regulation on official controls in feed and food,FOUND,10161d76-4999-4ebc-afef-c2cb1130def7,EU Official Controls Regulation (EU) 2017/625,exact_ref match
+20,EU,Regulation (EC) 183/2005,Regulation on feed hygiene,FOUND,6b80ab4b-4993-493f-9bfe-ad0aeedbc1d4,Règlement (CE) n° 183/2005,exact_ref match
+20,EU,Regulation (EU) 2019/1715,TRACES traceability platform for feed,FOUND,417f1192-6050-4423-beb3-9adf9eb8a459,EU Single Digital Gateway / TRACES,found
+20,EU,Regulation (EU) 68/2013,Catalogue of Feed Materials,NOT_FOUND,,,68/2013 non trouvé (168/2013 trouvé mais pour véhicules — différent)
+20,FR,Code rural L235 + DGAL,Code rural et de la pêche maritime — alimentation animale + contrôles DGAL,NOT_FOUND,,,Aucune correspondance Code rural alimentation animale France trouvée
+20,DE,Lebensmittel- und Futtermittelgesetzbuch (LFGB),Feed legislation — LFGB + Futtermittelgesetz,FOUND,c12c78d3-f409-44e0-9163-9f8add97bf5e,German Lebensmittel- und Futtermittelgesetzbuch (LFGB),exact match
+20,IT,DL 78/2010 + Ministerial Circulars,Decree implementing EU feed rules + Ministero Salute inspections,NOT_FOUND,,,Aucune correspondance DL 78/2010 alimentation animale Italie trouvée
+20,ES,Real Decreto 56/2002 + AESAN,Real Decreto on feed marketing + AESAN controls,NOT_FOUND,,,Aucune correspondance RD 56/2002 alimentation animale Espagne trouvée
+20,NL,Wet dieren + NVWA Inspectierichtlijnen,Wet dieren + NVWA pet food controls,NOT_FOUND,,,Aucune correspondance Wet dieren Pays-Bas trouvée
+20,GB,The Feed (Composition Marketing and Use) Regulations 2010 (as amended) / UK-retained 767/2009,UK retained feed marketing regulation (post-Brexit),NOT_FOUND,,,Aucune correspondance UK Feed Regulations 2010 trouvée
+20,GB,Animal Feed Law Code of Practice (England),APHA + FSA Animal Feed Law Code of Practice,NOT_FOUND,,,Aucune correspondance APHA FSA Animal Feed Law Code trouvée
+20,CH,OPaM (RS 916.307),Ordonnance sur les aliments pour animaux (OPaM),NOT_FOUND,,,Aucune correspondance OPaM Suisse aliments animaux trouvée
+20,NO,Matloven (LOV-2003-12-19-124) + Forskrift om fôrvarer,Matloven + Mattilsynet feed control,FOUND,59c40cc0-445b-4da8-8555-920e665c6f08,Matloven,exact match
+20,RU,Federal Law No. 4979-I + Decree 271,Federal Law on Veterinary Medicine + Rosselkhoznadzor,NOT_FOUND,,,Aucune correspondance Loi fédérale russe vétérinaire 4979 trouvée
+20,EAEU,TR TS 021/2011 + TR EAEU 040/2016,EAEU Technical Regulations on feed safety,FOUND,e381a509-657d-4eb0-82c9-fa8d7d02a864,Russian TR EAEU 021/2011,found
+20,TR,Yem Yönetmeliği (Published in Official Gazette),Yem Yönetmeliği (Feed Regulation),NOT_FOUND,,,Aucune correspondance Yem Yönetmeliği Turquie trouvée
+20,UA,Zakon Ukrainy pro kormy + SSFSCP,Law on Feed Safety + SSFSCP controls,NOT_FOUND,,,Aucune correspondance Zakon Ukrainy kormy trouvée
+20,US,21 CFR Part 507,FSMA — Preventive Controls for Animal Food,NOT_FOUND,,,21 CFR 507 non trouvé (880.5075 trouvé mais pour dispositifs médicaux — différent)
+20,US,21 CFR Part 501,Animal food labeling requirements,NOT_FOUND,,,Aucune correspondance 21 CFR 501 alimentation animale trouvée
+20,US,AAFCO Model Bill for Animal Feeds (state-enacted),AAFCO Model Bill + Official Publication,NOT_FOUND,,,Aucune correspondance AAFCO Model Bill trouvée
+20,US,21 CFR Part 507 Subpart B (cGMP),cGMP for animal food,NOT_FOUND,,,Aucune correspondance 21 CFR 507 cGMP animal food trouvée
+20,US,21 CFR Part 589,BSE Feed Rule — prohibited mammalian protein,NOT_FOUND,,,Aucune correspondance 21 CFR 589 BSE feed rule trouvée
+20,US-CA,California Food and Agricultural Code §§14901 et seq. + Health & Safety Code §25249.5 (Prop 65),CDFA Commercial Feed Program + Proposition 65,NOT_FOUND,,,Aucune correspondance CDFA California feed 14901 trouvée
+20,US-NY,NY Agri & Markets Law Article 6,NY Agriculture & Markets Law Article 6 — commercial feed,NOT_FOUND,,,Aucune correspondance NY Agriculture Markets Article 6 feed trouvée
+20,CA,RSC 1985 c F-9 + CRC c 665,Feeds Act + Feeds Regulations,NOT_FOUND,,,Aucune correspondance Feeds Act Canada RSC 1985 trouvée
+20,CA,Pet Food Association of Canada (PFAC) Guidelines,AAFCO references via Pet Food Association of Canada,NOT_FOUND,,,Aucune correspondance PFAC Pet Food Association Canada trouvée
+20,MX,NOM-061-ZOO-1999 + SENASICA technical specifications,SENASICA pet food controls + NOM-061-ZOO-1999,NOT_FOUND,,,Aucune correspondance NOM-061-ZOO SENASICA Mexique trouvée
+20,BR,IN 30/2009 + IN 9/2003 (pet food),MAPA — Normative Instructions for pet food,NOT_FOUND,,,Aucune correspondance IN 30/2009 MAPA pet food Brésil trouvée
+20,BR,RDC 4/2007,ANVISA RDC 4/2007 — pet food complementary regulation,NOT_FOUND,,,Aucune correspondance ANVISA RDC 4/2007 pet food trouvée
+20,AR,Resolución SENASA 156/2010,SENASA Resolución 156/2010 — alimentos para mascotas,NOT_FOUND,,,Aucune correspondance SENASA 156/2010 Argentine pet food trouvée
+20,CL,DS 1158/2005 + SAG Technical Resolutions,SAG — pet food import and domestic controls,NOT_FOUND,,,Aucune correspondance DS 1158 SAG Chile pet food trouvée
+20,CO,Decreto 1500/2007 + ICA Resolutions,ICA — alimentos para animales,NOT_FOUND,,,Aucune correspondance Decreto 1500 ICA Colombie animaux trouvée
+20,MERCOSUR,GMC Res. 24/93 + MERCOSUR Technical Regulations,GMC Resolution 24/93 — pet food harmonization,NOT_FOUND,,,Aucune correspondance MERCOSUR GMC 24/93 pet food trouvée
+20,CN,GB 13078-2017 + MARA Decree 26,MARA Feed Hygiene Standards + GB 13078 mycotoxin limits,NOT_FOUND,,,Aucune correspondance GB 13078 MARA feed China trouvée
+20,CN,GB/T 23185,Feed Industry Standard GB/T 23185 — pet food,NOT_FOUND,,,Aucune correspondance GB/T 23185 pet food China trouvée
+20,CN,GACC Decree 248 (2021),GACC import filing — Decree 248 (overseas manufacturers),NOT_FOUND,,,Aucune correspondance GACC Decree 248 pet food China trouvée
+20,HK,Cap. 169 PCAO + AFCD Guidelines,AFCD pet food controls under Prevention of Cruelty to Animals Ordinance (general framework),NOT_FOUND,,,Aucune correspondance Cap 169 PCAO HK pet food trouvée
+20,TW,Feed Control Act (飼料管理法) + COA Regulations,Feed Control Act + COA inspection,NOT_FOUND,,,Aucune correspondance Feed Control Act Taiwan trouvée
+20,JP,Law No. 83 of 2008 (Pet Food Safety Act),Pet Food Safety Act,NOT_FOUND,,,Aucune correspondance Japan Pet Food Safety Act Law 83 trouvée
+20,JP,MAFF Notification + JAS-aligned guidelines,MAFF Pet Food Standards + Labelling Guidelines,NOT_FOUND,,,Aucune correspondance MAFF Pet Food Standards Japan trouvée
+20,KR,Feed Control Act (사료관리법) + APQA Regulations,Feed Control Act + APQA controls,NOT_FOUND,,,Aucune correspondance Feed Control Act Korea APQA trouvée
+20,SG,Animals and Birds Act (Cap. 7) + AVS Guidelines,Animals and Birds Act + AVS pet food controls,NOT_FOUND,,,Aucune correspondance Animals and Birds Act Singapore trouvée
+20,MY,Feed Act 2009 + DVS Regulations,Feed Act 2009 + DVS controls + Halal (if claimed),NOT_FOUND,,,Aucune correspondance Feed Act 2009 Malaysia DVS trouvée
+20,TH,Animal Feed Quality Control Act B.E. 2525 (1982) + DLD Regulations,Animal Feed Quality Control Act + DLD controls,NOT_FOUND,,,Aucune correspondance Animal Feed Quality Control Act Thailand trouvée
+20,VN,Decree 39/2017/ND-CP,MARD Decree 39/2017 — animal feed management,NOT_FOUND,,,Aucune correspondance Decree 39/2017 Vietnam animal feed trouvée
+20,ID,Permentan 22/2017,Permentan 22/2017 — pet food regulations,NOT_FOUND,,,Aucune correspondance Permentan 22/2017 Indonesia pet food trouvée
+20,PH,Republic Act 10068 + BAI Administrative Orders,BAI — Bureau of Animal Industry feed controls,NOT_FOUND,,,Aucune correspondance RA 10068 BAI Philippines trouvée
+20,IN,BIS IS 1374 + DAHD Guidelines,DAHD + BIS standards for pet/animal food,NOT_FOUND,,,Aucune correspondance BIS IS 1374 DAHD India trouvée
+20,AU,Australian Standard AS 5812:2017,AS 5812 — Manufacturing and Marketing of Pet Food,NOT_FOUND,,,Aucune correspondance AS 5812 Australia pet food trouvée
+20,AU,AAFCO + PFIAA Code + Biosecurity Act 2015,AAFCO + PFIAA self-regulation + import biosecurity,NOT_FOUND,,,Aucune correspondance PFIAA Australia pet food trouvée
+20,NZ,Animal Products Act 1999 + Biosecurity Act 1993,MPI Animal Products Act + Biosecurity Act,NOT_FOUND,,,Aucune correspondance Animal Products Act NZ 1999 trouvée
+20,ASEAN,ASEAN Feed Safety Network (AFSN) + ASEAN SPS Committee,ASEAN Feed Safety Cooperation framework,NOT_FOUND,,,Aucune correspondance ASEAN AFSN Feed Safety trouvée
+20,GCC,GSO 1933:2009 + GSO 2172,GSO 1933 — Pet food specifications for GCC,NOT_FOUND,,,Aucune correspondance GSO 1933 pet food GCC trouvée
+20,GCC,SFDA Guidelines for Animal Feed and Pet Food,SFDA Pet Food Registration (Saudi Arabia),NOT_FOUND,,,Aucune correspondance SFDA pet food Saudi trouvée
+20,IL,Imports of Foodstuffs Control Law (Israel) + MoA Regulations,MoH + Ministry of Agriculture pet food law,NOT_FOUND,,,Aucune correspondance Israel pet food animal food law trouvée
+20,EG,Law 53/1966 (Animal Health) + MoA Decisions,MoA + Animal Health Authority controls,NOT_FOUND,,,Aucune correspondance Law 53/1966 Egypt animal health trouvée
+20,MA,Décret 2-10-473 + ONSSA Arrêtés,ONSSA + Décret 2-10-473 — alimentation animale,FOUND,bc5c8400-de39-40d1-a1e7-1ac1e9b229bf,Morocco ONSSA Food Safety,ONSSA found
+20,ZA,Fertilizers Farm Feeds Agricultural Remedies and Stock Remedies Act 36/1947,Act 36/1947 — Fertilizers Farm Feeds Agricultural Remedies,NOT_FOUND,,,Aucune correspondance Fertilizers Farm Feeds Act 36/1947 ZA trouvée
+20,NG,NAFDAC Act Cap N1 + Veterinary Council of Nigeria,NAFDAC + Veterinary Council — pet food controls,NOT_FOUND,,,Aucune correspondance NAFDAC veterinary Nigeria pet food trouvée
+20,KE,KEBS KS 1758 + DVS Animal Feeds Regulations,KEBS + DVS pet food standards,NOT_FOUND,,,Aucune correspondance KEBS KS 1758 DVS Kenya trouvée
+20,CODEX,CAC/RCP 54-2004,CAC/RCP 54-2004 — Code of Practice on Good Animal Feeding,NOT_FOUND,,,Aucune correspondance CAC/RCP 54 animal feeding Codex trouvée
+20,ISO,ISO 22000:2018,ISO 22000 — Food safety management systems,FOUND,edff7130-9e15-470a-bae9-0c65b2ca5936,ISO 22000 — Food Safety Management Systems,exact match
+20,UNECE,N/A,Not applicable — UNECE WP.29 covers vehicle regulations only,NOT_FOUND,,,N/A — non applicable
+20,WADA,N/A,Not applicable — WADA covers human athlete doping only,NOT_FOUND,,,N/A — non applicable
+20,OECD,N/A,Not applicable — OECD frameworks cover economic/financial policy not pet food,NOT_FOUND,,,N/A — non applicable
