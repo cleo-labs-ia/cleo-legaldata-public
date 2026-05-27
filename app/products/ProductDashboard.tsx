@@ -17,7 +17,7 @@ const ProductMapView = dynamic(() => import("./ProductMapView"), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center rounded-2xl border border-c-border bg-c-surface-2 text-sm text-c-text-subtle">
-      Loading map…
+      Loading map...
     </div>
   ),
 });
@@ -25,26 +25,26 @@ const ProductMapView = dynamic(() => import("./ProductMapView"), {
 /* ── i18n product strings ── */
 const PS = {
   eyebrow: {
-    fr: "Atlas conformité produit · Cleo Comply",
+    fr: "Atlas conformite produit · Cleo Comply",
     en: "Product Compliance Atlas · Cleo Comply",
   },
   badge: {
     fr: "Product Compliance Atlas",
     en: "Product Compliance Atlas",
   },
-  titleA: { fr: "La conformité produit,", en: "Product compliance data," },
-  titleB: { fr: "à l'échelle mondiale.", en: "worldwide." },
+  titleA: { fr: "La conformite produit,", en: "Product compliance data," },
+  titleB: { fr: "a l'echelle mondiale.", en: "worldwide." },
   subtitle: {
-    fr: "De la cosmétique européenne aux normes alimentaires japonaises — un inventaire public de chaque réglementation produit dans 50 juridictions.",
+    fr: "De la cosmetique europeenne aux normes alimentaires japonaises — un inventaire public de chaque reglementation produit dans 50 juridictions.",
     en: "From EU cosmetics to Japanese food standards — a public inventory of every product regulation across 50 jurisdictions.",
   },
-  kpiRegs: { fr: "réglementations", en: "regulations" },
-  kpiAuthorities: { fr: "autorités", en: "authorities" },
+  kpiRegs: { fr: "reglementations", en: "regulations" },
+  kpiAuthorities: { fr: "autorites", en: "authorities" },
   kpiCountries: { fr: "pays", en: "countries" },
-  kpiProducts: { fr: "produits trackés", en: "products tracked" },
+  kpiProducts: { fr: "produits trackes", en: "products tracked" },
   kpiDocs: { fr: "documents juridiques", en: "legal documents" },
   coverageLabel: { fr: "Couverture", en: "Coverage" },
-  ctaApi: { fr: "Demander un accès API", en: "Get API access" },
+  ctaApi: { fr: "Demander un acces API", en: "Get API access" },
   ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
   allCategories: { fr: "Toutes", en: "All" },
   jurisdictionsHeader: {
@@ -55,30 +55,30 @@ const PS = {
     fr: "Couverture par industrie",
     en: "Coverage by industry",
   },
-  regsLabel: { fr: "réglementations", en: "regulations" },
+  regsLabel: { fr: "reglementations", en: "regulations" },
   inApi: { fr: "Dans l'API", en: "In API" },
   comingSoon: { fr: "Q3 2026", en: "Q3 2026" },
   officialText: { fr: "Texte officiel", en: "Official text" },
   categoriesInDrawer: {
-    fr: "Réglementations par catégorie",
+    fr: "Reglementations par categorie",
     en: "Regulations by category",
   },
   closeDrawer: { fr: "Fermer", en: "Close" },
   searchPlaceholder: {
-    fr: "Rechercher une juridiction…",
-    en: "Search a jurisdiction…",
+    fr: "Rechercher une juridiction...",
+    en: "Search a jurisdiction...",
   },
   searchCatPlaceholder: {
-    fr: "Rechercher une catégorie…",
-    en: "Search a category…",
+    fr: "Rechercher une categorie...",
+    en: "Search a category...",
   },
   backToSources: { fr: "Atlas des sources", en: "Sources Atlas" },
   navProducts: { fr: "Produits", en: "Products" },
   scrollHint: { fr: "Explorer", en: "Explore" },
-  statsCategories: { fr: "Catégories produit", en: "Product categories" },
+  statsCategories: { fr: "Categories produit", en: "Product categories" },
   statsCoverage: { fr: "Couverture moyenne", en: "Average coverage" },
   statsRegsIdentified: {
-    fr: "Réglementations identifiées",
+    fr: "Reglementations identifiees",
     en: "Regulations identified",
   },
   statsJurisdictions: { fr: "Juridictions", en: "Jurisdictions" },
@@ -109,16 +109,17 @@ function formatCompact(n: number, lang: Lang): string {
   return n.toString();
 }
 
-function coverageColor(pct: number): string {
-  if (pct >= 80) return "bg-c-success";
-  if (pct >= 50) return "bg-c-warn";
-  return "bg-c-danger";
+/* V4 monochrome coverage — no green/red */
+function coverageBg(pct: number): string {
+  if (pct >= 80) return "bg-[rgba(0,0,0,0.87)]";
+  if (pct >= 50) return "bg-[#946B2D]";
+  return "bg-[rgba(0,0,0,0.25)]";
 }
 
 function coverageTextColor(pct: number): string {
-  if (pct >= 80) return "text-c-success";
-  if (pct >= 50) return "text-c-warn";
-  return "text-c-danger";
+  if (pct >= 80) return "text-[rgba(0,0,0,0.87)]";
+  if (pct >= 50) return "text-[#946B2D]";
+  return "text-[rgba(0,0,0,0.45)]";
 }
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
@@ -204,310 +205,240 @@ export default function ProductDashboard({
   );
 
   return (
-    <div className="min-h-screen pb-16">
-      {/* ── Hero (identical style to main Hero.tsx) ── */}
-      <section
-        className="hero-bg relative isolate overflow-hidden text-white"
-        style={{ minHeight: "min(100svh, 920px)" }}
+    <div className="min-h-screen bg-[#F9F8F6]">
+      {/* ── 1. Sticky Nav — light, glass blur ── */}
+      <header
+        className={`sticky top-0 z-50 transition-shadow duration-200 ${
+          scrolled ? "shadow-[0_2px_8px_rgba(0,0,0,0.04)]" : ""
+        }`}
+        style={{
+          background: "rgba(255,255,255,0.82)",
+          backdropFilter: "saturate(180%) blur(28px)",
+          WebkitBackdropFilter: "saturate(180%) blur(28px)",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+        }}
       >
-        <div aria-hidden className="absolute inset-0 hero-grid" />
-        <div
-          aria-hidden
-          className="absolute -left-[20%] top-[-10%] h-[60vh] w-[60vh] rounded-full blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(107,116,255,0.45), transparent 70%)",
-            animation: "hero-pulse 8s ease-in-out infinite",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute right-[-15%] bottom-[-15%] h-[55vh] w-[55vh] rounded-full blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,8,207,0.65), transparent 70%)",
-            animation: "hero-pulse 11s ease-in-out infinite reverse",
-          }}
-        />
-
-        {/* Hero header (dark variant, matching Hero.tsx) */}
-        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 pt-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-sm font-bold text-c-brand">
-              c
-            </div>
-            <div className="leading-tight">
-              <div className="text-sm font-medium">Cleo Comply</div>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-white/60">
-                {pt(lang, "eyebrow")}
-              </div>
-            </div>
+            <span className="text-xl font-bold tracking-tight" style={{ color: "#1A1A1A" }}>
+              cleo
+            </span>
           </div>
-          <div className="flex items-center gap-2">
+          <nav className="hidden items-center gap-1 md:flex">
             <Link
               href="/"
-              className="rounded-md border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur transition-colors hover:border-white/40 hover:text-white"
+              className="rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors"
+              style={{ color: "rgba(0,0,0,0.55)" }}
             >
-              {pt(lang, "backToSources")} ↗
+              {pt(lang, "backToSources")}
             </Link>
-            <div className="flex rounded-md border border-white/20 bg-white/5 p-0.5 text-[11px] font-medium backdrop-blur">
+            <Link
+              href="/products"
+              className="rounded-full px-3 py-1.5 text-[13px] font-semibold"
+              style={{
+                color: "#0008CF",
+                background: "rgba(0,8,207,0.06)",
+              }}
+            >
+              {STRINGS.navProducts[lang]}
+            </Link>
+            <Link
+              href="/api"
+              className="rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors"
+              style={{ color: "rgba(0,0,0,0.55)" }}
+            >
+              {STRINGS.navApi[lang]}
+            </Link>
+          </nav>
+          <div className="flex items-center gap-2">
+            {/* Lang switcher */}
+            <div
+              className="flex rounded-full p-0.5 text-[11px] font-medium"
+              style={{ border: "1px solid rgba(0,0,0,0.08)" }}
+            >
               {(["fr", "en"] as Lang[]).map((l) => (
                 <button
                   key={l}
                   type="button"
                   onClick={() => setLang(l)}
-                  className={`rounded px-2 py-1 transition-colors ${
+                  className={`rounded-full px-2.5 py-1 transition-colors ${
                     lang === l
-                      ? "bg-white text-c-brand-ink"
-                      : "text-white/70 hover:text-white"
+                      ? "bg-[#1A1A1A] text-white"
+                      : "text-[rgba(0,0,0,0.45)] hover:text-[rgba(0,0,0,0.87)]"
                   }`}
                 >
                   {l.toUpperCase()}
                 </button>
               ))}
             </div>
+            {/* CTA pill button */}
+            <a
+              href={MEET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#333] sm:inline-flex"
+              style={{ background: "#1A1A1A" }}
+            >
+              Get API key
+            </a>
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Hero content */}
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 pt-16 pb-24 lg:pt-24 lg:pb-32">
-          <div className="hero-fade hero-fade-1 mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.6)]" />
+      {/* ── 2. Hero Section — light background ── */}
+      <section className="px-6 pb-16 pt-16 md:pt-24" style={{ background: "#F9F8F6" }}>
+        <div className="mx-auto max-w-7xl">
+          {/* Badge pill */}
+          <div
+            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-semibold tracking-wide"
+            style={{
+              background: "rgba(0,8,207,0.06)",
+              color: "#0008CF",
+            }}
+          >
             {pt(lang, "badge")}
           </div>
 
-          <h1 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-7xl lg:text-[88px]">
-            <span className="block hero-fade hero-fade-2">
-              {pt(lang, "titleA")}
-            </span>
-            <span className="block hero-fade hero-fade-3 italic text-white/85">
+          {/* Title — Satoshi 700, not Fraunces */}
+          <h1
+            className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-[72px]"
+            style={{ color: "#1A1A1A", fontFamily: "'Satoshi', sans-serif" }}
+          >
+            {pt(lang, "titleA")}
+            <br />
+            <span style={{ color: "#1A1A1A" }}>
               {pt(lang, "titleB")}
             </span>
           </h1>
 
-          <p className="hero-fade hero-fade-4 mt-8 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+          {/* Subtitle */}
+          <p
+            className="mt-6 max-w-2xl text-base leading-relaxed md:text-lg"
+            style={{ color: "rgba(0,0,0,0.55)" }}
+          >
             {pt(lang, "subtitle")}
           </p>
 
-          {/* 5 KPIs with growth (matching Hero.tsx glass card grid) */}
-          <div className="hero-fade hero-fade-5 mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur sm:grid-cols-5">
-            <GrowthKpi
+          {/* 5 KPIs — white cards, "before -> after" format */}
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            <KpiCard
               before="25,000"
               afterValue={209468}
               multiplier="x8"
               label={pt(lang, "kpiRegs")}
               lang={lang}
-              featured
             />
-            <GrowthKpi
+            <KpiCard
               before="19,000"
               afterValue={27518}
               label={pt(lang, "kpiAuthorities")}
               lang={lang}
             />
-            <GrowthKpi
+            <KpiCard
               before="152"
               afterValue={163}
               label={pt(lang, "kpiCountries")}
               lang={lang}
             />
-            <GrowthKpi
+            <KpiCard
               before="2,697"
               afterValue={2839}
               multiplier="+5%"
               label={pt(lang, "kpiProducts")}
               lang={lang}
             />
-            <div className="relative px-6 py-7 sm:px-8 sm:py-8">
-              <div className="tabular-display text-4xl font-light leading-none text-white sm:text-5xl">
+            <div
+              className="flex flex-col justify-between rounded-2xl p-5"
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <div
+                className="text-3xl font-bold tabular-nums leading-none md:text-4xl"
+                style={{ color: "#1A1A1A" }}
+              >
                 <AnimatedNumber
                   value={1700000}
                   format={(n) => formatCompact(n, lang)}
                 />
-                <span className="text-c-glow">+</span>
+                <span style={{ color: "#0008CF" }}>+</span>
               </div>
-              <div className="mt-3 text-sm font-medium uppercase tracking-[0.14em] text-white/65">
+              <div
+                className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em]"
+                style={{ color: "rgba(0,0,0,0.45)" }}
+              >
                 {pt(lang, "kpiDocs")}
               </div>
             </div>
           </div>
 
           {/* CTAs */}
-          <div className="hero-fade hero-fade-5 mt-8 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <a
               href={MEET_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#333]"
+              style={{ background: "#1A1A1A" }}
             >
-              {pt(lang, "ctaApi")} →
+              {pt(lang, "ctaApi")} &rarr;
             </a>
             <a
               href="#coverage"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:border-white/40 hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-colors"
+              style={{
+                border: "1px solid rgba(0,0,0,0.15)",
+                color: "rgba(0,0,0,0.62)",
+              }}
             >
               {pt(lang, "ctaCoverage")}
             </a>
           </div>
-
-          <div
-            className={`hero-fade hero-fade-6 mt-14 flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/50 transition-opacity duration-500 ${
-              scrolled ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            <span className="h-px w-8 bg-white/30" />
-            <span>{pt(lang, "scrollHint")}</span>
-          </div>
         </div>
       </section>
 
-      {/* ── Dashboard nav (matching Dashboard.tsx light header) ── */}
-      <header className="sticky top-0 z-50 border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-          <div className="flex items-center gap-3">
-            <img
-              src="/cleo-icon.svg"
-              alt="Cleo"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-md"
-            />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">
-                {STRINGS.brand[lang]}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
-                {pt(lang, "eyebrow")}
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {pt(lang, "backToSources")} →
-            </Link>
-            <Link
-              href="/products"
-              className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-medium text-c-brand-ink"
-            >
-              {STRINGS.navProducts[lang]}
-            </Link>
-            <Link
-              href="/api"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navApi[lang]} →
-            </Link>
-            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l
-                      ? "bg-c-brand text-white"
-                      : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* ── Body ── */}
-      <main className="mx-auto max-w-7xl px-6 pt-6">
-        {/* Compact title + animated KPIs inline (matching Dashboard.tsx) */}
-        <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
-              {pt(lang, "titleA")}{" "}
-              <span className="italic text-c-brand">{pt(lang, "titleB")}</span>
-            </h1>
-            <p className="mt-2 text-sm text-c-text-muted md:text-[15px]">
-              {pt(lang, "subtitle")}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-end gap-x-8 gap-y-2">
-            <InlineKpi
-              value={data.totals.regulations}
-              label={pt(lang, "kpiRegs")}
-              format={(n) => formatNumber(n, lang)}
-              accent
-            />
-            <InlineKpi
-              value={data.jurisdictions.length}
-              label={pt(lang, "kpiCountries")}
-              format={(n) => formatNumber(n, lang)}
-            />
-            <InlineKpi
-              value={data.categories.length}
-              label={pt(lang, "statsCategories")}
-              format={(n) => formatNumber(n, lang)}
-            />
-          </div>
-        </section>
-
-        {/* Stats header (matching StatsHeader.tsx) */}
-        <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <StatsBig
-            label={pt(lang, "statsRegsIdentified")}
-            value={formatNumber(data.totals.regulations, lang)}
-          />
-          <StatsBig
-            label={pt(lang, "statsJurisdictions")}
-            value={formatNumber(data.jurisdictions.length, lang)}
-          />
-          <StatsBig
-            label={pt(lang, "statsCoverage")}
-            value={`${avgCoverage}%`}
-            accent={
-              avgCoverage >= 50
-                ? `${avgCoverage >= 80 ? "+" : ""}${avgCoverage}% ${pt(lang, "coverageLabel").toLowerCase()}`
-                : undefined
-            }
-          />
-          <div className="rounded-xl border border-c-border bg-c-surface p-4">
-            <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">
-              {pt(lang, "statsCategories")}
-            </div>
-            <ul className="mt-2 space-y-1.5 text-sm">
-              {data.categories.slice(0, 5).map((cat) => (
-                <li
-                  key={cat.name}
-                  className="flex items-center justify-between gap-3"
-                >
-                  <span className="flex items-center gap-2">
-                    <span
-                      className={`h-2 w-2 rounded-full ${coverageColor(cat.pct)}`}
-                    />
-                    <span className="truncate text-c-text-muted">
-                      {cat.name}
-                    </span>
-                  </span>
-                  <span className="font-medium tabular-nums">{cat.pct}%</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* ── 3. Map Section ── */}
+      <main className="mx-auto max-w-7xl px-6">
+        {/* Section header */}
+        <section className="mb-6 pt-8">
+          <h2
+            className="text-2xl font-bold tracking-tight md:text-3xl"
+            style={{ color: "#1A1A1A" }}
+          >
+            {pt(lang, "jurisdictionsHeader")}
+          </h2>
+          <p
+            className="mt-1 text-sm"
+            style={{ color: "rgba(0,0,0,0.55)" }}
+          >
+            {formatNumber(data.jurisdictions.length, lang)}{" "}
+            {pt(lang, "kpiCountries")} &middot;{" "}
+            {formatNumber(data.totals.regulations, lang)}{" "}
+            {pt(lang, "regsLabel")}
+          </p>
         </section>
 
         {/* Category pills */}
-        <section className="mt-8 mb-4">
+        <section className="mb-4">
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => setSelectedCategory(null)}
-              className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+              className="rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+              style={
                 selectedCategory === null
-                  ? "border-c-brand bg-c-brand-soft text-c-brand-ink"
-                  : "border-c-border bg-c-surface text-c-text-muted hover:border-c-brand hover:text-c-brand"
-              }`}
+                  ? {
+                      background: "rgba(0,8,207,0.06)",
+                      color: "#0008CF",
+                      borderColor: "rgba(0,8,207,0.15)",
+                    }
+                  : {
+                      background: "#FFFFFF",
+                      color: "rgba(0,0,0,0.62)",
+                      borderColor: "rgba(0,0,0,0.08)",
+                    }
+              }
             >
               {pt(lang, "allCategories")}
             </button>
@@ -520,14 +451,23 @@ export default function ProductDashboard({
                     selectedCategory === cat.name ? null : cat.name
                   )
                 }
-                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                className="rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+                style={
                   selectedCategory === cat.name
-                    ? "border-c-brand bg-c-brand-soft text-c-brand-ink"
-                    : "border-c-border bg-c-surface text-c-text-muted hover:border-c-brand hover:text-c-brand"
-                }`}
+                    ? {
+                        background: "rgba(0,8,207,0.06)",
+                        color: "#0008CF",
+                        borderColor: "rgba(0,8,207,0.15)",
+                      }
+                    : {
+                        background: "#FFFFFF",
+                        color: "rgba(0,0,0,0.62)",
+                        borderColor: "rgba(0,0,0,0.08)",
+                      }
+                }
               >
                 {cat.name}
-                <span className="ml-1.5 text-[10px] tabular-nums opacity-70">
+                <span className="ml-1.5 text-[10px] tabular-nums opacity-60">
                   {cat.found}/{cat.total_regs}
                 </span>
               </button>
@@ -535,7 +475,7 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* Map + sidebar (matching Dashboard.tsx layout) */}
+        {/* Map + sidebar */}
         <section id="coverage" className="grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
@@ -545,13 +485,25 @@ export default function ProductDashboard({
               lang={lang}
             />
           </div>
-          <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+          <aside
+            className="rounded-2xl p-4"
+            style={{
+              background: "#FFFFFF",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            <h3
+              className="text-[11px] font-semibold uppercase tracking-[0.14em]"
+              style={{ color: "rgba(0,0,0,0.45)" }}
+            >
               {pt(lang, "statsJurisdictions")}
             </h3>
-            <p className="mt-0.5 text-xs text-c-text-muted">
+            <p
+              className="mt-0.5 text-xs"
+              style={{ color: "rgba(0,0,0,0.55)" }}
+            >
               {lang === "fr"
-                ? "Couverture réglementaire par pays"
+                ? "Couverture reglementaire par pays"
                 : "Regulatory coverage by country"}
             </p>
             <div className="mt-2 mb-3">
@@ -560,7 +512,11 @@ export default function ProductDashboard({
                 value={jurQuery}
                 onChange={(e) => setJurQuery(e.target.value)}
                 placeholder={pt(lang, "searchPlaceholder")}
-                className="w-full rounded-lg border border-c-border bg-c-surface-2 px-3 py-1.5 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft"
+                className="w-full rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2"
+                style={{
+                  background: "#F9F8F6",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                }}
               />
             </div>
             <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
@@ -569,13 +525,20 @@ export default function ProductDashboard({
                   <button
                     type="button"
                     onClick={() => setDrawerJur(j.code)}
-                    className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
-                      drawerJur === j.code ? "bg-c-brand-soft" : ""
-                    }`}
+                    className="flex w-full items-center justify-between gap-3 rounded-xl px-2 py-1.5 text-left transition-colors"
+                    style={{
+                      background:
+                        drawerJur === j.code
+                          ? "rgba(0,8,207,0.06)"
+                          : "transparent",
+                    }}
                   >
                     <span className="flex min-w-0 items-center gap-2">
                       <span className="text-base leading-none">{j.flag}</span>
-                      <span className="truncate text-sm font-medium">
+                      <span
+                        className="truncate text-sm font-medium"
+                        style={{ color: "rgba(0,0,0,0.87)" }}
+                      >
                         {j.name}
                       </span>
                     </span>
@@ -585,7 +548,13 @@ export default function ProductDashboard({
                       >
                         {j.pct}%
                       </span>
-                      <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
+                      <span
+                        className="rounded-lg px-1.5 py-0.5 text-xs font-semibold tabular-nums"
+                        style={{
+                          background: "#F0EFEC",
+                          color: "rgba(0,0,0,0.62)",
+                        }}
+                      >
                         {j.total}
                       </span>
                     </span>
@@ -596,14 +565,20 @@ export default function ProductDashboard({
           </aside>
         </section>
 
-        {/* Category coverage cards (matching CountriesGrid.tsx style) */}
-        <section className="mt-12">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+        {/* ── 4. Category Coverage Cards ── */}
+        <section className="mt-16">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight">
+              <h2
+                className="text-2xl font-bold tracking-tight md:text-3xl"
+                style={{ color: "#1A1A1A" }}
+              >
                 {pt(lang, "categoriesHeader")}
               </h2>
-              <p className="text-sm text-c-text-muted">
+              <p
+                className="mt-1 text-sm"
+                style={{ color: "rgba(0,0,0,0.55)" }}
+              >
                 {filteredCategories.length} / {data.categories.length}
                 {" · "}
                 {formatNumber(data.regulations.length, lang)}{" "}
@@ -616,12 +591,16 @@ export default function ProductDashboard({
                 value={catQuery}
                 onChange={(e) => setCatQuery(e.target.value)}
                 placeholder={pt(lang, "searchCatPlaceholder")}
-                className="rounded-lg border border-c-border bg-c-surface px-3 py-1.5 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft"
+                className="rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                }}
               />
             </div>
           </div>
 
-          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredCategories.map((cat) => (
               <li key={cat.name}>
                 <button
@@ -631,32 +610,51 @@ export default function ProductDashboard({
                       selectedCategory === cat.name ? null : cat.name
                     )
                   }
-                  className={`group flex w-full flex-col rounded-xl border p-4 text-left transition-all hover:shadow-sm ${
-                    selectedCategory === cat.name
-                      ? "border-c-brand bg-c-brand-soft/30"
-                      : "border-c-border bg-c-surface hover:border-c-brand"
-                  }`}
+                  className="group flex w-full flex-col rounded-2xl p-5 text-left transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+                  style={{
+                    background:
+                      selectedCategory === cat.name
+                        ? "rgba(0,8,207,0.04)"
+                        : "#FFFFFF",
+                    border:
+                      selectedCategory === cat.name
+                        ? "1px solid rgba(0,8,207,0.15)"
+                        : "1px solid rgba(0,0,0,0.08)",
+                  }}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-sm font-semibold leading-tight">
+                    <h3
+                      className="text-sm font-semibold leading-tight"
+                      style={{ color: "rgba(0,0,0,0.87)" }}
+                    >
                       {cat.name}
                     </h3>
                     <span
-                      className={`shrink-0 text-lg font-semibold tabular-nums ${coverageTextColor(cat.pct)}`}
+                      className={`shrink-0 text-lg font-bold tabular-nums ${coverageTextColor(cat.pct)}`}
                     >
                       {cat.pct}%
                     </span>
                   </div>
-                  <p className="mt-1 text-xs text-c-text-muted line-clamp-2">
+                  <p
+                    className="mt-1.5 text-xs leading-relaxed line-clamp-2"
+                    style={{ color: "rgba(0,0,0,0.55)" }}
+                  >
                     {cat.description}
                   </p>
-                  <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-c-border">
+                  {/* V4 progress bar: 5px height, monochrome */}
+                  <div
+                    className="mt-4 h-[5px] w-full overflow-hidden rounded-full"
+                    style={{ background: "rgba(0,0,0,0.06)" }}
+                  >
                     <div
-                      className={`h-full rounded-full transition-all ${coverageColor(cat.pct)}`}
+                      className={`h-full rounded-full transition-all ${coverageBg(cat.pct)}`}
                       style={{ width: `${cat.pct}%` }}
                     />
                   </div>
-                  <div className="mt-2 flex items-center justify-between text-[10px] text-c-text-subtle">
+                  <div
+                    className="mt-2.5 flex items-center justify-between text-[10px] font-medium"
+                    style={{ color: "rgba(0,0,0,0.45)" }}
+                  >
                     <span>
                       {cat.found}/{cat.total_regs} {pt(lang, "regsLabel")}
                     </span>
@@ -670,11 +668,17 @@ export default function ProductDashboard({
           </ul>
         </section>
 
-        {/* API Callout (reuse existing component) */}
+        {/* ── 5. API Callout ── */}
         <ApiCallout lang={lang} />
 
-        {/* Footer (matching Dashboard.tsx) */}
-        <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
+        {/* ── 6. Footer — light, simple ── */}
+        <footer
+          className="mt-16 pb-8 pt-6 text-xs"
+          style={{
+            borderTop: "1px solid rgba(0,0,0,0.08)",
+            color: "rgba(0,0,0,0.45)",
+          }}
+        >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
               {STRINGS.generatedAt[lang]} {generated}
@@ -682,23 +686,26 @@ export default function ProductDashboard({
             <span className="flex flex-wrap items-center gap-x-2">
               <Link
                 href="/"
-                className="text-c-text-muted hover:text-c-brand"
+                className="transition-colors hover:text-[#0008CF]"
+                style={{ color: "rgba(0,0,0,0.55)" }}
               >
                 {pt(lang, "backToSources")}
               </Link>
-              <span>·</span>
+              <span>&middot;</span>
               <a
                 href="https://cleolabs.co"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-c-text-muted hover:text-c-brand"
+                className="transition-colors hover:text-[#0008CF]"
+                style={{ color: "rgba(0,0,0,0.55)" }}
               >
                 Cleo Labs
               </a>
-              <span>·</span>
+              <span>&middot;</span>
               <Link
                 href="/privacy"
-                className="text-c-text-muted hover:text-c-brand"
+                className="transition-colors hover:text-[#0008CF]"
+                style={{ color: "rgba(0,0,0,0.55)" }}
               >
                 {STRINGS.privacyLink[lang]}
               </Link>
@@ -707,7 +714,7 @@ export default function ProductDashboard({
         </footer>
       </main>
 
-      {/* ── Country Drawer (matching CountryDrawer.tsx style) ── */}
+      {/* ── Country Drawer ── */}
       {drawerData && (
         <ProductDrawer
           data={drawerData}
@@ -719,103 +726,65 @@ export default function ProductDashboard({
   );
 }
 
-/* ── Growth KPI for hero (with AnimatedNumber) ── */
-function GrowthKpi({
+/* ── KPI Card (white card, "before -> after") ── */
+function KpiCard({
   before,
   afterValue,
   multiplier,
   label,
   lang,
-  featured,
 }: {
   before: string;
   afterValue: number;
   multiplier?: string;
   label: string;
   lang: Lang;
-  featured?: boolean;
 }) {
   return (
     <div
-      className={`relative px-6 py-7 sm:px-8 sm:py-8 ${featured ? "bg-white/[0.06]" : "bg-transparent"}`}
+      className="flex flex-col justify-between rounded-2xl p-5"
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.08)",
+      }}
     >
       <div className="flex items-baseline gap-2">
-        <span className="text-lg font-light text-white/40 line-through decoration-white/20">
+        <span
+          className="text-sm line-through"
+          style={{ color: "rgba(0,0,0,0.35)" }}
+        >
           {before}
         </span>
-        <span className="text-white/40">→</span>
+        <span style={{ color: "rgba(0,0,0,0.25)" }}>&rarr;</span>
       </div>
-      <div className="tabular-display mt-1 text-3xl font-light leading-none text-white sm:text-4xl">
+      <div
+        className="mt-1.5 text-3xl font-bold tabular-nums leading-none md:text-4xl"
+        style={{ color: "#1A1A1A" }}
+      >
         <AnimatedNumber
           value={afterValue}
           format={(n) => formatNumber(n, lang)}
         />
         {multiplier && (
-          <span className="ml-2 text-sm font-medium text-emerald-400">
+          <span
+            className="ml-2 text-sm font-semibold"
+            style={{ color: "#0008CF" }}
+          >
             {multiplier}
           </span>
         )}
       </div>
-      <div className="mt-3 text-sm font-medium uppercase tracking-[0.14em] text-white/65">
-        {label}
-      </div>
-    </div>
-  );
-}
-
-/* ── Inline KPI (matching Dashboard.tsx compact KPI) ── */
-function InlineKpi({
-  value,
-  label,
-  format,
-  accent,
-}: {
-  value: number;
-  label: string;
-  format: (n: number) => string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="flex flex-col">
       <div
-        className={`tabular-display text-3xl font-light leading-none md:text-4xl ${accent ? "text-c-brand" : "text-c-text"}`}
+        className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em]"
+        style={{ color: "rgba(0,0,0,0.45)" }}
       >
-        <AnimatedNumber value={value} format={format} />
-        {accent ? <span className="text-c-glow">+</span> : null}
-      </div>
-      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
         {label}
       </div>
     </div>
   );
 }
 
-/* ── Stats Big card (matching StatsHeader.tsx Big) ── */
-function StatsBig({
-  label,
-  value,
-  accent,
-}: {
-  label: string;
-  value: string;
-  accent?: string;
-}) {
-  return (
-    <div className="rounded-xl border border-c-border bg-c-surface p-5">
-      <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">
-        {label}
-      </div>
-      <div className="mt-1 text-3xl font-semibold tracking-tight tabular-nums">
-        {value}
-      </div>
-      {accent ? (
-        <div className="mt-1 text-xs text-c-success">{accent}</div>
-      ) : null}
-    </div>
-  );
-}
-
-/* ── Country Drawer (matching CountryDrawer.tsx) ── */
+/* ── Country Drawer ── */
 function ProductDrawer({
   data,
   lang,
@@ -841,7 +810,7 @@ function ProductDrawer({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  /* Lock body scroll while drawer is open (matching CountryDrawer) */
+  /* Lock body scroll while drawer is open */
   useEffect(() => {
     const prev = document.body.style.overflow;
     const prevPaddingRight = document.body.style.paddingRight;
@@ -859,19 +828,36 @@ function ProductDrawer({
   return (
     <>
       <div
-        className="fixed inset-0 z-[1100] bg-c-text/40 backdrop-blur-[2px] transition-opacity duration-200"
+        className="fixed inset-0 z-[1100] backdrop-blur-[2px] transition-opacity duration-200"
+        style={{ background: "rgba(0,0,0,0.25)" }}
         onClick={onClose}
       />
-      <aside className="fixed right-0 top-0 z-[1101] flex h-[100dvh] w-full max-w-xl flex-col border-l border-c-border bg-c-surface shadow-2xl">
-        <header className="flex items-start justify-between gap-4 border-b border-c-border px-6 py-5">
+      <aside
+        className="fixed right-0 top-0 z-[1101] flex h-[100dvh] w-full max-w-xl flex-col"
+        style={{
+          background: "#F9F8F6",
+          borderLeft: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 24px 64px rgba(0,0,0,0.10)",
+        }}
+      >
+        <header
+          className="flex items-start justify-between gap-4 px-6 py-5"
+          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+        >
           <div className="min-w-0">
             <div className="flex items-center gap-3">
               <span className="text-3xl leading-none">{jur.flag}</span>
               <div className="min-w-0">
-                <h2 className="truncate text-xl font-semibold tracking-tight">
+                <h2
+                  className="truncate text-xl font-bold tracking-tight"
+                  style={{ color: "#1A1A1A" }}
+                >
                   {jur.name}
                 </h2>
-                <div className="text-xs uppercase tracking-wider text-c-text-subtle">
+                <div
+                  className="text-xs uppercase tracking-wider"
+                  style={{ color: "rgba(0,0,0,0.45)" }}
+                >
                   {jur.code}
                 </div>
               </div>
@@ -880,15 +866,25 @@ function ProductDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-c-border px-2.5 py-1 text-sm text-c-text-muted hover:bg-c-surface-2"
+            className="rounded-lg px-2.5 py-1 text-sm transition-colors"
+            style={{
+              color: "rgba(0,0,0,0.55)",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
             aria-label={pt(lang, "closeDrawer")}
           >
-            ✕
+            &#x2715;
           </button>
         </header>
 
         {/* Stats bar */}
-        <div className="border-b border-c-border bg-c-surface-2/40 px-6 py-4">
+        <div
+          className="px-6 py-4"
+          style={{
+            borderBottom: "1px solid rgba(0,0,0,0.08)",
+            background: "#F0EFEC",
+          }}
+        >
           <div className="grid grid-cols-3 gap-3">
             <DrawerStat
               label={lang === "fr" ? "Total" : "Total"}
@@ -897,17 +893,19 @@ function ProductDrawer({
             <DrawerStat
               label={pt(lang, "coverageLabel")}
               value={`${jur.pct}%`}
-              tone={jur.pct >= 80 ? "success" : undefined}
             />
             <DrawerStat
               label={lang === "fr" ? "Couvert" : "Covered"}
               value={jur.found.toString()}
-              tone="success"
             />
           </div>
-          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-c-border">
+          {/* V4 progress bar */}
+          <div
+            className="mt-3 h-[5px] w-full overflow-hidden rounded-full"
+            style={{ background: "rgba(0,0,0,0.06)" }}
+          >
             <div
-              className={`h-full rounded-full transition-all ${coverageColor(jur.pct)}`}
+              className={`h-full rounded-full transition-all ${coverageBg(jur.pct)}`}
               style={{ width: `${jur.pct}%` }}
             />
           </div>
@@ -915,14 +913,26 @@ function ProductDrawer({
 
         {/* Regulations grouped by category */}
         <div className="flex-1 overflow-y-auto scrollbar-thin px-6 py-4">
-          <h3 className="mb-3 text-xs font-medium uppercase tracking-wider text-c-text-subtle">
+          <h3
+            className="mb-3 text-[11px] font-semibold uppercase tracking-wider"
+            style={{ color: "rgba(0,0,0,0.45)" }}
+          >
             {pt(lang, "categoriesInDrawer")} ({regs.length})
           </h3>
           {categories.map((cat) => (
             <div key={cat} className="mb-4">
-              <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold text-c-text">
+              <h4
+                className="mb-2 flex items-center gap-2 text-sm font-semibold"
+                style={{ color: "rgba(0,0,0,0.87)" }}
+              >
                 {cat}
-                <span className="rounded-full bg-c-surface-2 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-c-text-subtle">
+                <span
+                  className="rounded-lg px-1.5 py-0.5 text-[10px] font-medium tabular-nums"
+                  style={{
+                    background: "#F0EFEC",
+                    color: "rgba(0,0,0,0.55)",
+                  }}
+                >
                   {grouped[cat].length}
                 </span>
               </h4>
@@ -930,34 +940,65 @@ function ProductDrawer({
                 {grouped[cat].map((r, i) => (
                   <li
                     key={`${r.regulation_ref}-${i}`}
-                    className="rounded-xl border border-c-border bg-c-surface p-3 transition-shadow hover:shadow-sm"
+                    className="rounded-2xl p-3 transition-shadow hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid rgba(0,0,0,0.08)",
+                    }}
                   >
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <h5 className="text-sm font-medium leading-tight">
+                          <h5
+                            className="text-sm font-medium leading-tight"
+                            style={{ color: "rgba(0,0,0,0.87)" }}
+                          >
                             {r.regulation_name}
                           </h5>
                           {r.in_api ? (
-                            <span className="inline-flex items-center rounded-full bg-c-success-soft px-2 py-0.5 text-[10px] font-medium text-c-success">
+                            <span
+                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
+                              style={{
+                                background: "rgba(0,0,0,0.04)",
+                                color: "rgba(0,0,0,0.62)",
+                              }}
+                            >
                               {pt(lang, "inApi")}
                             </span>
                           ) : (
-                            <span className="inline-flex items-center rounded-full bg-c-warn-soft px-2 py-0.5 text-[10px] font-medium text-c-warn">
+                            <span
+                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
+                              style={{
+                                background: "rgba(148,107,45,0.08)",
+                                color: "#946B2D",
+                              }}
+                            >
                               {pt(lang, "comingSoon")}
                             </span>
                           )}
                           {r.criticality === "critical" && (
-                            <span className="inline-flex items-center rounded-full bg-c-danger-soft px-2 py-0.5 text-[10px] font-medium text-c-danger">
+                            <span
+                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
+                              style={{
+                                background: "rgba(0,0,0,0.06)",
+                                color: "rgba(0,0,0,0.62)",
+                              }}
+                            >
                               Critical
                             </span>
                           )}
                         </div>
-                        <code className="mt-0.5 block text-[11px] text-c-text-subtle">
+                        <code
+                          className="mt-0.5 block text-[11px]"
+                          style={{ color: "rgba(0,0,0,0.45)" }}
+                        >
                           {r.regulation_ref}
                         </code>
                         {r.enforcement_body && (
-                          <div className="mt-1 text-[11px] text-c-text-muted">
+                          <div
+                            className="mt-1 text-[11px]"
+                            style={{ color: "rgba(0,0,0,0.55)" }}
+                          >
                             {r.enforcement_body}
                           </div>
                         )}
@@ -967,9 +1008,13 @@ function ProductDrawer({
                           href={r.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="shrink-0 rounded-md border border-c-border px-2 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+                          className="shrink-0 rounded-lg px-2 py-1 text-[11px] font-medium transition-colors hover:text-[#0008CF]"
+                          style={{
+                            color: "rgba(0,0,0,0.55)",
+                            border: "1px solid rgba(0,0,0,0.08)",
+                          }}
                         >
-                          {pt(lang, "officialText")} ↗
+                          {pt(lang, "officialText")} &nearr;
                         </a>
                       )}
                     </div>
@@ -987,19 +1032,27 @@ function ProductDrawer({
 function DrawerStat({
   label,
   value,
-  tone,
 }: {
   label: string;
   value: string;
-  tone?: "success";
 }) {
   return (
-    <div className="rounded-lg bg-c-surface px-3 py-2 ring-1 ring-c-border">
-      <div className="text-[10px] uppercase tracking-wider text-c-text-subtle">
+    <div
+      className="rounded-xl px-3 py-2"
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.08)",
+      }}
+    >
+      <div
+        className="text-[10px] font-medium uppercase tracking-wider"
+        style={{ color: "rgba(0,0,0,0.45)" }}
+      >
         {label}
       </div>
       <div
-        className={`mt-0.5 text-lg font-semibold ${tone === "success" ? "text-c-success" : ""}`}
+        className="mt-0.5 text-lg font-bold"
+        style={{ color: "#1A1A1A" }}
       >
         {value}
       </div>
