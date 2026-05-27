@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
-import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
+import { useEffect, useMemo, useRef } from "react";
+import {
+  CircleMarker,
+  MapContainer,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from "react-leaflet";
 import type { ProductJurisdiction } from "@/lib/product-data";
 import type { Lang } from "@/lib/i18n";
 
@@ -59,10 +65,16 @@ const CENTROIDS: Record<string, [number, number]> = {
   OECD: [48.9, 2.3],
 };
 
+const COVERAGE_COLOR: Record<string, string> = {
+  high: "#1a8a4a",
+  medium: "#c47a00",
+  low: "#c4302b",
+};
+
 function coverageColor(pct: number): string {
-  if (pct >= 80) return "#1a8a4a";
-  if (pct >= 50) return "#c47a00";
-  return "#c4302b";
+  if (pct >= 80) return COVERAGE_COLOR.high;
+  if (pct >= 50) return COVERAGE_COLOR.medium;
+  return COVERAGE_COLOR.low;
 }
 
 function radiusFor(total: number): number {
@@ -85,7 +97,12 @@ interface Props {
   lang: Lang;
 }
 
-export default function ProductMapView({ jurisdictions, selected, onSelect, lang }: Props) {
+export default function ProductMapView({
+  jurisdictions,
+  selected,
+  onSelect,
+  lang,
+}: Props) {
   const visible = useMemo(
     () => jurisdictions.filter((j) => CENTROIDS[j.code]),
     [jurisdictions]
@@ -96,8 +113,13 @@ export default function ProductMapView({ jurisdictions, selected, onSelect, lang
     return CENTROIDS[selected] ?? null;
   }, [selected]);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-c-border bg-c-surface-2">
+    <div
+      ref={containerRef}
+      className="relative h-full w-full overflow-hidden rounded-2xl border border-c-border bg-c-surface-2"
+    >
       <MapContainer
         center={[25, 10]}
         zoom={2}
@@ -106,7 +128,7 @@ export default function ProductMapView({ jurisdictions, selected, onSelect, lang
         worldCopyJump
         scrollWheelZoom
         className="h-full w-full"
-        attributionControl
+        attributionControl={true}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
@@ -124,7 +146,7 @@ export default function ProductMapView({ jurisdictions, selected, onSelect, lang
           const isSelected = selected === j.code;
           const radius = radiusFor(j.total);
           const fillColor = coverageColor(j.pct);
-          const baseOpacity = isSelected ? 0.9 : 0.6;
+          const baseOpacity = isSelected ? 0.9 : 0.55;
           return (
             <CircleMarker
               key={j.code}
@@ -139,13 +161,21 @@ export default function ProductMapView({ jurisdictions, selected, onSelect, lang
               eventHandlers={{
                 click: () => onSelect(j.code),
                 mouseover: (e) => e.target.setStyle({ fillOpacity: 0.9 }),
-                mouseout: (e) => e.target.setStyle({ fillOpacity: baseOpacity }),
+                mouseout: (e) =>
+                  e.target.setStyle({ fillOpacity: baseOpacity }),
               }}
             >
-              <Tooltip className="country-tooltip" direction="top" offset={[0, -4]}>
-                <span className="font-semibold">{j.flag} {j.name}</span>
+              <Tooltip
+                className="country-tooltip"
+                direction="top"
+                offset={[0, -4]}
+              >
+                <span className="font-semibold">
+                  {j.flag} {j.name}
+                </span>
                 <span className="ml-2 opacity-80">
-                  {j.pct}% · {j.found}/{j.total} {lang === "fr" ? "régs" : "regs"}
+                  {j.pct}% · {j.found}/{j.total}{" "}
+                  {lang === "fr" ? "régs" : "regs"}
                 </span>
               </Tooltip>
             </CircleMarker>
@@ -160,9 +190,9 @@ export default function ProductMapView({ jurisdictions, selected, onSelect, lang
 
 function CoverageLegend({ lang }: { lang: Lang }) {
   const items = [
-    { label: lang === "fr" ? "80%+" : "80%+", color: "#1a8a4a" },
-    { label: lang === "fr" ? "50-79%" : "50-79%", color: "#c47a00" },
-    { label: lang === "fr" ? "< 50%" : "< 50%", color: "#c4302b" },
+    { label: "80%+", color: COVERAGE_COLOR.high },
+    { label: "50-79%", color: COVERAGE_COLOR.medium },
+    { label: "< 50%", color: COVERAGE_COLOR.low },
   ];
   return (
     <div className="absolute bottom-3 left-3 z-[1000] rounded-xl border border-c-border bg-c-surface/95 px-3 py-2 text-xs shadow-sm backdrop-blur">
@@ -172,7 +202,10 @@ function CoverageLegend({ lang }: { lang: Lang }) {
       <ul className="space-y-1">
         {items.map((it) => (
           <li key={it.label} className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full" style={{ background: it.color }} />
+            <span
+              className="h-2.5 w-2.5 rounded-full"
+              style={{ background: it.color }}
+            />
             <span>{it.label}</span>
           </li>
         ))}
