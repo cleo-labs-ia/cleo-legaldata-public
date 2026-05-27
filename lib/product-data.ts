@@ -32,17 +32,21 @@ export interface ProductRegulation {
   url: string;
 }
 
+export interface ProductTotals {
+  product_regs_audited: number;
+  product_regs_in_api: number;
+  product_coverage_pct: number;
+  product_categories: number;
+  jurisdictions_audited: number;
+  platform_regulations: number;
+  platform_documents: number;
+  platform_sources: number;
+  platform_product_regs: number;
+  platform_products_tracked: number;
+}
+
 export interface ProductComplianceData {
-  totals: {
-    regulations: number;
-    authorities: number;
-    countries: number;
-    products_tracked: number;
-    legal_documents: number;
-    sources: number;
-    categories: number;
-    coverage_pct: number;
-  };
+  totals: ProductTotals;
   categories: ProductCategory[];
   jurisdictions: ProductJurisdiction[];
   regulations: ProductRegulation[];

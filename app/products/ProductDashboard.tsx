@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import type {
   ProductComplianceData,
-  ProductCategory,
   ProductJurisdiction,
   ProductRegulation,
 } from "@/lib/product-data";
@@ -14,6 +13,7 @@ import { STRINGS } from "@/lib/i18n";
 import AnimatedNumber from "../components/AnimatedNumber";
 import ApiCallout from "../components/ApiCallout";
 
+/* ── Lazy-load Leaflet map (client only) ── */
 const ProductMapView = dynamic(() => import("./ProductMapView"), {
   ssr: false,
   loading: () => (
@@ -23,14 +23,19 @@ const ProductMapView = dynamic(() => import("./ProductMapView"), {
   ),
 });
 
-/* ── i18n product strings ── */
+/* ================================================================
+   i18n strings specific to the product dashboard
+   ================================================================ */
 const PS = {
   eyebrow: {
     fr: "Atlas conformite produit · Cleo Comply",
     en: "Product Compliance Atlas · Cleo Comply",
   },
   titleA: { fr: "La plus grande base de donnees", en: "The world's largest" },
-  titleB: { fr: "conformite produit au monde.", en: "product compliance database." },
+  titleB: {
+    fr: "conformite produit au monde.",
+    en: "product compliance database.",
+  },
   subtitle: {
     fr: "46 000+ reglementations produit dans 152 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
     en: "46,000+ product regulations across 152 official sources. Check any product against any country's requirements in one API call.",
@@ -57,7 +62,6 @@ const PS = {
   },
   closeDrawer: { fr: "Fermer", en: "Close" },
   backToSources: { fr: "Atlas des sources", en: "Sources Atlas" },
-  navProducts: { fr: "Produits", en: "Products" },
   statsCategories: { fr: "Categories produit", en: "Product categories" },
   statsCoverage: { fr: "Couverture moyenne", en: "Average coverage" },
   statsRegsIdentified: {
@@ -106,14 +110,19 @@ const PS = {
     en: "No regulation matches the filters.",
   },
   resultCount: {
-    fr: (n: number) => `${n.toLocaleString("fr-FR")} reglementation${n > 1 ? "s" : ""}`,
-    en: (n: number) => `${n.toLocaleString("en-US")} regulation${n !== 1 ? "s" : ""}`,
+    fr: (n: number) =>
+      `${n.toLocaleString("fr-FR")} reglementation${n > 1 ? "s" : ""}`,
+    en: (n: number) =>
+      `${n.toLocaleString("en-US")} regulation${n !== 1 ? "s" : ""}`,
   },
   sortVolume: { fr: "Volume", en: "Volume" },
   sortCoverage: { fr: "Couverture", en: "Coverage" },
   sortAlpha: { fr: "A → Z", en: "A → Z" },
 } as const;
 
+/* ================================================================
+   Category images (40px sidebar, 28px matrix, 32px drawer)
+   ================================================================ */
 const CAT_IMAGES: Record<string, string> = {
   "Cosmetics & Personal Care": "/images/categories/cosmetics.png",
   "Electronics & Telecom": "/images/categories/electronics.png",
@@ -132,20 +141,28 @@ const CAT_IMAGES: Record<string, string> = {
   "Pet Food & Animal Feed": "/images/categories/petfood.png",
 };
 
+/* ================================================================
+   Helpers
+   ================================================================ */
 function pt(lang: Lang, key: keyof typeof PS): string {
   const v = PS[key];
-  if (typeof v === "function" || (typeof v === "object" && "fr" in v && typeof v.fr === "function")) return "";
-  if (typeof v === "object" && "fr" in v) return (v as Record<Lang, string>)[lang];
+  if (
+    typeof v === "function" ||
+    (typeof v === "object" && "fr" in v && typeof v.fr === "function")
+  )
+    return "";
+  if (typeof v === "object" && "fr" in v)
+    return (v as Record<Lang, string>)[lang];
   return String(key);
 }
 
-/* ── Helpers ── */
 function formatNumber(n: number, lang: Lang): string {
   return n.toLocaleString(lang === "fr" ? "fr-FR" : "en-US");
 }
 
 function formatVolume(n: number, lang: Lang): string {
-  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1).replace(".", lang === "fr" ? "," : ".")}B`;
+  if (n >= 1_000_000_000)
+    return `${(n / 1_000_000_000).toFixed(1).replace(".", lang === "fr" ? "," : ".")}B`;
   if (n >= 1_000_000) {
     const m = n / 1_000_000;
     return m >= 100
@@ -156,10 +173,23 @@ function formatVolume(n: number, lang: Lang): string {
   return n.toString();
 }
 
-/* ── Top countries for the matrix ── */
-const MATRIX_COUNTRIES = ["EU", "US", "GB", "FR", "DE", "CN", "JP", "KR", "IN", "AU", "BR"];
+/* ================================================================
+   Constants
+   ================================================================ */
+const MATRIX_COUNTRIES = [
+  "EU",
+  "US",
+  "GB",
+  "FR",
+  "DE",
+  "CN",
+  "JP",
+  "KR",
+  "IN",
+  "AU",
+  "BR",
+];
 
-/* ── Filters type ── */
 interface Filters {
   query: string;
   category: string;
@@ -178,19 +208,9 @@ const EMPTY_FILTERS: Filters = {
 
 const PAGE_SIZE = 100;
 
-/* ── Verified numbers ── */
-const VERIFIED = {
-  productRegulations: 46031,
-  productsTracked: 2844,
-  officialSources: 152,
-  productCategories: 15,
-  legalDocuments: 1702283,
-  auditRegsIdentified: 1761,
-  auditJurisdictions: 50,
-  auditCoveragePct: 64,
-};
-
-/* ── Main component ── */
+/* ================================================================
+   MAIN COMPONENT
+   ================================================================ */
 export default function ProductDashboard({
   data,
 }: {
@@ -203,12 +223,12 @@ export default function ProductDashboard({
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(filters.query);
 
-  /* reset visible count when filters change */
+  /* Reset pagination when filters change */
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [filters]);
 
-  /* ── Global category selection: sync with filters + scroll to table ── */
+  /* ── Category selection: sync sidebar + filters + scroll ── */
   function selectCategory(cat: string | null) {
     setSelectedCategory(cat);
     setFilters((f) => ({ ...f, category: cat ?? "" }));
@@ -220,8 +240,11 @@ export default function ProductDashboard({
     }
   }
 
-  /* ── Matrix cell click → filter category + country + scroll to table ── */
-  function setMatrixSelection(country: string | null, category: string | null) {
+  /* ── Matrix cell click ── */
+  function setMatrixSelection(
+    country: string | null,
+    category: string | null,
+  ) {
     setSelectedCategory(category);
     setFilters((f) => ({
       ...f,
@@ -234,13 +257,13 @@ export default function ProductDashboard({
     }
   }
 
-  /* ── Country click in grid → open drawer + filter ── */
+  /* ── Country click in grid ── */
   function selectCountry(code: string) {
     setDrawerJur(code);
     setFilters((f) => ({ ...f, country: code }));
   }
 
-  /* ── Filtered jurisdictions for the map (by category) ── */
+  /* ── Jurisdictions filtered by selected category (for map) ── */
   const filteredJurisdictions = useMemo(() => {
     if (!selectedCategory) return data.jurisdictions;
     const regsByJur: Record<string, { total: number; found: number }> = {};
@@ -257,7 +280,9 @@ export default function ProductDashboard({
         ...j,
         total: regsByJur[j.code].total,
         found: regsByJur[j.code].found,
-        pct: Math.round((regsByJur[j.code].found / regsByJur[j.code].total) * 100),
+        pct: Math.round(
+          (regsByJur[j.code].found / regsByJur[j.code].total) * 100,
+        ),
       }));
   }, [data.jurisdictions, data.regulations, selectedCategory]);
 
@@ -266,8 +291,13 @@ export default function ProductDashboard({
     const q = deferredQuery.trim().toLowerCase();
     return data.regulations.filter((r) => {
       if (filters.category && r.category !== filters.category) return false;
-      if (filters.country && r.jurisdiction_code !== filters.country) return false;
-      if (filters.criticality && r.criticality.toLowerCase() !== filters.criticality.toLowerCase()) return false;
+      if (filters.country && r.jurisdiction_code !== filters.country)
+        return false;
+      if (
+        filters.criticality &&
+        r.criticality.toLowerCase() !== filters.criticality.toLowerCase()
+      )
+        return false;
       if (filters.status === "in_api" && !r.in_api) return false;
       if (filters.status === "q3_2026" && r.in_api) return false;
       if (!q) return true;
@@ -281,7 +311,7 @@ export default function ProductDashboard({
     });
   }, [data.regulations, deferredQuery, filters]);
 
-  /* ── Matrix data: for each category x country, count regs ── */
+  /* ── Matrix: category x country counts ── */
   const matrixData = useMemo(() => {
     const m: Record<string, Record<string, number>> = {};
     for (const cat of data.categories) {
@@ -298,16 +328,18 @@ export default function ProductDashboard({
     return m;
   }, [data.regulations, data.categories]);
 
-  /* max per column for heat coloring */
   const matrixMaxByCol = useMemo(() => {
     const max: Record<string, number> = {};
     for (const code of MATRIX_COUNTRIES) {
-      max[code] = Math.max(1, ...data.categories.map((cat) => matrixData[cat.name]?.[code] || 0));
+      max[code] = Math.max(
+        1,
+        ...data.categories.map((cat) => matrixData[cat.name]?.[code] || 0),
+      );
     }
     return max;
   }, [matrixData, data.categories]);
 
-  /* ── Countries grid data ── */
+  /* ── Countries grid data (follows category filter) ── */
   const countriesGridData = useMemo(() => {
     if (!selectedCategory) return data.jurisdictions;
     return filteredJurisdictions;
@@ -316,7 +348,7 @@ export default function ProductDashboard({
   /* ── Sorted countries for the dropdown ── */
   const sortedCountries = useMemo(
     () => [...data.jurisdictions].sort((a, b) => a.name.localeCompare(b.name)),
-    [data.jurisdictions]
+    [data.jurisdictions],
   );
 
   /* ── Unique criticalities ── */
@@ -332,7 +364,9 @@ export default function ProductDashboard({
     const jur = data.jurisdictions.find((j) => j.code === drawerJur);
     if (!jur) return null;
     const regs = data.regulations.filter(
-      (r) => r.jurisdiction_code === drawerJur && (!selectedCategory || r.category === selectedCategory)
+      (r) =>
+        r.jurisdiction_code === drawerJur &&
+        (!selectedCategory || r.category === selectedCategory),
     );
     const grouped: Record<string, ProductRegulation[]> = {};
     for (const r of regs) {
@@ -345,7 +379,7 @@ export default function ProductDashboard({
 
   const generated = new Date().toLocaleDateString(
     lang === "fr" ? "fr-FR" : "en-US",
-    { year: "numeric", month: "long", day: "numeric" }
+    { year: "numeric", month: "long", day: "numeric" },
   );
 
   const visible = filteredRegs.slice(0, visibleCount);
@@ -362,17 +396,21 @@ export default function ProductDashboard({
     }
   }
 
-  /* ── Matrix background ── */
   function matrixBg(value: number, max: number, isActive: boolean) {
     if (value === 0) return "transparent";
     const ratio = Math.min(1, value / max);
     const alpha = 0.12 + ratio * 0.55;
-    return isActive ? `rgba(0, 8, 207, ${0.25 + ratio * 0.65})` : `rgba(0, 8, 207, ${alpha})`;
+    return isActive
+      ? `rgba(0, 8, 207, ${0.25 + ratio * 0.65})`
+      : `rgba(0, 8, 207, ${alpha})`;
   }
 
+  /* ================================================================
+     RENDER
+     ================================================================ */
   return (
     <div className="min-h-screen pb-16">
-      {/* ── 1. Header — identical to Dashboard.tsx ── */}
+      {/* ── 1. Header (identical to Dashboard.tsx) ── */}
       <header className="border-b border-c-border bg-c-surface">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
           <div className="flex items-center gap-3">
@@ -384,8 +422,12 @@ export default function ProductDashboard({
               className="h-9 w-9 rounded-md"
             />
             <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">{PS.eyebrow[lang]}</div>
+              <div className="text-sm font-semibold tracking-tight">
+                {STRINGS.brand[lang]}
+              </div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
+                {PS.eyebrow[lang]}
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -414,7 +456,9 @@ export default function ProductDashboard({
                   type="button"
                   onClick={() => setLang(l)}
                   className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
+                    lang === l
+                      ? "bg-c-brand text-white"
+                      : "text-c-text-muted hover:text-c-text"
                   }`}
                 >
                   {l.toUpperCase()}
@@ -426,16 +470,18 @@ export default function ProductDashboard({
       </header>
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
-        {/* ── Section 1: Hero ── */}
+        {/* ── 2. Badge + Title + Subtitle + 5 KPI cards + CTAs ── */}
         <section className="mb-8">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-c-brand/20 bg-c-brand-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
-              Product Compliance API
+              Product Compliance Atlas
             </div>
             <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
               {pt(lang, "titleA")}{" "}
-              <span className="italic text-c-brand">{pt(lang, "titleB")}</span>
+              <span className="italic text-c-brand">
+                {pt(lang, "titleB")}
+              </span>
             </h1>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-c-text-muted">
               {pt(lang, "subtitle")}
@@ -443,7 +489,7 @@ export default function ProductDashboard({
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
                 href="/api"
-                className="inline-flex items-center rounded-lg bg-c-brand px-4 py-2 text-sm font-medium text-white hover:bg-c-brand-ink transition-colors"
+                className="inline-flex items-center rounded-lg bg-c-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-c-brand-ink"
               >
                 {pt(lang, "ctaApi")} →
               </Link>
@@ -451,50 +497,82 @@ export default function ProductDashboard({
                 type="button"
                 onClick={() => {
                   const el = document.getElementById("coverage-section");
-                  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  if (el)
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="inline-flex items-center rounded-lg border border-c-border bg-c-surface px-4 py-2 text-sm font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand transition-colors"
+                className="inline-flex items-center rounded-lg border border-c-border bg-c-surface px-4 py-2 text-sm font-medium text-c-text-muted transition-colors hover:border-c-brand hover:text-c-brand"
               >
                 {pt(lang, "ctaCoverage")} ↓
               </button>
             </div>
           </div>
 
-          {/* 5 KPI cards — verified numbers */}
+          {/* 5 KPI cards — all from data.totals */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="text-3xl font-bold tabular-nums text-c-brand">
-                <AnimatedNumber value={VERIFIED.productRegulations} format={(n) => formatNumber(n, lang)} />
+                <AnimatedNumber
+                  value={data.totals.platform_product_regs}
+                  format={(n) => formatNumber(n, lang)}
+                />
               </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProductRegs")}</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiProductRegs")}
+              </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="text-3xl font-bold tabular-nums text-c-text">
-                <AnimatedNumber value={VERIFIED.productsTracked} format={(n) => formatNumber(n, lang)} />
+                <AnimatedNumber
+                  value={data.totals.platform_products_tracked}
+                  format={(n) => formatNumber(n, lang)}
+                />
               </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProducts")}</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiProducts")}
+              </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="text-3xl font-bold tabular-nums text-c-text">
-                <AnimatedNumber value={VERIFIED.officialSources} format={(n) => formatNumber(n, lang)} />
+                <AnimatedNumber
+                  value={data.totals.platform_sources}
+                  format={(n) => formatNumber(n, lang)}
+                />
               </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiSources")}</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiSources")}
+              </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text">15</div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCategories")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-text">
+                <AnimatedNumber
+                  value={data.totals.product_categories}
+                  format={(n) => formatNumber(n, lang)}
+                />
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiCategories")}
+              </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="text-3xl font-bold tabular-nums text-c-brand">
-                <AnimatedNumber value={VERIFIED.legalDocuments} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span>
+                <AnimatedNumber
+                  value={data.totals.platform_documents}
+                  format={(n) => formatVolume(n, lang)}
+                />
+                <span className="text-c-glow">+</span>
               </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiDocs")}</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiDocs")}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── Section 2: Map + sidebar categories ── */}
-        <section id="coverage-section" className="scroll-mt-8 grid gap-4 lg:grid-cols-[1fr_320px]">
+        {/* ── 3. Map [1fr 320px] + Sidebar categories ── */}
+        <section
+          id="coverage-section"
+          className="scroll-mt-8 grid gap-4 lg:grid-cols-[1fr_320px]"
+        >
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
               jurisdictions={filteredJurisdictions}
@@ -508,10 +586,13 @@ export default function ProductDashboard({
               {pt(lang, "categoriesHeader")}
             </h3>
             <p className="mt-0.5 text-xs text-c-text-muted">
-              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(VERIFIED.auditRegsIdentified, lang)} {pt(lang, "regsLabel")}
+              {data.categories.length}{" "}
+              {pt(lang, "statsCategories").toLowerCase()} ·{" "}
+              {formatNumber(data.regulations.length, lang)}{" "}
+              {pt(lang, "regsLabel")}
             </p>
             <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
-              {/* "All" button — shows 1,761 (audit total) */}
+              {/* "All categories" button — shows data.regulations.length = 1 761 */}
               <li>
                 <button
                   type="button"
@@ -520,9 +601,11 @@ export default function ProductDashboard({
                     selectedCategory === null ? "bg-c-brand-soft" : ""
                   }`}
                 >
-                  <span className="truncate text-sm font-medium">{pt(lang, "allCategories")}</span>
+                  <span className="truncate text-sm font-medium">
+                    {pt(lang, "allCategories")}
+                  </span>
                   <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-                    {formatNumber(VERIFIED.auditRegsIdentified, lang)}
+                    {formatNumber(data.regulations.length, lang)}
                   </span>
                 </button>
               </li>
@@ -530,19 +613,31 @@ export default function ProductDashboard({
                 <li key={cat.name}>
                   <button
                     type="button"
-                    onClick={() => selectCategory(selectedCategory === cat.name ? null : cat.name)}
+                    onClick={() =>
+                      selectCategory(
+                        selectedCategory === cat.name ? null : cat.name,
+                      )
+                    }
                     className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
                       selectedCategory === cat.name ? "bg-c-brand-soft" : ""
                     }`}
                   >
                     <span className="flex min-w-0 items-center gap-2">
                       {CAT_IMAGES[cat.name] && (
-                        <img src={CAT_IMAGES[cat.name]} alt="" className="h-10 w-10 rounded-lg object-cover" />
+                        <img
+                          src={CAT_IMAGES[cat.name]}
+                          alt=""
+                          className="h-10 w-10 rounded-lg object-cover"
+                        />
                       )}
-                      <span className="truncate text-sm font-medium">{cat.name}</span>
+                      <span className="truncate text-sm font-medium">
+                        {cat.name}
+                      </span>
                     </span>
                     <span className="flex shrink-0 items-center gap-2">
-                      <span className="text-[10px] tabular-nums text-c-text-subtle">{cat.pct}%</span>
+                      <span className="text-[10px] tabular-nums text-c-text-subtle">
+                        {cat.pct}%
+                      </span>
                       <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
                         {cat.found}/{cat.total_regs}
                       </span>
@@ -554,13 +649,19 @@ export default function ProductDashboard({
           </aside>
         </section>
 
-        {/* ── Section 3: Stats header — 4 cards ── */}
+        {/* ── 4. Stats header (4 cards) ── */}
         <section className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <StatCard label={pt(lang, "statsRegsIdentified")} value={formatNumber(VERIFIED.auditRegsIdentified, lang)} />
-          <StatCard label={pt(lang, "statsJurisdictions")} value={formatNumber(VERIFIED.auditJurisdictions, lang)} />
+          <StatCard
+            label={pt(lang, "statsRegsIdentified")}
+            value={formatNumber(data.regulations.length, lang)}
+          />
+          <StatCard
+            label={pt(lang, "statsJurisdictions")}
+            value={formatNumber(data.jurisdictions.length, lang)}
+          />
           <StatCard
             label={pt(lang, "statsCoverage")}
-            value={`${VERIFIED.auditCoveragePct}%`}
+            value={`${data.totals.product_coverage_pct}%`}
             accent={`${data.categories.filter((c) => c.pct >= 70).length}/${data.categories.length} ${lang === "fr" ? "categories > 70%" : "categories > 70%"}`}
           />
           <div className="rounded-xl border border-c-border bg-c-surface p-4">
@@ -569,10 +670,15 @@ export default function ProductDashboard({
             </div>
             <ul className="mt-2 space-y-1.5 text-sm">
               {data.categories.slice(0, 5).map((cat) => (
-                <li key={cat.name} className="flex items-center justify-between gap-3">
+                <li
+                  key={cat.name}
+                  className="flex items-center justify-between gap-3"
+                >
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-c-brand" />
-                    <span className="truncate text-c-text-muted">{cat.name}</span>
+                    <span className="truncate text-c-text-muted">
+                      {cat.name}
+                    </span>
                   </span>
                   <span className="font-medium tabular-nums">{cat.pct}%</span>
                 </li>
@@ -581,12 +687,16 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* ── Section 4: Domain Matrix: category x country ── */}
+        {/* ── 5. Category x jurisdiction matrix ── */}
         <section className="mt-10">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight">{pt(lang, "matrixHeader")}</h2>
-              <p className="text-sm text-c-text-muted">{pt(lang, "matrixHelp")}</p>
+              <h2 className="text-xl font-semibold tracking-tight">
+                {pt(lang, "matrixHeader")}
+              </h2>
+              <p className="text-sm text-c-text-muted">
+                {pt(lang, "matrixHelp")}
+              </p>
             </div>
             {(filters.category || filters.country) && (
               <button
@@ -607,21 +717,32 @@ export default function ProductDashboard({
                     {pt(lang, "categoryColumn")}
                   </th>
                   {MATRIX_COUNTRIES.map((code) => {
-                    const jur = data.jurisdictions.find((j) => j.code === code);
+                    const jur = data.jurisdictions.find(
+                      (j) => j.code === code,
+                    );
                     const isActive = filters.country === code;
                     return (
                       <th
                         key={code}
                         className={`border-b border-c-border px-2 py-3 text-center text-[10px] font-medium uppercase tracking-wider transition-colors ${
-                          isActive ? "bg-c-brand-soft text-c-brand-ink" : "text-c-text-subtle"
+                          isActive
+                            ? "bg-c-brand-soft text-c-brand-ink"
+                            : "text-c-text-subtle"
                         }`}
                       >
                         <button
                           type="button"
-                          onClick={() => setMatrixSelection(isActive ? null : code, selectedCategory)}
+                          onClick={() =>
+                            setMatrixSelection(
+                              isActive ? null : code,
+                              selectedCategory,
+                            )
+                          }
                           className="flex w-full flex-col items-center gap-0.5 hover:text-c-brand"
                         >
-                          <span className="whitespace-nowrap">{jur?.flag || ""} {code}</span>
+                          <span className="whitespace-nowrap">
+                            {jur?.flag || ""} {code}
+                          </span>
                         </button>
                       </th>
                     );
@@ -635,7 +756,7 @@ export default function ProductDashboard({
                 {data.categories.map((cat) => {
                   const rowSum = MATRIX_COUNTRIES.reduce(
                     (acc, code) => acc + (matrixData[cat.name]?.[code] || 0),
-                    0
+                    0,
                   );
                   const isActiveRow = selectedCategory === cat.name;
                   return (
@@ -643,28 +764,46 @@ export default function ProductDashboard({
                       <th
                         scope="row"
                         className={`sticky left-0 z-10 border-b border-c-border px-3 py-1.5 text-left ${
-                          isActiveRow ? "bg-c-brand-soft" : "bg-c-surface group-hover:bg-c-surface-2"
+                          isActiveRow
+                            ? "bg-c-brand-soft"
+                            : "bg-c-surface group-hover:bg-c-surface-2"
                         }`}
                       >
                         <button
                           type="button"
-                          onClick={() => selectCategory(isActiveRow ? null : cat.name)}
+                          onClick={() =>
+                            selectCategory(isActiveRow ? null : cat.name)
+                          }
                           className="flex w-full items-center gap-2 text-left"
                         >
                           {CAT_IMAGES[cat.name] && (
-                            <img src={CAT_IMAGES[cat.name]} alt="" className="h-7 w-7 rounded-md object-cover" />
+                            <img
+                              src={CAT_IMAGES[cat.name]}
+                              alt=""
+                              className="h-7 w-7 rounded-md object-cover"
+                            />
                           )}
-                          <span className="truncate text-xs font-medium">{cat.name}</span>
+                          <span className="truncate text-xs font-medium">
+                            {cat.name}
+                          </span>
                         </button>
                       </th>
                       {MATRIX_COUNTRIES.map((code) => {
                         const v = matrixData[cat.name]?.[code] || 0;
-                        const isActiveCell = selectedCategory === cat.name && filters.country === code;
+                        const isActiveCell =
+                          selectedCategory === cat.name &&
+                          filters.country === code;
                         return (
                           <td
                             key={code}
                             className="border-b border-c-border p-0"
-                            style={{ background: matrixBg(v, matrixMaxByCol[code], isActiveRow || filters.country === code) }}
+                            style={{
+                              background: matrixBg(
+                                v,
+                                matrixMaxByCol[code],
+                                isActiveRow || filters.country === code,
+                              ),
+                            }}
                           >
                             <button
                               type="button"
@@ -672,15 +811,15 @@ export default function ProductDashboard({
                               onClick={() =>
                                 setMatrixSelection(
                                   isActiveCell ? null : code,
-                                  isActiveCell ? null : cat.name
+                                  isActiveCell ? null : cat.name,
                                 )
                               }
                               className={`flex h-9 w-full items-center justify-center text-[11px] font-medium tabular-nums transition-colors ${
                                 v === 0
                                   ? "text-c-text-subtle/40"
                                   : isActiveCell
-                                  ? "ring-2 ring-inset ring-c-brand text-c-brand-ink font-semibold"
-                                  : "text-c-text hover:ring-1 hover:ring-inset hover:ring-c-brand-ink/30"
+                                    ? "font-semibold text-c-brand-ink ring-2 ring-inset ring-c-brand"
+                                    : "text-c-text hover:ring-1 hover:ring-inset hover:ring-c-brand-ink/30"
                               }`}
                             >
                               {v || "·"}
@@ -699,7 +838,7 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* ── Section 5: Countries Grid ── */}
+        {/* ── 6. Countries grid ── */}
         <CountriesGridSection
           jurisdictions={countriesGridData}
           lang={lang}
@@ -707,11 +846,13 @@ export default function ProductDashboard({
           onSelect={selectCountry}
         />
 
-        {/* ── Section 6: Filterable Regulations Table ── */}
+        {/* ── 7. Filterable regulations table ── */}
         <section id="exhaustive" className="mt-10 scroll-mt-24">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight">{pt(lang, "exhaustiveList")}</h2>
+              <h2 className="text-xl font-semibold tracking-tight">
+                {pt(lang, "exhaustiveList")}
+              </h2>
               <p className="text-sm text-c-text-muted">
                 {PS.resultCount[lang](filteredRegs.length)}
               </p>
@@ -786,26 +927,51 @@ export default function ProductDashboard({
             <table className="min-w-full text-sm">
               <thead className="bg-c-surface-2 text-left text-xs uppercase tracking-wider text-c-text-subtle">
                 <tr>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "regulationColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "referenceColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "countryColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "categoryColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "enforcementColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "criticalityColumn")}</th>
-                  <th className="px-4 py-2.5 font-medium">{pt(lang, "statusColumn")}</th>
-                  <th className="px-4 py-2.5 text-right font-medium">{pt(lang, "linkColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "regulationColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "referenceColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "countryColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "categoryColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "enforcementColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "criticalityColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 font-medium">
+                    {pt(lang, "statusColumn")}
+                  </th>
+                  <th className="px-4 py-2.5 text-right font-medium">
+                    {pt(lang, "linkColumn")}
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-c-border">
                 {visible.map((r, i) => {
-                  const jur = data.jurisdictions.find((j) => j.code === r.jurisdiction_code);
+                  const jur = data.jurisdictions.find(
+                    (j) => j.code === r.jurisdiction_code,
+                  );
                   return (
-                    <tr key={`${r.regulation_ref}-${i}`} className="hover:bg-c-surface-2/50">
+                    <tr
+                      key={`${r.regulation_ref}-${i}`}
+                      className="hover:bg-c-surface-2/50"
+                    >
                       <td className="px-4 py-3">
-                        <div className="max-w-xs font-medium leading-tight">{r.regulation_name}</div>
+                        <div className="max-w-xs font-medium leading-tight">
+                          {r.regulation_name}
+                        </div>
                       </td>
                       <td className="px-4 py-3">
-                        <code className="text-[11px] text-c-text-subtle">{r.regulation_ref}</code>
+                        <code className="text-[11px] text-c-text-subtle">
+                          {r.regulation_ref}
+                        </code>
                       </td>
                       <td className="px-4 py-3">
                         <button
@@ -814,13 +980,22 @@ export default function ProductDashboard({
                           className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs hover:bg-c-brand-soft hover:text-c-brand-ink"
                         >
                           <span>{jur?.flag || ""}</span>
-                          <span className="font-medium">{r.jurisdiction_name}</span>
+                          <span className="font-medium">
+                            {r.jurisdiction_name}
+                          </span>
                         </button>
                       </td>
                       <td className="px-4 py-3">
                         <button
                           type="button"
-                          onClick={() => updateFilter("category", filters.category === r.category ? "" : r.category)}
+                          onClick={() =>
+                            updateFilter(
+                              "category",
+                              filters.category === r.category
+                                ? ""
+                                : r.category,
+                            )
+                          }
                           className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
                             filters.category === r.category
                               ? "bg-c-brand text-white"
@@ -864,7 +1039,10 @@ export default function ProductDashboard({
                 })}
                 {visible.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="px-4 py-8 text-center text-sm text-c-text-muted">
+                    <td
+                      colSpan={8}
+                      className="px-4 py-8 text-center text-sm text-c-text-muted"
+                    >
                       {pt(lang, "noResults")}
                     </td>
                   </tr>
@@ -878,32 +1056,44 @@ export default function ProductDashboard({
                   onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
                   className="rounded-md border border-c-border bg-c-surface px-4 py-1.5 text-sm font-medium text-c-text-muted hover:bg-c-surface-2"
                 >
-                  + {Math.min(PAGE_SIZE, filteredRegs.length - visibleCount)} / {filteredRegs.length - visibleCount}
+                  + {Math.min(PAGE_SIZE, filteredRegs.length - visibleCount)} /{" "}
+                  {filteredRegs.length - visibleCount}
                 </button>
               </div>
             ) : null}
           </div>
         </section>
 
-        {/* ── Section 7: ApiCallout ── */}
+        {/* ── 8. ApiCallout ── */}
         <ApiCallout lang={lang} />
 
-        {/* ── Section 8: Footer ── */}
+        {/* ── 9. Footer ── */}
         <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
               {STRINGS.generatedAt[lang]} {generated}
             </span>
             <span className="flex flex-wrap items-center gap-x-2">
-              <Link href="/" className="text-c-text-muted hover:text-c-brand">
+              <Link
+                href="/"
+                className="text-c-text-muted hover:text-c-brand"
+              >
                 {pt(lang, "backToSources")}
               </Link>
               <span>&middot;</span>
-              <a href="https://cleolabs.co" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
+              <a
+                href="https://cleolabs.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-c-text-muted hover:text-c-brand"
+              >
                 Cleo Labs
               </a>
               <span>&middot;</span>
-              <Link href="/privacy" className="text-c-text-muted hover:text-c-brand">
+              <Link
+                href="/privacy"
+                className="text-c-text-muted hover:text-c-brand"
+              >
                 {STRINGS.privacyLink[lang]}
               </Link>
             </span>
@@ -923,13 +1113,31 @@ export default function ProductDashboard({
   );
 }
 
-/* ── StatCard (like StatsHeader Big) ── */
-function StatCard({ label, value, accent }: { label: string; value: string; accent?: string }) {
+/* ================================================================
+   SUB-COMPONENTS
+   ================================================================ */
+
+/* ── StatCard ── */
+function StatCard({
+  label,
+  value,
+  accent,
+}: {
+  label: string;
+  value: string;
+  accent?: string;
+}) {
   return (
     <div className="rounded-xl border border-c-border bg-c-surface p-5">
-      <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">{label}</div>
-      <div className="mt-1 text-3xl font-semibold tracking-tight tabular-nums">{value}</div>
-      {accent ? <div className="mt-1 text-xs text-c-success">{accent}</div> : null}
+      <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">
+        {label}
+      </div>
+      <div className="mt-1 text-3xl font-semibold tracking-tight tabular-nums">
+        {value}
+      </div>
+      {accent ? (
+        <div className="mt-1 text-xs text-c-success">{accent}</div>
+      ) : null}
     </div>
   );
 }
@@ -938,14 +1146,19 @@ function StatCard({ label, value, accent }: { label: string; value: string; acce
 function CriticalityBadge({ criticality }: { criticality: string }) {
   const c = criticality.toLowerCase();
   let classes = "rounded-md px-2 py-0.5 text-[10px] font-medium ";
-  if (c === "critical") classes += "bg-c-surface-2 text-c-text font-semibold";
+  if (c === "critical")
+    classes += "bg-c-surface-2 text-c-text font-semibold";
   else if (c === "high") classes += "bg-c-surface-2 text-c-text";
   else if (c === "medium") classes += "bg-c-surface-2 text-c-text-muted";
   else classes += "bg-c-surface-2 text-c-text-subtle";
-  return <span className={classes}>{c.charAt(0).toUpperCase() + c.slice(1)}</span>;
+  return (
+    <span className={classes}>
+      {c.charAt(0).toUpperCase() + c.slice(1)}
+    </span>
+  );
 }
 
-/* ── Countries Grid Section (inline, mirrors CountriesGrid.tsx) ── */
+/* ── Countries Grid Section ── */
 type CountrySort = "volume_desc" | "coverage_desc" | "name_asc";
 
 function CountriesGridSection({
@@ -967,7 +1180,9 @@ function CountriesGridSection({
     let out = jurisdictions;
     if (q) {
       out = out.filter(
-        (j) => j.name.toLowerCase().includes(q) || j.code.toLowerCase().includes(q)
+        (j) =>
+          j.name.toLowerCase().includes(q) ||
+          j.code.toLowerCase().includes(q),
       );
     }
     return [...out].sort((a, b) => {
@@ -1006,8 +1221,12 @@ function CountriesGridSection({
             onChange={(e) => setSort(e.target.value as CountrySort)}
             className="rounded-lg border border-c-border bg-c-surface px-3 py-1.5 text-sm focus:border-c-brand focus:outline-none"
           >
-            <option value="volume_desc">&darr; {PS.sortVolume[lang]}</option>
-            <option value="coverage_desc">&darr; {PS.sortCoverage[lang]}</option>
+            <option value="volume_desc">
+              &darr; {PS.sortVolume[lang]}
+            </option>
+            <option value="coverage_desc">
+              &darr; {PS.sortCoverage[lang]}
+            </option>
             <option value="name_asc">{PS.sortAlpha[lang]}</option>
           </select>
         </div>
@@ -1024,7 +1243,9 @@ function CountriesGridSection({
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="text-xl leading-none">{j.flag}</span>
-                  <span className="truncate text-sm font-medium">{j.name}</span>
+                  <span className="truncate text-sm font-medium">
+                    {j.name}
+                  </span>
                 </div>
                 <div className="mt-1.5 flex items-center gap-2">
                   <div className="h-1 flex-1 overflow-hidden rounded-full bg-c-border">
@@ -1033,11 +1254,15 @@ function CountriesGridSection({
                       style={{ width: `${j.pct}%` }}
                     />
                   </div>
-                  <span className="text-[10px] tabular-nums text-c-text-subtle">{j.pct}%</span>
+                  <span className="text-[10px] tabular-nums text-c-text-subtle">
+                    {j.pct}%
+                  </span>
                 </div>
               </div>
               <span className="shrink-0 text-right">
-                <span className={`block text-base font-semibold tabular-nums leading-none ${selectedCategory ? "text-c-brand" : ""}`}>
+                <span
+                  className={`block text-base font-semibold tabular-nums leading-none ${selectedCategory ? "text-c-brand" : ""}`}
+                >
                   {j.total}
                 </span>
                 <span className="block text-[10px] uppercase tracking-wider text-c-text-subtle">
@@ -1080,9 +1305,11 @@ function ProductDrawer({
   useEffect(() => {
     const prev = document.body.style.overflow;
     const prevPaddingRight = document.body.style.paddingRight;
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
-    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+    if (scrollbarWidth > 0)
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     return () => {
       document.body.style.overflow = prev;
       document.body.style.paddingRight = prevPaddingRight;
@@ -1101,8 +1328,12 @@ function ProductDrawer({
             <div className="flex items-center gap-3">
               <span className="text-3xl leading-none">{jur.flag}</span>
               <div className="min-w-0">
-                <h2 className="truncate text-xl font-semibold tracking-tight">{jur.name}</h2>
-                <div className="text-xs uppercase tracking-wider text-c-text-subtle">{jur.code}</div>
+                <h2 className="truncate text-xl font-semibold tracking-tight">
+                  {jur.name}
+                </h2>
+                <div className="text-xs uppercase tracking-wider text-c-text-subtle">
+                  {jur.code}
+                </div>
               </div>
             </div>
           </div>
@@ -1119,12 +1350,24 @@ function ProductDrawer({
         {/* Stats bar */}
         <div className="border-b border-c-border bg-c-surface-2 px-6 py-4">
           <div className="grid grid-cols-3 gap-3">
-            <DrawerStat label={lang === "fr" ? "Total" : "Total"} value={jur.total.toString()} />
-            <DrawerStat label={PS.coverageLabel[lang]} value={`${jur.pct}%`} />
-            <DrawerStat label={lang === "fr" ? "Couvert" : "Covered"} value={jur.found.toString()} />
+            <DrawerStat
+              label={lang === "fr" ? "Total" : "Total"}
+              value={jur.total.toString()}
+            />
+            <DrawerStat
+              label={PS.coverageLabel[lang]}
+              value={`${jur.pct}%`}
+            />
+            <DrawerStat
+              label={lang === "fr" ? "Couvert" : "Covered"}
+              value={jur.found.toString()}
+            />
           </div>
           <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-c-border">
-            <div className="h-full rounded-full bg-c-brand" style={{ width: `${jur.pct}%` }} />
+            <div
+              className="h-full rounded-full bg-c-brand"
+              style={{ width: `${jur.pct}%` }}
+            />
           </div>
         </div>
 
@@ -1137,7 +1380,11 @@ function ProductDrawer({
             <div key={cat} className="mb-4">
               <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
                 {CAT_IMAGES[cat] && (
-                  <img src={CAT_IMAGES[cat]} alt="" className="h-8 w-8 rounded-lg object-cover" />
+                  <img
+                    src={CAT_IMAGES[cat]}
+                    alt=""
+                    className="h-8 w-8 rounded-lg object-cover"
+                  />
                 )}
                 {cat}
                 <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-c-text-subtle">
@@ -1153,7 +1400,9 @@ function ProductDrawer({
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <h5 className="text-sm font-medium leading-tight">{r.regulation_name}</h5>
+                          <h5 className="text-sm font-medium leading-tight">
+                            {r.regulation_name}
+                          </h5>
                           {r.in_api ? (
                             <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text">
                               {PS.inApi[lang]}
@@ -1169,9 +1418,13 @@ function ProductDrawer({
                             </span>
                           )}
                         </div>
-                        <code className="mt-0.5 block text-[11px] text-c-text-subtle">{r.regulation_ref}</code>
+                        <code className="mt-0.5 block text-[11px] text-c-text-subtle">
+                          {r.regulation_ref}
+                        </code>
                         {r.enforcement_body && (
-                          <div className="mt-1 text-[11px] text-c-text-muted">{r.enforcement_body}</div>
+                          <div className="mt-1 text-[11px] text-c-text-muted">
+                            {r.enforcement_body}
+                          </div>
                         )}
                       </div>
                       {r.url && (
@@ -1199,7 +1452,9 @@ function ProductDrawer({
 function DrawerStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-c-border bg-c-surface px-3 py-2">
-      <div className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{label}</div>
+      <div className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">
+        {label}
+      </div>
       <div className="mt-0.5 text-lg font-semibold tabular-nums">{value}</div>
     </div>
   );
