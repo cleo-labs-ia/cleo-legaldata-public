@@ -224,6 +224,7 @@ export const STRINGS = {
     en: "Reply within 1 business day, integration support",
   },
   privacyLink: { fr: "Confidentialité", en: "Privacy" },
+  navProducts: { fr: "Produits", en: "Products" },
   noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
   resultCount: {
     fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,

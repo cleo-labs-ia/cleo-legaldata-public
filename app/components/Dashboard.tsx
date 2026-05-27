@@ -94,6 +94,12 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           </div>
           <div className="flex items-center gap-2">
             <Link
+              href="/products"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.navProducts[lang]} →
+            </Link>
+            <Link
               href="/api"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
