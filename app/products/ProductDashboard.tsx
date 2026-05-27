@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type {
   ProductComplianceData,
+  ProductCategory,
   ProductJurisdiction,
   ProductRegulation,
 } from "@/lib/product-data";
@@ -28,10 +29,6 @@ const PS = {
     fr: "Atlas conformite produit · Cleo Comply",
     en: "Product Compliance Atlas · Cleo Comply",
   },
-  badge: {
-    fr: "Product Compliance Atlas",
-    en: "Product Compliance Atlas",
-  },
   titleA: { fr: "La conformite produit,", en: "Product compliance data," },
   titleB: { fr: "a l'echelle mondiale.", en: "worldwide." },
   subtitle: {
@@ -43,20 +40,13 @@ const PS = {
   kpiCountries: { fr: "pays", en: "countries" },
   kpiProducts: { fr: "produits trackes", en: "products tracked" },
   kpiDocs: { fr: "documents juridiques", en: "legal documents" },
-  coverageLabel: { fr: "Couverture", en: "Coverage" },
-  ctaApi: { fr: "Demander un acces API", en: "Get API access" },
-  ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
-  allCategories: { fr: "Toutes", en: "All" },
-  jurisdictionsHeader: {
-    fr: "Couverture par juridiction",
-    en: "Coverage by jurisdiction",
-  },
+  allCategories: { fr: "Toutes categories", en: "All categories" },
   categoriesHeader: {
-    fr: "Couverture par industrie",
-    en: "Coverage by industry",
+    fr: "Couverture par categorie",
+    en: "Coverage by category",
   },
   regsLabel: { fr: "reglementations", en: "regulations" },
-  inApi: { fr: "Dans l'API", en: "In API" },
+  inApi: { fr: "In API", en: "In API" },
   comingSoon: { fr: "Q3 2026", en: "Q3 2026" },
   officialText: { fr: "Texte officiel", en: "Official text" },
   categoriesInDrawer: {
@@ -64,17 +54,8 @@ const PS = {
     en: "Regulations by category",
   },
   closeDrawer: { fr: "Fermer", en: "Close" },
-  searchPlaceholder: {
-    fr: "Rechercher une juridiction...",
-    en: "Search a jurisdiction...",
-  },
-  searchCatPlaceholder: {
-    fr: "Rechercher une categorie...",
-    en: "Search a category...",
-  },
   backToSources: { fr: "Atlas des sources", en: "Sources Atlas" },
   navProducts: { fr: "Produits", en: "Products" },
-  scrollHint: { fr: "Explorer", en: "Explore" },
   statsCategories: { fr: "Categories produit", en: "Product categories" },
   statsCoverage: { fr: "Couverture moyenne", en: "Average coverage" },
   statsRegsIdentified: {
@@ -82,10 +63,60 @@ const PS = {
     en: "Regulations identified",
   },
   statsJurisdictions: { fr: "Juridictions", en: "Jurisdictions" },
+  coverageLabel: { fr: "Couverture", en: "Coverage" },
+  matrixHeader: {
+    fr: "Matrice categorie x juridiction",
+    en: "Category x jurisdiction matrix",
+  },
+  matrixHelp: {
+    fr: "Nombre de reglementations par couple categorie / pays. Cliquez une cellule pour filtrer.",
+    en: "Number of regulations per category / country pair. Click a cell to filter.",
+  },
+  jurisdictionsGridHeader: {
+    fr: "Toutes les juridictions",
+    en: "All jurisdictions",
+  },
+  exhaustiveList: {
+    fr: "Liste exhaustive des reglementations",
+    en: "Exhaustive regulation list",
+  },
+  searchPlaceholder: {
+    fr: "Rechercher une reglementation, un pays...",
+    en: "Search a regulation, a country...",
+  },
+  searchCountryPlaceholder: {
+    fr: "Rechercher un pays...",
+    en: "Search a country...",
+  },
+  allCriticalities: { fr: "Toutes criticites", en: "All criticalities" },
+  allStatuses: { fr: "Tous statuts", en: "All statuses" },
+  allCountries: { fr: "Tous pays", en: "All countries" },
+  regulationColumn: { fr: "Reglementation", en: "Regulation" },
+  referenceColumn: { fr: "Reference", en: "Reference" },
+  countryColumn: { fr: "Pays", en: "Country" },
+  categoryColumn: { fr: "Categorie", en: "Category" },
+  enforcementColumn: { fr: "Autorite", en: "Enforcement" },
+  criticalityColumn: { fr: "Criticite", en: "Criticality" },
+  statusColumn: { fr: "Statut", en: "Status" },
+  linkColumn: { fr: "Lien", en: "Link" },
+  noResults: {
+    fr: "Aucune reglementation ne correspond aux filtres.",
+    en: "No regulation matches the filters.",
+  },
+  resultCount: {
+    fr: (n: number) => `${n.toLocaleString("fr-FR")} reglementation${n > 1 ? "s" : ""}`,
+    en: (n: number) => `${n.toLocaleString("en-US")} regulation${n !== 1 ? "s" : ""}`,
+  },
+  sortVolume: { fr: "Volume", en: "Volume" },
+  sortCoverage: { fr: "Couverture", en: "Coverage" },
+  sortAlpha: { fr: "A → Z", en: "A → Z" },
 } as const;
 
 function pt(lang: Lang, key: keyof typeof PS): string {
-  return PS[key][lang];
+  const v = PS[key];
+  if (typeof v === "function" || (typeof v === "object" && "fr" in v && typeof v.fr === "function")) return "";
+  if (typeof v === "object" && "fr" in v) return (v as Record<Lang, string>)[lang];
+  return String(key);
 }
 
 /* ── Helpers ── */
@@ -93,36 +124,39 @@ function formatNumber(n: number, lang: Lang): string {
   return n.toLocaleString(lang === "fr" ? "fr-FR" : "en-US");
 }
 
-function formatCompact(n: number, lang: Lang): string {
+function formatVolume(n: number, lang: Lang): string {
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1).replace(".", lang === "fr" ? "," : ".")}B`;
   if (n >= 1_000_000) {
     const m = n / 1_000_000;
     return m >= 100
       ? `${Math.round(m)}M`
       : `${m.toFixed(1).replace(".", lang === "fr" ? "," : ".")}M`;
   }
-  if (n >= 1_000) {
-    const k = n / 1_000;
-    return k >= 100
-      ? `${Math.round(k)}k`
-      : `${k.toFixed(1).replace(".", lang === "fr" ? "," : ".")}k`;
-  }
+  if (n >= 1_000) return `${Math.round(n / 1_000)}k`;
   return n.toString();
 }
 
-/* V4 monochrome coverage — no green/red */
-function coverageBg(pct: number): string {
-  if (pct >= 80) return "bg-[rgba(0,0,0,0.87)]";
-  if (pct >= 50) return "bg-[#946B2D]";
-  return "bg-[rgba(0,0,0,0.25)]";
+/* ── Top countries for the matrix ── */
+const MATRIX_COUNTRIES = ["EU", "US", "GB", "FR", "DE", "CN", "JP", "KR", "IN", "AU", "BR"];
+
+/* ── Filters type ── */
+interface Filters {
+  query: string;
+  category: string;
+  country: string;
+  criticality: string;
+  status: string; // "in_api" | "q3_2026" | ""
 }
 
-function coverageTextColor(pct: number): string {
-  if (pct >= 80) return "text-[rgba(0,0,0,0.87)]";
-  if (pct >= 50) return "text-[#946B2D]";
-  return "text-[rgba(0,0,0,0.45)]";
-}
+const EMPTY_FILTERS: Filters = {
+  query: "",
+  category: "",
+  country: "",
+  criticality: "",
+  status: "",
+};
 
-const MEET_URL = "https://www.cleolabs.co/en/meet";
+const PAGE_SIZE = 100;
 
 /* ── Main component ── */
 export default function ProductDashboard({
@@ -133,63 +167,136 @@ export default function ProductDashboard({
   const [lang, setLang] = useState<Lang>("fr");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [drawerJur, setDrawerJur] = useState<string | null>(null);
-  const [jurQuery, setJurQuery] = useState("");
-  const [catQuery, setCatQuery] = useState("");
-  const [scrolled, setScrolled] = useState(false);
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const deferredQuery = useDeferredValue(filters.query);
 
+  /* reset visible count when filters change */
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 80);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    setVisibleCount(PAGE_SIZE);
+  }, [filters]);
 
-  /* Filtered regulations by category */
+  /* ── Global category selection: sync with filters ── */
+  function selectCategory(cat: string | null) {
+    setSelectedCategory(cat);
+    setFilters((f) => ({ ...f, category: cat ?? "" }));
+  }
+
+  /* ── Matrix cell click → filter category + country + scroll to table ── */
+  function setMatrixSelection(country: string | null, category: string | null) {
+    setSelectedCategory(category);
+    setFilters((f) => ({
+      ...f,
+      country: country ?? "",
+      category: category ?? "",
+    }));
+    if (country || category) {
+      const el = document.getElementById("exhaustive");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  /* ── Country click in grid → open drawer + filter ── */
+  function selectCountry(code: string) {
+    setDrawerJur(code);
+    setFilters((f) => ({ ...f, country: code }));
+  }
+
+  /* ── Filtered jurisdictions for the map (by category) ── */
+  const filteredJurisdictions = useMemo(() => {
+    if (!selectedCategory) return data.jurisdictions;
+    // Recompute per-jurisdiction stats for the selected category
+    const regsByJur: Record<string, { total: number; found: number }> = {};
+    for (const r of data.regulations) {
+      if (r.category !== selectedCategory) continue;
+      const code = r.jurisdiction_code;
+      if (!regsByJur[code]) regsByJur[code] = { total: 0, found: 0 };
+      regsByJur[code].total++;
+      if (r.in_api) regsByJur[code].found++;
+    }
+    return data.jurisdictions
+      .filter((j) => regsByJur[j.code])
+      .map((j) => ({
+        ...j,
+        total: regsByJur[j.code].total,
+        found: regsByJur[j.code].found,
+        pct: Math.round((regsByJur[j.code].found / regsByJur[j.code].total) * 100),
+      }));
+  }, [data.jurisdictions, data.regulations, selectedCategory]);
+
+  /* ── Regulations filtered for the table ── */
   const filteredRegs = useMemo(() => {
-    if (!selectedCategory) return data.regulations;
-    return data.regulations.filter((r) => r.category === selectedCategory);
-  }, [data.regulations, selectedCategory]);
-
-  /* Jurisdictions list for the sidebar */
-  const sortedJurisdictions = useMemo(() => {
-    const q = jurQuery.trim().toLowerCase();
-    let jurs = [...data.jurisdictions];
-    if (q) {
-      jurs = jurs.filter(
-        (j) =>
-          j.name.toLowerCase().includes(q) || j.code.toLowerCase().includes(q)
+    const q = deferredQuery.trim().toLowerCase();
+    return data.regulations.filter((r) => {
+      if (filters.category && r.category !== filters.category) return false;
+      if (filters.country && r.jurisdiction_code !== filters.country) return false;
+      if (filters.criticality && r.criticality.toLowerCase() !== filters.criticality.toLowerCase()) return false;
+      if (filters.status === "in_api" && !r.in_api) return false;
+      if (filters.status === "q3_2026" && r.in_api) return false;
+      if (!q) return true;
+      return (
+        r.regulation_name.toLowerCase().includes(q) ||
+        r.regulation_ref.toLowerCase().includes(q) ||
+        r.jurisdiction_name.toLowerCase().includes(q) ||
+        r.jurisdiction_code.toLowerCase().includes(q) ||
+        r.category.toLowerCase().includes(q)
       );
+    });
+  }, [data.regulations, deferredQuery, filters]);
+
+  /* ── Matrix data: for each category × country, count of "In API" regs ── */
+  const matrixData = useMemo(() => {
+    const m: Record<string, Record<string, number>> = {};
+    for (const cat of data.categories) {
+      m[cat.name] = {};
+      for (const code of MATRIX_COUNTRIES) {
+        m[cat.name][code] = 0;
+      }
     }
-    return jurs.sort((a, b) => b.total - a.total);
-  }, [data.jurisdictions, jurQuery]);
+    for (const r of data.regulations) {
+      if (MATRIX_COUNTRIES.includes(r.jurisdiction_code) && m[r.category]) {
+        m[r.category][r.jurisdiction_code]++;
+      }
+    }
+    return m;
+  }, [data.regulations, data.categories]);
 
-  /* Filtered categories */
-  const filteredCategories = useMemo(() => {
-    const q = catQuery.trim().toLowerCase();
-    if (!q) return data.categories;
-    return data.categories.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.description.toLowerCase().includes(q)
-    );
-  }, [data.categories, catQuery]);
+  /* max per column for heat coloring */
+  const matrixMaxByCol = useMemo(() => {
+    const max: Record<string, number> = {};
+    for (const code of MATRIX_COUNTRIES) {
+      max[code] = Math.max(1, ...data.categories.map((cat) => matrixData[cat.name]?.[code] || 0));
+    }
+    return max;
+  }, [matrixData, data.categories]);
 
-  /* Average coverage */
-  const avgCoverage = useMemo(() => {
-    if (data.jurisdictions.length === 0) return 0;
-    return Math.round(
-      data.jurisdictions.reduce((s, j) => s + j.pct, 0) /
-        data.jurisdictions.length
-    );
-  }, [data.jurisdictions]);
+  /* ── Countries grid data ── */
+  const countriesGridData = useMemo(() => {
+    if (!selectedCategory) return data.jurisdictions;
+    return filteredJurisdictions;
+  }, [selectedCategory, data.jurisdictions, filteredJurisdictions]);
 
-  /* Drawer data */
+  /* ── Sorted countries for the dropdown ── */
+  const sortedCountries = useMemo(
+    () => [...data.jurisdictions].sort((a, b) => a.name.localeCompare(b.name)),
+    [data.jurisdictions]
+  );
+
+  /* ── Unique criticalities ── */
+  const criticalities = useMemo(() => {
+    const set = new Set<string>();
+    for (const r of data.regulations) set.add(r.criticality.toLowerCase());
+    return [...set].sort();
+  }, [data.regulations]);
+
+  /* ── Drawer data ── */
   const drawerData = useMemo(() => {
     if (!drawerJur) return null;
     const jur = data.jurisdictions.find((j) => j.code === drawerJur);
     if (!jur) return null;
-    const regs = filteredRegs.filter((r) => r.jurisdiction_code === drawerJur);
+    const regs = data.regulations.filter(
+      (r) => r.jurisdiction_code === drawerJur && (!selectedCategory || r.category === selectedCategory)
+    );
     const grouped: Record<string, ProductRegulation[]> = {};
     for (const r of regs) {
       const cat = r.category || "Other";
@@ -197,365 +304,168 @@ export default function ProductDashboard({
       grouped[cat].push(r);
     }
     return { jur, regs, grouped };
-  }, [drawerJur, data.jurisdictions, filteredRegs]);
+  }, [drawerJur, data.jurisdictions, data.regulations, selectedCategory]);
+
+  /* ── Average coverage ── */
+  const avgCoverage = useMemo(() => {
+    if (data.jurisdictions.length === 0) return 0;
+    return Math.round(
+      data.jurisdictions.reduce((s, j) => s + j.pct, 0) / data.jurisdictions.length
+    );
+  }, [data.jurisdictions]);
 
   const generated = new Date().toLocaleDateString(
     lang === "fr" ? "fr-FR" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
 
+  const visible = filteredRegs.slice(0, visibleCount);
+
+  function resetFilters() {
+    setFilters(EMPTY_FILTERS);
+    setSelectedCategory(null);
+  }
+
+  function updateFilter<K extends keyof Filters>(key: K, value: Filters[K]) {
+    setFilters((f) => ({ ...f, [key]: value }));
+    if (key === "category") {
+      setSelectedCategory(value || null);
+    }
+  }
+
+  /* ── Matrix background ── */
+  function matrixBg(value: number, max: number, isActive: boolean) {
+    if (value === 0) return "transparent";
+    const ratio = Math.min(1, value / max);
+    const alpha = 0.12 + ratio * 0.55;
+    return isActive ? `rgba(0, 8, 207, ${0.25 + ratio * 0.65})` : `rgba(0, 8, 207, ${alpha})`;
+  }
+
   return (
-    <div className="min-h-screen bg-[#F9F8F6]">
-      {/* ── 1. Sticky Nav — light, glass blur ── */}
-      <header
-        className={`sticky top-0 z-50 transition-shadow duration-200 ${
-          scrolled ? "shadow-[0_2px_8px_rgba(0,0,0,0.04)]" : ""
-        }`}
-        style={{
-          background: "rgba(255,255,255,0.82)",
-          backdropFilter: "saturate(180%) blur(28px)",
-          WebkitBackdropFilter: "saturate(180%) blur(28px)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-        }}
-      >
+    <div className="min-h-screen pb-16">
+      {/* ── 1. Header light — identical to Dashboard.tsx ── */}
+      <header className="border-b border-c-border bg-c-surface">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-bold tracking-tight" style={{ color: "#1A1A1A" }}>
-              cleo
-            </span>
+            <img
+              src="/cleo-icon.svg"
+              alt="Cleo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-md"
+            />
+            <div className="leading-tight">
+              <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">{PS.eyebrow[lang]}</div>
+            </div>
           </div>
-          <nav className="hidden items-center gap-1 md:flex">
+          <div className="flex items-center gap-2">
             <Link
               href="/"
-              className="rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors"
-              style={{ color: "rgba(0,0,0,0.55)" }}
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
-              {pt(lang, "backToSources")}
+              {pt(lang, "backToSources")} →
             </Link>
             <Link
               href="/products"
-              className="rounded-full px-3 py-1.5 text-[13px] font-semibold"
-              style={{
-                color: "#0008CF",
-                background: "rgba(0,8,207,0.06)",
-              }}
+              className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-medium text-c-brand-ink"
             >
               {STRINGS.navProducts[lang]}
             </Link>
             <Link
               href="/api"
-              className="rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors"
-              style={{ color: "rgba(0,0,0,0.55)" }}
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
-              {STRINGS.navApi[lang]}
+              {STRINGS.navApi[lang]} →
             </Link>
-          </nav>
-          <div className="flex items-center gap-2">
-            {/* Lang switcher */}
-            <div
-              className="flex rounded-full p-0.5 text-[11px] font-medium"
-              style={{ border: "1px solid rgba(0,0,0,0.08)" }}
-            >
+            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
               {(["fr", "en"] as Lang[]).map((l) => (
                 <button
                   key={l}
                   type="button"
                   onClick={() => setLang(l)}
-                  className={`rounded-full px-2.5 py-1 transition-colors ${
-                    lang === l
-                      ? "bg-[#1A1A1A] text-white"
-                      : "text-[rgba(0,0,0,0.45)] hover:text-[rgba(0,0,0,0.87)]"
+                  className={`rounded px-2 py-0.5 transition-colors ${
+                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
                   }`}
                 >
                   {l.toUpperCase()}
                 </button>
               ))}
             </div>
-            {/* CTA pill button */}
-            <a
-              href={MEET_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#333] sm:inline-flex"
-              style={{ background: "#1A1A1A" }}
-            >
-              Get API key
-            </a>
           </div>
         </div>
       </header>
 
-      {/* ── 2. Hero Section — light background ── */}
-      <section className="px-6 pb-16 pt-16 md:pt-24" style={{ background: "#F9F8F6" }}>
-        <div className="mx-auto max-w-7xl">
-          {/* Badge pill */}
-          <div
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] font-semibold tracking-wide"
-            style={{
-              background: "rgba(0,8,207,0.06)",
-              color: "#0008CF",
-            }}
-          >
-            {pt(lang, "badge")}
+      <main className="mx-auto max-w-7xl px-6 pt-6">
+        {/* ── 2. Title + 5 KPIs inline ── */}
+        <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
+              {pt(lang, "titleA")}{" "}
+              <span className="italic text-c-brand">{pt(lang, "titleB")}</span>
+            </h1>
+            <p className="mt-2 text-sm text-c-text-muted md:text-[15px]">
+              {pt(lang, "subtitle")}
+            </p>
           </div>
-
-          {/* Title — Satoshi 700, not Fraunces */}
-          <h1
-            className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-[72px]"
-            style={{ color: "#1A1A1A", fontFamily: "'Satoshi', sans-serif" }}
-          >
-            {pt(lang, "titleA")}
-            <br />
-            <span style={{ color: "#1A1A1A" }}>
-              {pt(lang, "titleB")}
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="mt-6 max-w-2xl text-base leading-relaxed md:text-lg"
-            style={{ color: "rgba(0,0,0,0.55)" }}
-          >
-            {pt(lang, "subtitle")}
-          </p>
-
-          {/* 5 KPIs — white cards, "before -> after" format */}
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            <KpiCard
-              before="25,000"
-              afterValue={209468}
-              multiplier="x8"
-              label={pt(lang, "kpiRegs")}
-              lang={lang}
-            />
-            <KpiCard
-              before="19,000"
-              afterValue={27518}
-              label={pt(lang, "kpiAuthorities")}
-              lang={lang}
-            />
-            <KpiCard
-              before="152"
-              afterValue={163}
-              label={pt(lang, "kpiCountries")}
-              lang={lang}
-            />
-            <KpiCard
-              before="2,697"
-              afterValue={2839}
-              multiplier="+5%"
-              label={pt(lang, "kpiProducts")}
-              lang={lang}
-            />
-            <div
-              className="flex flex-col justify-between rounded-2xl p-5"
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                className="text-3xl font-bold tabular-nums leading-none md:text-4xl"
-                style={{ color: "#1A1A1A" }}
-              >
-                <AnimatedNumber
-                  value={1700000}
-                  format={(n) => formatCompact(n, lang)}
-                />
-                <span style={{ color: "#0008CF" }}>+</span>
-              </div>
-              <div
-                className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em]"
-                style={{ color: "rgba(0,0,0,0.45)" }}
-              >
-                {pt(lang, "kpiDocs")}
-              </div>
-            </div>
-          </div>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href={MEET_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#333]"
-              style={{ background: "#1A1A1A" }}
-            >
-              {pt(lang, "ctaApi")} &rarr;
-            </a>
-            <a
-              href="#coverage"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition-colors"
-              style={{
-                border: "1px solid rgba(0,0,0,0.15)",
-                color: "rgba(0,0,0,0.62)",
-              }}
-            >
-              {pt(lang, "ctaCoverage")}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. Map Section ── */}
-      <main className="mx-auto max-w-7xl px-6">
-        {/* Section header */}
-        <section className="mb-6 pt-8">
-          <h2
-            className="text-2xl font-bold tracking-tight md:text-3xl"
-            style={{ color: "#1A1A1A" }}
-          >
-            {pt(lang, "jurisdictionsHeader")}
-          </h2>
-          <p
-            className="mt-1 text-sm"
-            style={{ color: "rgba(0,0,0,0.55)" }}
-          >
-            {formatNumber(data.jurisdictions.length, lang)}{" "}
-            {pt(lang, "kpiCountries")} &middot;{" "}
-            {formatNumber(data.totals.regulations, lang)}{" "}
-            {pt(lang, "regsLabel")}
-          </p>
-        </section>
-
-        {/* Category pills */}
-        <section className="mb-4">
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setSelectedCategory(null)}
-              className="rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
-              style={
-                selectedCategory === null
-                  ? {
-                      background: "rgba(0,8,207,0.06)",
-                      color: "#0008CF",
-                      borderColor: "rgba(0,8,207,0.15)",
-                    }
-                  : {
-                      background: "#FFFFFF",
-                      color: "rgba(0,0,0,0.62)",
-                      borderColor: "rgba(0,0,0,0.08)",
-                    }
-              }
-            >
-              {pt(lang, "allCategories")}
-            </button>
-            {data.categories.map((cat) => (
-              <button
-                key={cat.name}
-                type="button"
-                onClick={() =>
-                  setSelectedCategory(
-                    selectedCategory === cat.name ? null : cat.name
-                  )
-                }
-                className="rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
-                style={
-                  selectedCategory === cat.name
-                    ? {
-                        background: "rgba(0,8,207,0.06)",
-                        color: "#0008CF",
-                        borderColor: "rgba(0,8,207,0.15)",
-                      }
-                    : {
-                        background: "#FFFFFF",
-                        color: "rgba(0,0,0,0.62)",
-                        borderColor: "rgba(0,0,0,0.08)",
-                      }
-                }
-              >
-                {cat.name}
-                <span className="ml-1.5 text-[10px] tabular-nums opacity-60">
-                  {cat.found}/{cat.total_regs}
-                </span>
-              </button>
-            ))}
+          <div className="flex flex-wrap items-end gap-x-8 gap-y-2">
+            <Kpi value={data.totals.legal_documents} label={pt(lang, "kpiDocs")} format={(n) => formatVolume(n, lang)} accent />
+            <Kpi value={data.totals.regulations} label={pt(lang, "kpiRegs")} format={(n) => formatNumber(n, lang)} />
+            <Kpi value={data.totals.countries} label={pt(lang, "kpiCountries")} format={(n) => formatNumber(n, lang)} />
+            <Kpi value={data.totals.categories} label={pt(lang, "statsCategories")} format={(n) => formatNumber(n, lang)} />
+            <Kpi value={avgCoverage} label={pt(lang, "statsCoverage")} format={(n) => `${n}%`} />
           </div>
         </section>
 
-        {/* Map + sidebar */}
-        <section id="coverage" className="grid gap-4 lg:grid-cols-[1fr_320px]">
+        {/* ── 3. Map + sidebar categories ── */}
+        <section className="grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
-              jurisdictions={data.jurisdictions}
+              jurisdictions={filteredJurisdictions}
               selected={drawerJur}
-              onSelect={setDrawerJur}
+              onSelect={(code) => setDrawerJur(code)}
               lang={lang}
             />
           </div>
-          <aside
-            className="rounded-2xl p-4"
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            <h3
-              className="text-[11px] font-semibold uppercase tracking-[0.14em]"
-              style={{ color: "rgba(0,0,0,0.45)" }}
-            >
-              {pt(lang, "statsJurisdictions")}
+          <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+              {pt(lang, "categoriesHeader")}
             </h3>
-            <p
-              className="mt-0.5 text-xs"
-              style={{ color: "rgba(0,0,0,0.55)" }}
-            >
-              {lang === "fr"
-                ? "Couverture reglementaire par pays"
-                : "Regulatory coverage by country"}
+            <p className="mt-0.5 text-xs text-c-text-muted">
+              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(data.totals.regulations, lang)} {pt(lang, "regsLabel")}
             </p>
-            <div className="mt-2 mb-3">
-              <input
-                type="search"
-                value={jurQuery}
-                onChange={(e) => setJurQuery(e.target.value)}
-                placeholder={pt(lang, "searchPlaceholder")}
-                className="w-full rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  background: "#F9F8F6",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
-              />
-            </div>
             <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
-              {sortedJurisdictions.map((j) => (
-                <li key={j.code}>
+              {/* "All" button */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => selectCategory(null)}
+                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
+                    selectedCategory === null ? "bg-c-brand-soft" : ""
+                  }`}
+                >
+                  <span className="truncate text-sm font-medium">{pt(lang, "allCategories")}</span>
+                  <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
+                    {data.totals.regulations}
+                  </span>
+                </button>
+              </li>
+              {data.categories.map((cat) => (
+                <li key={cat.name}>
                   <button
                     type="button"
-                    onClick={() => setDrawerJur(j.code)}
-                    className="flex w-full items-center justify-between gap-3 rounded-xl px-2 py-1.5 text-left transition-colors"
-                    style={{
-                      background:
-                        drawerJur === j.code
-                          ? "rgba(0,8,207,0.06)"
-                          : "transparent",
-                    }}
+                    onClick={() => selectCategory(selectedCategory === cat.name ? null : cat.name)}
+                    className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
+                      selectedCategory === cat.name ? "bg-c-brand-soft" : ""
+                    }`}
                   >
                     <span className="flex min-w-0 items-center gap-2">
-                      <span className="text-base leading-none">{j.flag}</span>
-                      <span
-                        className="truncate text-sm font-medium"
-                        style={{ color: "rgba(0,0,0,0.87)" }}
-                      >
-                        {j.name}
-                      </span>
+                      <span className="truncate text-sm font-medium">{cat.name}</span>
                     </span>
                     <span className="flex shrink-0 items-center gap-2">
-                      <span
-                        className={`text-[10px] tabular-nums ${coverageTextColor(j.pct)}`}
-                      >
-                        {j.pct}%
-                      </span>
-                      <span
-                        className="rounded-lg px-1.5 py-0.5 text-xs font-semibold tabular-nums"
-                        style={{
-                          background: "#F0EFEC",
-                          color: "rgba(0,0,0,0.62)",
-                        }}
-                      >
-                        {j.total}
+                      <span className="text-[10px] tabular-nums text-c-text-subtle">{cat.pct}%</span>
+                      <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
+                        {cat.found}/{cat.total_regs}
                       </span>
                     </span>
                   </button>
@@ -565,148 +475,353 @@ export default function ProductDashboard({
           </aside>
         </section>
 
-        {/* ── 4. Category Coverage Cards ── */}
-        <section className="mt-16">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2
-                className="text-2xl font-bold tracking-tight md:text-3xl"
-                style={{ color: "#1A1A1A" }}
-              >
-                {pt(lang, "categoriesHeader")}
-              </h2>
-              <p
-                className="mt-1 text-sm"
-                style={{ color: "rgba(0,0,0,0.55)" }}
-              >
-                {filteredCategories.length} / {data.categories.length}
-                {" · "}
-                {formatNumber(data.regulations.length, lang)}{" "}
-                {pt(lang, "regsLabel")}
-              </p>
+        {/* ── 4. Stats header — 4 cards ── */}
+        <section className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <StatCard label={pt(lang, "statsRegsIdentified")} value={formatNumber(data.totals.regulations, lang)} />
+          <StatCard label={pt(lang, "statsJurisdictions")} value={formatNumber(data.totals.countries, lang)} />
+          <StatCard
+            label={pt(lang, "statsCoverage")}
+            value={`${avgCoverage}%`}
+            accent={`${data.categories.filter((c) => c.pct >= 70).length}/${data.categories.length} ${lang === "fr" ? "categories > 70%" : "categories > 70%"}`}
+          />
+          <div className="rounded-xl border border-c-border bg-c-surface p-4">
+            <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">
+              {pt(lang, "statsCategories")}
             </div>
-            <div className="flex flex-wrap gap-2">
-              <input
-                type="search"
-                value={catQuery}
-                onChange={(e) => setCatQuery(e.target.value)}
-                placeholder={pt(lang, "searchCatPlaceholder")}
-                className="rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
-              />
-            </div>
+            <ul className="mt-2 space-y-1.5 text-sm">
+              {data.categories.slice(0, 5).map((cat) => (
+                <li key={cat.name} className="flex items-center justify-between gap-3">
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-c-brand" />
+                    <span className="truncate text-c-text-muted">{cat.name}</span>
+                  </span>
+                  <span className="font-medium tabular-nums">{cat.pct}%</span>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredCategories.map((cat) => (
-              <li key={cat.name}>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelectedCategory(
-                      selectedCategory === cat.name ? null : cat.name
-                    )
-                  }
-                  className="group flex w-full flex-col rounded-2xl p-5 text-left transition-all hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
-                  style={{
-                    background:
-                      selectedCategory === cat.name
-                        ? "rgba(0,8,207,0.04)"
-                        : "#FFFFFF",
-                    border:
-                      selectedCategory === cat.name
-                        ? "1px solid rgba(0,8,207,0.15)"
-                        : "1px solid rgba(0,0,0,0.08)",
-                  }}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <h3
-                      className="text-sm font-semibold leading-tight"
-                      style={{ color: "rgba(0,0,0,0.87)" }}
-                    >
-                      {cat.name}
-                    </h3>
-                    <span
-                      className={`shrink-0 text-lg font-bold tabular-nums ${coverageTextColor(cat.pct)}`}
-                    >
-                      {cat.pct}%
-                    </span>
-                  </div>
-                  <p
-                    className="mt-1.5 text-xs leading-relaxed line-clamp-2"
-                    style={{ color: "rgba(0,0,0,0.55)" }}
-                  >
-                    {cat.description}
-                  </p>
-                  {/* V4 progress bar: 5px height, monochrome */}
-                  <div
-                    className="mt-4 h-[5px] w-full overflow-hidden rounded-full"
-                    style={{ background: "rgba(0,0,0,0.06)" }}
-                  >
-                    <div
-                      className={`h-full rounded-full transition-all ${coverageBg(cat.pct)}`}
-                      style={{ width: `${cat.pct}%` }}
-                    />
-                  </div>
-                  <div
-                    className="mt-2.5 flex items-center justify-between text-[10px] font-medium"
-                    style={{ color: "rgba(0,0,0,0.45)" }}
-                  >
-                    <span>
-                      {cat.found}/{cat.total_regs} {pt(lang, "regsLabel")}
-                    </span>
-                    <span>
-                      {cat.jurisdictions} {pt(lang, "kpiCountries")}
-                    </span>
-                  </div>
-                </button>
-              </li>
-            ))}
-          </ul>
         </section>
 
-        {/* ── 5. API Callout ── */}
+        {/* ── 5. Domain Matrix: category x country ── */}
+        <section className="mt-10">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight">{pt(lang, "matrixHeader")}</h2>
+              <p className="text-sm text-c-text-muted">{pt(lang, "matrixHelp")}</p>
+            </div>
+            {(filters.category || filters.country) && (
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="rounded-md border border-c-border bg-c-surface px-3 py-1.5 text-sm text-c-text-muted hover:bg-c-surface-2"
+              >
+                {STRINGS.resetFilters[lang]}
+              </button>
+            )}
+          </div>
+
+          <div className="overflow-x-auto rounded-2xl border border-c-border bg-c-surface">
+            <table className="min-w-full border-separate border-spacing-0 text-sm">
+              <thead>
+                <tr>
+                  <th className="sticky left-0 z-10 border-b border-c-border bg-c-surface px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-c-text-subtle">
+                    {pt(lang, "categoryColumn")}
+                  </th>
+                  {MATRIX_COUNTRIES.map((code) => {
+                    const jur = data.jurisdictions.find((j) => j.code === code);
+                    const isActive = filters.country === code;
+                    return (
+                      <th
+                        key={code}
+                        className={`border-b border-c-border px-2 py-3 text-center text-[10px] font-medium uppercase tracking-wider transition-colors ${
+                          isActive ? "bg-c-brand-soft text-c-brand-ink" : "text-c-text-subtle"
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setMatrixSelection(isActive ? null : code, selectedCategory)}
+                          className="flex w-full flex-col items-center gap-0.5 hover:text-c-brand"
+                        >
+                          <span className="whitespace-nowrap">{jur?.flag || ""} {code}</span>
+                        </button>
+                      </th>
+                    );
+                  })}
+                  <th className="border-b border-l border-c-border px-3 py-3 text-right text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">
+                    &Sigma;
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.categories.map((cat) => {
+                  const rowSum = MATRIX_COUNTRIES.reduce(
+                    (acc, code) => acc + (matrixData[cat.name]?.[code] || 0),
+                    0
+                  );
+                  const isActiveRow = selectedCategory === cat.name;
+                  return (
+                    <tr key={cat.name} className="group">
+                      <th
+                        scope="row"
+                        className={`sticky left-0 z-10 border-b border-c-border px-3 py-1.5 text-left ${
+                          isActiveRow ? "bg-c-brand-soft" : "bg-c-surface group-hover:bg-c-surface-2"
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => selectCategory(isActiveRow ? null : cat.name)}
+                          className="flex w-full items-center gap-2 text-left"
+                        >
+                          <span className="truncate text-xs font-medium">{cat.name}</span>
+                        </button>
+                      </th>
+                      {MATRIX_COUNTRIES.map((code) => {
+                        const v = matrixData[cat.name]?.[code] || 0;
+                        const isActiveCell = selectedCategory === cat.name && filters.country === code;
+                        return (
+                          <td
+                            key={code}
+                            className="border-b border-c-border p-0"
+                            style={{ background: matrixBg(v, matrixMaxByCol[code], isActiveRow || filters.country === code) }}
+                          >
+                            <button
+                              type="button"
+                              disabled={v === 0}
+                              onClick={() =>
+                                setMatrixSelection(
+                                  isActiveCell ? null : code,
+                                  isActiveCell ? null : cat.name
+                                )
+                              }
+                              className={`flex h-9 w-full items-center justify-center text-[11px] font-medium tabular-nums transition-colors ${
+                                v === 0
+                                  ? "text-c-text-subtle/40"
+                                  : isActiveCell
+                                  ? "ring-2 ring-inset ring-c-brand text-c-brand-ink font-semibold"
+                                  : "text-c-text hover:ring-1 hover:ring-inset hover:ring-c-brand-ink/30"
+                              }`}
+                            >
+                              {v || "·"}
+                            </button>
+                          </td>
+                        );
+                      })}
+                      <td className="border-b border-l border-c-border bg-c-surface-2/40 px-3 py-1.5 text-right text-xs font-semibold tabular-nums">
+                        {rowSum}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ── 6. Countries Grid ── */}
+        <CountriesGridSection
+          jurisdictions={countriesGridData}
+          lang={lang}
+          selectedCategory={selectedCategory}
+          onSelect={selectCountry}
+        />
+
+        {/* ── 7. Filterable Regulations Table ── */}
+        <section id="exhaustive" className="mt-10 scroll-mt-24">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight">{pt(lang, "exhaustiveList")}</h2>
+              <p className="text-sm text-c-text-muted">
+                {PS.resultCount[lang](filteredRegs.length)}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="rounded-md border border-c-border bg-c-surface px-3 py-1.5 text-sm text-c-text-muted hover:bg-c-surface-2"
+            >
+              {STRINGS.resetFilters[lang]}
+            </button>
+          </div>
+
+          {/* Filter row */}
+          <div className="mb-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+            <input
+              type="search"
+              value={filters.query}
+              onChange={(e) => updateFilter("query", e.target.value)}
+              placeholder={pt(lang, "searchPlaceholder")}
+              className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft sm:col-span-2 lg:col-span-1"
+            />
+            <select
+              value={filters.category}
+              onChange={(e) => updateFilter("category", e.target.value)}
+              className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
+            >
+              <option value="">{pt(lang, "allCategories")}</option>
+              {data.categories.map((cat) => (
+                <option key={cat.name} value={cat.name}>
+                  {cat.name} ({cat.total_regs})
+                </option>
+              ))}
+            </select>
+            <select
+              value={filters.country}
+              onChange={(e) => updateFilter("country", e.target.value)}
+              className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
+            >
+              <option value="">{pt(lang, "allCountries")}</option>
+              {sortedCountries.map((j) => (
+                <option key={j.code} value={j.code}>
+                  {j.flag} {j.name} ({j.total})
+                </option>
+              ))}
+            </select>
+            <select
+              value={filters.criticality}
+              onChange={(e) => updateFilter("criticality", e.target.value)}
+              className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
+            >
+              <option value="">{pt(lang, "allCriticalities")}</option>
+              {criticalities.map((c) => (
+                <option key={c} value={c}>
+                  {c.charAt(0).toUpperCase() + c.slice(1)}
+                </option>
+              ))}
+            </select>
+            <select
+              value={filters.status}
+              onChange={(e) => updateFilter("status", e.target.value)}
+              className="rounded-lg border border-c-border bg-c-surface px-3 py-2 text-sm focus:border-c-brand focus:outline-none"
+            >
+              <option value="">{pt(lang, "allStatuses")}</option>
+              <option value="in_api">{pt(lang, "inApi")}</option>
+              <option value="q3_2026">{pt(lang, "comingSoon")}</option>
+            </select>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto rounded-xl border border-c-border bg-c-surface">
+            <table className="min-w-full text-sm">
+              <thead className="bg-c-surface-2 text-left text-xs uppercase tracking-wider text-c-text-subtle">
+                <tr>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "regulationColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "referenceColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "countryColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "categoryColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "enforcementColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "criticalityColumn")}</th>
+                  <th className="px-4 py-2.5 font-medium">{pt(lang, "statusColumn")}</th>
+                  <th className="px-4 py-2.5 text-right font-medium">{pt(lang, "linkColumn")}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-c-border">
+                {visible.map((r, i) => {
+                  const jur = data.jurisdictions.find((j) => j.code === r.jurisdiction_code);
+                  return (
+                    <tr key={`${r.regulation_ref}-${i}`} className="hover:bg-c-surface-2/50">
+                      <td className="px-4 py-3">
+                        <div className="max-w-xs font-medium leading-tight">{r.regulation_name}</div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <code className="text-[11px] text-c-text-subtle">{r.regulation_ref}</code>
+                      </td>
+                      <td className="px-4 py-3">
+                        <button
+                          type="button"
+                          onClick={() => selectCountry(r.jurisdiction_code)}
+                          className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs hover:bg-c-brand-soft hover:text-c-brand-ink"
+                        >
+                          <span>{jur?.flag || ""}</span>
+                          <span className="font-medium">{r.jurisdiction_name}</span>
+                        </button>
+                      </td>
+                      <td className="px-4 py-3">
+                        <button
+                          type="button"
+                          onClick={() => updateFilter("category", filters.category === r.category ? "" : r.category)}
+                          className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                            filters.category === r.category
+                              ? "bg-c-brand text-white"
+                              : "bg-c-brand-soft text-c-brand-ink hover:bg-c-brand hover:text-white"
+                          }`}
+                        >
+                          {r.category}
+                        </button>
+                      </td>
+                      <td className="px-4 py-3 text-xs text-c-text-muted">
+                        {r.enforcement_body || "—"}
+                      </td>
+                      <td className="px-4 py-3">
+                        <CriticalityBadge criticality={r.criticality} />
+                      </td>
+                      <td className="px-4 py-3">
+                        {r.in_api ? (
+                          <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text">
+                            {pt(lang, "inApi")}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text-muted">
+                            {pt(lang, "comingSoon")}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        {r.url ? (
+                          <a
+                            href={r.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-c-text-muted hover:text-c-brand"
+                          >
+                            &nearr;
+                          </a>
+                        ) : null}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {visible.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-4 py-8 text-center text-sm text-c-text-muted">
+                      {pt(lang, "noResults")}
+                    </td>
+                  </tr>
+                ) : null}
+              </tbody>
+            </table>
+            {filteredRegs.length > visibleCount ? (
+              <div className="flex justify-center border-t border-c-border bg-c-surface-2/40 py-3">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                  className="rounded-md border border-c-border bg-c-surface px-4 py-1.5 text-sm font-medium text-c-text-muted hover:bg-c-surface-2"
+                >
+                  + {Math.min(PAGE_SIZE, filteredRegs.length - visibleCount)} / {filteredRegs.length - visibleCount}
+                </button>
+              </div>
+            ) : null}
+          </div>
+        </section>
+
+        {/* ── 8. ApiCallout ── */}
         <ApiCallout lang={lang} />
 
-        {/* ── 6. Footer — light, simple ── */}
-        <footer
-          className="mt-16 pb-8 pt-6 text-xs"
-          style={{
-            borderTop: "1px solid rgba(0,0,0,0.08)",
-            color: "rgba(0,0,0,0.45)",
-          }}
-        >
+        {/* ── 9. Footer ── */}
+        <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
               {STRINGS.generatedAt[lang]} {generated}
             </span>
             <span className="flex flex-wrap items-center gap-x-2">
-              <Link
-                href="/"
-                className="transition-colors hover:text-[#0008CF]"
-                style={{ color: "rgba(0,0,0,0.55)" }}
-              >
+              <Link href="/" className="text-c-text-muted hover:text-c-brand">
                 {pt(lang, "backToSources")}
               </Link>
               <span>&middot;</span>
-              <a
-                href="https://cleolabs.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-[#0008CF]"
-                style={{ color: "rgba(0,0,0,0.55)" }}
-              >
+              <a href="https://cleolabs.co" target="_blank" rel="noopener noreferrer" className="text-c-text-muted hover:text-c-brand">
                 Cleo Labs
               </a>
               <span>&middot;</span>
-              <Link
-                href="/privacy"
-                className="transition-colors hover:text-[#0008CF]"
-                style={{ color: "rgba(0,0,0,0.55)" }}
-              >
+              <Link href="/privacy" className="text-c-text-muted hover:text-c-brand">
                 {STRINGS.privacyLink[lang]}
               </Link>
             </span>
@@ -726,61 +841,157 @@ export default function ProductDashboard({
   );
 }
 
-/* ── KPI Card (white card, "before -> after") ── */
-function KpiCard({
-  before,
-  afterValue,
-  multiplier,
+/* ── Kpi (identical pattern to Dashboard.tsx) ── */
+function Kpi({
+  value,
   label,
-  lang,
+  format,
+  accent,
 }: {
-  before: string;
-  afterValue: number;
-  multiplier?: string;
+  value: number;
   label: string;
-  lang: Lang;
+  format: (n: number) => string;
+  accent?: boolean;
 }) {
   return (
-    <div
-      className="flex flex-col justify-between rounded-2xl p-5"
-      style={{
-        background: "#FFFFFF",
-        border: "1px solid rgba(0,0,0,0.08)",
-      }}
-    >
-      <div className="flex items-baseline gap-2">
-        <span
-          className="text-sm line-through"
-          style={{ color: "rgba(0,0,0,0.35)" }}
-        >
-          {before}
-        </span>
-        <span style={{ color: "rgba(0,0,0,0.25)" }}>&rarr;</span>
+    <div className="flex flex-col">
+      <div className={`tabular-display text-3xl font-light leading-none md:text-4xl ${accent ? "text-c-brand" : "text-c-text"}`}>
+        <AnimatedNumber value={value} format={format} />
+        {accent ? <span className="text-c-glow">+</span> : null}
       </div>
-      <div
-        className="mt-1.5 text-3xl font-bold tabular-nums leading-none md:text-4xl"
-        style={{ color: "#1A1A1A" }}
-      >
-        <AnimatedNumber
-          value={afterValue}
-          format={(n) => formatNumber(n, lang)}
-        />
-        {multiplier && (
-          <span
-            className="ml-2 text-sm font-semibold"
-            style={{ color: "#0008CF" }}
-          >
-            {multiplier}
-          </span>
-        )}
-      </div>
-      <div
-        className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em]"
-        style={{ color: "rgba(0,0,0,0.45)" }}
-      >
+      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
         {label}
       </div>
     </div>
+  );
+}
+
+/* ── StatCard (like StatsHeader Big) ── */
+function StatCard({ label, value, accent }: { label: string; value: string; accent?: string }) {
+  return (
+    <div className="rounded-xl border border-c-border bg-c-surface p-5">
+      <div className="text-[11px] uppercase tracking-wider text-c-text-subtle">{label}</div>
+      <div className="mt-1 text-3xl font-semibold tracking-tight tabular-nums">{value}</div>
+      {accent ? <div className="mt-1 text-xs text-c-success">{accent}</div> : null}
+    </div>
+  );
+}
+
+/* ── CriticalityBadge ── */
+function CriticalityBadge({ criticality }: { criticality: string }) {
+  const c = criticality.toLowerCase();
+  let classes = "rounded-md px-2 py-0.5 text-[10px] font-medium ";
+  if (c === "critical") classes += "bg-c-surface-2 text-c-text font-semibold";
+  else if (c === "high") classes += "bg-c-surface-2 text-c-text";
+  else if (c === "medium") classes += "bg-c-surface-2 text-c-text-muted";
+  else classes += "bg-c-surface-2 text-c-text-subtle";
+  return <span className={classes}>{c.charAt(0).toUpperCase() + c.slice(1)}</span>;
+}
+
+/* ── Countries Grid Section (inline, mirrors CountriesGrid.tsx) ── */
+type CountrySort = "volume_desc" | "coverage_desc" | "name_asc";
+
+function CountriesGridSection({
+  jurisdictions,
+  lang,
+  selectedCategory,
+  onSelect,
+}: {
+  jurisdictions: ProductJurisdiction[];
+  lang: Lang;
+  selectedCategory: string | null;
+  onSelect: (code: string) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<CountrySort>("volume_desc");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    let out = jurisdictions;
+    if (q) {
+      out = out.filter(
+        (j) => j.name.toLowerCase().includes(q) || j.code.toLowerCase().includes(q)
+      );
+    }
+    return [...out].sort((a, b) => {
+      switch (sort) {
+        case "coverage_desc":
+          return b.pct - a.pct || b.total - a.total;
+        case "name_asc":
+          return a.name.localeCompare(b.name);
+        default:
+          return b.total - a.total;
+      }
+    });
+  }, [jurisdictions, query, sort]);
+
+  return (
+    <section className="mt-12">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight">
+            {PS.jurisdictionsGridHeader[lang]}
+          </h2>
+          <p className="text-sm text-c-text-muted">
+            {filtered.length} / {jurisdictions.length}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={PS.searchCountryPlaceholder[lang]}
+            className="rounded-lg border border-c-border bg-c-surface px-3 py-1.5 text-sm focus:border-c-brand focus:outline-none focus:ring-2 focus:ring-c-brand-soft"
+          />
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as CountrySort)}
+            className="rounded-lg border border-c-border bg-c-surface px-3 py-1.5 text-sm focus:border-c-brand focus:outline-none"
+          >
+            <option value="volume_desc">&darr; {PS.sortVolume[lang]}</option>
+            <option value="coverage_desc">&darr; {PS.sortCoverage[lang]}</option>
+            <option value="name_asc">{PS.sortAlpha[lang]}</option>
+          </select>
+        </div>
+      </div>
+
+      <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {filtered.map((j) => (
+          <li key={j.code}>
+            <button
+              type="button"
+              onClick={() => onSelect(j.code)}
+              className="group flex w-full items-center justify-between gap-3 rounded-xl border border-c-border bg-c-surface p-3 text-left transition-all hover:border-c-brand hover:shadow-sm"
+            >
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl leading-none">{j.flag}</span>
+                  <span className="truncate text-sm font-medium">{j.name}</span>
+                </div>
+                <div className="mt-1.5 flex items-center gap-2">
+                  <div className="h-1 flex-1 overflow-hidden rounded-full bg-c-border">
+                    <div
+                      className="h-full rounded-full bg-c-brand"
+                      style={{ width: `${j.pct}%` }}
+                    />
+                  </div>
+                  <span className="text-[10px] tabular-nums text-c-text-subtle">{j.pct}%</span>
+                </div>
+              </div>
+              <span className="shrink-0 text-right">
+                <span className={`block text-base font-semibold tabular-nums leading-none ${selectedCategory ? "text-c-brand" : ""}`}>
+                  {j.total}
+                </span>
+                <span className="block text-[10px] uppercase tracking-wider text-c-text-subtle">
+                  {PS.regsLabel[lang]}
+                </span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -801,7 +1012,6 @@ function ProductDrawer({
   const { jur, regs, grouped } = data;
   const categories = Object.keys(grouped).sort();
 
-  /* Escape key to close */
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -810,15 +1020,12 @@ function ProductDrawer({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  /* Lock body scroll while drawer is open */
   useEffect(() => {
     const prev = document.body.style.overflow;
     const prevPaddingRight = document.body.style.paddingRight;
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
-    if (scrollbarWidth > 0)
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
     return () => {
       document.body.style.overflow = prev;
       document.body.style.paddingRight = prevPaddingRight;
@@ -828,111 +1035,52 @@ function ProductDrawer({
   return (
     <>
       <div
-        className="fixed inset-0 z-[1100] backdrop-blur-[2px] transition-opacity duration-200"
-        style={{ background: "rgba(0,0,0,0.25)" }}
+        className="fixed inset-0 z-[1100] bg-black/25 backdrop-blur-[2px] transition-opacity duration-200"
         onClick={onClose}
       />
-      <aside
-        className="fixed right-0 top-0 z-[1101] flex h-[100dvh] w-full max-w-xl flex-col"
-        style={{
-          background: "#F9F8F6",
-          borderLeft: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "0 24px 64px rgba(0,0,0,0.10)",
-        }}
-      >
-        <header
-          className="flex items-start justify-between gap-4 px-6 py-5"
-          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
-        >
+      <aside className="fixed right-0 top-0 z-[1101] flex h-[100dvh] w-full max-w-xl flex-col border-l border-c-border bg-c-surface shadow-2xl">
+        <header className="flex items-start justify-between gap-4 border-b border-c-border px-6 py-5">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
               <span className="text-3xl leading-none">{jur.flag}</span>
               <div className="min-w-0">
-                <h2
-                  className="truncate text-xl font-bold tracking-tight"
-                  style={{ color: "#1A1A1A" }}
-                >
-                  {jur.name}
-                </h2>
-                <div
-                  className="text-xs uppercase tracking-wider"
-                  style={{ color: "rgba(0,0,0,0.45)" }}
-                >
-                  {jur.code}
-                </div>
+                <h2 className="truncate text-xl font-semibold tracking-tight">{jur.name}</h2>
+                <div className="text-xs uppercase tracking-wider text-c-text-subtle">{jur.code}</div>
               </div>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-2.5 py-1 text-sm transition-colors"
-            style={{
-              color: "rgba(0,0,0,0.55)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
-            aria-label={pt(lang, "closeDrawer")}
+            className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-sm text-c-text-muted hover:bg-c-surface-2"
+            aria-label={PS.closeDrawer[lang]}
           >
             &#x2715;
           </button>
         </header>
 
         {/* Stats bar */}
-        <div
-          className="px-6 py-4"
-          style={{
-            borderBottom: "1px solid rgba(0,0,0,0.08)",
-            background: "#F0EFEC",
-          }}
-        >
+        <div className="border-b border-c-border bg-c-surface-2 px-6 py-4">
           <div className="grid grid-cols-3 gap-3">
-            <DrawerStat
-              label={lang === "fr" ? "Total" : "Total"}
-              value={jur.total.toString()}
-            />
-            <DrawerStat
-              label={pt(lang, "coverageLabel")}
-              value={`${jur.pct}%`}
-            />
-            <DrawerStat
-              label={lang === "fr" ? "Couvert" : "Covered"}
-              value={jur.found.toString()}
-            />
+            <DrawerStat label={lang === "fr" ? "Total" : "Total"} value={jur.total.toString()} />
+            <DrawerStat label={PS.coverageLabel[lang]} value={`${jur.pct}%`} />
+            <DrawerStat label={lang === "fr" ? "Couvert" : "Covered"} value={jur.found.toString()} />
           </div>
-          {/* V4 progress bar */}
-          <div
-            className="mt-3 h-[5px] w-full overflow-hidden rounded-full"
-            style={{ background: "rgba(0,0,0,0.06)" }}
-          >
-            <div
-              className={`h-full rounded-full transition-all ${coverageBg(jur.pct)}`}
-              style={{ width: `${jur.pct}%` }}
-            />
+          <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-c-border">
+            <div className="h-full rounded-full bg-c-brand" style={{ width: `${jur.pct}%` }} />
           </div>
         </div>
 
         {/* Regulations grouped by category */}
         <div className="flex-1 overflow-y-auto scrollbar-thin px-6 py-4">
-          <h3
-            className="mb-3 text-[11px] font-semibold uppercase tracking-wider"
-            style={{ color: "rgba(0,0,0,0.45)" }}
-          >
-            {pt(lang, "categoriesInDrawer")} ({regs.length})
+          <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-c-text-subtle">
+            {PS.categoriesInDrawer[lang]} ({regs.length})
           </h3>
           {categories.map((cat) => (
             <div key={cat} className="mb-4">
-              <h4
-                className="mb-2 flex items-center gap-2 text-sm font-semibold"
-                style={{ color: "rgba(0,0,0,0.87)" }}
-              >
+              <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
                 {cat}
-                <span
-                  className="rounded-lg px-1.5 py-0.5 text-[10px] font-medium tabular-nums"
-                  style={{
-                    background: "#F0EFEC",
-                    color: "rgba(0,0,0,0.55)",
-                  }}
-                >
+                <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-c-text-subtle">
                   {grouped[cat].length}
                 </span>
               </h4>
@@ -940,67 +1088,30 @@ function ProductDrawer({
                 {grouped[cat].map((r, i) => (
                   <li
                     key={`${r.regulation_ref}-${i}`}
-                    className="rounded-2xl p-3 transition-shadow hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
-                    style={{
-                      background: "#FFFFFF",
-                      border: "1px solid rgba(0,0,0,0.08)",
-                    }}
+                    className="rounded-xl border border-c-border bg-c-surface p-3 transition-shadow hover:shadow-sm"
                   >
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <h5
-                            className="text-sm font-medium leading-tight"
-                            style={{ color: "rgba(0,0,0,0.87)" }}
-                          >
-                            {r.regulation_name}
-                          </h5>
+                          <h5 className="text-sm font-medium leading-tight">{r.regulation_name}</h5>
                           {r.in_api ? (
-                            <span
-                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
-                              style={{
-                                background: "rgba(0,0,0,0.04)",
-                                color: "rgba(0,0,0,0.62)",
-                              }}
-                            >
-                              {pt(lang, "inApi")}
+                            <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text">
+                              {PS.inApi[lang]}
                             </span>
                           ) : (
-                            <span
-                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
-                              style={{
-                                background: "rgba(148,107,45,0.08)",
-                                color: "#946B2D",
-                              }}
-                            >
-                              {pt(lang, "comingSoon")}
+                            <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text-muted">
+                              {PS.comingSoon[lang]}
                             </span>
                           )}
-                          {r.criticality === "critical" && (
-                            <span
-                              className="inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-medium"
-                              style={{
-                                background: "rgba(0,0,0,0.06)",
-                                color: "rgba(0,0,0,0.62)",
-                              }}
-                            >
+                          {r.criticality.toLowerCase() === "critical" && (
+                            <span className="inline-flex items-center rounded-md bg-c-surface-2 px-2 py-0.5 text-[10px] font-medium text-c-text">
                               Critical
                             </span>
                           )}
                         </div>
-                        <code
-                          className="mt-0.5 block text-[11px]"
-                          style={{ color: "rgba(0,0,0,0.45)" }}
-                        >
-                          {r.regulation_ref}
-                        </code>
+                        <code className="mt-0.5 block text-[11px] text-c-text-subtle">{r.regulation_ref}</code>
                         {r.enforcement_body && (
-                          <div
-                            className="mt-1 text-[11px]"
-                            style={{ color: "rgba(0,0,0,0.55)" }}
-                          >
-                            {r.enforcement_body}
-                          </div>
+                          <div className="mt-1 text-[11px] text-c-text-muted">{r.enforcement_body}</div>
                         )}
                       </div>
                       {r.url && (
@@ -1008,13 +1119,9 @@ function ProductDrawer({
                           href={r.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="shrink-0 rounded-lg px-2 py-1 text-[11px] font-medium transition-colors hover:text-[#0008CF]"
-                          style={{
-                            color: "rgba(0,0,0,0.55)",
-                            border: "1px solid rgba(0,0,0,0.08)",
-                          }}
+                          className="shrink-0 rounded-md border border-c-border bg-c-surface px-2 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
                         >
-                          {pt(lang, "officialText")} &nearr;
+                          {PS.officialText[lang]} &nearr;
                         </a>
                       )}
                     </div>
@@ -1029,33 +1136,11 @@ function ProductDrawer({
   );
 }
 
-function DrawerStat({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function DrawerStat({ label, value }: { label: string; value: string }) {
   return (
-    <div
-      className="rounded-xl px-3 py-2"
-      style={{
-        background: "#FFFFFF",
-        border: "1px solid rgba(0,0,0,0.08)",
-      }}
-    >
-      <div
-        className="text-[10px] font-medium uppercase tracking-wider"
-        style={{ color: "rgba(0,0,0,0.45)" }}
-      >
-        {label}
-      </div>
-      <div
-        className="mt-0.5 text-lg font-bold"
-        style={{ color: "#1A1A1A" }}
-      >
-        {value}
-      </div>
+    <div className="rounded-xl border border-c-border bg-c-surface px-3 py-2">
+      <div className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{label}</div>
+      <div className="mt-0.5 text-lg font-semibold tabular-nums">{value}</div>
     </div>
   );
 }

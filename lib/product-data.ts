@@ -35,9 +35,11 @@ export interface ProductRegulation {
 export interface ProductComplianceData {
   totals: {
     regulations: number;
-    documents: number;
-    sources: number;
+    authorities: number;
     countries: number;
+    products_tracked: number;
+    legal_documents: number;
+    sources: number;
     categories: number;
     coverage_pct: number;
   };
