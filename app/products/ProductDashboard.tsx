@@ -194,10 +194,16 @@ export default function ProductDashboard({
     setVisibleCount(PAGE_SIZE);
   }, [filters]);
 
-  /* ── Global category selection: sync with filters ── */
+  /* ── Global category selection: sync with filters + scroll to table ── */
   function selectCategory(cat: string | null) {
     setSelectedCategory(cat);
     setFilters((f) => ({ ...f, category: cat ?? "" }));
+    if (cat) {
+      setTimeout(() => {
+        const el = document.getElementById("exhaustive");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    }
   }
 
   /* ── Matrix cell click → filter category + country + scroll to table ── */
@@ -415,23 +421,56 @@ export default function ProductDashboard({
       </header>
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
-        {/* ── 2. Title + 5 KPIs inline ── */}
-        <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
+        {/* ── 2. Title + growth KPIs ── */}
+        <section className="mb-8">
+          <div className="max-w-3xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-c-brand/20 bg-c-brand-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
+              <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
+              Product Compliance Atlas
+            </div>
+            <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
               {pt(lang, "titleA")}{" "}
               <span className="italic text-c-brand">{pt(lang, "titleB")}</span>
             </h1>
-            <p className="mt-2 text-sm text-c-text-muted md:text-[15px]">
+            <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-c-text-muted">
               {pt(lang, "subtitle")}
             </p>
           </div>
-          <div className="flex flex-wrap items-end gap-x-8 gap-y-2">
-            <Kpi value={data.totals.legal_documents} label={pt(lang, "kpiDocs")} format={(n) => formatVolume(n, lang)} accent />
-            <Kpi value={data.totals.regulations} label={pt(lang, "kpiRegs")} format={(n) => formatNumber(n, lang)} />
-            <Kpi value={data.totals.countries} label={pt(lang, "kpiCountries")} format={(n) => formatNumber(n, lang)} />
-            <Kpi value={data.totals.categories} label={pt(lang, "statsCategories")} format={(n) => formatNumber(n, lang)} />
-            <Kpi value={avgCoverage} label={pt(lang, "statsCoverage")} format={(n) => `${n}%`} />
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-xs line-through text-c-text-subtle">25,000</div>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={209468} format={(n) => formatNumber(n, lang)} /></span>
+              </div>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-bold text-c-brand-ink">×8</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiRegs")}</span>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-xs line-through text-c-text-subtle">19,000</div>
+              <div className="mt-1 text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={27518} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiAuthorities")}</div>
+            </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-xs line-through text-c-text-subtle">152</div>
+              <div className="mt-1 text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={163} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCountries")}</div>
+            </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-xs line-through text-c-text-subtle">2,697</div>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={2839} format={(n) => formatNumber(n, lang)} /></span>
+              </div>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-bold text-c-brand-ink">+5%</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProducts")}</span>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="mt-1 text-2xl font-bold tabular-nums text-c-brand"><AnimatedNumber value={1700000} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span></div>
+              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiDocs")}</div>
+            </div>
           </div>
         </section>
 
