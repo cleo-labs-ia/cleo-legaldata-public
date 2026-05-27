@@ -29,9 +29,10 @@ const PS = {
     en: "From EU cosmetics to Japanese food standards — a public inventory of every product regulation across 50 jurisdictions.",
   },
   kpiRegs: { fr: "réglementations", en: "regulations" },
-  kpiCountries: { fr: "juridictions", en: "jurisdictions" },
-  kpiSources: { fr: "portails officiels", en: "official portals" },
-  kpiIndustries: { fr: "industries", en: "industries" },
+  kpiAuthorities: { fr: "autorités", en: "authorities" },
+  kpiCountries: { fr: "pays", en: "countries" },
+  kpiProducts: { fr: "produits trackés", en: "products tracked" },
+  kpiDocs: { fr: "documents juridiques", en: "legal documents" },
   coverageLabel: { fr: "Couverture", en: "Coverage" },
   ctaApi: { fr: "Demander un accès API", en: "Get API access" },
   ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
@@ -87,6 +88,24 @@ function coverageTextColor(pct: number): string {
 }
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
+
+function GrowthKpi({ before, after, multiplier, label, featured }: {
+  before: string; after: string; multiplier?: string; label: string; featured?: boolean;
+}) {
+  return (
+    <div className={`relative px-6 py-7 sm:px-8 sm:py-8 ${featured ? "bg-white/[0.06]" : ""}`}>
+      <div className="flex items-baseline gap-2">
+        <span className="text-lg font-light text-white/40 line-through decoration-white/20">{before}</span>
+        <span className="text-white/40">→</span>
+      </div>
+      <div className="tabular-display text-3xl font-light leading-none text-white sm:text-4xl mt-1">
+        {after}
+        {multiplier && <span className="ml-2 text-sm font-medium text-emerald-400">{multiplier}</span>}
+      </div>
+      <div className="mt-3 text-sm font-medium uppercase tracking-[0.14em] text-white/65">{label}</div>
+    </div>
+  );
+}
 
 /* ── Main component ── */
 export default function ProductDashboard({ data }: { data: ProductComplianceData }) {
@@ -215,30 +234,16 @@ export default function ProductDashboard({ data }: { data: ProductComplianceData
             {pt(lang, "subtitle")}
           </p>
 
-          {/* 4 KPIs */}
-          <div className="hero-fade hero-fade-5 mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur sm:grid-cols-4">
-            <HeroKpi
-              value={data.totals.regulations}
-              label={pt(lang, "kpiRegs")}
-              format={(n) => formatCompact(n, lang)}
-              featured
-            />
-            <HeroKpi
-              value={data.totals.countries}
-              label={pt(lang, "kpiCountries")}
-              format={(n) => formatNumber(n, lang)}
-              suffix="+"
-            />
-            <HeroKpi
-              value={data.totals.sources}
-              label={pt(lang, "kpiSources")}
-              format={(n) => formatNumber(n, lang)}
-            />
-            <HeroKpi
-              value={data.totals.categories}
-              label={pt(lang, "kpiIndustries")}
-              format={(n) => formatNumber(n, lang)}
-            />
+          {/* 5 KPIs with growth */}
+          <div className="hero-fade hero-fade-5 mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur sm:grid-cols-5">
+            <GrowthKpi before="25,000" after="209,468" multiplier="×8" label={pt(lang, "kpiRegs")} featured />
+            <GrowthKpi before="19,000" after="27,518" label={pt(lang, "kpiAuthorities")} />
+            <GrowthKpi before="152" after="163" label={pt(lang, "kpiCountries")} />
+            <GrowthKpi before="2,697" after="2,839" multiplier="+5%" label={pt(lang, "kpiProducts")} />
+            <div className="relative px-6 py-7 sm:px-8 sm:py-8">
+              <div className="tabular-display text-4xl font-light leading-none text-white sm:text-5xl">1.7M</div>
+              <div className="mt-3 text-sm font-medium uppercase tracking-[0.14em] text-white/65">{pt(lang, "kpiDocs")}</div>
+            </div>
           </div>
 
           {/* CTAs */}
