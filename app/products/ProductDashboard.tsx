@@ -438,38 +438,24 @@ export default function ProductDashboard({
           </div>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-xs line-through text-c-text-subtle">25,000</div>
-              <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={209468} format={(n) => formatNumber(n, lang)} /></span>
-              </div>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-bold text-c-brand-ink">×8</span>
-                <span className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiRegs")}</span>
-              </div>
+              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={51772} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiRegs")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-xs line-through text-c-text-subtle">19,000</div>
-              <div className="mt-1 text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={27518} format={(n) => formatNumber(n, lang)} /></div>
-              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiAuthorities")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={2844} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProducts")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-xs line-through text-c-text-subtle">152</div>
-              <div className="mt-1 text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={163} format={(n) => formatNumber(n, lang)} /></div>
-              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCountries")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={86} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCountries")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-xs line-through text-c-text-subtle">2,697</div>
-              <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-2xl font-bold tabular-nums text-c-text"><AnimatedNumber value={2839} format={(n) => formatNumber(n, lang)} /></span>
-              </div>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="rounded-md bg-c-brand-soft px-1.5 py-0.5 text-[10px] font-bold text-c-brand-ink">+5%</span>
-                <span className="text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProducts")}</span>
-              </div>
+              <div className="text-3xl font-bold tabular-nums text-c-text">15</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "statsCategories")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="mt-1 text-2xl font-bold tabular-nums text-c-brand"><AnimatedNumber value={1700000} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span></div>
-              <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiDocs")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-brand"><AnimatedNumber value={1500000} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span></div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiDocs")}</div>
             </div>
           </div>
         </section>
