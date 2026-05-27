@@ -149,7 +149,7 @@ export default function ProductMapView({
           const baseOpacity = isSelected ? 0.9 : 0.55;
           return (
             <CircleMarker
-              key={j.code}
+              key={`${j.code}-${j.total}-${j.pct}`}
               center={coords}
               radius={radius}
               pathOptions={{

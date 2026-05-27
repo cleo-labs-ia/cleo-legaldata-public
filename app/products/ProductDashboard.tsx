@@ -29,11 +29,11 @@ const PS = {
     fr: "Atlas conformite produit · Cleo Comply",
     en: "Product Compliance Atlas · Cleo Comply",
   },
-  titleA: { fr: "La conformite produit,", en: "Product compliance data," },
-  titleB: { fr: "a l'echelle mondiale.", en: "worldwide." },
+  titleA: { fr: "La plus grande base de données", en: "The world's largest" },
+  titleB: { fr: "réglementation produit au monde.", en: "product compliance database." },
   subtitle: {
-    fr: "De la cosmetique europeenne aux normes alimentaires japonaises — un inventaire public de chaque reglementation produit dans 50 juridictions.",
-    en: "From EU cosmetics to Japanese food standards — a public inventory of every product regulation across 50 jurisdictions.",
+    fr: "209 000+ réglementations produit dans 163 pays. Cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile — chaque règle, chaque pays, lisible par machine.",
+    en: "209,000+ product regulations across 163 countries. Cosmetics, electronics, toys, medical devices, food, textile — every rule, every country, machine-readable.",
   },
   kpiRegs: { fr: "reglementations", en: "regulations" },
   kpiAuthorities: { fr: "autorites", en: "authorities" },
@@ -489,7 +489,7 @@ export default function ProductDashboard({
               {pt(lang, "categoriesHeader")}
             </h3>
             <p className="mt-0.5 text-xs text-c-text-muted">
-              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(data.totals.regulations, lang)} {pt(lang, "regsLabel")}
+              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(data.regulations.length, lang)} {pt(lang, "regsLabel")}
             </p>
             <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
               {/* "All" button */}
@@ -503,7 +503,7 @@ export default function ProductDashboard({
                 >
                   <span className="truncate text-sm font-medium">{pt(lang, "allCategories")}</span>
                   <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-                    {data.totals.regulations}
+                    {data.regulations.length}
                   </span>
                 </button>
               </li>
@@ -518,7 +518,7 @@ export default function ProductDashboard({
                   >
                     <span className="flex min-w-0 items-center gap-2">
                       {CAT_IMAGES[cat.name] && (
-                        <img src={CAT_IMAGES[cat.name]} alt="" className="h-7 w-7 rounded-md object-cover" />
+                        <img src={CAT_IMAGES[cat.name]} alt="" className="h-10 w-10 rounded-lg object-cover" />
                       )}
                       <span className="truncate text-sm font-medium">{cat.name}</span>
                     </span>
@@ -633,7 +633,7 @@ export default function ProductDashboard({
                           className="flex w-full items-center gap-2 text-left"
                         >
                           {CAT_IMAGES[cat.name] && (
-                            <img src={CAT_IMAGES[cat.name]} alt="" className="h-5 w-5 rounded object-cover" />
+                            <img src={CAT_IMAGES[cat.name]} alt="" className="h-7 w-7 rounded-md object-cover" />
                           )}
                           <span className="truncate text-xs font-medium">{cat.name}</span>
                         </button>
@@ -1143,7 +1143,7 @@ function ProductDrawer({
             <div key={cat} className="mb-4">
               <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
                 {CAT_IMAGES[cat] && (
-                  <img src={CAT_IMAGES[cat]} alt="" className="h-6 w-6 rounded-md object-cover" />
+                  <img src={CAT_IMAGES[cat]} alt="" className="h-8 w-8 rounded-lg object-cover" />
                 )}
                 {cat}
                 <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-c-text-subtle">
