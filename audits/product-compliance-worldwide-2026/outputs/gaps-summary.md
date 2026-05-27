@@ -5,9 +5,9 @@
 
 ## Executive Summary
 
-- **Couverture globale : 61.6%** (1085/1761 régulations FOUND)
-- **676 régulations NOT_FOUND** à ajouter pour exhaustivité worldwide
-- **Critical regs** : 558/747 (74.7%) couvertes
+- **Couverture globale : 63.7%** (1121/1761 régulations FOUND)
+- **640 régulations NOT_FOUND** à ajouter pour exhaustivité worldwide
+- **Critical regs** : 571/747 (76.4%) couvertes
 - **0 produits avec 0% de couverture** : 
 
 ## Top 50 régulations critiques à ajouter en priorité
@@ -65,7 +65,7 @@
 | Peluche bébé 0-3 ans | GCC | GCC BD 131 — Chemical Requirements for Toys | GSO Technical Regulation BD 131 + GSO 1819-3 (chemical migration) | GSO (Gulf Standardization Organization) |
 | Peluche bébé 0-3 ans | Israel | SI 1234 — Israeli Toy Safety Standard | SI 1234 (Standards Institution of Israel — toy safety; aligned with EN 71) | SII (Standards Institution of Israel) + ILNAS + Ministry of Economy |
 
-*(139 autres régulations critiques manquantes — voir master.csv)*
+*(126 autres régulations critiques manquantes — voir master.csv)*
 
 
 ## Gaps par produit
@@ -118,7 +118,7 @@
 - **Canada** — Tobacco and Vaping Products Act (TVPA) + Vaping Promotion Regulations (Tobacco and Vaping Products Act SC 2018 c. 9 + Vaping Products Labelling and Packaging Regulations (SOR/2019-353) + Vaping Products Promotion Regulations (SOR/2019-354))
 - **China** — STMA Order No. 1 (2022) — E-cigarettes regulated as tobacco (STMA Regulations on E-cigarettes (Guo Yan Fa No. 1 of 2022) effective Nov 2022)
 
-### Produit 7 — Capsule lessive (pod) (46.7% couverture, 56 gaps)
+### Produit 7 — Capsule lessive (pod) (55.2% couverture, 47 gaps)
 
 - **Brazil** — ANVISA RDC 184/2017 — Saneantes domissanitários (RDC 184/2017 (ANVISA))
 - **China** — GB 19258 — Safety standard for detergents (GB 19258-2011 (Mandatary Standard))
@@ -126,19 +126,19 @@
 - **European Union** — Child-Resistant Packaging — Detergent Pods (Regulation (EU) 2015/1297)
 - **Gulf Cooperation Council** — GSO 1361 — Detergents General Requirements (GSO 1361:2002 (or latest edition))
 
-### Produit 8 — Complément alimentaire vitamines (34.3% couverture, 44 gaps)
+### Produit 8 — Complément alimentaire vitamines (46.3% couverture, 36 gaps)
 
 - **Switzerland** — Ordonnance sur les compléments alimentaires (OCA) (Ordonnance du DFI sur les compléments alimentaires (RS 817.022.32))
-- **China** — Enregistrement Health Food «Blue Hat» Chine (健康食品注册管理办法 (Order 23/2016) + Health Food Registration Measures)
 - **China** — Standard national GB 16740 Health Foods Chine (GB 16740-2014 (National Standard for Health Foods))
 - **EAEU** — TR TS 027/2012 — Aliments spécialisés EAEU (TR TS 027/2012 (Technical Regulation on Specialized Food Products))
 - **Spain** — Real Decreto 1487/2009 compléments alimentaires Espagne (Real Decreto 1487/2009 de 26 septembre 2009)
+- **GCC** — GSO 1366 compléments alimentaires GCC (GSO 1366:2002 (Food Supplements — Vitamin and Mineral Supplements for Humans) + révisions)
 
-### Produit 9 — Legging sport synthétique (79.7% couverture, 16 gaps)
+### Produit 9 — Legging sport synthétique (86.1% couverture, 11 gaps)
 
-- **United States** — UFLPA - Uyghur Forced Labor Prevention Act (P.L. 117-78 - signed December 23, 2021)
+_Aucune régulation critique manquante._
 
-### Produit 10 — Casque vélo adulte (48.3% couverture, 31 gaps)
+### Produit 10 — Casque vélo adulte (51.7% couverture, 29 gaps)
 
 - **Brazil** — ABNT NBR 16175 — Capacetes para ciclistas (ABNT NBR 16175:2013 (Capacetes para ciclistas — Requisitos e métodos de ensaio))
 - **China** — GB 24429-2009 — Bicycle and electric cycling helmets (GB 24429-2009 《运动头盔 自行车、滑板、轮滑运动头盔的安全要求和试验方法》)
@@ -146,13 +146,13 @@
 - **South Korea** — KS G 6601 — Cyclists' protective helmet (KS G 6601 (자전거 이용자를 위한 보호 헬멧))
 - **Mexico** — NOM-206-SCFI-2002 — Cascos protectores para ciclistas (NOM-206-SCFI-2002 (Norma Oficial Mexicana — Cascos protectores para uso ciclista))
 
-### Produit 11 — Bouteille de vin (70.1% couverture, 23 gaps)
+### Produit 11 — Bouteille de vin (75.3% couverture, 19 gaps)
 
-- **Switzerland** — Loi federale sur l'alcool (LAlc) + Ordonnance (OAlc) (Loi federale sur l'alcool du 21 juin 1932 (LAlc, RS 680) + OAlc (RS 680.11))
 - **China** — GB 15037 — Norme nationale vin Chine (GB 15037-2006 (Vin - specification nationale) + Food Safety Law (Loi n 28/2009 amendee))
 - **Germany** — Weingesetz + Weinverordnung (German Wine Law) (Weingesetz vom 16. Mai 2001 (BGBl. I S. 985) + Weinverordnung (WeinV))
 - **Germany** — AlkStG — Alkoholsteuergesetz (zero excise vin Allemagne) (Alkoholsteuergesetz (AlkStG) + historic wine excise exemption)
 - **Spain** — Ley de la Vina y del Vino (Ley 24/2003, de 10 de julio, de la Vina y del Vino (+ Real Decretos de desarrollo))
+- **India** — Reglementation alcool par Etat — constitution indienne (State List) (Constitution of India - Seventh Schedule, List II, Entry 8 (State List - intoxicating liquors) + FSSAI Food Safety)
 
 ### Produit 12 — Steak emballé (viande fraîche) (90.2% couverture, 8 gaps)
 
@@ -169,14 +169,13 @@
 - **Japan** — Pharmacopée Japonaise (JP) 18ème éd. — Monographie Acetaminophen (Japanese Pharmacopoeia (JP) 18th Edition — Acetaminophen)
 - **Russia** — Loi fédérale 61-FZ — Circulation des médicaments en Russie (Federal Law No. 61-FZ du 12.04.2010 (с изменениями))
 
-### Produit 14 — Pneumatique voiture (86.6% couverture, 11 gaps)
+### Produit 14 — Pneumatique voiture (87.8% couverture, 10 gaps)
 
 - **France** — REP Pneus — Filiere Responsabilite Elargie Producteur pneus (Code de l'Environnement L.541-10 + Decret 2012-1456 modifie 2021)
 - **South Korea** — KOTSA — Korea Automobile Testing and Research Institute Approval (KOTSA Testing Certification (KATRI) + MOLIT)
 - **Russia** — TR TS 018/2011 — Safety of Wheeled Vehicles (tyres scope) (Technical Regulation of Customs Union TR TS 018/2011)
-- **California** — CARB/DTSC 6PPD Priority Product — California Safer Consumer Products (DTSC Priority Products List — 6PPD in Tyres (SCP Regulations 22 CCR Section 69501 et seq.))
 
-### Produit 15 — Insecticide spray maison (78.6% couverture, 15 gaps)
+### Produit 15 — Insecticide spray maison (81.4% couverture, 13 gaps)
 
 - **China** — MARA Pesticide Administration Regulation 2017 (Guowuyuanling No. 677 (2017) + amendments 2022)
 - **EAEU** — TR TS 003/2011 — Chemical Product Safety (Technical Regulation of Customs Union 003/2011)
@@ -184,21 +183,21 @@
 - **Malaysia** — Pesticides Act 1974 (Act 149) (Pesticides Act 1974 (Act 149) + Pesticides Regulations 1974)
 - **Netherlands** — Wet gewasbeschermingsmiddelen en biociden + BPR (Wgb + Regulation 528/2012)
 
-### Produit 16 — Drone grand public (30.1% couverture, 51 gaps)
+### Produit 16 — Drone grand public (32.9% couverture, 49 gaps)
 
 - **Brazil** — ANAC RBAC-E n°94 + DECEA ICA 100-40 (RBAC-E 94 (2017 amended 2023) + ICA 100-40)
 - **Canada** — Transport Canada CARs Part IX — RPAS (CARs Part IX (SOR/2019-11) + RPAS Safety Assurance)
-- **Canada** — ISED RSS-Gen + RSS-247 — RF Compliance (RSS-Gen Issue 6 + RSS-247 Issue 3 (2.4GHz/5GHz))
 - **Switzerland** — BAZL Drone Regulations + OACS (SR 748.941 Verordnung über Luftfahrzeuge besonderer Kategorien (VBLK) + OACS)
 - **China** — CAAC Civil UAV Manufacturer Registration (CAAC Regulations on Civil Unmanned Aircraft (2023) + Decree No. 239)
+- **China** — Real-Name Registration System (drones >250g) (CAAC Administrative Measures for Civil Unmanned Aircraft Real-Name Registration)
 
-### Produit 17 — Robot aspirateur connecté (79.8% couverture, 21 gaps)
+### Produit 17 — Robot aspirateur connecté (82.7% couverture, 18 gaps)
 
 - **Brazil** — INMETRO Portaria 170/2012 + Portaria 364/2013 (Electrical Safety) (Portaria INMETRO 170/2012 + Portaria 364/2013)
 - **Canada** — CSA C22.2 No. 60335-2-2 — Vacuum Cleaners (Canada) (CSA C22.2 No. 60335-2-2:21 (aligned with IEC 60335-2-2:2019))
-- **Canada** — ISED RSS-247 (Wi-Fi + BLE) + RSS-Gen (RSS-247 Issue 2 + RSS-Gen Issue 5)
 - **EAEU** — EAEU Technical Regulations — LV + EMC + RF (TR TS 004/2011 + TR TS 020/2011 + TR TS 048/2019)
-- **United Kingdom** — UKCA — Machinery (UK Machinery Directive (S.I. 2008/1597) transitioning to UK Machinery Regulation)
+- **Russia** — TR TS 004/2011 (Low Voltage) + TR TS 020/2011 (EMC) (TR TS 004/2011 + TR TS 020/2011)
+- **Turkey** — CE uyumlu Turk yonetmelikleri (LVD + EMC + RED + Machinery) (7223 sayili Urun Guvenligi ve Teknik Duzenlemeler Kanunu + ilgili yonetmelikler)
 
 ### Produit 18 — Implant dentaire (62.7% couverture, 28 gaps)
 
@@ -220,16 +219,16 @@ _Aucune régulation critique manquante._
 
 | Région | Gaps total | Critical | High | Medium | Low |
 |---|---|---|---|---|---|
-| Americas | 149 | 43 | 51 | 22 | 4 |
-| Asia-Pacific | 219 | 76 | 70 | 25 | 4 |
-| Europe | 159 | 53 | 66 | 10 | 0 |
-| International | 67 | 3 | 3 | 18 | 33 |
-| MENA & Africa | 82 | 14 | 42 | 11 | 0 |
+| Americas | 141 | 38 | 48 | 22 | 4 |
+| Asia-Pacific | 203 | 70 | 64 | 21 | 4 |
+| Europe | 151 | 51 | 61 | 9 | 0 |
+| International | 65 | 3 | 3 | 18 | 31 |
+| MENA & Africa | 80 | 14 | 40 | 11 | 0 |
 
 ## Recommandations actionnables
 
-1. **Priorité 1 (Q1 — 3 mois)** : ajouter les **189 régulations critiques** manquantes (747 critical universe total)
-2. **Priorité 2 (Q2-Q3 — 6 mois)** : étendre aux **232 régulations HIGH** (613 high universe total)
+1. **Priorité 1 (Q1 — 3 mois)** : ajouter les **176 régulations critiques** manquantes (747 critical universe total)
+2. **Priorité 2 (Q2-Q3 — 6 mois)** : étendre aux **216 régulations HIGH** (613 high universe total)
 3. **Priorité 3 (Q4 — 12 mois)** : couvrir les 247 régulations MEDIUM/LOW
 4. **Élargissement géographique critique** : 95%+ des gaps sont hors-Europe. Cibler en priorité :
    - **Asie-Pacifique** (CN, JP, KR, IN, AU, ASEAN) — marchés stratégiques pour électronique, médical, food

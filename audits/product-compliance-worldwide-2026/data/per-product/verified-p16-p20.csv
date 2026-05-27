@@ -8,6 +8,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 16,EU,Regulation (EU) 2016/679 (GDPR),General Data Protection Regulation,FOUND,7ff2433a-5a5f-435f-ae85-d82d6b487dce,EU General Data Protection Regulation (GDPR),exact_ref match
 16,EU,2002/58/EC (ePrivacy),ePrivacy Directive,FOUND,9a05ce0c-e4ed-4cab-874e-0ef3ebcb6cfd,EU ePrivacy Directive (Directive 2002/58/EC),exact_ref match
 16,EU,2012/19/EU (WEEE recast),WEEE Directive,FOUND,98a9a890-e857-4ae0-a872-7d3b75bb1f04,WEEE Directive,exact_ref match
+16,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR nouvelle réglementation applicable aux drones grand public (entrée en vigueur déc 2024)
 16,FR,Décret n°2018-374 + Arrêté du 17 déc 2015,Décret drones + Arrêté Espace aérien,NOT_FOUND,,,Aucune correspondance France drone 2018-374 trouvée
 16,FR,Loi n°2016-1428 du 24 octobre 2016,Loi sécurité usage drones civils,NOT_FOUND,,,Aucune correspondance Loi 2016-1428 drone trouvée
 16,DE,LuftVO § 21a-21f (as amended 2021 for EU reg alignment),Luftverkehrs-Ordnung (LuftVO) — UAS provisions,NOT_FOUND,,,Aucune correspondance LuftVO UAS trouvée
@@ -30,7 +31,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 16,US-CA,Cal. Civ. Code § 1798.100 et seq. (CCPA/CPRA),CCPA / CPRA — Data Privacy,FOUND,1e0678ef-0d3c-4ba7-8905-ab2734491a6d,California Consumer Privacy Act (CCPA) / CPRA,exact match
 16,US-NY,NY General Business Law § 251 + NY Penal Law § 250.05 + NYC Parks Drone Ban,New York State Drone Laws,NOT_FOUND,,,Aucune correspondance NY drone law trouvée
 16,CA,CARs Part IX (SOR/2019-11) + RPAS Safety Assurance,Transport Canada CARs Part IX — RPAS,NOT_FOUND,,,Aucune correspondance CARs Part IX SOR/2019-11 trouvée
-16,CA,RSS-Gen Issue 6 + RSS-247 Issue 3 (2.4GHz/5GHz),ISED RSS-Gen + RSS-247 — RF Compliance,NOT_FOUND,,,Aucune correspondance RSS-Gen/RSS-247 Canada trouvée
+16,CA,RSS-Gen Issue 6 + RSS-247 Issue 3 (2.4GHz/5GHz),ISED RSS-Gen + RSS-247 — RF Compliance,FOUND,249e38d7-8450-4bfb-8be2-c8a6d5e0421c,ISED RSS Standards (Canada),re-audit 2026-05-27: ISED RSS-247+RSS-Gen entry found (covers 2.4GHz/5GHz)
 16,MX,Circular Obligatoria CO-AV-23/10 R5,DGAC CO-AV-23/10 R5 — Sistemas de Aeronaves Pilotadas a Distancia,NOT_FOUND,,,Aucune correspondance CO-AV-23/10 DGAC Mexico trouvée
 16,BR,RBAC-E 94 (2017 amended 2023) + ICA 100-40,ANAC RBAC-E n°94 + DECEA ICA 100-40,NOT_FOUND,,,Aucune correspondance RBAC-E 94 ANAC drone trouvée
 16,BR,Resolução ANATEL 715/2019 + Ato 14448/2017,ANATEL RF Homologação,FOUND,14bb15b9-692b-48fd-b88c-10421c0acb38,ANATEL Resolution 715/2019,exact_ref match
@@ -45,7 +46,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 16,TW,Civil Aviation Act (as amended 2023) + NCC Low Power Radio Regulations,CAA Civil Aviation Act Drone Amendments + NCC Type Approval,NOT_FOUND,,,Aucune correspondance Civil Aviation Act + NCC drone Taiwan trouvée
 16,JP,Civil Aeronautics Act Amendment (Drone Law) 2022 + MLIT UAS Safety Guidelines,MLIT UAV Regulations + Civil Aeronautics Act,NOT_FOUND,,,Aucune correspondance Civil Aeronautics Act drone Japan trouvée
 16,JP,Aviation Law Art. 132 + 132-2 + 132-85,Aviation Law Article 132 — No-fly zones,NOT_FOUND,,,Aucune correspondance Aviation Law Art 132 Japan trouvée
-16,JP,Radio Law (電波法) + MIC Technical Standards Conformity Certification,MIC Radio Law — Giteki Mark,NOT_FOUND,,,Aucune correspondance Giteki Mark Japan trouvée
+16,JP,Radio Law (電波法) + MIC Technical Standards Conformity Certification,MIC Radio Law — Giteki Mark,FOUND,ac4c4ca3-1e1f-49c2-bf3d-716ac66946cd,Japan Radio Law & TELEC,re-audit 2026-05-27: Japan Radio Law + Giteki/TELEC entry found
 16,KR,Aviation Safety Act (항공안전법) + MoLIT UAS Safety Standards 2023,KOCA UAV Regulations + Aviation Safety Act,NOT_FOUND,,,Aucune correspondance Aviation Safety Act Korea drone trouvée
 16,KR,Radio Waves Act (전파법) + RRA KC Certification,KC Mark — RRA Radio Certification,FOUND,f4278104-9b88-4330-aafd-8b44ec0edf6b,Korea KCC/RRA Radio Certification,RRA KC found
 16,SG,Air Navigation Act Cap 6 + Unmanned Aircraft (Public Safety and Security) Act 2015 + Unmanned Aircraft Order 2019,CAAS Air Navigation Act + Unmanned Aircraft Order 2019,NOT_FOUND,,,Aucune correspondance CAAS Singapore drone trouvée
@@ -84,6 +85,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 17,EU,Regulation (EU) 2023/1542,Batteries Regulation,FOUND,207abee5-7094-446c-96f0-e340a5c29387,EU Battery Regulation 2023/1542,exact_ref match
 17,EU,2011/65/EU (recast),RoHS Directive,FOUND,b8686014-8400-4089-9154-fdfce197b002,EU RoHS Directive 2011/65/EU,exact_ref match
 17,EU,(EC) No 1907/2006,REACH Regulation,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref match
+17,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR applicable au robot aspirateur grand public (entrée en vigueur déc 2024)
 17,FR,Arrete filiere EEE (Code de l'environnement L541-10-1),REP menagere — Ecologic / Ecosystem,FOUND,448dcc4d-4040-4203-86cf-779faa246b7b,REP DEEE France,found
 17,FR,Deliberation CNIL + lignes directrices IA,CNIL — Guide securite IoT et donnees domotique,NOT_FOUND,,,Pas de CNIL IoT spécifique trouvé (CNIL général trouvé mais pas IoT)
 17,DE,Elektro- und Elektronikgeraetegesetz (ElektroG) 2021,ElektroG (German WEEE implementation),FOUND,7c43238b-1264-43f7-a568-7fabe8699fd8,Germany ElektroG (Electrical and Electronic Equipment Act),exact match
@@ -95,7 +97,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 17,NL,Wet milieubeheer + WEEE Directive transposition,WEEE-registratie (Wecycle),FOUND,8a65ae88-c045-42bc-8890-ada3bac7fadf,Dutch Environmental Management Act (Wet milieubeheer),found
 17,NL,Uitvoeringswet AVG (UAVG) + AP guidelines,Dutch Implementation GDPR (UAVG) + AP guidance IoT,FOUND,3d57ad62-9015-40df-b505-219162e00b59,Uitvoeringswet AVG (UAVG),exact match
 17,GB,Product Security and Telecoms Infrastructure Act 2022,UK PSTI Act 2022 — Product Security,FOUND,a15f2e4d-8ed7-46d2-b4b2-e7909282dd4a,UK Product Security and Telecommunications Infrastructure Act (PSTI),exact match
-17,GB,UK Machinery Directive (S.I. 2008/1597) transitioning to UK Machinery Regulation,UKCA — Machinery,NOT_FOUND,,,Aucune correspondance SI 2008/1597 UK Machinery trouvée
+17,GB,UK Machinery Directive (S.I. 2008/1597) transitioning to UK Machinery Regulation,UKCA — Machinery,FOUND,d9b9201c-9e3b-4747-b8b9-a0a074eb2718,UK Supply of Machinery (Safety) Regulations 2008,re-audit 2026-05-27: Supply of Machinery (Safety) Regulations 2008 SI 2008/1597 found
 17,GB,UK Radio Equipment Regulations 2017 (S.I. 2017/1206),UKCA — Radio Equipment (UK RE Regulations 2017),FOUND,b7113519-118f-4d9f-8ba9-4275ac7de1a1,UK Radio Equipment Regulations 2017,exact match
 17,GB,UK GDPR (retained EU law) + DPA 2018,UK GDPR + Data Protection Act 2018,FOUND,1ac0ddbf-cf40-4cde-b28a-f63cf94938bf,UK Data Protection Act 2018 / UK GDPR,exact match
 17,CH,Bundesgesetz ueber die Sicherheit von Produkten (PrSG) + STEG + Maschinenverordnung SR 819.14,Swiss STEG (Low Voltage + Machinery),FOUND,54072951-dc64-4e1e-9dd9-135b4a079380,Swiss Federal Act on Product Safety (PrSG),found
@@ -118,7 +120,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 17,US-CA,Cal. Health & Safety Code paragraph 25249.5 et seq.,Proposition 65 — Safe Drinking Water and Toxic Enforcement Act,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),found
 17,US-NY,NY Gen. Bus. Law paragraph 899-bb,SHIELD Act — Stop Hacks and Improve Electronic Data Security,FOUND,89153fa2-005f-47ed-8b2c-e7d3f3bb8e11,NY SHIELD Act,exact match
 17,CA,CSA C22.2 No. 60335-2-2:21 (aligned with IEC 60335-2-2:2019),CSA C22.2 No. 60335-2-2 — Vacuum Cleaners (Canada),NOT_FOUND,,,CSA C22.2 général trouvé mais pas 60335-2-2 spécifique
-17,CA,RSS-247 Issue 2 + RSS-Gen Issue 5,ISED RSS-247 (Wi-Fi + BLE) + RSS-Gen,NOT_FOUND,,,Aucune correspondance RSS-247 trouvée
+17,CA,RSS-247 Issue 2 + RSS-Gen Issue 5,ISED RSS-247 (Wi-Fi + BLE) + RSS-Gen,FOUND,249e38d7-8450-4bfb-8be2-c8a6d5e0421c,ISED RSS Standards (Canada),re-audit 2026-05-27: ISED RSS Standards entry covers RSS-247+RSS-Gen
 17,CA,Personal Information Protection and Electronic Documents Act (PIPEDA) S.C. 2000 c.5 + Loi 25 Quebec (2021),PIPEDA + Quebec Loi 25 (Law 25),FOUND,250e9b62-65f6-48de-90f7-c2f20b4bb024,Canada PIPEDA / Provincial Privacy Laws,found
 17,MX,NOM-024-SCFI-2013 + IFT-008-2015,IFETEL Homologacion + NOM-024-SCFI-2013,FOUND,47571c8a-4acb-4488-a43e-a1f64ef9a71c,NOM-024-SCFI-2013,exact match
 17,MX,NOM-019-SCFI-2011,NOM-019-SCFI-2011 (Electrical Safety),FOUND,068fcd1e-5519-44df-b9cf-cf688cd2c1af,NOM-019-SCFI-1998,found (version year difference)
@@ -139,7 +141,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 17,TW,Shang Pin Jian Yan Fa (Commodity Inspection Act) + NCC Xing Shi Ren Zheng,BSMI Commodity Inspection + NCC Type Approval,FOUND,57ef5809-b1e4-4f02-b1e6-4a075a41ca87,Taiwan BSMI,found
 17,TW,Ge Ren Zi Liao Bao Hu Fa (PIPA) 2010 amended 2023,PIPA — Personal Information Protection Act (Taiwan),FOUND,44b65853-7578-4d95-aae7-8d52f2759b3b,Taiwan Personal Information Protection Act — NCC Sector Rules,found (Taiwan PIPA sector rules)
 17,JP,Denki Yohin Anzen Ho (PSE Act) + Tokutei Denki Yohin Igai no Denki Yohin category,PSE Mark — DENAN Electrical Safety,FOUND,2aa0a02e-7bb9-4d96-be88-ddae31c77dc4,Japan PSE Mark (Electrical Safety),found
-17,JP,Denpa Ho (Radio Act) + Gijutsu Kijun Tekigo Shomei,MIC Giteki Mark (Radio Type Approval),NOT_FOUND,,,Aucune correspondance Giteki Mark Japan trouvée
+17,JP,Denpa Ho (Radio Act) + Gijutsu Kijun Tekigo Shomei,MIC Giteki Mark (Radio Type Approval),FOUND,5277dbd9-f5bd-4897-9c4f-42698fdc3283,Japan Radio Law / TELEC Certification,re-audit 2026-05-27: Japan Radio Law TELEC/Giteki entry found
 17,JP,Ko Jinn Jo Ho no Hogo ni Kan suru Horitsu (APPI) 2003 amended 2022,APPI — Act on Protection of Personal Information,FOUND,7b83f81b-b42c-473a-a5e5-ad51b7d8a02d,Japan APPI,exact match
 17,JP,IoT Security Guidelines v1.0 2016 (METI/MIC) + Ministerial policy 2024,IoT Security Guidelines + Mandatory Baseline 2024,FOUND,876e8a5a-c23d-4072-afc1-82bfe5a30f98,Japan IoT Security Guidelines,found
 17,KR,Jeon Pa Beop (Radio Waves Act) + Jeon Gi Yong Pum Mit Saeng Hwal Yong Pum An Jeon Gwan Li Beop,KC Mark — RRA Radio + EMC + Safety,FOUND,ff1cc9ac-dfc3-401a-a96a-b331f750d8b9,Korea KC Mark,found
@@ -256,8 +258,10 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 19,EU,Regulation (EC) No 1272/2008,CLP - Classification Labelling Packaging,FOUND,8d52b0c3-a7c5-4fea-af2f-ace27090c8e6,EU CLP Regulation (EC) No 1272/2008,exact_ref match
 19,EU,Regulation (EC) No 66/2010 + Decision 2014/312/EU,EU Ecolabel for paints and varnishes,NOT_FOUND,,,Aucune correspondance EU Ecolabel peintures trouvée
 19,EU,Regulation (EU) No 528/2012,Biocidal Products Regulation,FOUND,08a6ee7e-3d25-4534-bcad-2c66b81b23f2,EU Biocidal Products Regulation,exact_ref match
+19,EU,Regulation (EU) 2023/988,General Product Safety Regulation (GPSR),FOUND,861d8d8e-8950-4d69-b22f-a73f98895c55,EU General Product Safety Regulation (GPSR) 2023/988,re-audit 2026-05-27: GPSR applicable aux peintures décoratives grand public (entrée en vigueur déc 2024)
 19,FR,Décret n° 2011-321 du 23 mars 2011 + Arrêté du 19 avril 2011,Décret relatif à l'étiquetage des produits de construction et de revêtement de sol sur les émissions de polluants volatils,NOT_FOUND,,,Aucune correspondance Décret 2011-321 France VOC trouvée
 19,FR,Code de la Construction et de l'Habitation + Loi Grenelle II,Règlement Général à la Construction (accessoires COV),NOT_FOUND,,,Aucune correspondance Grenelle II COV trouvée
+19,FR,Loi n° 2025-195 du 5 mars 2025 (Loi PFAS),Loi PFAS — interdiction substances per- et polyfluoroalkylées dans peintures déco,FOUND,40e09ec7-9719-41c0-bd5a-2369a6ec4e69,Loi PFAS France,re-audit 2026-05-27: nouvelle réglementation française PFAS applicable aux peintures contenant des PFAS
 19,DE,AgBB Bewertungsschema (2021),AgBB Scheme - Committee for Health-related Evaluation of Building Products,NOT_FOUND,,,Aucune correspondance AgBB trouvée
 19,DE,RAL-UZ 102,Blue Angel Ecolabel for paints,NOT_FOUND,,,Aucune correspondance RAL-UZ 102 Blue Angel paint trouvée
 19,IT,DPR 161/2013,Decreto Presidente della Repubblica - produits de construction émissions,NOT_FOUND,,,Aucune correspondance DPR 161/2013 Italy trouvée

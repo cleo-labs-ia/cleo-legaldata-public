@@ -5,9 +5,9 @@ _Cross-check du 2026-05-27 contre 78 régulations Cleo Legal API (proxy via Cleo
 ## Global
 
 - **Total régulations attendues** : 1761
-- ✅ **FOUND** : 1085 (61.6%)  ████████████░░░░░░░░
+- ✅ **FOUND** : 1121 (63.7%)  █████████████░░░░░░░
 - 🟡 **PARTIAL** : 0 (0.0%)
-- ❌ **NOT_FOUND** : 676 (38.4%)
+- ❌ **NOT_FOUND** : 640 (36.3%)
 
 ## Couverture par produit
 
@@ -19,17 +19,17 @@ _Cross-check du 2026-05-27 contre 78 régulations Cleo Legal API (proxy via Cleo
 | 4 | Peluche bébé 0-3 ans | 122 | 85 | 37 | 69.7% | ██████████░░░░░ |
 | 5 | Pansement adhésif | 74 | 50 | 24 | 67.6% | ██████████░░░░░ |
 | 6 | Vape / e-cigarette | 64 | 18 | 46 | 28.1% | ████░░░░░░░░░░░ |
-| 7 | Capsule lessive (pod) | 105 | 49 | 56 | 46.7% | ███████░░░░░░░░ |
-| 8 | Complément alimentaire vitamines | 67 | 23 | 44 | 34.3% | █████░░░░░░░░░░ |
-| 9 | Legging sport synthétique | 79 | 63 | 16 | 79.7% | ████████████░░░ |
-| 10 | Casque vélo adulte | 60 | 29 | 31 | 48.3% | ███████░░░░░░░░ |
-| 11 | Bouteille de vin | 77 | 54 | 23 | 70.1% | ███████████░░░░ |
+| 7 | Capsule lessive (pod) | 105 | 58 | 47 | 55.2% | ████████░░░░░░░ |
+| 8 | Complément alimentaire vitamines | 67 | 31 | 36 | 46.3% | ███████░░░░░░░░ |
+| 9 | Legging sport synthétique | 79 | 68 | 11 | 86.1% | █████████████░░ |
+| 10 | Casque vélo adulte | 60 | 31 | 29 | 51.7% | ████████░░░░░░░ |
+| 11 | Bouteille de vin | 77 | 58 | 19 | 75.3% | ███████████░░░░ |
 | 12 | Steak emballé (viande fraîche) | 82 | 74 | 8 | 90.2% | ██████████████░ |
 | 13 | Paracétamol OTC | 91 | 78 | 13 | 85.7% | █████████████░░ |
-| 14 | Pneumatique voiture | 82 | 71 | 11 | 86.6% | █████████████░░ |
-| 15 | Insecticide spray maison | 70 | 55 | 15 | 78.6% | ████████████░░░ |
-| 16 | Drone grand public | 73 | 22 | 51 | 30.1% | █████░░░░░░░░░░ |
-| 17 | Robot aspirateur connecté | 104 | 83 | 21 | 79.8% | ████████████░░░ |
+| 14 | Pneumatique voiture | 82 | 72 | 10 | 87.8% | █████████████░░ |
+| 15 | Insecticide spray maison | 70 | 57 | 13 | 81.4% | ████████████░░░ |
+| 16 | Drone grand public | 73 | 24 | 49 | 32.9% | █████░░░░░░░░░░ |
+| 17 | Robot aspirateur connecté | 104 | 86 | 18 | 82.7% | ████████████░░░ |
 | 18 | Implant dentaire | 75 | 47 | 28 | 62.7% | █████████░░░░░░ |
 | 19 | Peinture déco intérieure | 86 | 17 | 69 | 19.8% | ███░░░░░░░░░░░░ |
 | 20 | Croquettes pour chien | 68 | 9 | 59 | 13.2% | ██░░░░░░░░░░░░░ |
@@ -38,30 +38,30 @@ _Cross-check du 2026-05-27 contre 78 régulations Cleo Legal API (proxy via Cleo
 
 | Région | Total | FOUND | NOT_FOUND | % | Bar |
 |---|---:|---:|---:|---:|---|
-| Americas | 381 | 232 | 149 | 60.9% | █████████░░░░░░ |
-| Asia-Pacific | 524 | 305 | 219 | 58.2% | █████████░░░░░░ |
-| Europe | 542 | 383 | 159 | 70.7% | ███████████░░░░ |
-| International | 123 | 56 | 67 | 45.5% | ███████░░░░░░░░ |
-| MENA & Africa | 191 | 109 | 82 | 57.1% | █████████░░░░░░ |
+| Americas | 381 | 240 | 141 | 63.0% | █████████░░░░░░ |
+| Asia-Pacific | 524 | 321 | 203 | 61.3% | █████████░░░░░░ |
+| Europe | 542 | 391 | 151 | 72.1% | ███████████░░░░ |
+| International | 123 | 58 | 65 | 47.2% | ███████░░░░░░░░ |
+| MENA & Africa | 191 | 111 | 80 | 58.1% | █████████░░░░░░ |
 
 ## Couverture par criticité
 
 | Criticité | Total | FOUND | NOT_FOUND | % | Bar |
 |---|---:|---:|---:|---:|---|
-| critical | 747 | 558 | 189 | 74.7% | ███████████░░░░ |
-| high | 613 | 381 | 232 | 62.2% | █████████░░░░░░ |
-| medium | 185 | 99 | 86 | 53.5% | ████████░░░░░░░ |
-| low | 62 | 21 | 41 | 33.9% | █████░░░░░░░░░░ |
+| critical | 747 | 571 | 176 | 76.4% | ███████████░░░░ |
+| high | 613 | 397 | 216 | 64.8% | ██████████░░░░░ |
+| medium | 185 | 104 | 81 | 56.2% | ████████░░░░░░░ |
+| low | 62 | 23 | 39 | 37.1% | ██████░░░░░░░░░ |
 
 ## Top 5 produits les mieux couverts
 
 | Rang | Produit | Coverage |
 |---|---|---:|
 | 1 | Steak emballé (viande fraîche) | 90.2% (74/82) |
-| 2 | Pneumatique voiture | 86.6% (71/82) |
-| 3 | Paracétamol OTC | 85.7% (78/91) |
-| 4 | Robot aspirateur connecté | 79.8% (83/104) |
-| 5 | Legging sport synthétique | 79.7% (63/79) |
+| 2 | Pneumatique voiture | 87.8% (72/82) |
+| 3 | Legging sport synthétique | 86.1% (68/79) |
+| 4 | Paracétamol OTC | 85.7% (78/91) |
+| 5 | Robot aspirateur connecté | 82.7% (86/104) |
 
 ## Top 5 produits les moins couverts
 
@@ -70,13 +70,13 @@ _Cross-check du 2026-05-27 contre 78 régulations Cleo Legal API (proxy via Cleo
 | 1 | Croquettes pour chien | 13.2% (9/68) |
 | 2 | Peinture déco intérieure | 19.8% (17/86) |
 | 3 | Vape / e-cigarette | 28.1% (18/64) |
-| 4 | Drone grand public | 30.1% (22/73) |
-| 5 | Complément alimentaire vitamines | 34.3% (23/67) |
+| 4 | Drone grand public | 32.9% (24/73) |
+| 5 | Complément alimentaire vitamines | 46.3% (31/67) |
 
 ## Notable findings
 
 - **0 produits avec 0% de couverture** : 
-- **Couverture Europe** : 383/542 (70.7%)
-- **Couverture hors-Europe** : 702/1219 (57.6%)
-- **Couverture des régulations critiques** : 558/747 (74.7%)
+- **Couverture Europe** : 391/542 (72.1%)
+- **Couverture hors-Europe** : 730/1219 (59.9%)
+- **Couverture des régulations critiques** : 571/747 (76.4%)
 - **Match methods utilisées** : exact_ref (référence officielle) prime, fuzzy_name fallback
