@@ -29,16 +29,18 @@ const PS = {
     fr: "Atlas conformite produit · Cleo Comply",
     en: "Product Compliance Atlas · Cleo Comply",
   },
-  titleA: { fr: "La plus grande base de données", en: "The world's largest" },
-  titleB: { fr: "réglementation produit au monde.", en: "product compliance database." },
+  titleA: { fr: "La plus grande base de donnees", en: "The world's largest" },
+  titleB: { fr: "conformite produit au monde.", en: "product compliance database." },
   subtitle: {
-    fr: "209 000+ réglementations produit dans 163 pays. Cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile — chaque règle, chaque pays, lisible par machine.",
-    en: "209,000+ product regulations across 163 countries. Cosmetics, electronics, toys, medical devices, food, textile — every rule, every country, machine-readable.",
+    fr: "46 000+ reglementations produit dans 152 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
+    en: "46,000+ product regulations across 152 official sources. Check any product against any country's requirements in one API call.",
   },
-  kpiRegs: { fr: "reglementations", en: "regulations" },
-  kpiAuthorities: { fr: "autorites", en: "authorities" },
-  kpiCountries: { fr: "pays", en: "countries" },
+  ctaApi: { fr: "Obtenir un acces API", en: "Get API access" },
+  ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
+  kpiProductRegs: { fr: "reglementations produit", en: "product regulations" },
   kpiProducts: { fr: "produits trackes", en: "products tracked" },
+  kpiSources: { fr: "sources officielles", en: "official sources" },
+  kpiCategories: { fr: "categories produit", en: "product categories" },
   kpiDocs: { fr: "documents juridiques", en: "legal documents" },
   allCategories: { fr: "Toutes categories", en: "All categories" },
   categoriesHeader: {
@@ -77,8 +79,8 @@ const PS = {
     en: "All jurisdictions",
   },
   exhaustiveList: {
-    fr: "Liste exhaustive des reglementations",
-    en: "Exhaustive regulation list",
+    fr: "Reglementations produit dans le monde",
+    en: "Product regulations worldwide",
   },
   searchPlaceholder: {
     fr: "Rechercher une reglementation, un pays...",
@@ -176,6 +178,18 @@ const EMPTY_FILTERS: Filters = {
 
 const PAGE_SIZE = 100;
 
+/* ── Verified numbers ── */
+const VERIFIED = {
+  productRegulations: 46031,
+  productsTracked: 2844,
+  officialSources: 152,
+  productCategories: 15,
+  legalDocuments: 1702283,
+  auditRegsIdentified: 1761,
+  auditJurisdictions: 50,
+  auditCoveragePct: 64,
+};
+
 /* ── Main component ── */
 export default function ProductDashboard({
   data,
@@ -229,7 +243,6 @@ export default function ProductDashboard({
   /* ── Filtered jurisdictions for the map (by category) ── */
   const filteredJurisdictions = useMemo(() => {
     if (!selectedCategory) return data.jurisdictions;
-    // Recompute per-jurisdiction stats for the selected category
     const regsByJur: Record<string, { total: number; found: number }> = {};
     for (const r of data.regulations) {
       if (r.category !== selectedCategory) continue;
@@ -268,7 +281,7 @@ export default function ProductDashboard({
     });
   }, [data.regulations, deferredQuery, filters]);
 
-  /* ── Matrix data: for each category × country, count of "In API" regs ── */
+  /* ── Matrix data: for each category x country, count regs ── */
   const matrixData = useMemo(() => {
     const m: Record<string, Record<string, number>> = {};
     for (const cat of data.categories) {
@@ -330,14 +343,6 @@ export default function ProductDashboard({
     return { jur, regs, grouped };
   }, [drawerJur, data.jurisdictions, data.regulations, selectedCategory]);
 
-  /* ── Average coverage ── */
-  const avgCoverage = useMemo(() => {
-    if (data.jurisdictions.length === 0) return 0;
-    return Math.round(
-      data.jurisdictions.reduce((s, j) => s + j.pct, 0) / data.jurisdictions.length
-    );
-  }, [data.jurisdictions]);
-
   const generated = new Date().toLocaleDateString(
     lang === "fr" ? "fr-FR" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
@@ -367,7 +372,7 @@ export default function ProductDashboard({
 
   return (
     <div className="min-h-screen pb-16">
-      {/* ── 1. Header light — identical to Dashboard.tsx ── */}
+      {/* ── 1. Header — identical to Dashboard.tsx ── */}
       <header className="border-b border-c-border bg-c-surface">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
           <div className="flex items-center gap-3">
@@ -421,12 +426,12 @@ export default function ProductDashboard({
       </header>
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
-        {/* ── 2. Title + growth KPIs ── */}
+        {/* ── Section 1: Hero ── */}
         <section className="mb-8">
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-c-brand/20 bg-c-brand-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
-              Product Compliance Atlas
+              Product Compliance API
             </div>
             <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
               {pt(lang, "titleA")}{" "}
@@ -435,33 +440,61 @@ export default function ProductDashboard({
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-c-text-muted">
               {pt(lang, "subtitle")}
             </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/api"
+                className="inline-flex items-center rounded-lg bg-c-brand px-4 py-2 text-sm font-medium text-white hover:bg-c-brand-ink transition-colors"
+              >
+                {pt(lang, "ctaApi")} →
+              </Link>
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById("coverage-section");
+                  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="inline-flex items-center rounded-lg border border-c-border bg-c-surface px-4 py-2 text-sm font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand transition-colors"
+              >
+                {pt(lang, "ctaCoverage")} ↓
+              </button>
+            </div>
           </div>
+
+          {/* 5 KPI cards — verified numbers */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={51772} format={(n) => formatNumber(n, lang)} /></div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiRegs")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-brand">
+                <AnimatedNumber value={VERIFIED.productRegulations} format={(n) => formatNumber(n, lang)} />
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProductRegs")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={2844} format={(n) => formatNumber(n, lang)} /></div>
+              <div className="text-3xl font-bold tabular-nums text-c-text">
+                <AnimatedNumber value={VERIFIED.productsTracked} format={(n) => formatNumber(n, lang)} />
+              </div>
               <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiProducts")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text"><AnimatedNumber value={86} format={(n) => formatNumber(n, lang)} /></div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCountries")}</div>
+              <div className="text-3xl font-bold tabular-nums text-c-text">
+                <AnimatedNumber value={VERIFIED.officialSources} format={(n) => formatNumber(n, lang)} />
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiSources")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="text-3xl font-bold tabular-nums text-c-text">15</div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "statsCategories")}</div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiCategories")}</div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-brand"><AnimatedNumber value={1500000} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span></div>
+              <div className="text-3xl font-bold tabular-nums text-c-brand">
+                <AnimatedNumber value={VERIFIED.legalDocuments} format={(n) => formatVolume(n, lang)} /><span className="text-c-glow">+</span>
+              </div>
               <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">{pt(lang, "kpiDocs")}</div>
             </div>
           </div>
         </section>
 
-        {/* ── 3. Map + sidebar categories ── */}
-        <section className="grid gap-4 lg:grid-cols-[1fr_320px]">
+        {/* ── Section 2: Map + sidebar categories ── */}
+        <section id="coverage-section" className="scroll-mt-8 grid gap-4 lg:grid-cols-[1fr_320px]">
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
               jurisdictions={filteredJurisdictions}
@@ -475,10 +508,10 @@ export default function ProductDashboard({
               {pt(lang, "categoriesHeader")}
             </h3>
             <p className="mt-0.5 text-xs text-c-text-muted">
-              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(data.regulations.length, lang)} {pt(lang, "regsLabel")}
+              {data.categories.length} {pt(lang, "statsCategories").toLowerCase()} · {formatNumber(VERIFIED.auditRegsIdentified, lang)} {pt(lang, "regsLabel")}
             </p>
             <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
-              {/* "All" button */}
+              {/* "All" button — shows 1,761 (audit total) */}
               <li>
                 <button
                   type="button"
@@ -489,7 +522,7 @@ export default function ProductDashboard({
                 >
                   <span className="truncate text-sm font-medium">{pt(lang, "allCategories")}</span>
                   <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-                    {data.regulations.length}
+                    {formatNumber(VERIFIED.auditRegsIdentified, lang)}
                   </span>
                 </button>
               </li>
@@ -521,13 +554,13 @@ export default function ProductDashboard({
           </aside>
         </section>
 
-        {/* ── 4. Stats header — 4 cards ── */}
+        {/* ── Section 3: Stats header — 4 cards ── */}
         <section className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <StatCard label={pt(lang, "statsRegsIdentified")} value={formatNumber(data.totals.regulations, lang)} />
-          <StatCard label={pt(lang, "statsJurisdictions")} value={formatNumber(data.totals.countries, lang)} />
+          <StatCard label={pt(lang, "statsRegsIdentified")} value={formatNumber(VERIFIED.auditRegsIdentified, lang)} />
+          <StatCard label={pt(lang, "statsJurisdictions")} value={formatNumber(VERIFIED.auditJurisdictions, lang)} />
           <StatCard
             label={pt(lang, "statsCoverage")}
-            value={`${avgCoverage}%`}
+            value={`${VERIFIED.auditCoveragePct}%`}
             accent={`${data.categories.filter((c) => c.pct >= 70).length}/${data.categories.length} ${lang === "fr" ? "categories > 70%" : "categories > 70%"}`}
           />
           <div className="rounded-xl border border-c-border bg-c-surface p-4">
@@ -548,7 +581,7 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* ── 5. Domain Matrix: category x country ── */}
+        {/* ── Section 4: Domain Matrix: category x country ── */}
         <section className="mt-10">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -666,7 +699,7 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* ── 6. Countries Grid ── */}
+        {/* ── Section 5: Countries Grid ── */}
         <CountriesGridSection
           jurisdictions={countriesGridData}
           lang={lang}
@@ -674,7 +707,7 @@ export default function ProductDashboard({
           onSelect={selectCountry}
         />
 
-        {/* ── 7. Filterable Regulations Table ── */}
+        {/* ── Section 6: Filterable Regulations Table ── */}
         <section id="exhaustive" className="mt-10 scroll-mt-24">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -822,7 +855,7 @@ export default function ProductDashboard({
                             rel="noopener noreferrer"
                             className="text-xs text-c-text-muted hover:text-c-brand"
                           >
-                            &nearr;
+                            &#x2197;
                           </a>
                         ) : null}
                       </td>
@@ -852,10 +885,10 @@ export default function ProductDashboard({
           </div>
         </section>
 
-        {/* ── 8. ApiCallout ── */}
+        {/* ── Section 7: ApiCallout ── */}
         <ApiCallout lang={lang} />
 
-        {/* ── 9. Footer ── */}
+        {/* ── Section 8: Footer ── */}
         <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>
@@ -886,31 +919,6 @@ export default function ProductDashboard({
           onClose={() => setDrawerJur(null)}
         />
       )}
-    </div>
-  );
-}
-
-/* ── Kpi (identical pattern to Dashboard.tsx) ── */
-function Kpi({
-  value,
-  label,
-  format,
-  accent,
-}: {
-  value: number;
-  label: string;
-  format: (n: number) => string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="flex flex-col">
-      <div className={`tabular-display text-3xl font-light leading-none md:text-4xl ${accent ? "text-c-brand" : "text-c-text"}`}>
-        <AnimatedNumber value={value} format={format} />
-        {accent ? <span className="text-c-glow">+</span> : null}
-      </div>
-      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
-        {label}
-      </div>
     </div>
   );
 }
@@ -1007,7 +1015,7 @@ function CountriesGridSection({
 
       <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {filtered.map((j) => (
-          <li key={j.code}>
+          <li key={`${j.code}-${j.total}-${j.pct}`}>
             <button
               type="button"
               onClick={() => onSelect(j.code)}
@@ -1173,7 +1181,7 @@ function ProductDrawer({
                           rel="noopener noreferrer"
                           className="shrink-0 rounded-md border border-c-border bg-c-surface px-2 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
                         >
-                          {PS.officialText[lang]} &nearr;
+                          {PS.officialText[lang]} &#x2197;
                         </a>
                       )}
                     </div>

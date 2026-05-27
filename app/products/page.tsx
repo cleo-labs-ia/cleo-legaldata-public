@@ -4,9 +4,9 @@ import { loadProductComplianceData } from "@/lib/product-data";
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "Product Compliance Atlas | Cleo Legal Data",
+  title: "Product Compliance API | Cleo Legal Data",
   description:
-    "Every product regulation worldwide, machine-readable. 15 industries, 50+ countries, 209,000+ regulations tracked.",
+    "The world's largest product compliance database. 46,000+ product regulations, 152 official sources, 15 categories. Check any product against any country in one API call.",
 };
 
 export default function ProductsPage() {
