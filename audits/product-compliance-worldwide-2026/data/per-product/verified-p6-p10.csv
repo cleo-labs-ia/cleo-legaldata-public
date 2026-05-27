@@ -1,0 +1,376 @@
+product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supabase_reg_id,supabase_reg_name,verification_note
+6,EU,Directive 2014/40/EU Art. 20,Tobacco Products Directive — ENDS / e-cigarettes,FOUND,5a2168c1-2f02-44e2-9ca5-aa07b8d83d83,EU Tobacco Products Directive / EUTPD,name_substring
+6,EU,EC Proposal COM/2024/0XXX — TPD recast 2024/2025,TPD Revision Proposal — Flavor Restrictions (ENDS),NOT_FOUND,,,No match for 2024/2025 TPD recast proposal
+6,EU,Regulation (EC) No 1907/2006 — REACH,REACH — Nicotine et Propylene Glycol,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref
+6,EU,Council Directive 2020/262/EU + EC proposal for e-liquid excise harmonisation,Excise Directive — Proposed Harmonised E-liquid Excise,NOT_FOUND,,,No match for e-liquid excise harmonisation EU
+6,FR,Decret n 2016-1117 du 11 aout 2016,Decret 2016-1117 — Interdiction vapotage lieux publics fermes,NOT_FOUND,,,Décret 2016-1117 vapotage lieux publics FR not found
+6,FR,Directive 2014/40/EU transposee par Ordonnance n 2016-623,TPD Art. 20 transpose — notification ANSES/DGS,NOT_FOUND,,,Ordonnance 2016-623 TPD FR transposition not found
+6,DE,Tabakerzeugnisgesetz vom 4. April 2016 (BGBl. I S. 569) + Novelle 2021,Tabakerzeugnisgesetz (TabakerzG),FOUND,25c630c9-bd6e-4ca7-8a40-b7356636974c,TabakerzG / TabakerzV,name_substring
+6,DE,Tabaksteuermodernisierungsgesetz 2021 — e-liquid excise from 01.07.2022 rising to EUR 0.32/ml by 2026,E-liquid Excise Duty — Tabaksteuermodernisierungsgesetz,NOT_FOUND,,,DE e-liquid excise Tabaksteuermodernisierungsgesetz not found
+6,IT,Decreto Legislativo 12 gennaio 2016 n. 6,D.Lgs. 6/2016 — Trasposizione TPD + norme ENDS,NOT_FOUND,,,IT D.Lgs 6/2016 TPD transposition not found
+6,IT,Decreto Ministeriale Salute 2024 (attuativo TPD revision),DM Salute — Divieto aromi caratterizzanti (Flavor Ban 2024),NOT_FOUND,,,IT DM Salute 2024 flavor ban not found
+6,ES,Real Decreto 579/2017 de 9 de junio,Real Decreto 579/2017 — Transposicion TPD e-cigarrillos,NOT_FOUND,,,ES RD 579/2017 specific ENDS not found
+6,NL,Tabaks- en rookwarenwet + Besluit uitvoering Tabaks- en rookwarenwet (flavor ban effective Oct 2024),Tabaks- en rookwarenwet + Flavor Ban 2024,FOUND,e964aacf-2150-4085-859b-4748ace298e1,Dutch Tobacco and Smoking Products Act (Tabaks- en rookwarenwet),name_substring
+6,GB,SI 2016/507 — Tobacco and Related Products Regulations 2016,Tobacco and Related Products Regulations 2016 (TRPR),FOUND,51bd9971-6ced-49d8-82c9-5af99a75f633,Tobacco and Related Products Regulations 2016 / Tobacco Advertising and Promotion Act 2002,name_substring
+6,GB,Tobacco and Vapes Bill (introduced Oct 2024) + Statutory Instrument expected 2025,Disposable Vape Ban 2025 — Tobacco and Vapes Bill,FOUND,6093dc53-4dcf-4e72-bcdd-84b3dfd234d3,UK Tobacco and Vapes Bill (Age Verification precedent),name_substring
+6,GB,Finance Act 2024 — VPED from Oct 2026,UK Vaping Products Excise Duty (VPED),NOT_FOUND,,,UK VPED Finance Act 2024 not found
+6,CH,Loi federale sur les produits du tabac et les cigarettes electroniques (LPTab) — en vigueur 1er octobre 2024,Loi sur les produits du tabac (LPTab),FOUND,a4b3d1b5-3337-42ef-8280-d7beff6f7637,TabPG (LPTab),name_substring
+6,NO,Lov om vern mot tobakksskader (Tobakksskadeloven) + Forordning implementing TPD via EEA,Tobakksskadeloven — ENDS regulation (EEA-aligned),FOUND,09110b72-ef08-4b1e-aae9-ea2fc75a81b1,Norwegian Tobacco Control Act,name_substring
+6,RU,Federal Law No. 15-FZ (2013) + No. 303-FZ (2019 ENDS amendment),Loi federale ENDS — Loi 15-FZ + 303-FZ,NOT_FOUND,,,RU 15-FZ found is immigration law not tobacco; specific tobacco/ENDS FZ not matched
+6,TR,Tutun Urunlerinin Zararlarindan Korunma Kanunu No. 4207 + TAPDK regulations,Tutun Kanunu 4207 + Flavor Ban,NOT_FOUND,,,TR tobacco kanunu 4207 not found
+6,UA,Zakon Ukrainy No. 1978-IX (2021) + Postanova KMU,Loi 1978-IX — Regulation ENDS (alignee TPD),NOT_FOUND,,,UA tobacco law 1978-IX not found
+6,EAEU,EAEU Technical Regulation TR TS 035/2014 on Tobacco Products,EAEU TR TS 035/2014 — Tobacco Technical Regulation,NOT_FOUND,,,EAEU TR TS 035/2014 tobacco not found
+6,US,21 U.S.C. Section 387j — Federal Food Drug and Cosmetic Act (FDCA),FDA PMTA — Premarket Tobacco Product Application,FOUND,9977e112-0222-474b-90c4-853a324db1f5,FDA Tobacco Advertising Regulations,name_substring
+6,US,21 CFR Part 1140 — Tobacco Product Sales and Distribution,21 CFR Part 1140 — Sales and Distribution Restrictions,FOUND,9977e112-0222-474b-90c4-853a324db1f5,FDA Tobacco Advertising Regulations,exact_ref
+6,US,15 U.S.C. Section 376 — PACT Act (amended 2021 to include ENDS),PACT Act — Prevent All Cigarette Trafficking,FOUND,37fe4c75-1bde-40f8-abf5-2ef4f189cdac,PACT Act,acronym
+6,US-CA,Proposition 56 (2016) + CA Health and Safety Code Section 119405 (SB 793),CA Prop 56 Tobacco Tax + SB 793 Flavor Ban,NOT_FOUND,,,CA Prop 56 + SB 793 ENDS flavor ban not found
+6,US-NY,NY Public Health Law Section 1399-mm + Executive Order (flavor e-cigs banned 2019 codified 2020),NY Flavor Ban — Public Health Law Section 1399-mm,NOT_FOUND,,,NY PHL 1399-mm e-cig flavor ban not found
+6,CA,Tobacco and Vaping Products Act SC 2018 c. 9 + Vaping Products Labelling and Packaging Regulations (SOR/2019-353) + Vaping Products Promotion Regulations (SOR/2019-354),Tobacco and Vaping Products Act (TVPA) + Vaping Promotion Regulations,NOT_FOUND,,,Canada TVPA SC 2018 not found
+6,CA,Excise Act 2001 (amended 2022) — Vaping Products,Excise Act — Vaping Products Excise Duty,NOT_FOUND,,,Canada Excise Act vaping 2022 not found
+6,MX,Decreto DOF 19-02-2020 + reaffirme Decreto DOF 2024 (prohibition importation/commercialisation ENDS),Decret d'interdiction vapotage — BANNED,NOT_FOUND,,,MX DOF vaping prohibition decree not found
+6,BR,Resolucao ANVISA RDC n 855 de 25 de julho de 2024 (update of RDC 46/2009),ANVISA RDC 855/2024 — Interdiction commerciale BANNED,NOT_FOUND,,,BR RDC 855/2024 e-cigarettes not found
+6,AR,Disposicion ANMAT N 3226/2011 + Disposicion 4481/2011,ANMAT Disposicion 3226/2011 — BANNED commercial,NOT_FOUND,,,AR ANMAT 3226/2011 vaping not found
+6,CL,Resolucion Exenta N 1023 del Ministerio de Salud (2021) + Ley 20.660 (Tabaco),Resolucion Exenta Minsal 1023 — ENDS regule,NOT_FOUND,,,CL Res Exenta 1023 vaping not found
+6,CO,Ley 1335 de 2009 (Prevencion del tabaquismo) + Decreto 1076 reglamentario,Ley 1335/2009 + Decreto Salud ENDS,FOUND,6f892f68-78ec-47d5-b57a-b18e3cf9d600,Colombian Tobacco Control Law,name_substring
+6,MERCOSUR,N/A — Mercosur does not have harmonized ENDS/vaping regulation,Mercosur — pas de cadre harmonise ENDS,NOT_FOUND,,,N/A entry - no regulation
+6,CN,STMA Regulations on E-cigarettes (Guo Yan Fa No. 1 of 2022) effective Nov 2022,STMA Order No. 1 (2022) — E-cigarettes regulated as tobacco,NOT_FOUND,,,CN STMA e-cigarettes regs 2022 not found
+6,CN,GB 41700-2022 (E-cigarette National Standard effective Oct 2022),GB 41700-2022 — Norme nationale e-cigarettes,NOT_FOUND,,,CN GB 41700-2022 not found
+6,CN,STMA Order No. 1 + GB 41700-2022 Art. 6,Flavored Vapes — BANNED for domestic sale,NOT_FOUND,,,CN STMA Order No.1 + GB 41700 not found
+6,HK,Cap. 371 Smoking (Public Health) Ordinance + Alternative Smoking Products Ordinance 2019 effective Apr 2022,Smoking (Public Health) Ordinance — BANNED import/sale 2022,NOT_FOUND,,,HK Cap 371 alternative smoking products ordinance not found
+6,TW,Tobacco Hazards Prevention Act (revised 2023 effective Jan 2024),Tobacco Hazards Prevention Act 2023 — VAPES BANNED,FOUND,bcc6ab23-0967-44fb-b27e-db666b8d8b54,Taiwan Tobacco Hazards Prevention Act,name_substring
+6,JP,Pharmaceuticals and Medical Devices Act (PMD Act) + Tobacco Business Act,Nicotine Vapes — BANNED (Pharmaceutical Affairs Law),FOUND,8c5037b6-3558-481d-8648-dbe14ca221bd,Japan Tobacco and Alcohol Advertising Regulations,name_substring
+6,KR,Tobacco Business Act + Food Sanitation Act + National Health Promotion Act,Tobacco Business Act + Food Sanitation Act (e-liquids),FOUND,d1754167-8872-46ad-8044-aa965e02493c,South Korea Tobacco Business Act & National Health Promotion Act (Advertising Restrictions),name_substring
+6,SG,Tobacco (Control of Advertisements and Sale) Act (Cap. 309) + Tobacco Products Control Act amendments,Tobacco Products Control Act — BANNED,NOT_FOUND,,,SG Cap 309 tobacco control act not found
+6,MY,Control of Smoking Products for Public Health Act 2024 (Act 852),Control of Smoking Products Act 2024,FOUND,abecb456-9c22-4a65-88e1-64eae1928566,Malaysia Control of Tobacco Product Regulations,name_substring
+6,TH,Customs Department Notification (2014) + Tobacco Product Control Act B.E. 2560 (2017),Customs Notification 2014 — BANNED import/sale,FOUND,f8d3d541-dc0f-4044-8d08-110cdcb15124,Thailand Tobacco Products Control Act,name_substring
+6,VN,Nghi quyet 173/NQ-CP (2024) — ban on e-cigarettes and heated tobacco products,Resolution 173/NQ-CP 2024 — BANNED from 2025,NOT_FOUND,,,VN Nghi quyet 173/NQ-CP 2024 e-cig ban not found
+6,ID,Undang-Undang No. 39 Tahun 2007 (Excise Law) + PMK 60/2017 + PMK update 2023,Excise Law 39/2007 + PMK 60/2017 — E-liquids taxed,NOT_FOUND,,,ID Excise Law 39/2007 specific to ENDS not found; only PP 109/2012 tobacco advertising found
+6,PH,Republic Act 11900 — Vaporized Nicotine and Non-Nicotine Products Regulation Act (2022),RA 11900 — Vape Regulation Act 2022,NOT_FOUND,,,PH RA 11900 vaping not found
+6,IN,The Prohibition of Electronic Cigarettes (Production Manufacture Import Export Transport Sale Distribution Storage and Advertisement) Act 2019,PECA 2019 — Prohibition of Electronic Cigarettes Act — BANNED,NOT_FOUND,,,IN India e-cigarettes prohibition act 2019 not found
+6,AU,Therapeutic Goods (Standard for Nicotine Vaping Products) (TGO 110) 2021 + Therapeutic Goods Act 1989,Therapeutic Goods — E-cigarettes Prescription Only,NOT_FOUND,,,AU TGO 110 nicotine vaping + TGA not found
+6,AU,Therapeutic Goods Order No. 110 — Nicotine Vaping Products Standard 2021,Therapeutic Goods Order TGO 110 — Nicotine Vaping Products Standards,NOT_FOUND,,,AU TGO 110 not found - duplicate
+6,NZ,Smokefree Environments and Regulated Products Act 1990 (amended 2022/2023) + Smokefree Environments (Regulated Products) Regulations 2021,Smokefree Environments and Regulated Products Act + 2023 Amendments,NOT_FOUND,,,NZ Smokefree Environments Act vaping not found
+6,ASEAN,N/A — ASEAN does not have harmonized e-cigarette/vaping regulation,ASEAN — pas de cadre harmonise ENDS,NOT_FOUND,,,N/A entry
+6,GCC,Saudi SFDA Circular + UAE Ministry of Health + GCC Health Ministers Council framework,GCC ENDS — Reglementations nationales variables,NOT_FOUND,,,GCC vaping framework not found
+6,IL,Public Health (Restrictions on Advertising and Marketing of Tobacco Products) Law 5743-1983 + Amendment 2019 covering e-cigarettes,Israel — Tobacco Control Law + ENDS regulations,NOT_FOUND,,,IL tobacco advertising law 5743-1983 + 2019 amendment not found
+6,EG,MoH Decree (Ministerial Decree on Electronic Cigarettes) + Customs Circular,Egypt — Ministry of Health Ban on e-cigarettes,NOT_FOUND,,,EG MoH e-cigarette decree not found
+6,MA,Loi n 15-91 relative a la fabrication au conditionnement et a la commercialisation des tabacs + Circulaires Ministere de la Sante,Loi 15-91 — Tabac (vape peu reglemente),NOT_FOUND,,,MA tobacco law 15-91 not found
+6,ZA,Tobacco Products and Electronic Delivery Systems Control Bill (B29-2022),Tobacco Products Control Amendment Bill 2022,NOT_FOUND,,,ZA Tobacco Electronic Delivery Bill B29-2022 not found; only older 1993 act found
+6,NG,National Tobacco Control Act 2015 + NAFDAC Regulations,NTC Act 2015 + NAFDAC — ENDS peu reglemente,NOT_FOUND,,,NG specific National Tobacco Control Act 2015 not found
+6,KE,Tobacco Control Act No. 4 of 2007 + Tobacco Control Regulations 2014,Tobacco Control Act 2007 + ENDS regulations,NOT_FOUND,,,KE Tobacco Control Act 4/2007 not found
+6,CODEX,N/A — Codex Alimentarius covers food safety standards,Codex Alimentarius — N/A pour vapes/ENDS,NOT_FOUND,,,N/A entry
+6,ISO,ISO 20768:2018 (vaping terminology) + ISO 22578:2022 (e-cigarette testing) + IEC standards,ISO Standards — E-cigarettes (ISO 20768 ISO 22578),NOT_FOUND,,,ISO 20768/22578 vaping standards not found
+6,UNECE,N/A — UNECE WP.29 covers vehicle regulations,UNECE WP.29 — N/A pour e-cigarettes,NOT_FOUND,,,N/A entry
+6,WADA,WADA Prohibited List (2024 edition),WADA — Nicotine non listee substance interdite,NOT_FOUND,,,WADA list not applicable to vaping compliance
+6,OECD,WHO FCTC (Framework Convention on Tobacco Control) + OECD Consumer Product Safety Policy Guidance,OECD — WHO FCTC + Product Safety Guidelines,FOUND,8f6aa063-ebe7-4f1e-977f-0c9cb7f32dc6,WHO FCTC (Framework Convention on Tobacco Control) – Implementation in Latin America,name_substring
+7,EU,Regulation (EU) 2026/405,EU Detergents Regulation (successor),FOUND,6cf1361c-11d9-4c8b-86b0-7446e8c78d22,Detergent Regulation (EU) 2026/405,exact_ref
+7,EU,Regulation (EC) 648/2004,EU Detergents Regulation (current),FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,exact_ref
+7,EU,Regulation (EC) 1272/2008 (CLP),CLP Regulation — classification labeling packaging,FOUND,8d52b0c3-a7c5-4fea-af2f-ace27090c8e6,EU CLP Regulation (EC) No 1272/2008,exact_ref
+7,EU,Regulation (EU) 2015/1297,Child-Resistant Packaging — Detergent Pods,NOT_FOUND,,,Reg 2015/1297 not found as standalone; part of UK retained law found but no direct EU entry
+7,EU,Regulation (EU) 2017/542 amending CLP Annex VIII,CLP Annex VIII — Poison Centre Notification,FOUND,570fbd80-eaf5-462e-a62d-be1a3aa29dfa,Poison Centres Notification (CLP Annex VIII),exact_ref
+7,EU,Regulation (EU) 528/2012 (BPR),Biocidal Products Regulation — if antibacterial claim,FOUND,5ddef081-9f18-45e4-ba66-cffef55140fc,EU Biocidal Products Regulation 528/2012,exact_ref
+7,EU,Regulation (EC) 1907/2006 (REACH),REACH Regulation — chemical safety,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref
+7,EU,CLP Annex VI ATP updates (latest: 20th ATP),ATP — CLP Annex VI Harmonised C&L,FOUND,80bb1c62-e4b8-426e-b23f-8f236c5e9b27,CLP Delegated Regulation – ATP Updates,name_substring
+7,EU,Directive (EU) 2019/904 (SUPD),Single-Use Plastics Directive — film packaging,FOUND,6ee8452d-0160-454a-8b74-9982194c8f3b,EU Single-Use Plastics Directive (EU) 2019/904 (SUP Directive),exact_ref
+7,FR,Regulation (EC) 648/2004 + Regulation (EU) 2026/405,Réglementation détergents EU applicable en FR,FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,name_substring
+7,FR,Décret 2020-1725 + Code environnement L541-10,REP Emballages — Citeo + logo Triman,FOUND,cdd6e641-e247-4267-8507-f81da1968d8c,REP Emballages,name_substring
+7,FR,Loi n°2020-105 (AGEC) + Décret 2022-748,Loi AGEC — info ingrédients,FOUND,daa4949c-551d-4601-89a2-c211a36ba035,France Anti-Waste Law (AGEC – Loi Anti-Gaspillage pour une Économie Circulaire),name_substring
+7,DE,WRMG (BGBl. I 2007) as amended,Wasch- und Reinigungsmittelgesetz (WRMG),NOT_FOUND,,,DE WRMG Wasch- und Reinigungsmittelgesetz not found
+7,DE,Regulation (EC) 648/2004 + Regulation (EU) 2015/1297 + CLP,EU Detergents + CLP applicable in DE,FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,name_substring
+7,GB,UK Detergents Regulation (Retained EU Law — EC 648/2004 as amended),UK Detergents Regulation,FOUND,1d861d01-edf2-47ce-b972-807d736034ef,UK Detergents Regulation,name_substring
+7,GB,UK CLP (Retained EU Regulation 1272/2008 as amended by REACH etc. (Amendment) Regs 2019),UK CLP Regulation,FOUND,035b405a-fdb7-467f-b509-414ff402f8d1,UK CLP Regulation (GB CLP),name_substring
+7,GB,UK version of Regulation (EU) 2015/1297 (retained),UK Child-Resistant Packaging — Detergent Pods,FOUND,1d861d01-edf2-47ce-b972-807d736034ef,UK Detergents Regulation,name_substring
+7,GB,UK Biocidal Products Regulation (retained EU 528/2012),UK BPR — if biocidal claim,NOT_FOUND,,,UK retained BPR not found as standalone
+7,CH,Chemikalienverordnung (ChemO) + Chemikalien-Risikoreduktions-Verordnung (ChemRRV),ChemO + ChemRRO — Swiss chemical ordinances,FOUND,9348b5d9-69f7-4e14-b6c4-8a05cddd164c,Swiss REACH Equivalent (ChemV / Chemical Ordinance),name_substring
+7,CH,GHS Verordnung (ChemO Annex 2) — Swiss GHS,Swiss CLP equivalent — GHS labeling,FOUND,9348b5d9-69f7-4e14-b6c4-8a05cddd164c,Swiss REACH Equivalent (ChemV / Chemical Ordinance),name_substring
+7,NO,Produktforskriften + REACH-NO (EEA adoption),Norwegian Detergent Regulations + REACH-NO,FOUND,07af7d5c-c840-4728-a1e7-d3f276a58b7b,Norway Product Regulations (Tekstilforskriften),name_substring
+7,US,15 USC 1471 et seq. (PPPA),Poison Prevention Packaging Act (PPPA),FOUND,fd9261a6-68d0-4a43-9190-a06b158820a9,PPPA,exact_ref
+7,US,16 CFR Part 1700.14,16 CFR Part 1700.14 — CR Packaging Substances,FOUND,ad3c75ce-808c-4f62-8b49-92f13a59209a,Poison Prevention Packaging Act,exact_ref
+7,US,ASTM F3159-23,ASTM F3159-23 — Liquid Laundry Detergent Packets,NOT_FOUND,,,ASTM F3159 not found
+7,US,ASTM F3158,ASTM F3158 — General Detergent Packets,NOT_FOUND,,,ASTM F3158 not found
+7,US,15 USC 1261 et seq. (FHSA) + 16 CFR Part 1500,Federal Hazardous Substances Act (FHSA),FOUND,ee27800a-28f4-4797-ab81-c6ff8c67e6a6,US Federal Hazardous Substances Act,exact_ref
+7,US,15 USC 2601 et seq. (TSCA) + EPA 40 CFR,EPA TSCA — Toxic Substances Control Act,FOUND,1c71cc67-9f98-42c7-8292-92064412137b,US Toxic Substances Control Act (TSCA),exact_ref
+7,US-CA,California Health & Safety Code Section 25249.5 et seq. (Prop 65),Proposition 65 — CA Safe Drinking Water Act,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),name_substring
+7,US-CA,California AB 1417 (2017) + SB 258 (2017),AB 1417 — Cleaning Product Right to Know Act,NOT_FOUND,,,CA AB 1417 / SB 258 detergent ingredients not found
+7,US-NY,NY Environmental Conservation Law Article 35-D,NY Household Cleansing Product Information Disclosure Program,NOT_FOUND,,,NY ECL 35-D detergents not found
+7,CA,SOR/2001-269 (CCCR 2001) under Canada Consumer Product Safety Act,Consumer Chemicals and Containers Regulations (CCCR 2001),FOUND,63fbabbc-c49b-4fc8-a58d-54411c3de87a,Canadian Consumer Chemicals and Containers Regulations,exact_ref
+7,CA,"S.C. 2010, c. 21 (CCPSA) + Hazardous Products Act R.S.C. 1985",Canada Consumer Product Safety Act + Hazardous Products Act,FOUND,45656c8f-2c94-4a6b-a289-1c4b2eafebe7,Canada Consumer Product Safety Act (CCPSA),exact_ref
+7,CA,Canadian Environmental Protection Act 1999 (CEPA) + DSL,Canada Environment CEPA — chemical assessment,FOUND,bcebc3ec-118f-4100-a7d1-ddaf73c27990,Canadian Environmental Protection Act (CEPA) — Cosmetics,name_substring
+7,MX,NOM-189-SSA1/SCFI-2018,NOM-189-SSA1/SCFI-2018 — Cleaning Products,NOT_FOUND,,,MX NOM-189 not found
+7,MX,NOM-050-SCFI-2004,NOM-050-SCFI-2004 — General labeling,FOUND,b0dfa9f7-c489-4120-9d8b-6e48a7f2e139,NOM-050-SCFI-2004,exact_ref
+7,BR,RDC 184/2017 (ANVISA),ANVISA RDC 184/2017 — Saneantes domissanitários,NOT_FOUND,,,BR RDC 184/2017 detergents not found
+7,BR,RDC 59/2010 (ANVISA),ANVISA RDC 59/2010 — Product registration,NOT_FOUND,,,BR RDC 59/2010 not found
+7,BR,ABNT NBR 14274,ABNT NBR 14274 — Laundry detergent standard,NOT_FOUND,,,BR NBR 14274 not found
+7,AR,Disposición ANMAT 7292/98,ANMAT Disposición 7292/98 — Detergentes,NOT_FOUND,,,AR ANMAT 7292/98 not found
+7,CL,Decreto Supremo 105/96 + ISP regulations,Decreto Supremo 105/96 — Reglamento sanitario productos quimicos,NOT_FOUND,,,CL DS 105/96 detergents not found
+7,CN,GB 19258-2011 (Mandatary Standard),GB 19258 — Safety standard for detergents,NOT_FOUND,,,CN GB 19258-2011 not found
+7,CN,GB/T 13174-2021,GB/T 13174 — Laundry detergent energy efficiency labeling,NOT_FOUND,,,CN GBT 13174-2021 not found
+7,CN,Cosmetic Supervision and Administration Regulation 2020 + NMPA guidance,CSAR 2024 — Cosmetic claims screening,FOUND,ba232757-2bce-45a6-8cd1-6094331cfb6d,CSAR — Cosmetic Supervision and Administration Regulation,acronym
+7,CN,Measures for Environmental Management of New Chemical Substances (MEE Order 12/2020),China REACH — MEE chemical management,NOT_FOUND,,,CN MEE chemical substances MEE Order 12/2020 not found
+7,JP,Act No. 104 of 1962 (Household Goods Quality Labelling Act) + Detergent Labelling Regulations,Household Goods Quality Labelling Act,FOUND,774ae837-bc1d-4973-be5c-99da93707d2e,Japan Act on Household Goods Quality Labeling,name_substring
+7,JP,Act No. 57 of 1972 (ISHL) + Ordinance on Industrial Safety and Health,Industrial Safety and Health Act — chemical management,FOUND,0d5faa25-b242-4f6c-a8fd-d81124a68d6d,Japan Industrial Safety and Health Act,name_substring
+7,JP,Act on Confirmation of Release Amount of Specified Chemical Substances and Promotion of Improvements in the Management Thereof (PRTR Act),APRTR Act — Pollutant Release and Transfer Register,NOT_FOUND,,,JP PRTR Act not found
+7,JP,Kashinhou (Act No. 117 of 1973) as amended,Act on the Evaluation of Chemical Substances (Chemical Substances Control Law),NOT_FOUND,,,JP Kashinhou (Detergent Act) specific not found
+7,KR,Act on Registration and Evaluation of Chemical Substances (K-REACH) No. 15164,K-REACH — Chemical Substances Registration,FOUND,7619f0c3-01f0-4702-9dcf-fb4961438352,K-REACH (Korea),name_substring
+7,KR,Act No. 11862 (CSCA) — Controlled Substance Management,Chemical Substances Control Act (CSCA),NOT_FOUND,,,KR CSCA 11862 not found; TW TCSCA found instead
+7,KR,Act No. 13697 (Children's Product Safety Act),Act on Safety Control of Children's Products,FOUND,4bf61abb-26b7-4671-a1dd-c3e98168f4e3,Korea Children's Product Safety Special Act,name_substring
+7,KR,Product Safety Basic Act + Safety Confirmation Mark Regulations,Self-Regulatory Safety Confirmation (KC Mark),NOT_FOUND,,,KR Product Safety Basic Act not found
+7,IN,IS 4955 (BIS Standard for Synthetic Detergent Powders/Cakes),BIS IS 4955 — Synthetic Detergents,NOT_FOUND,,,IN IS 4955 BIS detergent standard not found
+7,IN,Legal Metrology (Packaged Commodities) Rules 2011,Legal Metrology (Packaged Commodities) Rules,NOT_FOUND,,,IN Legal Metrology Rules 2011 not found
+7,AU,Industrial Chemicals Act 2019 (Cth) (AICIS),AICIS — Industrial Chemicals Act 2019,FOUND,781817cb-62b7-4c30-91aa-5ab5f93c0475,Australia Industrial Chemicals Act 2019 / AICIS,name_substring
+7,AU,"Australian Consumer Law (Schedule 2, Competition and Consumer Act 2010) + product safety mandatory standards",ACCC Mandatory Safety Standard — Consumer Products,FOUND,185e09e1-d7d0-4d92-8704-2f865a7d76f4,Australia Competition and Consumer Act 2010 / ACL,name_substring
+7,AU,Agricultural and Veterinary Chemicals Code + SUSMP (Standard for the Uniform Scheduling of Medicines and Poisons),APVMA / SUSMP — if biocidal claim,NOT_FOUND,,,AU SUSMP not found as standalone
+7,NZ,Hazardous Substances and New Organisms Act 1996 (HSNO Act),HSNO Act 1996 — Hazardous Substances,FOUND,62886d0b-6dc5-46e6-b067-eefe245b896d,New Zealand Hazardous Substances and New Organisms Act 1996 (HSNO),name_substring
+7,NZ,Consumer Guarantees Act 1993 + Fair Trading Act 1986 + product safety regulations,NZ Consumer Guarantees Act + Product Safety,FOUND,41741968-fd49-4061-aebc-a508ea8beb74,New Zealand Fair Trading Act 1986,name_substring
+7,GCC,GSO 1361:2002 (or latest edition),GSO 1361 — Detergents General Requirements,NOT_FOUND,,,GSO 1361 detergent not found
+7,GCC,GSO 2530 (laundry detergent specific requirements),GSO 2530 — Laundry Detergent Specific,NOT_FOUND,,,GSO 2530 laundry not found
+7,GCC,SASO Technical Regulations + SFDA oversight for certain products,Saudi Arabia SASO product registration,NOT_FOUND,,,GCC SASO SFDA detergents not found
+7,IL,Hazardous Substances Law 1993 (Law 5753) + Regulations,Hazardous Substances Law 1993 + Chemical Regulations,NOT_FOUND,,,IL Hazardous Substances Law 5753 not found
+7,IL,SI 650 + SI 1065 (detergent standards),SI (Israeli Standard) for detergents,NOT_FOUND,,,IL SI 650/1065 detergent standards not found
+7,ZA,VC 8054 or equivalent NRCS compulsory specification for cleaning agents,NRCS Compulsory Specification — Cleaning Agents,NOT_FOUND,,,ZA VC 8054 not found
+7,ZA,Occupational Health and Safety Act 85/1993 — HCS Regulations,SA Hazardous Chemical Substances Regulations,NOT_FOUND,,,ZA OHS Act 85/1993 not found
+7,EAEU,Technical Regulation TR TS 008/2011 (Consumer Goods Safety in EAEU),TR TS 008/2011 — Consumer Goods Safety,FOUND,0c1a0c59-c48b-45f4-97ca-869df6b0228a,TR CU 008/2011,exact_ref
+7,EAEU,TR EAEU 014/2011 or equivalent chemical product technical regulation,TR EAEU 014/2011 — Chemical Product Safety,NOT_FOUND,,,EAEU TR 014/2011 chemical product not found
+7,RU,GOST R 25644-96 (laundry detergent powder) + GOST standards for detergents,GOST R for detergents,NOT_FOUND,,,RU GOST R 25644-96 detergent not found
+7,TR,Deterjan ve Deterjanlarda Kullanılan Yüzey Aktif Maddelere İlişkin Yönetmelik (aligned with EU 648/2004),Turkish Detergent Regulation,NOT_FOUND,,,TR Deterjan Yönetmelik not found
+7,TR,Turkish Chemicals Legislation (aligned with EU REACH/CLP via Customs Union),Turkish CLP equivalent — chemical labeling,NOT_FOUND,,,TR Chemicals REACH/CLP not found
+7,ISO,ISO 14001:2015,ISO 14001 — Environmental Management System,FOUND,3e28cbff-16cf-47aa-a317-abdd96a463fd,ISO 14001 — Environmental Management Systems,exact_ref
+7,ISO,ISO 9001:2015,ISO 9001 — Quality Management System,NOT_FOUND,,,ISO 9001 not found
+7,IT,Regulation (EC) 648/2004 + Regulation (EU) 2026/405,EU Detergents Regulation — directly applicable in Italy,FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,name_substring
+7,IT,Regulation (EC) 1907/2006,REACH Regulation — Italy enforcement,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref
+7,ES,Regulation (EC) 648/2004 + Regulation (EU) 2026/405,EU Detergents Regulation — directly applicable in Spain,FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,name_substring
+7,ES,Regulation (EC) 1272/2008,CLP Regulation — Spain enforcement,FOUND,8d52b0c3-a7c5-4fea-af2f-ace27090c8e6,EU CLP Regulation (EC) No 1272/2008,exact_ref
+7,NL,Regulation (EC) 648/2004 + Regulation (EU) 2026/405,EU Detergents Regulation — directly applicable in NL,FOUND,949aab38-22ca-46b1-9a94-8c98aa4d1710,EU Detergents Regulation,name_substring
+7,NL,Regulation (EC) 1907/2006,REACH — NL national enforcement,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,EU REACH Regulation (EC) No 1907/2006,exact_ref
+7,UA,Law of Ukraine No. 2664-VI (Chemical Safety),Ukrainian Chemical Safety Law — Chemicals,NOT_FOUND,,,UA Chemical Safety Law 2664-VI not found
+7,UA,Resolution of Cabinet of Ministers of Ukraine No. 156 (2013),Ukraine Technical Regulation on Household Chemicals,NOT_FOUND,,,UA CMU Resolution 156/2013 not found
+7,HK,Cap. 132 — PHMSO,Public Health and Municipal Services Ordinance (Cap. 132),FOUND,c056cbda-6ea3-4e67-98e0-b80023038e92,Consumer Goods Safety Ordinance (CGSO) Cap. 456,name_substring
+7,HK,Cap. 578,Chemical Weapons (Convention) Implementation Ordinance — export controls,NOT_FOUND,,,HK Cap 578 not found
+7,TW,TFDA / EPA (Taiwan),Toxic and Chemical Substances Control Act (TCSCA),FOUND,dfee886d-66a8-42a7-9320-a798d9b207ed,Taiwan Commodity Labeling Act,name_substring
+7,TW,Consumer Protection Act (消費者保護法),Consumer Protection Act — labeling requirements,FOUND,dfee886d-66a8-42a7-9320-a798d9b207ed,Taiwan Commodity Labeling Act,name_substring
+7,SG,Environmental Protection and Management Act (Cap. 94A),Environmental Protection and Management Act (EPMA) — Hazardous Substances,NOT_FOUND,,,SG Cap 94A EPMA not found
+7,SG,CPSR — Gazette,Consumer Protection (Safety Requirements) Regulations,NOT_FOUND,,,SG CPSR not found
+7,MY,EQA 1974 + Scheduled Wastes Regulations 2005,Environmental Quality Act 1974 (EQA) — Scheduled Wastes,NOT_FOUND,,,MY EQA 1974 not found
+7,MY,Trade Descriptions Act 2011 / CIMAH 1996,Control of Industrial Major Accident Hazards (CIMAH) Regulations + Trade Descriptions Act,NOT_FOUND,,,MY Trade Descriptions Act 2011 not found
+7,TH,HSA 1992 — Type 2/3 controlled substances,Hazardous Substances Act B.E. 2535 (1992),NOT_FOUND,,,TH HSA 1992 controlled substances not found
+7,VN,Decree 113/2017/ND-CP,Decree 113/2017/ND-CP on Chemicals,NOT_FOUND,,,VN Decree 113/2017 chemicals not found
+7,ID,Permendag No. 36/2023 (and predecessors),Regulation of Minister of Trade (Permendag) on Product Labeling,NOT_FOUND,,,ID Permendag 36/2023 not found
+7,ID,PP No. 74/2001 on Management of Hazardous and Toxic Materials,Government Regulation on Management of Hazardous Substances (B3),NOT_FOUND,,,ID PP 74/2001 hazardous not found
+7,PH,Republic Act No. 6969 / DENR DAO 29 Series 1992,RA 6969 — Toxic Substances and Hazardous and Nuclear Wastes Control Act,NOT_FOUND,,,PH RA 6969 chemicals not found
+7,ASEAN,ASEAN Sectoral MRA — Chemical Sector (Household Chemicals Annex),ASEAN Harmonized Regulatory Framework for Household Hazardous Chemicals,NOT_FOUND,,,ASEAN MRA household chemicals not found
+7,MERCOSUR,GMC Resolution No. 36/1996 (Labeling of Household Chemical Products),GMC Resolution on Household Chemical Products Labeling,NOT_FOUND,,,MERCOSUR GMC 36/1996 household chemicals not found
+7,CO,Decreto 1545 de 1998,Decreto 1545/1998 — Productos de Aseo Higiene y Limpieza,NOT_FOUND,,,CO Decreto 1545/1998 chemicals not found
+7,EG,EOS Standard ES 2500 / Chemical Products Standards,Egyptian Organization for Standardization (EOS) — Detergents,NOT_FOUND,,,EG EOS ES 2500 chemicals not found
+7,MA,Décret n° 2-12-198 du 2013,Décret n° 2-12-198 relatif aux produits chimiques dangereux,NOT_FOUND,,,MA Décret 2-12-198/2013 not found
+7,NG,NAFDAC Regulation 2019 / Food and Drugs Act Cap F33,NAFDAC Regulation on Household Chemicals and Cleaning Products,NOT_FOUND,,,NG NAFDAC chemicals not found
+7,KE,Kenya Bureau of Standards (KEBS) PVoC Programme,Standards Act Cap 496 — KEBS Compulsory Standards + PVoC,FOUND,9cad9935-fab6-4248-af40-9d06e4f9b5b5,Kenya KEBS Standards,name_substring
+7,OECD,OECD Cooperative Chemicals Assessment Programme,OECD HPV Chemicals Programme — High Production Volume Chemicals Assessment,NOT_FOUND,,,OECD chemicals assessment not found
+7,WADA,World Anti-Doping Code 2024 — Prohibited List,WADA Prohibited List — Not Applicable to Detergent Products,NOT_FOUND,,,WADA not applicable to detergents
+7,UNECE,UN GHS Rev. 9 (2021),UNECE GHS — Globally Harmonized System of Classification and Labelling,FOUND,14df23cc-0a75-4b03-b2e1-7130d40a27cd,UN GHS,name_substring
+7,CODEX,Codex Alimentarius Commission Standards,Codex Alimentarius — Not Applicable to Laundry Detergent Pods,NOT_FOUND,,,Codex not applicable to detergents
+8,EU,Directive 2002/46/EC,Directive compléments alimentaires,FOUND,eac1bd1d-f0ae-4988-a815-241a27343ab4,EU Food Supplements Directive (Directive 2002/46/EC),exact_ref
+8,EU,Regulation (EC) 1925/2006,Règlement adjonction vitamines minéraux,FOUND,dd60aef9-4fb0-44c6-b69c-0abc6bf59eca,EU Regulation on the Addition of Vitamins and Minerals to Foods (EC) No 1925/2006,exact_ref
+8,EU,Regulation (EC) 1924/2006,Règlement allégations nutritionnelles et de santé,FOUND,ca1468ae-2154-43b9-a63d-673f3379154b,EU Nutrition and Health Claims Regulation (EC) No 1924/2006,exact_ref
+8,EU,Regulation (EU) 1169/2011,Règlement information consommateurs (FIC),FOUND,a56171ed-0310-466b-982a-1009f5c3e202,EU Food Information to Consumers Regulation (EU) No 1169/2011,exact_ref
+8,EU,Regulation (EU) 609/2013,Règlement aliments groupes spécifiques,FOUND,58b5700e-2977-4c2f-9e5e-9cc79afda636,EU Regulation on Food Intended for Specific Groups (Regulation (EU) No 609/2013),exact_ref
+8,EU,EFSA Scientific Opinions on Tolerable Upper Intake Levels,Avis scientifiques EFSA — sécurité vitamines,NOT_FOUND,,,EFSA opinions not found as standalone regulation
+8,FR,Décret n° 2006-352 du 20 mars 2006,Décret compléments alimentaires France,FOUND,16069924-4ec0-432e-9986-3a97fe0fea3f,French Décret n° 2006-352 on Food Supplements,exact_ref
+8,FR,Arrêté du 9 mai 2006 (modifié 2014 et 2023),Arrêté vitamines minéraux France — formes et teneurs,FOUND,33c058df-bcd4-4700-ba54-ddcc2b9e9042,Arrêté du 9 mai 2006,name_substring
+8,DE,NemV du 24 mai 2004 (dernière modif. 2023),Nahrungsergänzungsmittelverordnung (NemV),FOUND,3f9e04b6-50e5-4b63-b11e-b9cacd036400,NemV,name_substring
+8,IT,Decreto Legislativo 21 maggio 2004 n. 169,DL 169/2004 compléments alimentaires Italie,NOT_FOUND,,,IT D.Lgs 169/2004 food supplements not found specifically
+8,IT,Portale dei Prodotti Alimentari (PPA),Notification Ministero della Salute — procédure en ligne,NOT_FOUND,,,IT PPA portal not a regulation
+8,ES,Real Decreto 1487/2009 de 26 septembre 2009,Real Decreto 1487/2009 compléments alimentaires Espagne,NOT_FOUND,,,ES RD 1487/2009 food supplements not found as specific entry
+8,NL,Warenwetbesluit Vrijstellingsregeling Vitaminen en Mineralen 2021,Warenwetbesluit vrijstellingsregeling vitaminen en mineralen,NOT_FOUND,,,NL Warenwetbesluit vitamins 2021 not found
+8,GB,Food Supplements (England) Regulations 2003 (SI 2003/1387) + equivalents Écosse/Galles/Irlande du Nord,UK Food Supplements Regulations 2003,FOUND,eb1bfe7a-c8a7-40da-ba42-53ea3cd6f0de,Food Supplements (England) Regulations 2003,name_substring
+8,GB,UK Novel Foods Regulations 2021 (retained EU law amended),UK FSA — Novel Food et NDI UK,NOT_FOUND,,,UK Novel Foods 2021 not found
+8,CH,Ordonnance du DFI sur les compléments alimentaires (RS 817.022.32),Ordonnance sur les compléments alimentaires (OCA),NOT_FOUND,,,CH RS 817.022.32 food supplements not found
+8,NO,Forskrift om kosttilskudd av 20. mai 2004 (dernière modif. 2023),Forskrift om kosttilskudd (Norvège),NOT_FOUND,,,NO Forskrift kosttilskudd not found
+8,RU,TR TS 021/2011 (Sécurité alimentaire),Règlement technique TR TS 021/2011 sécurité alimentaire (EAEU),FOUND,5391e2e7-4250-4f65-abf5-7daa5c0e97d7,TR CU 021/2011,exact_ref
+8,RU,Порядок государственной регистрации специализированных продуктов (TP TC 027/2012 + РФ-specific),Enregistrement d'état compléments alimentaires Russie,NOT_FOUND,,,RU specialized food registration order TC 027/2012 not found
+8,EAEU,TR TS 027/2012 (Technical Regulation on Specialized Food Products),TR TS 027/2012 — Aliments spécialisés EAEU,NOT_FOUND,,,EAEU TR TS 027/2012 specialized food not found
+8,TR,Takviye Edici Gıdalar Yönetmeliği (Official Gazette 16.08.2013 / modifiée 2023),Réglementation compléments alimentaires Turquie,NOT_FOUND,,,TR Takviye Edici Gidalar food supplements not found
+8,UA,Постанова КМУ № 902 від 09.11.2015 (modifiée 2020),Résolution 902 compléments alimentaires Ukraine,NOT_FOUND,,,UA CMU 902/2015 food supplements not found
+8,US,Dietary Supplement Health and Education Act of 1994 (PL 103-417),DSHEA 1994 — Dietary Supplement Health and Education Act,FOUND,759a705f-911f-4904-9c11-d6254d2e943b,DSHEA (Dietary Supplement Health and Education Act),name_substring
+8,US,21 CFR Part 111 (Current Good Manufacturing Practice in Manufacturing/Packaging/Labeling/Holding for Dietary Supplements),21 CFR Part 111 — cGMP Dietary Supplements,FOUND,08da39c2-cd44-41be-a9d9-30f6221ccbfb,cGMP for Dietary Supplements,name_substring
+8,US,21 CFR § 190.6 + Guidance FDA (juillet 2011 / draft 2016),FDA New Dietary Ingredient (NDI) Notification,NOT_FOUND,,,US 21 CFR 190.6 NDI notification not found
+8,US,21 CFR § 101.93 + 21 USC § 343(r)(6),FDA Structure/Function Claim Notification,NOT_FOUND,,,US 21 CFR 101.93 structure function claims not found specifically
+8,US,S. 4090 / HR 7529 (118th Congress — proposé mais non encore adopté en 2026),DSSA — Dietary Supplement Listing Modernization Act (proposé),NOT_FOUND,,,US proposed bill 118th Congress not found
+8,US-CA,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act of 1986),Proposition 65 — Avertissements chimiques California,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),name_substring
+8,US-NY,NY Education Law § 6814 (effet 1er janvier 2023),New York Education Law §6814 — Age restriction supplements,NOT_FOUND,,,NY Education Law 6814 dietary supplements not found
+8,CA,Natural Health Products Regulations SOR/2003-196 (RNHP),Règlement sur les produits de santé naturels (SOR/2003-196) + NPN,FOUND,c4641423-863e-40e5-9200-8726a5eca0f8,Canada Natural Health Products Regulations (NHPRs),name_substring
+8,MX,Acuerdo por el que se determinan los lineamientos para la autorización de productos de complementación alimentaria (COFEPRIS 2010) + NOM-051-SCFI/SSA1-2010,COFEPRIS Acuerdo + NOM-051 compléments Mexico,NOT_FOUND,,,MX COFEPRIS food supplement lineamientos not found
+8,BR,RDC 243/2018 (Compléments alimentaires) + RDC 459/2020 (allégations santé),ANVISA RDC 243/2018 compléments alimentaires Brésil,FOUND,c75a21ae-58fe-42de-a69a-7937eee2e98a,ANVISA RDC 243/2018,exact_ref
+8,AR,CAA Resolución Conjunta SPyRS y SAGPyA N° 1294/97 + actualizaciones ANMAT,Código Alimentario Argentino — compléments,NOT_FOUND,,,AR CAA Res 1294/97 food supplements not found
+8,CL,DS N° 977/96 (Reglamento Sanitario de los Alimentos) Título XX Suplementos alimenticios,Reglamento Sanitario Alimentos DS 977/96 — compléments Chili,NOT_FOUND,,,CL DS 977/96 suplementos not found
+8,CO,Resolución 3096 de 2007 (Ministerio de la Protección Social),Resolución 3096/2007 compléments Colombie,NOT_FOUND,,,CO Res 3096/2007 food supplements not found
+8,MERCOSUR,GMC Resolución N° 18/02 (Alimentos para propósitos especiales — Suplementos Dietarios),GMC Resolución 18/02 compléments MERCOSUR,NOT_FOUND,,,MERCOSUR GMC 18/02 dietary supplements not found
+8,CN,健康食品注册管理办法 (Order 23/2016) + Health Food Registration Measures,Enregistrement Health Food «Blue Hat» Chine,NOT_FOUND,,,CN health food registration order not found
+8,CN,GB 16740-2014 (National Standard for Health Foods),Standard national GB 16740 Health Foods Chine,NOT_FOUND,,,CN GB 16740-2014 health foods not found
+8,CN,Filing system for Nutrient Supplements (营养素补充剂备案制) — Announcement 2016,Régime Filing compléments nutritionnels simples Chine,NOT_FOUND,,,CN nutrient supplement filing system not found
+8,HK,Public Health and Municipal Services Ordinance (Cap. 132) + Pharmacy and Poisons Ordinance (Cap. 138),PHMSO + Registration pharmaceutique si claim — Hong Kong,FOUND,c056cbda-6ea3-4e67-98e0-b80023038e92,Consumer Goods Safety Ordinance (CGSO) Cap. 456,name_substring
+8,TW,Loi sur la sécurité alimentaire (食品安全衛生管理法) + Loi sur les aliments de santé (健康食品管理法 1999),Food Safety Act + Health Food Control Act Taiwan,NOT_FOUND,,,TW food safety + health food law not found explicitly
+8,JP,食品衛生法 (Food Sanitation Act) + Règlement complémentaire,Loi sur la sécurité sanitaire des aliments — Japon,FOUND,6b1c225e-18d1-434d-b96a-0c9ef9a5b99c,Japan Food Sanitation Act (食品衛生法),name_substring
+8,JP,機能性表示食品 (Kinou-sei Hyouji Shokuhin) — régime CAA 2015,Foods with Function Claims (FFC) — Japon,NOT_FOUND,,,JP Kinousei functional foods CAA 2015 not found
+8,KR,건강기능식품에 관한 법률 (Health Functional Food Act 2002 + amendments 2022),Health Functional Food Act — Corée du Sud,FOUND,51c6693d-2407-4397-9969-a4355abcc8a5,Korea Health Functional Food Act,name_substring
+8,KR,건강기능식품 기준 및 규격 (MFDS Notice — Health Functional Food Standards),MFDS — Functional Ingredient Standard Specifications,NOT_FOUND,,,KR MFDS Health Functional Food Standards notice not found
+8,SG,Sale of Food Act (Cap. 283) + Food Regulations + HSA Health Products Act,Health Sciences Authority + Sale of Food Act (Singapour),FOUND,3e4e0f91-282c-444d-a54b-d611018337bf,"Singapore Food Regulations (Sale of Food Act, Cap. 283A)",name_substring
+8,MY,Food Act 1983 + Food Regulations 1985 + Control of Drugs and Cosmetics Regulations 1984 (CDCR),Food Act 1983 + DCA Malaysian Control Authority,NOT_FOUND,,,MY Food Act 1983 not found
+8,TH,Notification of the Ministry of Public Health No. 293 B.E. 2548 (2005) — Food Supplement Products,Notification Ministry of Public Health N°293 — Thaïlande,NOT_FOUND,,,TH MoPH 293 food supplements not found
+8,VN,Décret 15/2018/NĐ-CP (Sécurité alimentaire) — remplace Décret 38/2012,Decree 15/2018 compléments alimentaires Vietnam,NOT_FOUND,,,VN Decree 15/2018 food safety not found
+8,ID,Peraturan BPOM No. 32 Tahun 2022 (Food Supplement — Suplemen Kesehatan),BPOM Regulation 32/2022 compléments alimentaires Indonésie,NOT_FOUND,,,ID BPOM 32/2022 food supplements not found
+8,PH,Administrative Order No. 2014-0030 (Regulations for Health Supplements),FDA AO 2014-0030 compléments alimentaires Philippines,NOT_FOUND,,,PH AO 2014-0030 health supplements not found
+8,IN,FSSAI (Food Safety and Standards — Nutraceuticals) Regulations 2022,FSSAI Nutraceuticals Regulations 2022 Inde,NOT_FOUND,,,IN FSSAI nutraceuticals 2022 not found
+8,AU,Therapeutic Goods Act 1989 + Therapeutic Goods Regulations 1990,Therapeutic Goods Act 1989 — Complementary Medicine Listed (AUST L),FOUND,b9482f98-086c-4f6e-a4ad-17291b96b92b,Therapeutic Goods Act 1989 (Australia),name_substring
+8,NZ,Dietary Supplement Regulations 1985 (SR 1985/208) + Therapeutic Products Act 2023 (NZ),Dietary Supplement Regulations 1985 + Therapeutic Products Act 2023 NZ,NOT_FOUND,,,NZ SR 1985/208 + Therapeutic Products Act 2023 not found
+8,ASEAN,ASEAN Guideline on Health Supplement (AHSG — version 2020),ASEAN Guideline Health Supplement — cadre régional,NOT_FOUND,,,ASEAN AHSG health supplement not found
+8,GCC,GSO 1366:2002 (Food Supplements — Vitamin and Mineral Supplements for Humans) + révisions,GSO 1366 compléments alimentaires GCC,NOT_FOUND,,,GCC GSO 1366 food supplements not found
+8,IL,Regulations on Food Products + AMAR (Drug Registration Authority) if pharma claim,Réglements sanitaires aliments + AMAR Israel,NOT_FOUND,,,IL food/AMAR drug regulation not found
+8,EG,Egyptian Food Safety Authority (NFSA) + Decree No. 85/2018 (Dietary Supplements),NFSA + Décret compléments alimentaires Égypte,NOT_FOUND,,,EG NFSA/Decree 85/2018 dietary supplements not found
+8,MA,Loi n° 28-07 relative à la sécurité sanitaire des produits alimentaires + Arrêté spécifique compléments,Loi 28-07 sécurité sanitaire + compléments Maroc,NOT_FOUND,,,MA Loi 28-07 food safety not found
+8,ZA,Foodstuffs Cosmetics and Disinfectants Act No. 54 of 1972 + Complementary Medicines Regulations (SAHPRA 2022),Complementary Medicines SAHPRA — Afrique du Sud,NOT_FOUND,,,ZA FCD Act 54/1972 + SAHPRA complementary medicines not found
+8,NG,NAFDAC Dietary Supplements Regulations 2019,NAFDAC Dietary Supplements Regulations 2019 Nigeria,NOT_FOUND,,,NG NAFDAC dietary supplements 2019 not found
+8,KE,Kenya Bureau of Standards (KEBS) + Pharmacy and Poisons Board (PPB) + Food Drugs and Chemical Substances Act,KEBS + Pharmacy and Poisons Board Kenya,FOUND,9cad9935-fab6-4248-af40-9d06e4f9b5b5,Kenya KEBS Standards,name_substring
+8,CODEX,CAC/GL 55-2005 (Guidelines for Vitamin and Mineral Food Supplements),Codex CAC/GL 55-2005 — Vitamin/Mineral Food Supplements,FOUND,01bdb1fd-92a0-4a50-96ee-a6bda5db4965,Codex Alimentarius Standards,name_substring
+8,ISO,ISO 22000:2018 (Food Safety Management Systems),ISO 22000 — Système de management sécurité alimentaire,FOUND,edff7130-9e15-470a-bae9-0c65b2ca5936,ISO 22000 — Food Safety Management Systems,exact_ref
+8,WADA,World Anti-Doping Code 2024 — Prohibited List International Standard (WADA),WADA Prohibited List — Risque anti-dopage compléments,NOT_FOUND,,,WADA not a product compliance regulation
+8,UNECE,UNECE WP.29 (Règlements véhicules),UNECE WP.29 — Non applicable aux compléments alimentaires,NOT_FOUND,,,N/A - UNECE vehicle regs not applicable
+8,OECD,OECD Guidelines and Principles,OCDE — Non applicable aux compléments alimentaires,NOT_FOUND,,,OECD guidelines vague - not specific food supplement regulation
+9,EU,Regulation (EU) No 1007/2011,EU Textile Fibre Names & Labelling Regulation,FOUND,47f4c59f-e819-49a4-9532-c31cd949e3a8,EU Textile Labelling Regulation (EU) No 1007/2011,exact_ref
+9,EU,Regulation (EC) No 1907/2006 - Annex XVII Entry 43 (azodyes) Entry 72 (CMR),REACH - Azodyes restriction + SVHC + CMR,FOUND,a46a1b9b-81a7-4c4a-b773-ecfdd7fa483c,REACH Annex XVII Entry 43 – Azo Dyes,name_substring
+9,EU,REACH Annex XVII - PFAS restriction dossier (expected adoption 2027),REACH PFAS Universal Restriction Proposal,FOUND,de11f4a3-b67b-480b-8f62-897180428c11,EU PFAS Restriction Proposal (Universal PFAS Restriction under REACH),name_substring
+9,EU,Regulation (EU) 2024/1781 + Delegated Act textile (expected 2026-2027),ESPR - Eco-design + Digital Product Passport textile,FOUND,4845af18-5768-4879-944d-899a26f23c4f,EU Ecodesign for Sustainable Products Regulation (ESPR),name_substring
+9,EU,Directive (EU) 2024/1760,CSDDD - Corporate Sustainability Due Diligence Directive,FOUND,93e1789e-ec1f-4c0f-8760-e136bb76ef56,EU Corporate Sustainability Due Diligence Directive (CSDDD),exact_ref
+9,EU,Directive (EU) 2022/2464,CSRD - Corporate Sustainability Reporting Directive,FOUND,579c7177-43cc-4661-9028-f7ab4a920c1b,EU Corporate Sustainability Reporting Directive (CSRD) 2022/2464,exact_ref
+9,EU,Directive (EU) 2018/851 as amended + Commission Delegated Regulation on textile EPR (2025),EU Waste Framework Directive - Mandatory Textile EPR,FOUND,92ae8408-66b7-4c20-aa1e-5c81cbe6f259,EU Waste Framework Directive,name_substring
+9,EU,Directive (EU) 2024/825,Empowering Consumers Directive - Green Claims,FOUND,3330eece-9eff-4ffb-b127-53626d30ef5c,Directive (EU) 2024/825 – Empowering Consumers for the Green Transition (Green Claims Directive),exact_ref
+9,EU,COM(2023) 166 - Proposal for Directive on green claims,Green Claims Directive Proposal,FOUND,8212188e-ff66-401a-859c-1a1100a99f95,EU Green Claims Directive (Proposed),name_substring
+9,FR,Loi n. 2020-105 du 10 fevrier 2020,AGEC - Loi anti-gaspillage economie circulaire,FOUND,daa4949c-551d-4601-89a2-c211a36ba035,France Anti-Waste Law (AGEC – Loi Anti-Gaspillage pour une Économie Circulaire),name_substring
+9,FR,Art. L.541-10-3 Code environnement + Decret n. 2020-1725,REP textile Refashion - Responsabilite Elargie du Producteur,FOUND,d86815fe-1045-4d0b-aacf-fabbe5b48d0a,France EPR for Textiles (Refashion / Eco-TLC),name_substring
+9,FR,Decret n. 2022-748 du 29 avril 2022,Decret etiquetage qualites environnementales,FOUND,f3f7da22-81c0-492a-a09b-71db66ad36cb,Décret n° 2022-748 (AGEC Textile),exact_ref
+9,FR,Loi n. 2017-399 du 27 mars 2017,Loi devoir de vigilance,FOUND,f37fda9f-9ac4-4ee3-b67d-13cadcb02a48,France Duty of Vigilance Law (Loi de Vigilance),name_substring
+9,DE,BGBl. 2021 I S. 2959,Lieferkettensorgfaltspflichtengesetz (LkSG),FOUND,ceb73267-0557-448a-b9ab-0f6e679eb7e4,LkSG,name_substring
+9,DE,Chemikaliengesetz BGBl. I Nr. 22/2013 + ordinances,Chemikaliengesetz (ChemG) + Germany PFAS national measures,NOT_FOUND,,,DE Chemikaliengesetz not found; only CH and AT versions found
+9,IT,Decreto Legislativo 2 marzo 2020 n. 190,D.Lgs 190/2020 - Etichettatura prodotti tessili,NOT_FOUND,,,IT D.Lgs 2020/190 not found
+9,IT,AGCM Linee Guida comunicazioni ambientali 2021 + aggiornamento 2023,AGCM Green Claims Guidelines,NOT_FOUND,,,IT AGCM green communications guidelines not found
+9,ES,Real Decreto 928/2021 de 26 de octubre,Real Decreto 928/2021 - Etiquetado textil,NOT_FOUND,,,ES RD 928/2021 green claims not found
+9,ES,Ley 7/2022 de 8 de abril de residuos y suelos contaminados,Ley 7/2022 - Residuos y suelos contaminados (REP textile),FOUND,1359e3bd-80ff-49d1-a693-80fb57de291b,Spain Ley de Residuos y Suelos Contaminados para una Economía Circular,name_substring
+9,NL,Stb. 2019/401 - Wet zorgplicht kinderarbeid,Wet zorgplicht kinderarbeid (WVZKA),FOUND,74ffdd41-9dfd-4265-b4e9-adafea76a1f9,Dutch Duty of Care for Child Labour Act (Wet Zorgplicht Kinderarbeid),name_substring
+9,GB,SI 2012/1102,Textile Products (Labelling and Fibre Composition) Regulations 2012,FOUND,5e91f2c9-15be-4b8b-b711-9efdc522c0e8,UK Textile Products (Labelling and Fibre Composition) Regulations,name_substring
+9,GB,Retained Regulation (EC) 1907/2006 as amended by UK REACH (SI 2019/758),UK REACH,FOUND,188c05ed-4548-4c50-aaf8-2f15a798202b,UK REACH,name_substring
+9,GB,Modern Slavery Act 2015 c.30 s.54,Modern Slavery Act 2015 - s.54 Supply Chain Transparency,FOUND,3c06b875-3be4-4f82-8e8d-3ae20c5cea8f,UK Modern Slavery Act 2015,name_substring
+9,CH,SR 232.121 - Verordnung uber die Kennzeichnung von Textilprodukten,Textilkennzeichnungsverordnung (TextilKV),FOUND,8410377d-d9e7-4fd8-8664-54871a5ad0b2,Swiss Textile Labeling Ordinance,name_substring
+9,NO,FOR-2013-08-02-964,Tekstilfibrer - Forskrift om merking av tekstilprodukter,NOT_FOUND,,,NO FOR-2013-08-02-964 textile specific not found; Tekstilforskriften found but matches textile regulations generally
+9,RU,TR TS 017/2011 + Decision de la Commission de l Union douaniere N. 876,EAEU TR TS 017/2011 - Produits de l industrie legere,FOUND,e51e0428-9b3e-4285-8618-6473a514cec5,EAEU TR CU 017/2011,exact_ref
+9,EAEU,"Decision No. 876 of the Customs Union Commission, November 9, 2011",EAEU TR TS 017/2011 - Technical Regulation Light Industry Products,FOUND,e51e0428-9b3e-4285-8618-6473a514cec5,EAEU TR CU 017/2011,name_substring
+9,TR,Tekstil Urunlerinin Adlandirilmasi Hakkinda Yonetmelik (2012/2 No lu Teblig),Tekstil Urunlerinin Adlandirilmasi Yonetmeligi,FOUND,a4563815-7839-41c9-852f-ec976f6b2c95,Turkey Textile Technical Regulation,name_substring
+9,UA,DSTU EN ISO 3758:2018 (adoption of ISO 3758:2012),DSTU EN ISO 3758:2018 - Textile care labelling,FOUND,34f3b89e-0486-4401-8be1-0eb7410062c5,EU Regulation on Care Labelling (ISO 3758),name_substring
+9,US,15 U.S.C. 70-70k + 16 CFR Part 303,Textile Fiber Products Identification Act,FOUND,a867ac23-a24d-452f-a3c9-f8513c96eba9,US Textile Fiber Products Identification Act & Care Labeling Rule,name_substring
+9,US,16 CFR Part 423,Care Labeling Rule,FOUND,9c8d6050-18b2-40f1-833b-37c4ce2d4d7f,FTC Care Labeling Rule,name_substring
+9,US,15 U.S.C. 1191-1204 + 16 CFR Part 1610,Flammable Fabrics Act,FOUND,ea8fc85f-5704-4b4c-adea-0fb6cebf3b83,FLAMMABLE FABRICS ACT,name_substring
+9,US,15 U.S.C. 2601-2697,TSCA - Toxic Substances Control Act,FOUND,1c71cc67-9f98-42c7-8292-92064412137b,US Toxic Substances Control Act (TSCA),exact_ref
+9,US,"P.L. 117-78 - signed December 23, 2021",UFLPA - Uyghur Forced Labor Prevention Act,NOT_FOUND,,,FABRIC Act P.L. 117-78 not found
+9,US-CA,"California Health and Safety Code 108970-108975 (AB 1817, 2022)",AB 1817 - PFAS ban in textiles,FOUND,efbe11b2-cc6f-4ed3-b951-107dcfb90bca,US State PFAS Restrictions – California,name_substring
+9,US-CA,California Health and Safety Code 25249.5 et seq.,Proposition 65 - Safe Drinking Water and Toxic Enforcement Act,FOUND,707a71ed-7fba-432e-bb8f-6edf76a2f9e0,California Proposition 65 (Safe Drinking Water and Toxic Enforcement Act),name_substring
+9,US-NY,NY State Legislature - proposed (2022-2024 sessions),Fashion Sustainability and Social Accountability Act (S7428/A8352),NOT_FOUND,,,NY proposed textile bill not found
+9,US-NY,NY Environmental Conservation Law 37-0111 (ECL amendments 2023),NY Hazardous Substances Disclosure - PFAS in Textiles,NOT_FOUND,,,NY ECL 37-0111 PFAS textiles not found
+9,CA,"R.S.C. 1985, c. T-10 + SOR/71-272 (Care Labelling) + SOR/2014-148",Textile Labelling Act + Care Labelling Regulations,FOUND,ecbee35e-fc7a-460a-b549-34646744c546,Canada Textile Labelling Act (where applicable),exact_ref
+9,CA,"R.S.C. 1985, c. H-3 + Prohibition of Certain Toxic Substances Regulations (SOR/2012-285 amended 2022)",Hazardous Products Act - PFAS restrictions,FOUND,f41646bb-4f6f-42bf-b177-e8705afe171f,Hazardous Products Act,name_substring
+9,MX,NOM-004-SE-2021 (publicada DOF agosto 2022),NOM-004-SE-2021 - Informacion comercial de productos textiles,FOUND,b461e037-4e7e-4745-acb6-624ee6b7b101,NOM-004-SE-2021,exact_ref
+9,BR,Portaria INMETRO n. 332/2024,Portaria INMETRO 332/2024 - Etiquetagem textil,FOUND,1070e662-99f0-4f38-b9b4-607647da72d4,INMETRO Textile Labelling,name_substring
+9,BR,ABNT NBR 13483:2017,ABNT NBR 13483 - Sizing,NOT_FOUND,,,BR NBR 13483 not found
+9,AR,Resolucion 850/2019 de la Secretaria de Comercio Interior,Resolucion 850/2019 SCM - Etiquetado textil,FOUND,463d291a-0df7-4ddf-b82c-3b2e4f25a119,Argentine Textile Labeling Resolution,name_substring
+9,CL,Ley 19.496 + DS 97/2001 (etiquetado indumentaria),SERNAC - Ley 19.496 de Proteccion al Consumidor + Decreto 97 textiles,FOUND,04117330-dfa7-40d4-bf89-8b73208af6ac,Chile Consumer Protection Law (Ley 19.496 - LPDC),name_substring
+9,CO,Resolucion 1950 de 2009 de la SIC,Resolucion 1950/2009 - Rotulado e informacion textil,FOUND,6608357d-dc00-4614-a6e1-85dd266e3b29,Reglamento Técnico Etiquetado Colombia,name_substring
+9,MERCOSUR,Resolucao GMC No. 37/1997 (etiquetagem textil MERCOSUR),MERCOSUR GMC/RES - Rotulagem de artigos texteis,FOUND,20a7a963-6a46-482c-8769-d9fad6712af0,MERCOSUR Textile Labeling,name_substring
+9,CN,GB 18401-2010 (Safety Requirements for National Textile Products),GB 18401 - National Textile Safety Standard,FOUND,848931d5-6f18-4acc-a16b-719fdc2ff347,China GB Standards for Textile Chemicals,name_substring
+9,CN,GB/T 29862-2013 (Textiles - Marking of fibre content),GB/T 29862 - Fibre Content Labelling,FOUND,2412fee9-04f6-4575-bdfd-f6fbfa065dc7,China Textile Labeling Standard,name_substring
+9,HK,Trade Descriptions Ordinance Cap. 362 + Textile Articles Schedule,Trade Descriptions Ordinance (Cap. 362),FOUND,71d997f9-e702-448d-ab7e-dbc368bac808,HK Trade Descriptions Ordinance Cap. 362,name_substring
+9,TW,Commodity Labelling Act (commercial label law) + CNS L2039,CNS Textile Labelling - Commodity Labelling Act,FOUND,dfee886d-66a8-42a7-9320-a798d9b207ed,Taiwan Commodity Labeling Act,name_substring
+9,JP,"Kaji Yohin no Hinshitsu Hyoji Nikannsuru Horitsu (Act No. 104/1962, amended 2014)",Household Goods Quality Labelling Act - Textiles,FOUND,774ae837-bc1d-4973-be5c-99da93707d2e,Japan Act on Household Goods Quality Labeling,name_substring
+9,JP,Act No. 112/1973 (amended 2022),Act on Control of Household Products Containing Harmful Substances,FOUND,c97ab54f-8471-44b0-bb74-76457fc52a7d,Japan Act on Control of Household Products Containing Harmful Substances,name_substring
+9,KR,Act on Quality Management and Safety Control of Industrial Products + KC Common Safety Standard for Apparel,Quality Management and Safety Control - KC Common Safety Standard (Apparel),FOUND,5f5fc5ad-6f2c-42bd-ba67-cc723a1f8ae3,Korea KC Mark & Textile Safety,name_substring
+9,KR,Act No. 11789 - Chemicals Registration and Evaluation Act (K-REACH),K-REACH - Act on Registration and Evaluation of Chemicals,FOUND,6ef4d679-937e-46ef-9ac7-70aca4226389,K-REACH,name_substring
+9,SG,Cap. 52A - Consumer Protection (Fair Trading) Act 2003,Consumer Protection (Fair Trading) Act,FOUND,280a7516-5583-4741-ab91-98d9dc836c4a,Singapore Consumer Protection (Fair Trading) Act,name_substring
+9,MY,Act 599 - Consumer Protection Act 1999,Consumer Protection Act 1999,FOUND,b086c784-470b-4f30-98bb-ce3ad3b0a5f5,Malaysia Consumer Protection Act 1999,name_substring
+9,TH,Consumer Protection Act B.E.2522 (1979) + Hazardous Substance Act B.E.2535 (1992) amended,Consumer Protection Act + Hazardous Substance Act,FOUND,4b0d91cb-0893-407b-aec9-00b89e49302d,Thailand Consumer Protection Act,name_substring
+9,VN,"Decree No. 43/2017/ND-CP dated April 14, 2017 (amended by Decree 111/2021)",Decree 43/2017/ND-CP - Goods Labelling,FOUND,5941ec60-5496-437d-bace-0a23cffb3c5a,Vietnam Labeling Requirements,name_substring
+9,ID,Peraturan Menteri Perdagangan No. 25 Tahun 2022,Permendag 25/2022 - Textile Labelling,FOUND,86cfc8f1-9e5c-496c-bbbd-5e4b628b8440,Indonesia Government Regulation on Textile Labelling,name_substring
+9,PH,PNS/PAES 1957:2021 (adoption of AS/NZS 1957:2010),DTI-BPS PNS Care Labelling - Textile Products,NOT_FOUND,,,PH PNS/PAES 1957 textile not found
+9,IN,IS 17266:2019 (Labelling of Textile Products) + Legal Metrology (Packaged Commodities) Rules 2011,BIS IS 17266 - Textile Labelling + Legal Metrology Rules,FOUND,11e62395-481b-454b-9e82-61b6c368c32f,Textiles Labelling Order (India),name_substring
+9,AU,Trade Practices (Consumer Product Safety Standard) (Care Labelling of Clothing and Household Textiles) Regulations 1991 (updated),ACCC Mandatory Standard - Care Labelling (AS/NZS 1957),FOUND,6a56e985-67ae-4c81-bcb4-11fd283a7496,Care Labelling Standard AS/NZS 1957,name_substring
+9,AU,Modern Slavery Act 2018 (Cth),Modern Slavery Act 2018 (Cth),FOUND,300877b3-8316-45ff-9fb3-289bce999ac5,Australian Modern Slavery Act,name_substring
+9,NZ,Fair Trading Act 1986 + Product Safety Regulations (Care Labelling) (referencing AS/NZS 1957),Care Labelling Standard AS/NZS 1957,FOUND,41741968-fd49-4061-aebc-a508ea8beb74,New Zealand Fair Trading Act 1986,name_substring
+9,ASEAN,ASEAN Trade in Goods Agreement (ATIGA) + national regulations,ASEAN - No harmonised textile regulation (national rules apply),NOT_FOUND,,,ASEAN ATIGA not found
+9,GCC,GSO 1956:2012 (Gulf Standard Organization),GSO 1956 - Textile Products Labelling,FOUND,881719a2-a082-4877-83b1-e57b56070463,UAE.S GSO 1956,exact_ref
+9,GCC,GSO 1419:2008 + GSO 1417:2008,GSO 1419-1417 - Chemical content textiles,NOT_FOUND,,,GCC GSO 1419/1417 textile not found
+9,IL,SI 5466 (Textile products - general safety and labelling),Standards Institution of Israel SI 5466 - Textiles,NOT_FOUND,,,IL SI 5466 textile not found
+9,EG,ES 5366 + GOEIC product conformity,Egyptian Organization for Standardization ES 5366 - Textiles,FOUND,9dcf1f89-354a-43ef-8601-889812b4257d,Egypt Import Registration (GOEIC),name_substring
+9,MA,Loi n. 24-09 relative a la securite des produits et des services (Maroc),Loi 24-09 - Securite des produits et services,FOUND,3b1a837f-a769-4c63-a328-b5eeeb78ebd0,Morocco Law 09-09 on Consumer Product Safety,name_substring
+9,ZA,SANS 10146:2019 + Compulsory Specification VC 8014 (Care Labelling of Textile Articles),Compulsory Specification VC 8014 - Care Labelling,FOUND,0f992766-635d-46a4-a27c-f139310c1f70,South Africa Textile Labelling Regulations,name_substring
+9,NG,SON (Standards Organisation of Nigeria) + NAFDAC for chemical content,SON Mandatory Industrial Standards - Textile,FOUND,67a69f45-a824-49bc-b42a-b55698e6d0c6,SON Product Certification,name_substring
+9,KE,Kenya Bureau of Standards (KEBS) + PVoC programme,KEBS PVoC - Pre-Export Verification of Conformity,FOUND,9cad9935-fab6-4248-af40-9d06e4f9b5b5,Kenya KEBS Standards,name_substring
+9,CODEX,N/A - Codex scope limited to food and feed products,Codex Alimentarius - Not Applicable (textiles),NOT_FOUND,,,N/A entry
+9,ISO,ISO 3758:2012 (Textiles - Care labelling code using symbols),ISO 3758 - Care Labelling Symbols,FOUND,34f3b89e-0486-4401-8be1-0eb7410062c5,EU Regulation on Care Labelling (ISO 3758),name_substring
+9,UNECE,N/A - UNECE WP.29 scope: vehicle regulations,UNECE WP.29 - Not Applicable (automotive regulations only),NOT_FOUND,,,N/A entry
+9,WADA,World Anti-Doping Code 2021,WADA - Not Applicable (sport apparel does not contain prohibited substances),NOT_FOUND,,,WADA not applicable to textiles
+9,OECD,OECD (2017) Due Diligence Guidance for Responsible Supply Chains in the Garment and Footwear Sector,OECD Due Diligence Guidance for Responsible Supply Chains in Garment & Footwear Sector,FOUND,bbc0ab80-112c-490b-bd0f-187814e5e167,OECD Due Diligence Guidance for Responsible Supply Chains in the Garment and Footwear Sector,name_substring
+10,EU,Regulation (EU) 2016/425 of the European Parliament and of the Council,Regulation (EU) 2016/425 — PPE Regulation,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,exact_ref
+10,EU,EN 1078:2012+A1:2012 (harmonised standard under EU 2016/425),EN 1078:2012+A1:2012 — Helmets for pedal cyclists and users of skateboards and roller skates,FOUND,8829bb89-6210-4a7f-90be-e6e735c9d6b2,EN 1077 / EN 1078,name_substring
+10,EU,Annex V–VIII of Regulation (EU) 2016/425,Module B+C/D/E — Notified Body conformity assessment,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,name_substring
+10,EU,Regulation (EU) 2023/988 (applicable Dec 2024),GPSR — General Product Safety Regulation (EU) 2023/988,FOUND,74e08994-676b-4169-8999-e869f7d9debe,GPSR — General Product Safety Regulation (EU) 2023/988,exact_ref
+10,FR,"Décret n°2016-364 du 28 mars 2016 (Code de la route, art. R431-1)",Décret n°2016-364 — Port du casque obligatoire enfants < 12 ans,NOT_FOUND,,,FR Décret 2016-364 casque -12 ans not found; VAE regulations found instead
+10,FR,Règlement (UE) 2016/425 + Code de la consommation L221-1 et s.,DGCCRF — Contrôle du marché EPI catégorie II,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,name_substring
+10,DE,Produktsicherheitsgesetz (ProdSG) + Verordnung (EU) 2016/425 (DE implementation),ProdSG — Produktsicherheitsgesetz + BetrSichV (EPI at work),FOUND,a84d5d3a-19db-4450-886b-82041c36e379,German Product Safety Act (ProdSG),name_substring
+10,IT,Regulation (EU) 2016/425 + D.Lgs n.475/1992 (as amended),D.Lgs 475/1992 + Reg. UE 2016/425 — DPI Categoria II,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,name_substring
+10,ES,Real Decreto 1428/2003 por el que se aprueba el Reglamento General de Circulación,Real Decreto 1428/2003 — Casque obligatoire circulation interurbaine,FOUND,bf62d072-a89b-4001-8dd4-43cf80bd8726,Código de Circulación (Spain),name_substring
+10,NL,Regulation (EU) 2016/425 + Warenwetbesluit persoonlijke beschermingsmiddelen,Warenwetbesluit persoonlijke beschermingsmiddelen — EU 2016/425 implementation,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,name_substring
+10,GB,Personal Protective Equipment (Enforcement) Regulations 2018 (SI 2018/390) + UK PPE Regulation (retained EU law amended),UK PPE Regulations 2018 (SI 2018/390) — Post-Brexit UKCA,FOUND,dab7cebc-63df-4ba0-9c47-95497b02228a,Personal Protective Equipment (Enforcement) Regulations 2018,name_substring
+10,GB,"BS EN 1078:2012+A1:2012 (identical to EN 1078, adopted by BSI)",BS EN 1078:2012+A1:2012 — UK adopted standard,FOUND,8829bb89-6210-4a7f-90be-e6e735c9d6b2,EN 1077 / EN 1078,name_substring
+10,CH,"Ordonnance du DEFR sur les équipements de protection individuelle (OEPInd, SR 930.115)",SR 930.115 — Ordonnance sur les EPI (Swiss PPE Ordinance),FOUND,b36b30a6-bc39-4b50-837d-1e6878598490,Swiss PSA (EPI Ordinance),name_substring
+10,NO,Regulation (EU) 2016/425 as incorporated into Norwegian law via EEA Agreement,EEA — Forordning (EU) 2016/425 gjennomført via EØS-avtalen,FOUND,ed4f175c-5067-4d9a-bd2a-c73d7b553b6e,Regulation (EU) 2016/425 — PPE Regulation,name_substring
+10,RU,TR TS 019/2011 «О безопасности средств индивидуальной защиты» (EAEU Technical Regulation),TR TS 019/2011 — PPE Technical Regulation (EAEU),FOUND,888f49f2-2c00-4f3b-bd88-2daefb0e9bc7,TR CU 019/2011 (Eurasian Economic Union),exact_ref
+10,TR,"KKD Yönetmeliği (7518 sayılı Kişisel Koruyucu Donanım Yönetmeliği, 2016/425/EU transpoze)",KKD Yönetmeliği — PPE Regulation (transposing EU 2016/425),NOT_FOUND,,,TR KKD PPE Yönetmeliği helmet: KKDIK (chemicals) found not PPE helmet regulation
+10,UA,Постанова КМУ №761 «Про затвердження Технічного регламенту засобів індивідуального захисту» (2017),Resolution 761 — Technical Regulation on PPE,NOT_FOUND,,,UA CMU 761 PPE technical regulation not found
+10,EAEU,TR TS 019/2011 (Таможенный союз — Технический регламент о безопасности СИЗ),TR TS 019/2011 — On the safety of personal protective equipment (EAEU bloc),FOUND,888f49f2-2c00-4f3b-bd88-2daefb0e9bc7,TR CU 019/2011 (Eurasian Economic Union),exact_ref
+10,US,16 CFR Part 1203 (mandatory safety standard under Consumer Product Safety Act),16 CFR Part 1203 — CPSC Safety Standard for Bicycle Helmets,FOUND,e0944ec4-f230-48d2-98c5-4aa59f7c2ca7,CPSC Bicycle Helmet Safety Standard (16 CFR 1203),exact_ref
+10,US,"15 U.S.C. § 2063 (Consumer Product Safety Act, Section 14)",CPSC — General Certificate of Conformity (GCC) + Third Party Testing,NOT_FOUND,,,CPSA § 2063 Section 14 testing certificate not found specifically
+10,US-CA,California Vehicle Code §21212,Vehicle Code §21212 — Mandatory helmet under 18,NOT_FOUND,,,CA CVC 21212 bicycle helmet mandate not found
+10,US-NY,New York Vehicle and Traffic Law §1238,NY Vehicle and Traffic Law §1238 — Mandatory helmet under 14,NOT_FOUND,,,NY VTL 1238 bicycle helmet not found
+10,CA,CSA D113.2-M89 (Canadian Standards Association — Cycling Helmets),CSA D113.2-M89 — Cycling Helmets standard,FOUND,8ac254cd-e2b4-40d6-8f35-918709633fa9,Helmet Safety Standards (CSA),name_substring
+10,CA,Motor Vehicle Act (BC) s.183 + NS Motor Vehicle Act + ON Highway Traffic Act s.104 + similar provincial laws,"Provincial helmet laws — BC, NS, ON, NB, PEI mandatory",NOT_FOUND,,,CA provincial motor vehicle acts bicycle helmet not found
+10,MX,NOM-206-SCFI-2002 (Norma Oficial Mexicana — Cascos protectores para uso ciclista),NOM-206-SCFI-2002 — Cascos protectores para ciclistas,NOT_FOUND,,,MX NOM-206 cyclist helmets not found
+10,BR,ABNT NBR 16175:2013 (Capacetes para ciclistas — Requisitos e métodos de ensaio),ABNT NBR 16175 — Capacetes para ciclistas,NOT_FOUND,,,BR NBR 16175 bicycle helmet not found
+10,AR,Ley 24.449 (Ley Nacional de Tránsito) + IRAM 3621 (Cascos protectores para ciclistas),Ley Nacional de Tránsito 24.449 + IRAM 3621,FOUND,e9966a5e-f7e6-46f4-a0ff-15411cbd9568,Ley 24.449 Argentina,name_substring
+10,CL,"Ley N°18.290 (Ley de Tránsito, Artículo 196 bis) + Decreto Supremo 207/2000",Ley 18.290 de Tránsito — Port du casque obligatoire tous cyclistes,FOUND,b148aef2-7e53-4071-8ce5-997e5c66f6dc,Ley 18.290 Chile,name_substring
+10,CO,Resolución 1737 de 2004 (Ministerio de Transporte) + Ley 769/2002 (Código Nacional de Tránsito),Resolución 1737/2004 — Equipos de protección personal ciclistas,NOT_FOUND,,,CO Res 1737/2004 helmet not found
+10,MERCOSUR,MERCOSUR Resolutions + bilateral equivalency agreements (BR-AR),INMETRO/IRAM equivalency — MERCOSUR PPE framework,NOT_FOUND,,,MERCOSUR helmet resolutions not found
+10,CN,GB 24429-2009 《运动头盔 自行车、滑板、轮滑运动头盔的安全要求和试验方法》,GB 24429-2009 — Bicycle and electric cycling helmets,NOT_FOUND,,,CN GB 24429-2009 bicycle helmet not found
+10,CN,China Compulsory Certification (3C) system under CNCA Decree,CCC — China Compulsory Certification (if applicable to sports helmet category),FOUND,ff819e8b-bbe5-4859-a900-2f4abd0afde1,China CCC Certification,name_substring
+10,HK,Consumer Goods Safety Ordinance (Cap 456) + Product Liability Ordinance (Cap 187),Consumer Protection — General Safety and Product Liability,FOUND,b461eb15-101a-4262-88c1-17fcb5cd5adb,Hong Kong Consumer Goods Safety Ordinance (Cap. 456),name_substring
+10,TW,CNS 13371 (中華民國國家標準 — 自行車安全帽),CNS 13371 — Cycling helmets,NOT_FOUND,,,TW CNS 13371 bicycle helmet not found
+10,JP,JIS T 8134:2018 (自転車用ヘルメット),JIS T 8134 — Protective helmets for cyclists,NOT_FOUND,,,JP JIS T 8134 bicycle helmet not found
+10,JP,SG Mark system (Product Safety Association + PL Insurance),SG Mark — Safety Goods voluntary certification,FOUND,a23f0162-6bc3-4305-8b91-c3a9283b5185,Japan SG Mark / Consumer Product Safety Act,name_substring
+10,KR,KS G 6601 (자전거 이용자를 위한 보호 헬멧),KS G 6601 — Cyclists' protective helmet,NOT_FOUND,,,KR KS G 6601 bicycle helmet not found
+10,IN,IS 4151:2015 (Protective Helmets) + Bureau of Indian Standards (Compulsory Certification),IS 4151 — Protective helmets + BIS compulsory certification,FOUND,c8dad121-f3bc-47a5-a52d-a13a30b859ac,BIS QCO for Helmets,name_substring
+10,AU,"AS/NZS 2063:2020 (Bicycle helmets — Safety requirements, test methods and labelling)",AS/NZS 2063 — Bicycle helmets (mandatory),FOUND,f68f9c2c-38e3-4c03-b45b-cc6945ade43a,Australian Consumer Law — Mandatory Standards for Bicycle Helmets,name_substring
+10,NZ,AS/NZS 2063:2020 + Land Transport (Road User) Rule 2004 (NZ),AS/NZS 2063 + Land Transport (Road User) Rule 2004,FOUND,f68f9c2c-38e3-4c03-b45b-cc6945ade43a,Australian Consumer Law — Mandatory Standards for Bicycle Helmets,name_substring
+10,ASEAN,ASEAN MRA framework + ASEAN Consultative Committee for Standards and Quality (ACCSQ),ASEAN Mutual Recognition Arrangement for PPE — sector harmonisation,NOT_FOUND,,,ASEAN MRA helmet framework not found
+10,GCC,GSO 1798:2018 (Gulf Standard Organization — Protective helmets),GSO 1798 — Protective helmets (bicycle/motorcycle),NOT_FOUND,,,GCC GSO 1798 helmet not found
+10,IL,Israeli Standard SI 2761 (מגיני ראש לרוכבי אופניים),SI 2761 — Bicycle helmets (mandatory Israeli standard),NOT_FOUND,,,IL SI 2761 cyclist helmet not found
+10,EG,ES 4768 (المواصفة المصرية — خوذات الدراجات),Egyptian Standard ES 4768 — Bicycle helmets,NOT_FOUND,,,EG ES 4768 bicycle helmet not found
+10,MA,Décret n°2-09-689 relatif à la sécurité des produits et services (Maroc),Décret n°2-09-689 — Sécurité des produits + NM standards,FOUND,3b1a837f-a769-4c63-a328-b5eeeb78ebd0,Morocco Law 09-09 on Consumer Product Safety,name_substring
+10,ZA,SANS 1066 (South African National Standard — Protective helmets for cyclists),SANS 1066 — Protective helmets for cyclists,NOT_FOUND,,,ZA SANS 1066 cyclist helmet not found
+10,NG,SON (Standards Organisation of Nigeria) + SONCAP for imports,SON Mandatory Standards — Protective helmets,FOUND,eacb1ca4-f1ce-41d2-8e7b-0b43a0433e76,SONCAP,name_substring
+10,KE,Kenya Bureau of Standards (KEBS) + KS 1888-1 (Cyclists' protective helmets),KEBS PVoC + KS 1888-1 — Bicycle helmets,FOUND,9cad9935-fab6-4248-af40-9d06e4f9b5b5,Kenya KEBS Standards,name_substring
+10,SG,SS 9:1997 (Singapore Standard — Specifications for pedal cyclists helmets),SS 9 — Singapore cycling helmet standard,NOT_FOUND,,,SG SS 9 cyclist helmets not found
+10,MY,Road Transport Act 1987 + Malaysian Standards (MS) + SIRIM,Road Transport Act + JKR specifications — Helmet standards,FOUND,254f467c-2cab-447d-a0f0-a6a2af1c9cf0,Malaysia Road Transport Act and Vehicle Standards,name_substring
+10,TH,TIS 282-2531 (มาตรฐานผลิตภัณฑ์อุตสาหกรรม — หมวกนิรภัยสำหรับนักปั่นจักรยาน),TIS 282-2531 — Bicycle helmets,NOT_FOUND,,,TH TIS 282 bicycle helmet not found
+10,VN,QCVN 2:2008/BKHCN (Quy chuẩn kỹ thuật quốc gia về mũ bảo hiểm) — motorcycle helmets reference for cycling,QCVN 2:2008/BKHCN — Protective helmets,NOT_FOUND,,,VN QCVN 2 motorcycle helmet (not bicycle specific) not found
+10,ID,SNI 1811:2007 (Standar Nasional Indonesia — Helm pengaman untuk pemakai sepeda dan kendaraan tidak bermotor roda dua),SNI 1811:2007 — Cycling/protective helmets,NOT_FOUND,,,ID SNI 1811 bicycle helmet not found
+10,PH,PNS 24 (Philippine National Standard — Protective helmets) + Republic Act 10916 (Road Safety),PNS 24 — Philippine National Standard for helmets,NOT_FOUND,,,PH PNS 24 / RA 10916 bicycle helmet not found
+10,CODEX,N/A — Codex scope limited to food and feed products,Codex Alimentarius — Not Applicable (sports equipment/PPE),NOT_FOUND,,,N/A entry
+10,ISO,ISO 6220:1985 (Pedal cyclists' helmets — Specifications) + ISO/TR 16236,ISO 6220 — Pedal cyclists' helmets (reference historical),NOT_FOUND,,,ISO 6220 pedal cyclists helmets not found
+10,UNECE,N/A — UNECE WP.29 scope limited to vehicle technical regulations,UNECE WP.29 — Not Applicable (vehicle regulations only),NOT_FOUND,,,N/A entry
+10,WADA,World Anti-Doping Code 2021,WADA — Not Applicable (sports apparel/equipment not regulated),NOT_FOUND,,,WADA not applicable to textiles
+10,OECD,OECD Guidelines for Multinational Enterprises (2023) + OECD Recommendation on Consumer Product Safety,OECD Guidelines — Product Safety and Due Diligence,NOT_FOUND,,,OECD guidelines general not helmet specific
+10,US,Snell Memorial Foundation B-90A standard (voluntary certification),Snell B-90A — Voluntary gold standard for bicycle helmets (US),NOT_FOUND,,,Snell B-90A not found
