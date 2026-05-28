@@ -18346,6 +18346,177 @@ sources:
   jurisdictions:
   - code: US-CA
     scope: full
+- id: UN/UN-Treaties
+  name: UN Treaty Collection
+  country: UN
+  data_types:
+  - legislation
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://treaties.un.org
+  notes: United Nations Treaty Series and multilateral treaties.
+- id: UN/NATLEX
+  name: NATLEX (ILO)
+  country: UN
+  data_types:
+  - legislation
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://www.ilo.org/dyn/natlex
+  notes: ILO national labour, social security, and related human rights legislation across member states.
+- id: UN/FAOLEX
+  name: FAOLEX Database
+  country: UN
+  data_types:
+  - legislation
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://www.fao.org/faolex
+  notes: FAO legislative database covering food, agriculture, environment, water.
+- id: INTL/OECD-Legal
+  name: OECD Legal Instruments
+  country: INTL
+  data_types:
+  - legislation
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://legalinstruments.oecd.org
+  notes: 'OECD legal instruments: decisions, recommendations, declarations.'
+- id: INTL/WorldLII
+  name: WorldLII
+  country: INTL
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: http://www.worldlii.org
+  notes: World Legal Information Institute — global aggregator across LIIs.
+- id: INTL/AfricanLII
+  name: AfricanLII
+  country: INTL
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://africanlii.org
+  notes: African Legal Information Institute — legislation and caselaw across Africa.
+- id: INTL/SAFLII
+  name: SAFLII
+  country: INTL
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://www.saflii.org
+  notes: Southern African Legal Information Institute.
+- id: INTL/AsianLII
+  name: AsianLII
+  country: INTL
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://www.asianlii.org
+  notes: Asian Legal Information Institute — legislation and caselaw across Asia.
+- id: CA/CanLII
+  name: CanLII
+  country: CA
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: planned
+  priority: 1
+  blocked_reason: null
+  url: https://api.canlii.org/v2
+  notes: Canadian Legal Information Institute — legislation and caselaw API (api.canlii.org).
+- id: US/CaselawAccess
+  name: Caselaw Access Project (Harvard)
+  country: US
+  data_types:
+  - case_law
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://api.case.law/v1
+  notes: US caselaw — all official, book-published US court decisions, via Harvard CAP API.
+- id: US/FederalRegister
+  name: Federal Register API
+  country: US
+  data_types:
+  - legislation
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://www.federalregister.gov/api/v1
+  notes: 'US Federal Register: rules, proposed rules, notices, executive orders.'
+- id: US/GovInfo
+  name: GovInfo (US GPO)
+  country: US
+  data_types:
+  - legislation
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://api.govinfo.gov
+  notes: 'US Government Publishing Office API: CFR, FR, bills, public laws, statutes.'
+- id: UK/Legislation-UK-SPARQL
+  name: legislation.gov.uk SPARQL
+  country: UK
+  data_types:
+  - legislation
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://www.legislation.gov.uk/sparql
+  notes: UK primary and secondary legislation via linked-data SPARQL endpoint.
+- id: EU/EUR-Lex-SPARQL
+  name: EUR-Lex SPARQL
+  country: EU
+  data_types:
+  - legislation
+  - case_law
+  auth: none
+  status: complete
+  priority: 1
+  blocked_reason: null
+  url: https://publications.europa.eu/webapi/rdf/sparql
+  notes: EU law via CELLAR SPARQL endpoint — regulations, directives, decisions, treaties.
+- id: CH/Fedlex-SPARQL
+  name: Fedlex (Switzerland) SPARQL
+  country: CH
+  data_types:
+  - legislation
+  auth: none
+  status: planned
+  priority: 2
+  blocked_reason: null
+  url: https://fedlex.data.admin.ch/sparqlendpoint
+  notes: Swiss federal law linked-data SPARQL endpoint.
 subdivisions:
   DE:
     type: Bundesland

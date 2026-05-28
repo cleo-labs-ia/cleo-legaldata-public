@@ -4,9 +4,9 @@ import { loadDashboardData } from "@/lib/data";
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "Legal Data Atlas | Cleo",
+  title: "Atlas | Cleo Legal Data",
   description:
-    "1,479 official legal sources across 177 jurisdictions. Machine-readable.",
+    "The world's complete legal data atlas. 209,498 regulations across 177 jurisdictions — all topics, machine-readable.",
 };
 
 export default function GeneralPage() {

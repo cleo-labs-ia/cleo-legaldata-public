@@ -28,8 +28,8 @@ const ProductMapView = dynamic(() => import("./ProductMapView"), {
    ================================================================ */
 const PS = {
   eyebrow: {
-    fr: "Atlas conformite produit · Cleo Comply",
-    en: "Product Compliance Atlas · Cleo Comply",
+    fr: "Atlas Produit · Cleo Legal Data",
+    en: "Product Atlas · Cleo Legal Data",
   },
   titleA: { fr: "La plus grande base de donnees", en: "The world's largest" },
   titleB: {
@@ -64,7 +64,7 @@ const PS = {
     en: "Regulations by category",
   },
   closeDrawer: { fr: "Fermer", en: "Close" },
-  backToSources: { fr: "Atlas des sources", en: "Sources Atlas" },
+  backToSources: { fr: "Atlas", en: "Atlas" },
   statsCategories: { fr: "Categories produit", en: "Product categories" },
   statsCoverage: { fr: "Couverture moyenne", en: "Average coverage" },
   statsRegsIdentified: {
@@ -487,7 +487,7 @@ export default function ProductDashboard({
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-c-brand/20 bg-c-brand-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
-              Product Compliance Atlas
+              {lang === "fr" ? "Atlas Produit" : "Product Atlas"}
             </div>
             <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
               {pt(lang, "titleA")}{" "}
@@ -582,7 +582,7 @@ export default function ProductDashboard({
                 ? "Pour le droit mondial complet (santé, finance, environnement…) : "
                 : "Looking for full worldwide law (health, finance, environment…)? "}
               <Link href="/general" className="font-semibold text-c-brand hover:underline">
-                {lang === "fr" ? "Legal Data Atlas →" : "Legal Data Atlas →"}
+                {lang === "fr" ? "Atlas →" : "Atlas →"}
               </Link>
             </p>
             <span className="text-[10px] text-c-text-subtle">209 498 régs · 1,94M docs · 177 juridictions</span>

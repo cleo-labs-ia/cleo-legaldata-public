@@ -99,6 +99,9 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             >
               {STRINGS.navHome[lang]}
             </Link>
+            <span className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-semibold text-c-brand-ink">
+              {STRINGS.navGeneral[lang]}
+            </span>
             <Link
               href="/products"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"

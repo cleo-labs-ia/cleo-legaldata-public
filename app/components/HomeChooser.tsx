@@ -44,7 +44,13 @@ export default function HomeChooser() {
               href="/general"
               className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
             >
-              {STRINGS.homeNavAtlas[lang]}
+              {STRINGS.navGeneral[lang]}
+            </Link>
+            <Link
+              href="/products"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
+            >
+              {STRINGS.navProducts[lang]}
             </Link>
             <Link
               href="/docs"

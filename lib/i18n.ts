@@ -224,11 +224,11 @@ export const STRINGS = {
     en: "Reply within 1 business day, integration support",
   },
   privacyLink: { fr: "Confidentialité", en: "Privacy" },
-  navProducts: { fr: "Produits", en: "Products" },
+  navProducts: { fr: "Atlas Produit", en: "Product Atlas" },
   navHome: { fr: "Accueil", en: "Home" },
   navDocs: { fr: "Docs", en: "Docs" },
   navPricing: { fr: "Tarifs", en: "Pricing" },
-  navGeneral: { fr: "Atlas général", en: "General Atlas" },
+  navGeneral: { fr: "Atlas", en: "Atlas" },
   /* ── Home chooser (landing) ── */
   homeNavAtlas: { fr: "Atlas", en: "Atlas" },
   homeNavDocs: { fr: "Documentation", en: "API Docs" },
@@ -242,8 +242,8 @@ export const STRINGS = {
     en: "Pick the Cleo atlas that fits your need — product compliance or worldwide legal mapping. One API, one data quality bar.",
   },
   homeProductCardTitle: {
-    fr: "Atlas conformité produit",
-    en: "Product Compliance Atlas",
+    fr: "Atlas Produit",
+    en: "Product Atlas",
   },
   homeProductCardDesc: {
     fr: "Spécialisé conformité produit : 46 031 réglementations dédiées aux produits dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
@@ -254,12 +254,12 @@ export const STRINGS = {
     en: "46,031 product regs · 20 categories · 50 jurisdictions",
   },
   homeProductCardCta: {
-    fr: "Explorer l'atlas produit",
-    en: "Explore Product Atlas",
+    fr: "Ouvrir l'Atlas Produit",
+    en: "Open Product Atlas",
   },
   homeGeneralCardTitle: {
-    fr: "Atlas du droit mondial",
-    en: "Legal Data Atlas",
+    fr: "Atlas",
+    en: "Atlas",
   },
   homeGeneralCardDesc: {
     fr: "Toute la donnée juridique mondiale, machine-readable. 209 498 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
@@ -270,8 +270,8 @@ export const STRINGS = {
     en: "209,498 regs · 1.94M docs · 158 sources · 177 jurisdictions",
   },
   homeGeneralCardCta: {
-    fr: "Explorer l'atlas général",
-    en: "Explore Legal Data Atlas",
+    fr: "Ouvrir l'Atlas",
+    en: "Open Atlas",
   },
   homeSharedTitle: {
     fr: "Les deux atlas partagent la même API",
