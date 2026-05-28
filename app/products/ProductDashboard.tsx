@@ -363,15 +363,13 @@ export default function ProductDashboard({
     return [...set].sort();
   }, [data.regulations]);
 
-  /* ── Drawer data ── */
+  /* ── Drawer data — always show ALL regs for the jurisdiction ── */
   const drawerData = useMemo(() => {
     if (!drawerJur) return null;
     const jur = data.jurisdictions.find((j) => j.code === drawerJur);
     if (!jur) return null;
     const regs = data.regulations.filter(
-      (r) =>
-        r.jurisdiction_code === drawerJur &&
-        (!selectedCategory || r.category === selectedCategory),
+      (r) => r.jurisdiction_code === drawerJur,
     );
     const grouped: Record<string, ProductRegulation[]> = {};
     for (const r of regs) {
@@ -380,7 +378,7 @@ export default function ProductDashboard({
       grouped[cat].push(r);
     }
     return { jur, regs, grouped };
-  }, [drawerJur, data.jurisdictions, data.regulations, selectedCategory]);
+  }, [drawerJur, data.jurisdictions, data.regulations]);
 
   const generated = new Date().toLocaleDateString(
     lang === "fr" ? "fr-FR" : "en-US",
