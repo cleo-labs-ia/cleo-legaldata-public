@@ -95,6 +95,7 @@ interface Props {
   selected: string | null;
   onSelect: (code: string) => void;
   lang: Lang;
+  activeCategory?: string | null;
 }
 
 export default function ProductMapView({
@@ -102,6 +103,7 @@ export default function ProductMapView({
   selected,
   onSelect,
   lang,
+  activeCategory,
 }: Props) {
   const visible = useMemo(
     () => jurisdictions.filter((j) => CENTROIDS[j.code]),
@@ -173,10 +175,21 @@ export default function ProductMapView({
                 <span className="font-semibold">
                   {j.flag} {j.name}
                 </span>
-                <span className="ml-2 opacity-80">
-                  {j.pct}% · {j.found}/{j.total}{" "}
-                  {lang === "fr" ? "régs" : "regs"}
-                </span>
+                {activeCategory ? (
+                  <>
+                    <span className="ml-2 opacity-60 text-[10px]">
+                      {activeCategory}:
+                    </span>
+                    <span className="ml-1 opacity-80">
+                      {j.found}/{j.total} ({j.pct}%)
+                    </span>
+                  </>
+                ) : (
+                  <span className="ml-2 opacity-80">
+                    {j.pct}% · {j.found}/{j.total}{" "}
+                    {lang === "fr" ? "régs" : "regs"}
+                  </span>
+                )}
               </Tooltip>
             </CircleMarker>
           );

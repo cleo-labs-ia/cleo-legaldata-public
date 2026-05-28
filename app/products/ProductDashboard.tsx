@@ -584,6 +584,21 @@ export default function ProductDashboard({
         </section>
 
         {/* ── 3. Map [1fr 320px] + Sidebar categories ── */}
+        {selectedCategory && (
+          <div className="mb-3 flex items-center justify-between gap-3 rounded-xl border border-c-brand bg-c-brand-soft px-4 py-2">
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-c-text-subtle">{lang === "fr" ? "Filtré par :" : "Filtered by:"}</span>
+              <span className="font-semibold text-c-brand-ink">{selectedCategory}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => selectCategory(null)}
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-xs font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {lang === "fr" ? "Réinitialiser ×" : "Clear ×"}
+            </button>
+          </div>
+        )}
         <section
           id="coverage-section"
           className="scroll-mt-8 grid gap-4 lg:grid-cols-[1fr_320px]"
@@ -594,6 +609,7 @@ export default function ProductDashboard({
               selected={drawerJur}
               onSelect={(code) => setDrawerJur(code)}
               lang={lang}
+              activeCategory={selectedCategory}
             />
           </div>
           <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
