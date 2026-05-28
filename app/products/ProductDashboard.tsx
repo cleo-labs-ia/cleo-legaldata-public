@@ -12,6 +12,7 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import AnimatedNumber from "../components/AnimatedNumber";
 import ApiCallout from "../components/ApiCallout";
+import SiteHeader from "../components/SiteHeader";
 
 /* ── Lazy-load Leaflet map (client only) ── */
 const ProductMapView = dynamic(() => import("./ProductMapView"), {
@@ -410,76 +411,7 @@ export default function ProductDashboard({
      ================================================================ */
   return (
     <div className="min-h-screen pb-16">
-      {/* ── 1. Header (identical to Dashboard.tsx) ── */}
-      <header className="border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-          <div className="flex items-center gap-3">
-            <img
-              src="/cleo-icon.svg"
-              alt="Cleo"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-md"
-            />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">
-                {STRINGS.brand[lang]}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
-                {PS.eyebrow[lang]}
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navHome[lang]}
-            </Link>
-            <Link
-              href="/general"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {pt(lang, "backToSources")} →
-            </Link>
-            <Link
-              href="/products"
-              className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-medium text-c-brand-ink"
-            >
-              {STRINGS.navProducts[lang]}
-            </Link>
-            <Link
-              href="/docs"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navDocs[lang]}
-            </Link>
-            <Link
-              href="/pricing"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navPricing[lang]}
-            </Link>
-            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l
-                      ? "bg-c-brand text-white"
-                      : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader lang={lang} setLang={setLang} active="atlas-product" />
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
         {/* ── 2. Badge + Title + Subtitle + 5 KPI cards + CTAs ── */}

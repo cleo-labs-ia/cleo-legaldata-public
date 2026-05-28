@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import SiteHeader from "./SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
 
@@ -23,85 +24,7 @@ export default function HomeChooser() {
 
   return (
     <div className="min-h-screen bg-c-bg">
-      {/* ── Header (light, Stripe-style) ── */}
-      <header className="border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <img
-              src="/cleo-icon.svg"
-              alt="Cleo"
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-md"
-            />
-            <span className="font-display text-lg font-medium tracking-tight text-c-text">
-              cleo
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-1 md:flex">
-            <Link
-              href="/general"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
-            >
-              {STRINGS.navGeneral[lang]}
-            </Link>
-            <Link
-              href="/products"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
-            >
-              {STRINGS.navProducts[lang]}
-            </Link>
-            <Link
-              href="/docs"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
-            >
-              {STRINGS.homeNavDocs[lang]}
-            </Link>
-            <Link
-              href="/pricing"
-              className="rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted transition-colors hover:text-c-text"
-            >
-              {STRINGS.homeNavPricing[lang]}
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l
-                      ? "bg-c-text text-white"
-                      : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-            <a
-              href={MEET_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden rounded-md px-3 py-1.5 text-sm font-medium text-c-text-muted hover:text-c-text sm:inline-flex"
-            >
-              {STRINGS.homeNavLogin[lang]}
-            </a>
-            <a
-              href={MEET_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-c-text px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-c-ink-deep"
-            >
-              {STRINGS.homeNavApiKey[lang]} →
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       <main className="mx-auto max-w-7xl px-6 pb-20">
         {/* ── Hero ── */}

@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { DashboardData, DomainGroup } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import SiteHeader from "./SiteHeader";
 import AnimatedNumber from "./AnimatedNumber";
 import Link from "next/link";
 import StatsHeader from "./StatsHeader";
@@ -77,66 +78,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen pb-16">
-      <header className="border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-          <div className="flex items-center gap-3">
-            <img
-              src="/cleo-icon.svg"
-              alt="Cleo"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-md"
-            />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">{STRINGS.heroEyebrow[lang]}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navHome[lang]}
-            </Link>
-            <span className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-semibold text-c-brand-ink">
-              {STRINGS.navGeneral[lang]}
-            </span>
-            <Link
-              href="/products"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navProducts[lang]} →
-            </Link>
-            <Link
-              href="/docs"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navDocs[lang]}
-            </Link>
-            <Link
-              href="/pricing"
-              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
-            >
-              {STRINGS.navPricing[lang]}
-            </Link>
-            <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader lang={lang} setLang={setLang} active="atlas" />
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
         {/* Compact intro: title + 3 animated KPIs inline + tagline. No full-screen hero. */}
