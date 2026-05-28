@@ -250,8 +250,8 @@ export const STRINGS = {
     en: "Every regulation your product needs to comply with, in every country. 46,031 product regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
   },
   homeProductCardStats: {
-    fr: "46 031 régs · 20 catégories · 50 juridictions · 1,7M docs",
-    en: "46,031 regs · 20 categories · 50 jurisdictions · 1.7M docs",
+    fr: "46 031 régs · 20 catégories · 50 juridictions · 1,94M docs",
+    en: "46,031 regs · 20 categories · 50 jurisdictions · 1.94M docs",
   },
   homeProductCardCta: {
     fr: "Explorer l'atlas produit",
