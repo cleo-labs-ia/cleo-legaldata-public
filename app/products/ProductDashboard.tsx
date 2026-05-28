@@ -38,8 +38,8 @@ const PS = {
     en: "product compliance database.",
   },
   subtitle: {
-    fr: "37 267 reglementations produit dans 158 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
-    en: "37,267 product regulations across 158 official sources. Check any product against any country's requirements in one API call.",
+    fr: "25 892 reglementations produit auditees dans 289 juridictions et 158 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
+    en: "25,892 product regulations audited across 289 jurisdictions and 158 official sources. Check any product against any country's requirements in one API call.",
   },
   ctaApi: { fr: "Obtenir un acces API", en: "Get API access" },
   ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
