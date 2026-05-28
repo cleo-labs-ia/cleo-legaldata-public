@@ -246,12 +246,12 @@ export const STRINGS = {
     en: "Product Atlas",
   },
   homeProductCardDesc: {
-    fr: "Spécialisé conformité produit : 25 892 réglementations dédiées aux produits dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
-    en: "Specialized for product compliance: 25,892 product-specific regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
+    fr: "Spécialisé conformité produit : 37 267 réglementations dédiées aux produits dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
+    en: "Specialized for product compliance: 37,267 product-specific regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
   },
   homeProductCardStats: {
-    fr: "25 892 régs produit · 20 catégories · 289 juridictions",
-    en: "25,892 product regs · 20 categories · 289 jurisdictions",
+    fr: "37 267 régs produit · 20 catégories · 50 juridictions",
+    en: "37,267 product regs · 20 categories · 50 jurisdictions",
   },
   homeProductCardCta: {
     fr: "Ouvrir l'Atlas Produit",

@@ -6,6 +6,7 @@ Preserves category descriptions/images and jurisdiction flags from previous JSON
 import csv
 import json
 import subprocess
+import sys
 from pathlib import Path
 from collections import defaultdict
 
@@ -79,8 +80,16 @@ REGION_FALLBACK = {
 
 
 def main():
-    rows = list(csv.DictReader(MASTER.open()))
-    print(f"Loaded {len(rows)} rows from {MASTER.name}")
+    rows_all = list(csv.DictReader(MASTER.open()))
+    # Filter out UNVERIFIED rows by default — publish only solid (FOUND/NOT_FOUND)
+    publish_only_solid = "--all" not in sys.argv
+    if publish_only_solid:
+        rows = [r for r in rows_all if r["legal_api_match"].strip().upper() in ("FOUND", "NOT_FOUND")]
+        print(f"Loaded {len(rows_all)} rows, kept {len(rows)} solid (FOUND/NOT_FOUND).")
+        print(f"  Filtered out: {len(rows_all) - len(rows)} UNVERIFIED rows")
+    else:
+        rows = rows_all
+        print(f"Loaded {len(rows)} rows from {MASTER.name} (--all mode)")
 
     # Per-category stats
     cat_stats = defaultdict(lambda: {
