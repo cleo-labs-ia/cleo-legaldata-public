@@ -124,21 +124,26 @@ const PS = {
    Category images (40px sidebar, 28px matrix, 32px drawer)
    ================================================================ */
 const CAT_IMAGES: Record<string, string> = {
-  "Cosmetics & Personal Care": "/images/categories/cosmetics.png",
-  "Electronics & Telecom": "/images/categories/electronics.png",
-  "Toys & Children's Products": "/images/categories/toys.png",
-  "Medical Devices": "/images/categories/medical-devices.png",
-  "Tobacco & Vaping": "/images/categories/tobacco.png",
-  "Household Chemicals": "/images/categories/chemicals.png",
-  "Food & Supplements": "/images/categories/food.png",
-  "Textile & Apparel": "/images/categories/textile.png",
-  "PPE & Safety Equipment": "/images/categories/ppe.png",
-  "Alcohol & Beverages": "/images/categories/alcohol.png",
-  "Pharmaceuticals": "/images/categories/pharma.png",
-  "Automotive Parts": "/images/categories/automotive.png",
-  "Drones & Aviation": "/images/categories/drones.png",
-  "Paints & Coatings": "/images/categories/paints.png",
-  "Pet Food & Animal Feed": "/images/categories/petfood.png",
+  "Shampoo & Hair Care": "/images/categories/cosmetics.png",
+  "Sunscreen & Sun Care": "/images/categories/cosmetics.png",
+  "Smartphones & Mobile": "/images/categories/electronics.png",
+  "Stuffed Toys (0-3 years)": "/images/categories/toys.png",
+  "Adhesive Bandages (Class I)": "/images/categories/medical-devices.png",
+  "E-cigarettes & Vaping": "/images/categories/tobacco.png",
+  "Laundry Detergent Pods": "/images/categories/chemicals.png",
+  "Dietary Supplements": "/images/categories/food.png",
+  "Athletic Apparel & Textile": "/images/categories/textile.png",
+  "Bicycle Helmets (PPE)": "/images/categories/ppe.png",
+  "Wine & Spirits": "/images/categories/alcohol.png",
+  "Fresh Meat (Animal Food)": "/images/categories/food.png",
+  "OTC Pharmaceuticals": "/images/categories/pharma.png",
+  "Tyres & Automotive": "/images/categories/automotive.png",
+  "Household Insecticides": "/images/categories/chemicals.png",
+  "Consumer Drones": "/images/categories/drones.png",
+  "Smart Connected Appliances": "/images/categories/electronics.png",
+  "Dental Implants (Class III)": "/images/categories/medical-devices.png",
+  "Interior Paints & Coatings": "/images/categories/paints.png",
+  "Pet Food": "/images/categories/petfood.png",
 };
 
 /* ================================================================
@@ -639,7 +644,7 @@ export default function ProductDashboard({
                         <img
                           src={CAT_IMAGES[cat.name]}
                           alt=""
-                          className="h-10 w-10 rounded-lg object-cover"
+                          className="h-14 w-14 rounded-xl object-cover shadow-sm"
                         />
                       )}
                       <span className="truncate text-sm font-medium">
@@ -792,7 +797,7 @@ export default function ProductDashboard({
                             <img
                               src={CAT_IMAGES[cat.name]}
                               alt=""
-                              className="h-7 w-7 rounded-md object-cover"
+                              className="h-9 w-9 rounded-lg object-cover"
                             />
                           )}
                           <span className="truncate text-xs font-medium">
@@ -1395,7 +1400,7 @@ function ProductDrawer({
                   <img
                     src={CAT_IMAGES[cat]}
                     alt=""
-                    className="h-8 w-8 rounded-lg object-cover"
+                    className="h-12 w-12 rounded-xl object-cover shadow-sm"
                   />
                 )}
                 {cat}

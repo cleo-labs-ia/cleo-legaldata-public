@@ -246,12 +246,12 @@ export const STRINGS = {
     en: "Product Compliance Atlas",
   },
   homeProductCardDesc: {
-    fr: "Chaque réglementation à laquelle votre produit doit se conformer, dans chaque pays. 46 031 réglementations produit dans 15 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile…",
-    en: "Every regulation your product needs to comply with, in every country. 46,031 product regulations across 15 categories — cosmetics, electronics, toys, medical devices, food, textile…",
+    fr: "Chaque réglementation à laquelle votre produit doit se conformer, dans chaque pays. 46 031 réglementations produit dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
+    en: "Every regulation your product needs to comply with, in every country. 46,031 product regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
   },
   homeProductCardStats: {
-    fr: "46 031 régs · 15 catégories · 50 juridictions · 1,7M docs",
-    en: "46,031 regs · 15 categories · 50 jurisdictions · 1.7M docs",
+    fr: "46 031 régs · 20 catégories · 50 juridictions · 1,7M docs",
+    en: "46,031 regs · 20 categories · 50 jurisdictions · 1.7M docs",
   },
   homeProductCardCta: {
     fr: "Explorer l'atlas produit",

@@ -4,6 +4,7 @@ import path from "node:path";
 export interface ProductCategory {
   name: string;
   description: string;
+  image?: string;
   total_regs: number;
   found: number;
   pct: number;
