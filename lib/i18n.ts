@@ -143,8 +143,8 @@ export const STRINGS = {
     en: "Cleo Legal Data API — documentation",
   },
   apiDocsIntro: {
-    fr: "Une API REST pour accéder par programmation à l'intégralité du catalogue Cleo : 1 479 portails officiels, 177 juridictions, 234M+ documents juridiques recensés, classés en 7 catégories réglementaires.",
-    en: "A REST API for programmatic access to the entire Cleo catalog: 1,479 official portals, 177 jurisdictions, 234M+ legal documents recensed, classified into 7 regulatory categories.",
+    fr: "Une API REST pour accéder par programmation à l'intégralité du catalogue Cleo : 1 494 portails officiels, 177 juridictions, 234M+ documents juridiques recensés, classés en 7 catégories réglementaires.",
+    en: "A REST API for programmatic access to the entire Cleo catalog: 1,494 official portals, 177 jurisdictions, 234M+ legal documents recensed, classified into 7 regulatory categories.",
   },
   apiAuthHeader: { fr: "Comment ça marche", en: "How it works" },
   apiAuthBody: {
@@ -262,12 +262,12 @@ export const STRINGS = {
     en: "Atlas",
   },
   homeGeneralCardDesc: {
-    fr: "Toute la donnée juridique mondiale, machine-readable. 209 498 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
-    en: "The world's complete legal data, machine-readable. 209,498 regulations across 177 jurisdictions — health, finance, environment, AI, data privacy, labor, tax, all topics. Legislation, case law, doctrine.",
+    fr: "Toute la donnée juridique mondiale, machine-readable. 210 508 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
+    en: "The world's complete legal data, machine-readable. 210,508 regulations across 177 jurisdictions — health, finance, environment, AI, data privacy, labor, tax, all topics. Legislation, case law, doctrine.",
   },
   homeGeneralCardStats: {
-    fr: "209 498 régs · 1,94M docs · 158 sources · 177 juridictions",
-    en: "209,498 regs · 1.94M docs · 158 sources · 177 jurisdictions",
+    fr: "210 508 régs · 1,94M docs · 1 494 sources · 177 juridictions",
+    en: "210,508 regs · 1.94M docs · 1,494 sources · 177 jurisdictions",
   },
   homeGeneralCardCta: {
     fr: "Ouvrir l'Atlas",

@@ -585,7 +585,7 @@ export default function ProductDashboard({
                 {lang === "fr" ? "Atlas →" : "Atlas →"}
               </Link>
             </p>
-            <span className="text-[10px] text-c-text-subtle">209 498 régs · 1,94M docs · 177 juridictions</span>
+            <span className="text-[10px] text-c-text-subtle">210 508 régs · 1,94M docs · 177 juridictions</span>
           </div>
         </section>
 

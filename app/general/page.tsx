@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 export const metadata = {
   title: "Atlas | Cleo Legal Data",
   description:
-    "The world's complete legal data atlas. 209,498 regulations across 177 jurisdictions — all topics, machine-readable.",
+    "The world's complete legal data atlas. 210,508 regulations across 177 jurisdictions — all topics, machine-readable.",
 };
 
 export default function GeneralPage() {

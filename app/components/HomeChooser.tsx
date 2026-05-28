@@ -190,7 +190,7 @@ export default function HomeChooser() {
                 <div className="relative grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
                     <div className="font-display text-xl font-light tabular-nums text-white">
-                      1 479
+                      1 494
                     </div>
                     <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
                       sources
