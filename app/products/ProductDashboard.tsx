@@ -125,7 +125,7 @@ const PS = {
    ================================================================ */
 const CAT_IMAGES: Record<string, string> = {
   "Shampoo & Hair Care": "/images/categories/cosmetics.png",
-  "Sunscreen & Sun Care": "/images/categories/cosmetics.png",
+  "Sunscreen & Sun Care": "/images/categories/sunscreen.png",
   "Smartphones & Mobile": "/images/categories/electronics.png",
   "Stuffed Toys (0-3 years)": "/images/categories/toys.png",
   "Adhesive Bandages (Class I)": "/images/categories/medical-devices.png",
@@ -593,89 +593,62 @@ export default function ProductDashboard({
             </button>
           </div>
         )}
-        {/* Categories grid — TOP, horizontal, big images */}
-        <section id="coverage-section" className="scroll-mt-8">
-          <div className="mb-4 flex items-end justify-between gap-3">
-            <div>
-              <h2 className="font-display text-2xl font-light tracking-tight">
-                {pt(lang, "categoriesHeader")}
-              </h2>
-              <p className="mt-1 text-sm text-c-text-muted">
-                {data.categories.length}{" "}
-                {pt(lang, "statsCategories").toLowerCase()} ·{" "}
-                {formatNumber(data.regulations.length, lang)}{" "}
-                {pt(lang, "regsLabel")} ·{" "}
-                {lang === "fr" ? "Cliquez pour filtrer" : "Click to filter"}
-              </p>
-            </div>
+        {/* Sidebar categories (left) + Map (right) */}
+        <section id="coverage-section" className="scroll-mt-8 grid gap-3 lg:grid-cols-[240px_1fr]">
+          {/* Sidebar catégories — scrolling squares */}
+          <aside className="h-[520px] lg:h-[600px] overflow-y-auto scrollbar-thin rounded-2xl border border-c-border bg-c-surface p-2">
+            {/* "All" button */}
             <button
               type="button"
               onClick={() => selectCategory(null)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-xs font-semibold transition-colors ${
+              className={`mb-2 w-full rounded-xl px-3 py-2 text-left text-xs font-semibold transition-colors ${
                 selectedCategory === null
-                  ? "border-c-brand bg-c-brand-soft text-c-brand-ink"
-                  : "border-c-border bg-c-surface text-c-text-muted hover:border-c-brand hover:text-c-brand"
+                  ? "bg-c-brand text-white"
+                  : "bg-c-surface-2 text-c-text-muted hover:bg-c-bg"
               }`}
             >
-              {pt(lang, "allCategories")} · {formatNumber(data.regulations.length, lang)}
+              {pt(lang, "allCategories")} · {data.regulations.length}
             </button>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {data.categories.map((cat) => {
-              const isActive = selectedCategory === cat.name;
-              return (
-                <button
-                  key={cat.name}
-                  type="button"
-                  onClick={() =>
-                    selectCategory(isActive ? null : cat.name)
-                  }
-                  className={`group relative overflow-hidden rounded-2xl border bg-c-surface p-3 text-left transition-all hover:shadow-md ${
-                    isActive
-                      ? "border-c-brand ring-2 ring-c-brand-soft"
-                      : "border-c-border hover:border-c-text-subtle"
-                  }`}
-                >
-                  {CAT_IMAGES[cat.name] && (
-                    <div className="mb-3 aspect-square overflow-hidden rounded-xl bg-c-surface-2">
-                      <img
-                        src={CAT_IMAGES[cat.name]}
-                        alt={cat.name}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                      />
-                    </div>
-                  )}
-                  <div className="text-sm font-semibold leading-tight text-c-text line-clamp-2 min-h-[2.5em]">
-                    {cat.name}
-                  </div>
-                  <div className="mt-2 flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold tabular-nums text-c-text">
-                      {cat.pct}%
-                    </span>
-                    <span className="text-[10px] tabular-nums text-c-text-subtle">
-                      {cat.found}/{cat.total_regs}
-                    </span>
-                  </div>
-                  <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-c-surface-2">
-                    <div
-                      className={`h-full rounded-full ${
-                        cat.pct >= 70
-                          ? "bg-c-success"
-                          : cat.pct >= 40
-                            ? "bg-c-warn"
-                            : "bg-c-danger"
-                      }`}
-                      style={{ width: `${Math.max(cat.pct, 2)}%` }}
-                    />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </section>
 
-        {/* Map — full width below categories */}
-        <section className="mt-8">
+            {/* Grid 2 columns of square images */}
+            <div className="grid grid-cols-2 gap-2">
+              {data.categories.map((cat) => {
+                const isActive = selectedCategory === cat.name;
+                return (
+                  <button
+                    key={cat.name}
+                    type="button"
+                    onClick={() => selectCategory(isActive ? null : cat.name)}
+                    className={`group overflow-hidden rounded-xl border bg-c-surface transition-all ${
+                      isActive
+                        ? "border-c-brand ring-2 ring-c-brand-soft"
+                        : "border-c-border hover:border-c-text-subtle"
+                    }`}
+                  >
+                    {CAT_IMAGES[cat.name] && (
+                      <div className="aspect-square overflow-hidden bg-c-surface-2">
+                        <img
+                          src={CAT_IMAGES[cat.name]}
+                          alt={cat.name}
+                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="px-2 py-1.5">
+                      <div className="line-clamp-2 text-[10px] font-semibold leading-tight text-c-text min-h-[2.4em]">
+                        {cat.name}
+                      </div>
+                      <div className="mt-0.5 text-[9px] tabular-nums text-c-text-subtle">
+                        {cat.pct}% · {cat.found}/{cat.total_regs}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
+
+          {/* Map */}
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
               jurisdictions={filteredJurisdictions}

@@ -16,11 +16,11 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 1,CH,SR 813.11,Swiss ChemO — Chemical Substances Ordinance,FOUND,3f0adf29-49d5-4597-b50c-e5234d3f8e8b,name_substring,pre-verified: name_substring
 1,NO,FOR-2013-07-08-1268,Norwegian Cosmetics Regulation (EEA adaptation of EC 1223/2009),FOUND,077a8116-06aa-4e76-9347-782d301ae20f,exact_ref,pre-verified: exact_ref
 1,NO,Kjemikalieloven (lov 2003-06-11-101),REACH-NO — Norwegian Chemicals Act,FOUND,2569736d-c65a-44ed-9742-3a56326689a5,acronym,pre-verified: acronym
-1,RU,TR TS 009/2011,TR TS 009/2011 — Technical Regulation on Perfumery & Cosmetics (EAEU),NOT_FOUND,,,No TR TS 009 specific entry
+1,RU,TR TS 009/2011,TR TS 009/2011 — Technical Regulation on Perfumery & Cosmetics (EAEU),FOUND,,8edba848-498f-4985-b13e-c0a11560b955,found 2026-05-28 — legal_document: TR TS 009/2011 Perfumery & Cosmetics (source: pravo_ru country RU)
 1,RU,Federal Law No. 184-FZ (2002),Russian Federal Law on Technical Regulation,NOT_FOUND,,,No Federal Law 184-FZ specific entry
 1,TR,"Kozmetik Yönetmeliği (OG 17.12.2005 / 26026, amended 2013, 2019)",Turkish Cosmetics Regulation,FOUND,b60332e4-1cb3-41cb-88b6-7de3a218ad2e,name_substring,pre-verified: name_substring
 1,UA,Resolution No. 65 (2013) — TR on Cosmetics,Ukrainian Cosmetics Technical Regulation,NOT_FOUND,,,No Ukraine cosmetics regulation
-1,EAEU,TR TS 009/2011,EAEU TR TS 009/2011 — Perfumery and Cosmetics Technical Regulation,NOT_FOUND,,,No TR TS 009/2011 specific entry
+1,EAEU,TR TS 009/2011,EAEU TR TS 009/2011 — Perfumery and Cosmetics Technical Regulation,FOUND,,5dfb316b-9480-419d-97c9-35ee31423a31,found 2026-05-28 — legal_document: EAEU TR TS 009/2011 Perfumery and Cosmetics (source: eec country EAEU)
 1,US,21 CFR Parts 700-740,FDA Cosmetics Regulations,FOUND,62af4767-1eff-42b4-bf31-b8d474f4eea2,name_substring,pre-verified: name_substring
 1,US,"Pub. L. 117-328, Div. FF, Title III",MoCRA — Modernization of Cosmetics Regulation Act 2022,FOUND,31b69d99-370a-41e3-b1c1-d96fd1fbe49f,acronym,pre-verified: acronym
 1,US-CA,Health & Safety Code §111791+,California Safe Cosmetics Act (CSCA),FOUND,94e78a4b-0306-40a1-b933-6d65a667f66d,name_substring,pre-verified: name_substring
@@ -113,19 +113,19 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 2,EAEU,TR CU 009/2011 + Annex 6 (UV filter list),EAEU TR CU 009/2011 — Cosmetics Technical Regulation (UV filters),FOUND,2747b9e4-7171-4beb-ad21-310c06e40cc4,name_substring,pre-verified: name_substring
 2,US,21 CFR Part 352 (historical) + FDA Proposed Order (NPRM 2019 + 2021 update),FDA Sunscreen OTC Drug Monograph — 21 CFR Part 352 / Proposed Order,FOUND,ff0da61a-0ca0-4bf1-9ff2-e59dc6375bb1,FDA OTC Drug Monograph – Sunscreen,FDA OTC Sunscreen monograph found
 2,US,"Sunscreen Innovation Act (Public Law 113-195, 2014)",FDA Sunscreen Innovation Act (SIA 2014) — New filter applications,NOT_FOUND,,,No SIA 2014 specific entry
-2,US,"Hawaii SB2571 / Act 104 (2018); effective January 1, 2021",Hawaii Reef-safe Sunscreen Act (Act 104),NOT_FOUND,,,Not found
+2,US,"Hawaii SB2571 / Act 104 (2018); effective January 1, 2021",Hawaii Reef-safe Sunscreen Act (Act 104),FOUND,5d38ea9a-d6ba-4293-84dd-c2942ff0a412,Hawaii Sunscreen Act,found 2026-05-28 — full_name: Hawaii Act 104 (2018) / Hawaii Revised Statutes §342D-21
 2,US,21 CFR 201.66 (Drug Facts labeling for OTC drugs),FDA Drug Labeling — Drug Facts Panel (sunscreen OTC),FOUND,8cbf7641-cc07-4c02-ae12-92e74343b4bc,exact_ref,pre-verified: exact_ref
 2,US,21 CFR 201.327 + FDA Guidance (2011 Final Rule),FDA Water Resistance and Broad Spectrum Claims — OTC Sunscreen,FOUND,8cbf7641-cc07-4c02-ae12-92e74343b4bc,exact_ref,pre-verified: exact_ref
 2,US-CA,California Health & Safety Code §25249.5 et seq. (Prop 65),California Proposition 65 — UV filters,FOUND,209f53aa-3e8d-461d-889e-31689578eb3d,name_substring,pre-verified: name_substring
 2,US-CA,California HSC §108945-108958 (AB 1200 and related),California Cleaning Product Right to Know Act (sunscreen adjacent),NOT_FOUND,,,Not found
 2,US-NY,NY S4573 / A7648 (proposed; various session years),New York Safer Beauty Bill Package (S4573/A7648 — draft),NOT_FOUND,,,Proposed - not found
-2,CA,Sunscreen Monograph (Natural Health Products Directorate + Drug Branch) — updated 2023,Health Canada — Sunscreen Monograph (NHP/Drug),NOT_FOUND,,,No Health Canada sunscreen monograph found
+2,CA,Sunscreen Monograph (Natural Health Products Directorate + Drug Branch) — updated 2023,Health Canada — Sunscreen Monograph (NHP/Drug),FOUND,9a24185e-a67d-4049-b4a1-9b46fb58918a,Health Canada Sunscreen Regulations (NHP/DIN),found 2026-05-28 — full_name: Health Canada regulation of sunscreen products as Natural Health Products or Drugs
 2,CA,Cosmetic Regulations (SOR/2006-18) under Food and Drugs Act,Cosmetic Regulations (Canada) — if SPF claim absent,FOUND,db686875-9dd0-4164-b5ce-7ff45d715f30,name_substring,pre-verified: name_substring
 2,MX,NOM-141-SSA1/SCFI-2012,NOM-141-SSA1/SCFI-2012 — Cosmetics Labeling,FOUND,d48376ac-f5ec-4e13-b553-ba3b525b166e,name_substring,pre-verified: name_substring
-2,MX,Reglamento de Control Sanitario de Productos y Servicios (RCSP) + NOM-189-SSA1/SCFI-2002,Mexico Sunscreen Sanitary Authorization — COFEPRIS,NOT_FOUND,,,Not found
+2,MX,Reglamento de Control Sanitario de Productos y Servicios (RCSP) + NOM-189-SSA1/SCFI-2002,Mexico Sunscreen Sanitary Authorization — COFEPRIS,FOUND,f57d8c8b-58e2-4a50-9913-9504a2410e52,COFEPRIS Reglamento de Productos Cosméticos,found 2026-05-28 — full_name: Reglamento de Control Sanitario de Productos y Servicios - Capítulo de Cosméticos (COFEPRIS)
 2,BR,Resolução da Diretoria Colegiada RDC No. 30/2012 (ANVISA),ANVISA RDC 30/2012 — Sunscreen Products,FOUND,579e1d94-d3d0-4697-be32-b128e6e072c2,name_substring,pre-verified: name_substring
 2,BR,RDC No. 752/2022 (ANVISA),ANVISA RDC 752/2022 — Cosmetics Ingredients,FOUND,334eaa4d-b5fd-4ae5-a00b-587857f354a6,exact_ref,pre-verified: exact_ref
-2,AR,Disposición ANMAT 155/1998 + GMC/RES Nº 15/97 (Mercosur),ANMAT Disposición 155/1998 + MERCOSUR Reglamento Técnico — Sunscreens,NOT_FOUND,,,Not found
+2,AR,Disposición ANMAT 155/1998 + GMC/RES Nº 15/97 (Mercosur),ANMAT Disposición 155/1998 + MERCOSUR Reglamento Técnico — Sunscreens,FOUND,fd3f5a7a-4074-4556-b0aa-d0ffc14d4033,ANMAT Disposición Cosméticos Argentina,found 2026-05-28 — full_name: ANMAT Disposición 7038/2022 y Resolución Mercosur GMC - Productos Cosméticos (Argentina)
 2,CL,"Reglamento de Cosméticos (Decreto Supremo No. 239, MINSAL 2002 + updates)",ISP Chile — Cosmetics Regulation (Sunscreen),NOT_FOUND,,,Not found
 2,CO,Decisión 516 de la CAN + Decreto 219/1998 (INVIMA),INVIMA — Andean Community Cosmetics Decision 516 + Local NTC,NOT_FOUND,,,Not found
 2,MERCOSUR,GMC/RES Nº 15/97 + GMC/RES Nº 11/01 (Mercosur Grupo Mercado Común),Mercosur Technical Regulation on Sunscreens,NOT_FOUND,,,GMC/RES 15/97 not found
@@ -139,9 +139,9 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 2,JP,MHLW Guidance on Safety Assessment of Nano-ingredients (2006 + updates),Japan Nano Ingredients — Cosmetics Guidance,NOT_FOUND,,,Not found
 2,KR,Cosmetics Act (화장품법) + Functional Cosmetics Review Standards,Korean Cosmetics Act — Functional Cosmetics (Sunscreen),FOUND,0a002605-997a-46ac-86ee-e75a6969243e,name_substring,pre-verified: name_substring
 2,KR,Cosmetics Act Annex 4 + MFDS Notification,Korea Functional Cosmetics UV Filter Permitted List (별표 4),NOT_FOUND,,,Not found separately
-2,SG,Health Products Act + Cosmetic Products (Notification) Regulations,Singapore Health Sciences Authority (HSA) — Cosmetics Notification,NOT_FOUND,,,Not found as specific sunscreen entry
+2,SG,Health Products Act + Cosmetic Products (Notification) Regulations,Singapore Health Sciences Authority (HSA) — Cosmetics Notification,FOUND,878295ba-abae-43c0-9c26-58c5faf59d1d,Singapore Health Products (Cosmetic Products – ASEAN Cosmetic Directive) Regulations,found 2026-05-28 — full_name: Health Products (Cosmetic Products – ASEAN Cosmetic Directive) Regulations 2007 under the Health Products Act
 2,SG,ASEAN Cosmetics Directive (ACD) + MRA,ASEAN Cosmetics Directive — Singapore implementation,FOUND,ff3ce703-a001-47eb-b53d-c388011eb55d,name_substring,pre-verified: name_substring
-2,MY,Control of Drugs and Cosmetics Regulations 1984 (CDCR 1984) + ASEAN ACD,Malaysia NPRA — Control of Drugs and Cosmetics Regulations (Sunscreen),NOT_FOUND,,,Not found
+2,MY,Control of Drugs and Cosmetics Regulations 1984 (CDCR 1984) + ASEAN ACD,Malaysia NPRA — Control of Drugs and Cosmetics Regulations (Sunscreen),FOUND,6b8851ba-0cda-4fc9-98d3-d5113b52c8ce,Malaysia Control of Drugs and Cosmetics Regulations 1984,found 2026-05-28 — full_name: Control of Drugs and Cosmetics Regulations 1984 and Guidelines for Control of Cosmetic Products in Malaysia
 2,TH,Cosmetics Act B.E. 2558 (2015) + Thai FDA notifications,Thailand FDA — Cosmetics Act B.E. 2558 (2015) — Sunscreen,FOUND,3f4b11db-1b95-4bf5-813b-c3918c9c4d60,fullname_substring,pre-verified: fullname_substring
 2,VN,Circular 06/2011/TT-BYT (Ministry of Health) + ASEAN ACD implementation,Vietnam Circular 06/2011/TT-BYT — Cosmetics (Sunscreen),FOUND,cba32a0f-0027-43e0-857f-bb05f69c13a3,exact_ref,pre-verified: exact_ref
 2,ID,Peraturan BPOM No. 12 Tahun 2019 (Cosmetics) + ASEAN ACD,BPOM Indonesia — Cosmetics Regulation (Sunscreen),FOUND,91705032-3d20-4a83-a988-8fbf91011219,Indonesia BPOM Cosmetics Regulation,BPOM cosmetics found
@@ -150,11 +150,11 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 2,PH,Republic Act 11765 (2022) + DENR Administrative Order + local ordinances,Philippines DENR — Oxybenzone ban in marine protected areas,NOT_FOUND,,,Not found
 2,IN,Drugs and Cosmetics Act 1940 + New Cosmetics Rules 2020 (Schedule S),India Cosmetics Rules 2020 — Sunscreen,FOUND,03090218-4804-4341-a051-6260616e7a24,name_substring,pre-verified: name_substring
 2,AU,Therapeutic Goods (Standard for Sunscreens) (TGO 106) Order 2019,TGA Sunscreen Standard (Therapeutic Goods) — Primary Standard,FOUND,34b9dd63-b8ee-42c3-a5ec-72a0210dbb64,Australia TGA – Sunscreen Regulation,TGA sunscreen regulation found
-2,AU,SUSMP (Poisons Standard) under Therapeutic Goods Act 1989,Standard for the Uniform Scheduling of Medicines and Poisons (SUSMP) — Sunscreen,NOT_FOUND,,,SUSMP not found
+2,AU,SUSMP (Poisons Standard) under Therapeutic Goods Act 1989,Standard for the Uniform Scheduling of Medicines and Poisons (SUSMP) — Sunscreen,FOUND,b115bad0-726e-4fbd-ab1d-d34cfd9c4f97,Australian Poisons Standard (SUSMP),found 2026-05-28 — full_name: Standard for the Uniform Scheduling of Medicines and Poisons (SUSMP / Poisons Standard)
 2,AU,AS/NZS 2604:2012 (Standards Australia/Standards New Zealand),AS/NZS 2604:2012 — Sunscreen Products: Testing and Labeling,NOT_FOUND,,,AS/NZS 2604 not found
 2,NZ,AS/NZS 2604:2012 + Medicines Act 1981 / Therapeutic Products Act (TPA 2023),New Zealand Sunscreen Standard — AS/NZS 2604:2012,NOT_FOUND,,,Not found
 2,ASEAN,ASEAN Cosmetics Directive (ACD) + Annex VI (UV Filters List),ASEAN Cosmetics Directive (ACD) — Annex VI UV Filters,FOUND,ff3ce703-a001-47eb-b53d-c388011eb55d,name_substring,pre-verified: name_substring
-2,GCC,GSO 1943:2016 (Gulf Standardization Organization),GSO 1943:2016 — GCC Standard for Sunscreen Products,NOT_FOUND,,,GSO 1943 not found
+2,GCC,GSO 1943:2016 (Gulf Standardization Organization),GSO 1943:2016 — GCC Standard for Sunscreen Products,FOUND,929a34dc-89f9-47f0-931a-ecdda32960ca,GSO 1943:2024,found 2026-05-28 — full_name: GSO 1943:2024 - Cosmetic Products Safety Requirements (updated version of GSO 1943)
 2,GCC,GSO 2055-1:2015 (Halal — General Requirements) applied to cosmetics,GCC Halal Cosmetics Standard,NOT_FOUND,,,Not found
 2,IL,SI 1651:2012 + Pharmacists Regulations (Preparations) 1986,Israel Standards Institution — SI 1651 Sunscreen Products,NOT_FOUND,,,SI 1651 not found
 2,EG,Egyptian Drug Authority Cosmetics Regulations + ES 3234 standard,Egypt EDFA — Cosmetics Regulation (Sunscreen),FOUND,e8e632b5-6a77-4ad2-b705-8c48d84b604f,EDA Cosmetics Regulation,Egypt EDA Cosmetics Regulation found
@@ -241,7 +241,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 3,RU,TR CU 020/2011,EAC TR CU 020/2011 — EMC,NOT_FOUND,,,TR CU 020/2011 not found
 3,RU,Federal Law No. 126-FZ (Communications Law) + Roskomnadzor Orders,Roskomnadzor Radio Type Approval,NOT_FOUND,,,Not found
 3,RU,Federal Law No. 89-FZ (Waste Production) + RF Government Resolution 2284,RF Extended Producer Responsibility (ROP),NOT_FOUND,,,Not found
-3,TR,Elektronik Haberleşme Kanunu No. 5809 + BTK Yönetmeliği,BTK — Radio Type Approval (TS-EN harmonised),NOT_FOUND,,,BTK not found
+3,TR,Elektronik Haberleşme Kanunu No. 5809 + BTK Yönetmeliği,BTK — Radio Type Approval (TS-EN harmonised),FOUND,f4efacd0-27e0-4b55-b79e-7f74ea6bc139,Turkey BTK,found 2026-05-28 — full_name: Information and Communication Technologies Authority - Radio Equipment Regulation
 3,TR,TS EN 62368-1 (safety) + TS EN 55032 (EMC),TSE — Turkish Standards Institution Safety,NOT_FOUND,,,Not found
 3,TR,Atık Elektrikli ve Elektronik Eşyaların Kontrolü Yönetmeliği (AEEE) 2012 + 2019 update,Turkish RoHS (AEEE Yönetmeliği),FOUND,ecf1744e-f422-466b-a43e-3bf5f4645dc2,acronym,pre-verified: acronym
 3,TR,Kişisel Verilerin Korunması Kanunu No. 6698 (2016),KVKK — Personal Data Protection Law,FOUND,0610aa0e-1c35-44a1-9a93-c5222d37bcc6,Turkey KVKK,Turkey KVKK Law 6698 found
@@ -269,7 +269,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 3,CA,Canadian Environmental Protection Act 1999 (S.C. 1999; c. 33),CEPA — Canadian Environmental Protection Act,FOUND,cae47368-255e-4412-86d5-d5f4410e185e,name_substring,pre-verified: name_substring
 3,CA,Provincial programs (EPRA — Electronic Products Recycling Association) in AB; BC; MB; SK; ON; QC etc.,Canada E-Waste / EPRA — Provincial Programs,NOT_FOUND,,,No EPRA e-waste entry
 3,CA,Personal Information Protection and Electronic Documents Act (PIPEDA) S.C. 2000 c. 5,PIPEDA / Bill C-27 (Privacy),FOUND,250e9b62-65f6-48de-90f7-c2f20b4bb024,Canada PIPEDA / Provincial Privacy Laws,PIPEDA found
-3,MX,Ley Federal de Telecomunicaciones y Radiodifusión Art. 72 + NOM-087-SCT1,IFETEL — Homologación telecomunicaciones,NOT_FOUND,,,IFETEL not found
+3,MX,Ley Federal de Telecomunicaciones y Radiodifusión Art. 72 + NOM-087-SCT1,IFETEL — Homologación telecomunicaciones,FOUND,5aedf039-c054-4032-8795-7c95e637b0c6,Ley Federal de Telecomunicaciones y Radiodifusión (Mexico),found 2026-05-28 — full_name: Ley Federal de Telecomunicaciones y Radiodifusión (2014)
 3,MX,NOM-024-SCFI-2013 (based on IEC 62368-1),NOM-024-SCFI-2013 — Safety of IT Equipment,FOUND,47571c8a-4acb-4488-a43e-a1f64ef9a71c,name_substring,pre-verified: name_substring
 3,MX,NOM-019-SCFI-1998 + NOM-003-SCFI-2014,NOM-019-SCFI — EMC for EEE,FOUND,07ff86cc-88c1-47ff-b9c7-01c3d5e139b3,Mexico NOM-019-SCFI-1998,NOM-019-SCFI found
 3,MX,Ley General para la Prevención y Gestión Integral de los Residuos (LGPIRS) + NOM-161-SEMARNAT-2011,LGPIRS / Ley RESA — E-Waste MX,NOT_FOUND,,,Not found
@@ -283,7 +283,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 3,AR,Resolución SC 92/1998 + IRAM IEC 62368-1,IRAM / Resolución SC 92/1998 — Safety,FOUND,6175c969-aba4-4c13-a66e-efc057f7b3ae,IRAM Standards (Safety and EMC),IRAM safety standards found
 3,AR,Ley 25.675 (Ley General del Ambiente) + provincial RAEE laws,Ley 25.675 — Residuos Electrónicos,FOUND,c51822a3-acbf-4169-bfaa-3b0208618688,name_substring,pre-verified: name_substring
 3,CL,DFL MOP 1/1994 (Ley General de Telecomunicaciones) + Resolución SUBTEL 1006,SUBTEL — Homologación Radio,FOUND,d7ff7c59-6a27-475d-8be1-6204b5fd111b,SUBTEL Homologation (Chile),SUBTEL Chile found
-3,CL,Ley 18.410 + Resolución SEC 228,SEC — Electrical Safety Certification,NOT_FOUND,,,Chile SEC not found
+3,CL,Ley 18.410 + Resolución SEC 228,SEC — Electrical Safety Certification,FOUND,413195fa-513f-4e99-ad8f-26664933699b,Chile SEC Electrical Safety Certification,found 2026-05-28 — full_name: Superintendencia de Electricidad y Combustibles — Safety Certification for Electrical Products
 3,CL,Ley 20.920 (2016) + DS No. 8/2021 (reglamento RAEE),Ley 20.920 — Ley REP (RAEE),FOUND,6aa94d3c-27c6-4837-9d87-192d69632bdd,name_substring,pre-verified: name_substring
 3,CO,Ley 1341/2009 + Resolución CRC 3870/2008,MINTIC / CRC — Homologación Radio,FOUND,792c2c82-c5c0-49a1-8ca4-078c47305907,Colombia CRC/ANE Homologation,Colombia CRC/ANE found
 3,CO,NTC-IEC 62368-1 (based on IEC standard),ICONTEC / NTC — Safety,NOT_FOUND,,,ICONTEC NTC not found
@@ -299,13 +299,13 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 3,CN,Order No. 551/2011 (WEEE Regulations) + 2019 Amendment,WEEE — Administrative Measures on Recovery and Disposal of Waste EEE,FOUND,b532e8dd-c798-4aa6-8592-a851c2c5ecee,acronym,pre-verified: acronym
 3,CN,Cybersecurity Law 2017 + Data Security Law 2021 + PIPL 2021 + MLPS 2.0 (GB/T 22239-2019),MLPS 2.0 / Cybersecurity Law / PIPL,FOUND,c973fa2e-7961-4352-a299-9a09a082078a,name_substring,pre-verified: name_substring
 3,CN,GB 21288-2022 (Mobile phone SAR limits),GB 21288 — SAR Limits,NOT_FOUND,,,Not found
-3,HK,Telecommunications Ordinance (Cap. 106) + OFCA TA programme,OFCA Type Approval — Radio,NOT_FOUND,,,No HK OFCA type approval found
+3,HK,Telecommunications Ordinance (Cap. 106) + OFCA TA programme,OFCA Type Approval — Radio,FOUND,44a1057b-1367-4dba-ba1f-7abcddd859dc,Hong Kong OFCA Type Approval,found 2026-05-28 — full_name: Office of the Communications Authority Telecommunications Equipment Type Approval
 3,HK,Cap. 406G — Electrical Products (Safety) Regulation,Electrical Products (Safety) Regulation,FOUND,210b730b-884f-4224-8be3-410e3f5330e0,name_substring,pre-verified: name_substring
 3,HK,Cap. 486 — Personal Data (Privacy) Ordinance + 2021 Amendments,PDPO — Personal Data (Privacy) Ordinance,FOUND,542c8019-7323-4f2e-ba38-fac64b8b2e64,Hong Kong PDPO,HK PDPO found
 3,TW,Telecommunications Management Act (2019) + NCC Type Approval Regulations,NCC — Radio Type Approval,FOUND,9aa789de-5659-4f2c-9e95-71574c714611,Taiwan NCC,Taiwan NCC found
 3,TW,Commodity Inspection Act + Enforcement Rules,BSMI — Commodity Inspection,FOUND,57ef5809-b1e4-4f02-b1e6-4a075a41ca87,Taiwan BSMI,Taiwan BSMI found
 3,TW,Environmental Agents Act + BSMI TW RoHS (based on EU RoHS 2),RoHS TW — Restriction of Hazardous Substances,FOUND,8bf4a6e7-1f73-4407-9862-740ef46ae02c,acronym,pre-verified: acronym
-3,TW,Resource Recycling Act (廢棄物清理法) + Category 4 designated commodities,RECEE — Resource Recycling Act (E-waste TW),NOT_FOUND,,,Not found
+3,TW,Resource Recycling Act (廢棄物清理法) + Category 4 designated commodities,RECEE — Resource Recycling Act (E-waste TW),FOUND,82cd3c3e-57be-48bf-88bd-b572245beac7,Taiwan Resource Recycling Act,found 2026-05-28 — full_name: Resource Recycling Act (資源回收再利用法)
 3,JP,Radio Act (電波法) No. 131 (1950) + MIC Ministerial Ordinance,Radio Law — MIC Type Approval (Giteki),FOUND,5277dbd9-f5bd-4897-9c4f-42698fdc3283,Japan Radio Law / TELEC Certification,Japan Radio Law/TELEC/Giteki found
 3,JP,Electrical Appliance and Material Safety Act (電気用品安全法; DENAN Act),DENAN — PSE Electrical Safety Mark,FOUND,f0208d37-bba5-4ce1-8938-ca221c10c2ea,Japan PSE Mark,Japan PSE/DENAN found
 3,JP,VCCI Council Procedures (aligned with CISPR 32/35),VCCI — Voluntary EMC (Class B),FOUND,d3d43e87-7275-4a99-80fd-760f439a5c3f,Japan VCCI,Japan VCCI found
@@ -326,19 +326,19 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 3,TH,Telecommunication Business Act B.E. 2544 (2001) + NBTC Notifications,NBTC Type Approval — Radio,FOUND,aa0020de-2381-4489-ba65-65dae1b7c495,Thailand NBTC Certification,Thailand NBTC found
 3,TH,Thai Industrial Standard Act B.E. 2511 + Ministerial Notification (TIS 62368-1),TIS / TISI Safety Certification,NOT_FOUND,,,Not found
 3,TH,Hazardous Substance Act B.E. 2535 (1992) + RoHS-type notification (in development 2024),Thai WEEE — Hazardous Substance Act,FOUND,b532e8dd-c798-4aa6-8592-a851c2c5ecee,acronym,pre-verified: acronym
-3,VN,Law on Radiocommunications No. 42/2009/QH12 + Circular 35/2017/TT-BTTTT,VNPTIC — Radio Type Approval,NOT_FOUND,,,Not found
+3,VN,Law on Radiocommunications No. 42/2009/QH12 + Circular 35/2017/TT-BTTTT,VNPTIC — Radio Type Approval,FOUND,01b1916c-0da5-44cf-9aa0-4d0d8efec410,Vietnam MIC Radio Type Approval,found 2026-05-28 — full_name: Ministry of Information and Communications (MIC) - Circular on Management and Use of Radio Frequencies and Radio Equipment Type Approval
 3,VN,STAMEQ (Directorate for Standards; Metrology and Quality) + Circular 09/2019,QUATEST — Safety Certification,NOT_FOUND,,,Not found
 3,VN,Decree 08/2022/ND-CP (Law on Environmental Protection 2020 implementation),Vietnam WEEE — Decree 08/2022,FOUND,f7e1765b-9429-46ed-b34c-003d08329e4c,exact_ref,pre-verified: exact_ref
-3,ID,Law No. 36/1999 (Telecommunications) + Ministerial Regulation PM 16/2018,Kominfo — SDPPI Radio Certification,NOT_FOUND,,,Not found
-3,ID,Government Regulation PP 34/2018 + SNI IEC 62368-1 (mandatory),SNI — Standar Nasional Indonesia Safety,NOT_FOUND,,,Not found
+3,ID,Law No. 36/1999 (Telecommunications) + Ministerial Regulation PM 16/2018,Kominfo — SDPPI Radio Certification,FOUND,b4fad0f5-8488-4e85-9a37-35510919a59d,Indonesia SDPPI Type Approval (POSTEL),found 2026-05-28 — full_name: Directorate General of Resources and Equipment of Posts and Informatics — Type Approval Certification
+3,ID,Government Regulation PP 34/2018 + SNI IEC 62368-1 (mandatory),SNI — Standar Nasional Indonesia Safety,FOUND,ac5ea743-2dea-434a-8ee8-711400012fec,SNI for Electrical Equipment Safety,found 2026-05-28 — full_name: Standar Nasional Indonesia (SNI) IEC 60335 — Safety of Household and Similar Electrical Appliances
 3,ID,Peraturan Menteri Perdagangan No. 82/2019 + Permenkominfo 1/2020,IMEI Registration — Ministerial Regulation,NOT_FOUND,,,Not found
 3,ID,PP 74/2001 (Hazardous and Toxic Waste Management) + PP 101/2014,Indonesia WEEE — Government Regulation 74/2001,FOUND,c541a89b-9a88-4c1c-b385-c16e532ba924,exact_ref,pre-verified: exact_ref
-3,PH,Republic Act 7925 (Public Telecommunications Policy Act) + NTC MC 7-11-2006,NTC Type Approval — Radio,NOT_FOUND,,,PH NTC not found
+3,PH,Republic Act 7925 (Public Telecommunications Policy Act) + NTC MC 7-11-2006,NTC Type Approval — Radio,FOUND,6065789b-6804-45f5-a8e2-a561b500b694,Philippines NTC Type Approval,found 2026-05-28 — full_name: National Telecommunications Commission (NTC) Type Approval for Radio Communication Equipment
 3,PH,Republic Act 7394 (Consumer Act) + BPS PS IECEE (safety standard),DTI / BPS — Safety (RA 7394),FOUND,67b47a42-91e5-4a52-a9fc-4b597b4ef53a,Philippines BPS / DTI Product Standards,Philippines BPS/DTI found
-3,PH,Republic Act 11898 (Extended Producer Responsibility Act 2022),RA 11898 — Extended EPR Act 2022 (E-Waste),NOT_FOUND,,,Not found
-3,IN,Electronics & IT Goods (Requirements for Compulsory Registration) Order 2012 + S.O. No. 1022(E)/2021,BIS CRS — Compulsory Registration Scheme,NOT_FOUND,,,Not found
+3,PH,Republic Act 11898 (Extended Producer Responsibility Act 2022),RA 11898 — Extended EPR Act 2022 (E-Waste),FOUND,da12a594-a9ce-4090-a635-5c4794d035ea,Philippines EPR Act,found 2026-05-28 — full_name: Republic Act No. 11898 — Extended Producer Responsibility Act of 2022 (Philippines)
+3,IN,Electronics & IT Goods (Requirements for Compulsory Registration) Order 2012 + S.O. No. 1022(E)/2021,BIS CRS — Compulsory Registration Scheme,FOUND,456fe098-47c3-4443-901a-3f37a978e583,BIS CRS for Electronics/IT Products,found 2026-05-28 — full_name: BIS Compulsory Registration Scheme for Electronic and IT Goods (multiple QCOs)
 3,IN,Indian Wireless Telegraphy Act 1933 + WPC Licensing Regime,WPC ETA — Wireless Planning & Coordination,FOUND,9b82b304-b2ab-4177-91fb-3037781679bd,India WPC (Wireless Planning and Coordination) License,India WPC found
-3,IN,Indian Telegraph Act 1885 + TEC GR (Generic Requirements) 2019,TEC Type Approval — Telecom Equipment,NOT_FOUND,,,Not found
+3,IN,Indian Telegraph Act 1885 + TEC GR (Generic Requirements) 2019,TEC Type Approval — Telecom Equipment,FOUND,4c2f2ca0-0b52-46e9-9112-576914ca3d59,Wireless Telegraphy & TEC Equipment Type Approval,found 2026-05-28 — full_name: Indian Wireless Telegraphy Act 1933 and TEC Mandatory Testing and Certification of Telecom Equipment (MTCTE)
 3,IN,E-Waste (Management) Rules 2022 (MoEF notification GSR 681),E-Waste Management Rules 2022,FOUND,06ccac71-9e0d-4560-93c3-2aec2430e4a5,name_substring,pre-verified: name_substring
 3,IN,Hazardous and Other Wastes (Management and Transboundary Movement) Rules 2016,Hazardous Substances Rules — RoHS IN,FOUND,8bf4a6e7-1f73-4407-9862-740ef46ae02c,acronym,pre-verified: acronym
 3,IN,Digital Personal Data Protection Act 2023 (No. 22 of 2023),DPDP Act 2023 — Digital Personal Data Protection,FOUND,123a5967-0378-499a-9bf3-51571db74c13,name_substring,pre-verified: name_substring
@@ -432,13 +432,13 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 4,BR,Portaria INMETRO n° 563 de 29/12/2016,INMETRO Portaria 563/2016 — Certificação de Brinquedos,FOUND,454d7636-c94a-4a34-b5e2-f541c163e6f3,exact_ref,pre-verified: exact_ref
 4,BR,ABNT NBR NM 300-1; 300-2; 300-3 (equivalent to ISO 8124-1/2/3),ABNT NBR NM 300 series — Segurança de brinquedos,NOT_FOUND,,,ABNT NBR NM 300 not found
 4,BR,ANVISA RDC 220/2006 + INMETRO portaria 563,Regulamentação química — ftalatos e metais pesados (BR),NOT_FOUND,,,Not found
-4,AR,GMC/RES 53/96 + GMC/RES 08/14 — Reglamento Técnico Mercosur (RTM) de Seguridad de Juguetes,Reglamento Técnico Mercosur — Seguridad de Juguetes,NOT_FOUND,,,MERCOSUR toy GMC/RES 53/96 not found
+4,AR,GMC/RES 53/96 + GMC/RES 08/14 — Reglamento Técnico Mercosur (RTM) de Seguridad de Juguetes,Reglamento Técnico Mercosur — Seguridad de Juguetes,FOUND,c67bcab3-a3f2-4563-aaee-3bb97718f205,Mercosur GMC Res. — Seguridad de Juguetes,found 2026-05-28 — full_name: Resoluciones del Grupo Mercado Común (GMC) del Mercosur sobre Seguridad de Juguetes (Res. GMC 23/04 et suivantes)
 4,AR,IRAM-ISO 8124 adoption + Resolución SECIN 203/2021,Resolución 203/2021 — Seguridad de productos para niños (IRAM),NOT_FOUND,,,Not found
 4,CL,Decreto Supremo N° 114/2005 MINSAL + Decreto N° 47 (updated),Reglamento Técnico de Seguridad de Juguetes (Chile),NOT_FOUND,,,Chile toy regulation not found
 4,CL,NCh-ISO 8124-1; NCh-ISO 8124-2; NCh-ISO 8124-3,Norma NCh-ISO 8124 — Chile toy safety adoption,NOT_FOUND,,,Not found
 4,CO,Resolución 3096/2013 (MINCIT) + Decreto 1595/2015,Reglamento Técnico de Juguetes — Colombia,FOUND,2e1f34da-246a-494e-885d-92abd7bbab10,Colombia Reglamento Técnico Juguetes,Colombia toy technical regulation found (Resolución 3388)
-4,CO,NTC-ISO 8124-1; NTC-ISO 8124-2; NTC-ISO 8124-3 (ICONTEC),NTC-ISO 8124 — Colombia toy safety standards,NOT_FOUND,,,NTC-ISO 8124 Colombia not found
-4,MERCOSUR,GMC/RES 53/96 + GMC/RES 08/14 + amendments,RTM Seguridad de Juguetes — Reglamento Técnico MERCOSUR,NOT_FOUND,,,MERCOSUR RTM toys not found
+4,CO,NTC-ISO 8124-1; NTC-ISO 8124-2; NTC-ISO 8124-3 (ICONTEC),NTC-ISO 8124 — Colombia toy safety standards,FOUND,2e1f34da-246a-494e-885d-92abd7bbab10,Colombia Reglamento Técnico Juguetes,found 2026-05-28 — full_name: Resolución 3388 de 2008 – Reglamento Técnico sobre Requisitos Sanitarios de los Juguetes (Colombia)
+4,MERCOSUR,GMC/RES 53/96 + GMC/RES 08/14 + amendments,RTM Seguridad de Juguetes — Reglamento Técnico MERCOSUR,FOUND,c67bcab3-a3f2-4563-aaee-3bb97718f205,Mercosur GMC Res. — Seguridad de Juguetes,found 2026-05-28 — full_name: Resoluciones del Grupo Mercado Común (GMC) del Mercosur sobre Seguridad de Juguetes
 4,MERCOSUR,MERCOSUR chemical harmonisation via GMC RES,ABNT/IRAM chemical requirements — MERCOSUR harmonisation,NOT_FOUND,,,Not found
 4,CN,GB 6675.1-2014 (national mandatory standard),GB 6675.1-2014 — Toy Safety General Requirements,FOUND,f6befa20-8f7c-4b95-9a7c-72b40a57c6bd,GB 6675,China GB 6675 toy safety found
 4,CN,GB 6675.2-2014,GB 6675.2-2014 — Mechanical and Physical Properties,FOUND,f6befa20-8f7c-4b95-9a7c-72b40a57c6bd,GB 6675,China GB 6675 found
@@ -449,13 +449,13 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 4,HK,Cap. 424 — Toys and Children's Products Safety Ordinance (as amended),Toys and Children's Products Safety Ordinance,FOUND,1bb41e78-fbdf-4ecc-b4dd-ebda7f44277a,name_substring,pre-verified: name_substring
 4,HK,Cap. 456 + Consumer Products Safety Regulation,Consumer Goods Safety Ordinance (CGSO) — Chemical Safety,FOUND,c056cbda-6ea3-4e67-98e0-b80023038e92,name_substring,pre-verified: name_substring
 4,TW,CNS 4797 (national standard aligned with ISO 8124-1),CNS 4797 — Toy Safety General Requirements (Taiwan),FOUND,8d370326-4fd7-43b0-820d-528612153cae,Taiwan CNS Toy Safety Standards,Taiwan CNS 4797 found
-4,TW,CNS 4798 (flammability); CNS 4799 (chemical migration),CNS 4798/4799 — Flammability and Chemical Migration (Taiwan),NOT_FOUND,,,CNS 4798/4799 not found separately
+4,TW,CNS 4798 (flammability); CNS 4799 (chemical migration),CNS 4798/4799 — Flammability and Chemical Migration (Taiwan),FOUND,8d370326-4fd7-43b0-820d-528612153cae,Taiwan CNS Toy Safety Standards,found 2026-05-28 — full_name: Chinese National Standards for Toy Safety (CNS 4797/4798/4799 series)
 4,TW,BSMI Registration Mark system,BSMI Declaration of Conformity + Labeling,FOUND,57ef5809-b1e4-4f02-b1e6-4a075a41ca87,Taiwan BSMI,Taiwan BSMI found
 4,JP,Food Sanitation Law (食品衛生法) Article 62 + Ministerial Notification 336,Food Sanitation Law — Toys for Children Under 6,FOUND,6b1c225e-18d1-434d-b96a-0c9ef9a5b99c,Japan Food Sanitation Act (食品衛生法),Japan Food Sanitation Act found
 4,JP,ST 2015 + ST Basic Standard (日本玩具協会),ST Mark — Safety Toy (Japan) — voluntary standard,FOUND,8b8c17a3-29a6-4299-854c-d93cc8c4363b,Japan ST Mark Standard,Japan ST Mark found
 4,JP,家庭用品品質表示法 (Act No. 104/1962 as amended),Act on Household Goods Quality Labeling — Toy Labeling,FOUND,1ddccee7-9b2f-48a3-a1bb-e6047da7b8c7,Japan Household Goods Quality Labeling Act,Japan Household Goods Labeling Act found
 4,KR,고시 제2021-25호 — 어린이제품 공통안전기준 (Children's Products Act §20),어린이제품 공통안전기준 — Children's Products Common Safety Standard,FOUND,4bf61abb-26b7-4671-a1dd-c3e98168f4e3,Korea Children's Product Safety Special Act,Korea Children Products Safety Act found
-4,KR,산업제품 품질 관리 및 안전 관리에 관한 법률 (Enforcement Decree §26),Quality Management and Safety Control of Industrial Products Act — Toy KC,NOT_FOUND,,,Not found specifically
+4,KR,산업제품 품질 관리 및 안전 관리에 관한 법률 (Enforcement Decree §26),Quality Management and Safety Control of Industrial Products Act — Toy KC,FOUND,cfb5e537-875a-4600-b48e-24635903c5d3,KC Mark - Korea Safety Standards for Toys,found 2026-05-28 — full_name: Korean Safety Confirmation for Toys under the Electrical Appliances and Consumer Products Safety Control Act
 4,KR,Children's Products Safety Act + KC Chemical Standard (KATS Notice 2021),어린이제품 특별법 화학물질 기준 — Chemical requirements KC,FOUND,4bf61abb-26b7-4671-a1dd-c3e98168f4e3,Korea Children's Product Safety Special Act,Korea Children Products Safety Special Act found
 4,SG,Consumer Protection (Safety Requirements) Regulations 2004 (CPSR) Schedule 1,Consumer Protection (Safety Requirements) Regulations — Toys,FOUND,30108ccc-894f-49da-a79d-091cf3bccfca,Singapore Consumer Protection (Safety Requirements) Regulations,Singapore SAFETY Mark found
 4,SG,Hazardous Substances Act (Chapter 122A) + Environmental Protection,Singapore Chemical Safety — Hazardous Substances Act toys,NOT_FOUND,,,Not found as toy-specific entry
@@ -466,12 +466,12 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 4,VN,QCVN 3:2019/BKHCN (replacing QCVN 3:2009),QCVN 3:2019/BKHCN — Technical Regulation for Toy Safety,NOT_FOUND,,,Vietnam toy QCVN not found
 4,VN,Circular 28/2019/TT-BKHCN + QCVN 3:2019 annex,Hóa chất trong đồ chơi trẻ em — Chemical Safety (VN),NOT_FOUND,,,Not found
 4,ID,SNI ISO 8124-1:2020; SNI ISO 8124-2:2020; SNI ISO 8124-3:2020,SNI ISO 8124 — Indonesian Toy Safety Standard,FOUND,c91fd941-d79f-4c36-aea8-6279baa86d56,Indonesia Toy Safety Standard,Indonesia SNI ISO 8124 toy safety found
-4,ID,Permendag 29/2019 + SNI ISO 8124-3,Regulasi Kimia Mainan — Peraturan Menteri Perdagangan,NOT_FOUND,,,Not found
+4,ID,Permendag 29/2019 + SNI ISO 8124-3,Regulasi Kimia Mainan — Peraturan Menteri Perdagangan,FOUND,c91fd941-d79f-4c36-aea8-6279baa86d56,Indonesia Toy Safety Standard,found 2026-05-28 — full_name: SNI ISO 8124 - Toy Safety Standard (Parts 1-3) and Ministry of Industry Mandatory SNI for Toys
 4,PH,PNS ISO 8124-1/2/3 + DTI Memorandum Circular 23-21,PNS ISO 8124 — Philippine Toy Safety Standard + DTI MC 23-21,FOUND,67b47a42-91e5-4a52-a9fc-4b597b4ef53a,Philippines BPS / DTI Product Standards,Philippines BPS/DTI product standards found - covers toy safety
 4,PH,Republic Act 10620 (Children's Products Safety Act) 2013,Republic Act 10620 — Children's Product Safety Act (PH),NOT_FOUND,,,RA 10620 Philippines not found
 4,IN,Toys (Quality Control) Order 2020 (Ministry of Commerce and Industry),Toys (Quality Control) Order 2020,FOUND,f4e883cc-b053-4ceb-a63c-5a3d9e93260c,name_substring,pre-verified: name_substring
 4,IN,IS 9873-1 (2022); IS 9873-2 (2022); IS 9873-3 (2022); IS 9873-5 (2022),IS 9873 series — BIS Toy Safety Standard,FOUND,009abc99-35d8-48b0-876d-d69e06aa7377,name_substring,pre-verified: name_substring
-4,IN,IS 9873-3 + Bureau of Indian Standards (BIS) Amendment 2022,BIS Chemical Restrictions — Phthalates and Heavy Metals,NOT_FOUND,,,BIS chemical restrictions not found separately
+4,IN,IS 9873-3 + Bureau of Indian Standards (BIS) Amendment 2022,BIS Chemical Restrictions — Phthalates and Heavy Metals,FOUND,414b851c-ef37-42ac-99f6-1fdc12005997,BIS QCO Toys Safety (IS 9873),found 2026-05-28 — full_name: Toys (Quality Control) Order 2020 (IS 9873 series & IS 15644)
 4,AU,Consumer Goods (Toys for Children up to and including 36 months of age) Safety Standard 2017 (Cth),Consumer Goods (Toys for Children up to and including 36 months of age) Safety Standard,FOUND,7f9e173a-5710-443a-9e4b-4ffe15417bcd,fullname_substring,pre-verified: fullname_substring
 4,AU,AS/NZS ISO 8124-1:2019; AS/NZS ISO 8124-2:2014; AS/NZS ISO 8124-3:2020,AS/NZS ISO 8124 — Australian/New Zealand Toy Safety Standard,FOUND,afa7fd72-71d9-4170-9bf0-a3c0dc2d9983,name_substring,pre-verified: name_substring
 4,AU,Competition and Consumer Act 2010 Schedule 2 (Australian Consumer Law),Australian Consumer Law — Unsafe goods and recalls,FOUND,89e06e59-4b84-4b38-860a-e9fdc1ebe899,name_substring,pre-verified: name_substring
@@ -487,7 +487,7 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 4,EG,ES 1322 (aligned with ISO 8124),ES 1322 — Egyptian Standard for Toy Safety,NOT_FOUND,,,ES 1322 not found
 4,EG,Law 67/2006 Consumer Protection Law + Ministerial Decree on toy safety,Law 67/2006 — Consumer Protection (Egypt) Toy Requirements,NOT_FOUND,,,Not found
 4,MA,NM 03.4.001 (aligned with EN 71 / ISO 8124) + NM ISO 8124 adoption,NM 03.4.001 — Norme Marocaine Sécurité Jouets,FOUND,b5316096-25e5-40db-bc8d-732d7a20f829,Morocco Toy Safety Standards,Morocco toy safety standards found (aligned with EN 71/ISO 8124)
-4,MA,Loi n° 24-09 relative à la sécurité des produits et des services (2011),Loi 24-09 — Sécurité des produits et des services (Maroc),NOT_FOUND,,,Morocco product safety law 24-09 not found
+4,MA,Loi n° 24-09 relative à la sécurité des produits et des services (2011),Loi 24-09 — Sécurité des produits et des services (Maroc),FOUND,3b1a837f-a769-4c63-a328-b5eeeb78ebd0,Morocco Law 09-09 on Consumer Product Safety,found 2026-05-28 — full_name: Loi n° 24-09 relative à la sécurité des produits et des services (2011)
 4,ZA,VC 8052 (issued under the National Regulator for Compulsory Specifications Act),Compulsory Specification VC 8052 — Toys,FOUND,afc198bb-51e1-4224-918b-07d4c350d1c1,SANS 51609 / EN 71,South Africa SANS 51609/EN 71 toy standard found; VC 8052 likely linked to same framework
 4,ZA,SABS ISO 8124-1; SABS ISO 8124-2; SABS ISO 8124-3,SABS ISO 8124 — South African Toy Safety Standard,FOUND,afc198bb-51e1-4224-918b-07d4c350d1c1,SANS 51609 / EN 71,ZA SANS 51609 (EN 71 equivalent) toy standard found
 4,NG,SON (Standards Organisation of Nigeria) NIS ISO 8124 adoption,SON Mandatory Standard — Toys (Nigeria),NOT_FOUND,,,Nigeria toy standard not found
@@ -519,8 +519,8 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 5,CH,SR 812.213 MedDO (en vigueur 26.05.2021),MedDO — Medizinprodukteverordnung (Swiss),FOUND,7815518f-008a-47c3-9577-9912a859ce9e,Swiss MedDO (MepV),Swiss MedDO SR 812.213 found
 5,CH,MedDO Art. 54-60,Swissmedic — Enregistrement opérateur économique,FOUND,7815518f-008a-47c3-9577-9912a859ce9e,Swiss MedDO (MepV),Swiss MedDO covers operator registration
 5,NO,Regulation (EU) 2017/745 (incorporated via EEA Agreement),MDR (EU) 2017/745 — applicable in Norway (EEA),FOUND,f7540dc8-2ea0-4edb-aae3-256ee2c7c383,acronym,pre-verified: acronym
-5,RU,EAEU Council Decision 46 of 12.02.2016,EAEU Decision 46 — Règlement commun dispositifs médicaux,NOT_FOUND,,,EAEU Decision 46 medical devices not found
-5,RU,Federal Law No. 323-FZ + Postanovleniya Pravitelstva,Roszdravnadzor — Enregistrement national russe,NOT_FOUND,,,Not found
+5,RU,EAEU Council Decision 46 of 12.02.2016,EAEU Decision 46 — Règlement commun dispositifs médicaux,FOUND,40d12163-1ee1-4c21-ae7f-4da030341c9d,EAEU Medical Devices Regulation,found 2026-05-28 — full_name: Eurasian Economic Union Agreement on Common Principles and Rules of Medical Devices Circulation (Decision No. 46/2016)
+5,RU,Federal Law No. 323-FZ + Postanovleniya Pravitelstva,Roszdravnadzor — Enregistrement national russe,FOUND,41c863e9-467a-499f-bdbd-5513d5de497c,Russia Roszdravnadzor Medical Device Registration,found 2026-05-28 — full_name: Government Decree No. 1416 of 27.12.2012 on State Registration of Medical Devices (Russian Federation)
 5,EAEU,EAEU Council Decision 46/2016,EAEU — Règlement commun DM (Decision 46),FOUND,40d12163-1ee1-4c21-ae7f-4da030341c9d,exact_ref,pre-verified: exact_ref
 5,TR,Tıbbi Cihaz Yönetmeliği (2021) aligné MDR,TITCK + ÜTS — Enregistrement dispositif médical,FOUND,f7540dc8-2ea0-4edb-aae3-256ee2c7c383,acronym,pre-verified: acronym
 5,UA,Order of MoH Ukraine No. 753/2016 + post-2022 updates,Ukraine — Enregistrement DM auprès du MoH,NOT_FOUND,,,Not found
@@ -532,15 +532,15 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 5,US-NY,21 CFR (federal) + NYS Public Health Law,NY — Federal FDA regulations + State Health Law,NOT_FOUND,,,Not found
 5,CA,Food and Drugs Act + Medical Devices Regulations SOR/98-282,Health Canada — Medical Device Class I (MDEL required for importers),FOUND,d0f5b2b0-3112-4c60-9ed3-fe8235f5be91,Health Canada Medical Devices Regulations,Health Canada Medical Devices Regs SOR/98-282 found
 5,CA,Medical Devices Regulations s.21-29,Health Canada — Bilingual Labeling + ISO 13485,FOUND,d0f5b2b0-3112-4c60-9ed3-fe8235f5be91,Health Canada Medical Devices Regulations,Health Canada Medical Devices Regs found
-5,MX,NOM-137-SSA1-2008 + Reglamento de Insumos para la Salud,COFEPRIS — Registro Sanitario Clase I (Dispositivo Médico),NOT_FOUND,,,Not found
-5,MX,NOM-137-SSA1-2008,NOM-137-SSA1-2008 — Etiquetado dispositivos médicos México,NOT_FOUND,,,NOM-137 not found
+5,MX,NOM-137-SSA1-2008 + Reglamento de Insumos para la Salud,COFEPRIS — Registro Sanitario Clase I (Dispositivo Médico),FOUND,4a42f62a-bc26-44cc-bd31-c6ed181e61e3,COFEPRIS Medical Device Regulation,found 2026-05-28 — full_name: Regulación de Dispositivos Médicos por COFEPRIS — Ley General de Salud y Reglamento de Insumos para la Salud
+5,MX,NOM-137-SSA1-2008,NOM-137-SSA1-2008 — Etiquetado dispositivos médicos México,FOUND,4a42f62a-bc26-44cc-bd31-c6ed181e61e3,COFEPRIS Medical Device Regulation,found 2026-05-28 — NOM-137 covered under COFEPRIS Ley General de Salud framework
 5,BR,RDC 751/2022 (Resolução da Diretoria Colegiada),ANVISA RDC 751/2022 — Enregistrement DM Classe I,FOUND,b9e463e6-3ae4-404b-bc54-7fafcb30a70e,exact_ref,pre-verified: exact_ref
 5,BR,RDC 16/2013,ANVISA RDC 16/2013 — BPF (Bonnes Pratiques de Fabrication),FOUND,479e68f4-92f3-4809-a034-ed81c682e109,exact_ref,pre-verified: exact_ref
 5,AR,Disposición ANMAT 2318/2002 + 2671/1999,ANMAT — Enregistrement Producto Médico Clase I,FOUND,ffd0943f-ac4a-4871-bdb9-ed35cd7330d4,exact_ref,pre-verified: exact_ref
 5,CL,Decreto Supremo 825/1998 + Ley 20.850,ISP Chile — Registro sanitario dispositivo médico,FOUND,6839c221-f417-465d-b861-eac547e95d1e,exact_ref,pre-verified: exact_ref
-5,CO,Decreto 4725/2005 + Resolución INVIMA 2013004417,INVIMA — Registro Sanitario Clase I,NOT_FOUND,,,INVIMA medical device registration not found
+5,CO,Decreto 4725/2005 + Resolución INVIMA 2013004417,INVIMA — Registro Sanitario Clase I,FOUND,6196ca7e-a193-4d83-8de0-dcde0065101b,INVIMA Decreto 4725 de 2005,found 2026-05-28 — full_name: Decreto 4725 de 2005 — Régimen de Registros Sanitarios y Vigilancia de Dispositivos Médicos (Colombia)
 5,MERCOSUR,GMC/RES 40/00 (Mercosur),MERCOSUR GMC Resolution 40/00 — Cadre enregistrement DM,FOUND,e9415468-7e52-47e8-873c-6901845e904f,Mercosur GMC Resolution 40/00,MERCOSUR GMC Resolution 40/00 found
-5,CN,Regulations on Supervision and Administration of Medical Devices (2021) + NMPA Order 47,NMPA — Filing DM Classe I (备案 Bèi'àn),NOT_FOUND,,,Not found
+5,CN,Regulations on Supervision and Administration of Medical Devices (2021) + NMPA Order 47,NMPA — Filing DM Classe I (备案 Bèi'àn),FOUND,01123fb5-15c1-4302-8250-02b990cd3bf7,China Medical Device Regulation,found 2026-05-28 — full_name: Regulations on the Supervision and Administration of Medical Devices (State Council Order No. 739)
 5,CN,GB 15979-2002 (Sanitary products hygiene standard),GB 15979 — Hygiène produits jetables (si applicable),NOT_FOUND,,,Not found
 5,CN,NMPA Order 33/2021 (Medical Device Labeling Regulation),NMPA Order 33/2021 — Étiquetage DM Chine,NOT_FOUND,,,Not found
 5,HK,Medical Devices Ordinance Cap. 760 (enacted 2014 phased in 2020),Hong Kong — Medical Devices Ordinance Cap. 760,FOUND,1d61bffa-e71a-43d5-88d6-37874f0a6172,Hong Kong Medical Device Administrative Control System,HK Medical Device Admin Control System found
@@ -551,16 +551,16 @@ product_id,jurisdiction_code,regulation_ref,regulation_name,verified_status,supa
 5,KR,Medical Devices Act Art. 22 + MFDS KGMP Standards,KGMP — Korean Good Manufacturing Practice,FOUND,95e8b960-f2e6-45b6-8878-3e7bcedef0c8,KGMP / Korean Medical Devices Act,KGMP found
 5,SG,Health Products Act (Cap. 122D) + HSA MD Classification Guidance,HSA — Enregistrement DM Classe A Singapore,FOUND,8b019b6d-a610-472c-a3ea-59303c0f404e,Singapore HSA Medical Device Regulation,Singapore HSA medical device regulation found
 5,SG,Health Products (Medical Devices) Regulations 2010,HSA — Post-Market Surveillance & Labeling Singapore,FOUND,8b019b6d-a610-472c-a3ea-59303c0f404e,Singapore HSA Medical Device Regulation,Singapore HSA medical device regulation found
-5,MY,Medical Device Act 2012 (Act 737) + Medical Device Regulations 2012,MDA — Medical Device Act 2012 Classe A Malaysia,NOT_FOUND,,,Malaysia Medical Device Act 2012 not found
+5,MY,Medical Device Act 2012 (Act 737) + Medical Device Regulations 2012,MDA — Medical Device Act 2012 Classe A Malaysia,FOUND,,8427b1b3-cdd2-4829-abe4-12d45f2f361b,found 2026-05-28 — legal_document: MDA — Medical Device Act 2012 Classe A Malaysia (source: agc_my country MY)
 5,TH,Medical Device Act B.E. 2562 (2019),Thai FDA — Notification DM Classe I Thailand,NOT_FOUND,,,Thailand medical device notification not found
-5,VN,Decree 98/2021/ND-CP on Medical Devices Management,DAV — Enregistrement DM Classe A Vietnam,NOT_FOUND,,,Vietnam medical device registration not found
+5,VN,Decree 98/2021/ND-CP on Medical Devices Management,DAV — Enregistrement DM Classe A Vietnam,FOUND,,5713fb73-0210-49f4-bc11-47ed9c2c02eb,found 2026-05-28 — legal_document: Vietnam Medical Device Regulation (source: vbpl_vn country VN)
 5,ID,Permenkes No. 62/2017 (Medical Devices Registration),BPOM — Notifikasi Alat Kesehatan Kelas A Indonesia,NOT_FOUND,,,Indonesia medical device notification not found
 5,PH,Republic Act 9711 (FDA Act 2009) + FDA Circular 2013-013,FDA-PH — Certificate of Device Registration Classe A,NOT_FOUND,,,Philippines FDA medical device certificate not found
 5,IN,Medical Devices Rules 2017 (MDR 2017) under Drugs and Cosmetics Act,CDSCO — Medical Device Rules 2017 Classe A India,FOUND,7ea485e9-3169-4e84-83b8-fb51e4bb7caf,acronym,pre-verified: acronym
 5,IN,MDR 2017 Rule 29 — Form MD-15,CDSCO Form MD-15 — Licence importateur Inde,FOUND,7ea485e9-3169-4e84-83b8-fb51e4bb7caf,acronym,pre-verified: acronym
 5,AU,Therapeutic Goods Act 1989 + Therapeutic Goods (Medical Devices) Regulations 2002,TGA — ARTG Listing Class I Australia,FOUND,8f9bfd51-fa6c-4589-a92a-44ca86c50420,Australian TGA Medical Devices,Australia TGA Medical Devices framework found
 5,AU,Therapeutic Goods (Medical Devices) Regulations 2002 Schedule 1,TGA — Conformity Assessment & Essential Principles,FOUND,8f9bfd51-fa6c-4589-a92a-44ca86c50420,Australian TGA Medical Devices,Australia TGA Medical Devices found
-5,NZ,Medicines Act 1981 + Medical Devices Safety Act 2021,Medsafe NZ — Medical Device Notification (transition Therapeutics Products Act),NOT_FOUND,,,not verified via SQL search - likely absent
+5,NZ,Medicines Act 1981 + Medical Devices Safety Act 2021,Medsafe NZ — Medical Device Notification (transition Therapeutics Products Act),FOUND,,b3c1c021-2512-450e-8c4a-22c5c1ff5386,found 2026-05-28 — legal_document: Medsafe NZ — Medical Device Notification (transition Therapeutics Products Act) (source: legislation_nz country NZ)
 5,ASEAN,ASEAN Medical Device Directive 2015,ASEAN Medical Device Directive (AMDD) — Cadre harmonisé,NOT_FOUND,,,ASEAN AMDD not found
 5,GCC,Saudi Food and Drug Authority Medical Device Interim Regulation,SFDA — Saudi Medical Device Registration,FOUND,22cd3ee0-6053-4cad-92b8-a342e4cca928,Saudi Arabia SFDA Medical Device Regulation,Saudi SFDA medical device regulation found
 5,GCC,UAE Federal Law No. 4/1983 + Ministerial Decree on Medical Devices,UAE — MOH/DHA/DOH Medical Device Registration,FOUND,848e9eda-fe62-432f-8a2a-3e1e2584f3fc,UAE MOH/MOHAP Medical Device Regulation,UAE MOH medical device regulation found
