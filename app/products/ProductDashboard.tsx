@@ -233,16 +233,10 @@ export default function ProductDashboard({
     setVisibleCount(PAGE_SIZE);
   }, [filters]);
 
-  /* ── Category selection: sync sidebar + filters + scroll ── */
+  /* ── Category selection: sync filters only, no auto-scroll ── */
   function selectCategory(cat: string | null) {
     setSelectedCategory(cat);
     setFilters((f) => ({ ...f, category: cat ?? "" }));
-    if (cat) {
-      setTimeout(() => {
-        const el = document.getElementById("exhaustive");
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
-    }
   }
 
   /* ── Matrix cell click ── */
@@ -599,10 +593,89 @@ export default function ProductDashboard({
             </button>
           </div>
         )}
-        <section
-          id="coverage-section"
-          className="scroll-mt-8 grid gap-4 lg:grid-cols-[1fr_320px]"
-        >
+        {/* Categories grid — TOP, horizontal, big images */}
+        <section id="coverage-section" className="scroll-mt-8">
+          <div className="mb-4 flex items-end justify-between gap-3">
+            <div>
+              <h2 className="font-display text-2xl font-light tracking-tight">
+                {pt(lang, "categoriesHeader")}
+              </h2>
+              <p className="mt-1 text-sm text-c-text-muted">
+                {data.categories.length}{" "}
+                {pt(lang, "statsCategories").toLowerCase()} ·{" "}
+                {formatNumber(data.regulations.length, lang)}{" "}
+                {pt(lang, "regsLabel")} ·{" "}
+                {lang === "fr" ? "Cliquez pour filtrer" : "Click to filter"}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => selectCategory(null)}
+              className={`shrink-0 rounded-full border px-4 py-2 text-xs font-semibold transition-colors ${
+                selectedCategory === null
+                  ? "border-c-brand bg-c-brand-soft text-c-brand-ink"
+                  : "border-c-border bg-c-surface text-c-text-muted hover:border-c-brand hover:text-c-brand"
+              }`}
+            >
+              {pt(lang, "allCategories")} · {formatNumber(data.regulations.length, lang)}
+            </button>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {data.categories.map((cat) => {
+              const isActive = selectedCategory === cat.name;
+              return (
+                <button
+                  key={cat.name}
+                  type="button"
+                  onClick={() =>
+                    selectCategory(isActive ? null : cat.name)
+                  }
+                  className={`group relative overflow-hidden rounded-2xl border bg-c-surface p-3 text-left transition-all hover:shadow-md ${
+                    isActive
+                      ? "border-c-brand ring-2 ring-c-brand-soft"
+                      : "border-c-border hover:border-c-text-subtle"
+                  }`}
+                >
+                  {CAT_IMAGES[cat.name] && (
+                    <div className="mb-3 aspect-square overflow-hidden rounded-xl bg-c-surface-2">
+                      <img
+                        src={CAT_IMAGES[cat.name]}
+                        alt={cat.name}
+                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="text-sm font-semibold leading-tight text-c-text line-clamp-2 min-h-[2.5em]">
+                    {cat.name}
+                  </div>
+                  <div className="mt-2 flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold tabular-nums text-c-text">
+                      {cat.pct}%
+                    </span>
+                    <span className="text-[10px] tabular-nums text-c-text-subtle">
+                      {cat.found}/{cat.total_regs}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-c-surface-2">
+                    <div
+                      className={`h-full rounded-full ${
+                        cat.pct >= 70
+                          ? "bg-c-success"
+                          : cat.pct >= 40
+                            ? "bg-c-warn"
+                            : "bg-c-danger"
+                      }`}
+                      style={{ width: `${Math.max(cat.pct, 2)}%` }}
+                    />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Map — full width below categories */}
+        <section className="mt-8">
           <div className="h-[520px] lg:h-[600px]">
             <ProductMapView
               jurisdictions={filteredJurisdictions}
@@ -612,72 +685,6 @@ export default function ProductDashboard({
               activeCategory={selectedCategory}
             />
           </div>
-          <aside className="rounded-2xl border border-c-border bg-c-surface p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
-              {pt(lang, "categoriesHeader")}
-            </h3>
-            <p className="mt-0.5 text-xs text-c-text-muted">
-              {data.categories.length}{" "}
-              {pt(lang, "statsCategories").toLowerCase()} ·{" "}
-              {formatNumber(data.regulations.length, lang)}{" "}
-              {pt(lang, "regsLabel")}
-            </p>
-            <ul className="mt-3 max-h-[480px] space-y-1 overflow-y-auto scrollbar-thin pr-1">
-              {/* "All categories" button — shows data.regulations.length = 1 761 */}
-              <li>
-                <button
-                  type="button"
-                  onClick={() => selectCategory(null)}
-                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
-                    selectedCategory === null ? "bg-c-brand-soft" : ""
-                  }`}
-                >
-                  <span className="truncate text-sm font-medium">
-                    {pt(lang, "allCategories")}
-                  </span>
-                  <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-                    {formatNumber(data.regulations.length, lang)}
-                  </span>
-                </button>
-              </li>
-              {data.categories.map((cat) => (
-                <li key={cat.name}>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      selectCategory(
-                        selectedCategory === cat.name ? null : cat.name,
-                      )
-                    }
-                    className={`flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-c-surface-2 ${
-                      selectedCategory === cat.name ? "bg-c-brand-soft" : ""
-                    }`}
-                  >
-                    <span className="flex min-w-0 items-center gap-2">
-                      {CAT_IMAGES[cat.name] && (
-                        <img
-                          src={CAT_IMAGES[cat.name]}
-                          alt=""
-                          className="h-14 w-14 rounded-xl object-cover shadow-sm"
-                        />
-                      )}
-                      <span className="truncate text-sm font-medium">
-                        {cat.name}
-                      </span>
-                    </span>
-                    <span className="flex shrink-0 items-center gap-2">
-                      <span className="text-[10px] tabular-nums text-c-text-subtle">
-                        {cat.pct}%
-                      </span>
-                      <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 text-xs font-semibold tabular-nums">
-                        {cat.found}/{cat.total_regs}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </aside>
         </section>
 
         {/* ── 4. Stats header (4 cards) ── */}
