@@ -94,16 +94,28 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           </div>
           <div className="flex items-center gap-2">
             <Link
+              href="/"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.navHome[lang]}
+            </Link>
+            <Link
               href="/products"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
               {STRINGS.navProducts[lang]} →
             </Link>
             <Link
-              href="/api"
+              href="/docs"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
-              {STRINGS.navApi[lang]} →
+              {STRINGS.navDocs[lang]}
+            </Link>
+            <Link
+              href="/pricing"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.navPricing[lang]}
             </Link>
             <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
               {(["fr", "en"] as Lang[]).map((l) => (

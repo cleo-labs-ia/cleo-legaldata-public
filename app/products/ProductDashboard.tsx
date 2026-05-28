@@ -435,6 +435,12 @@ export default function ProductDashboard({
               href="/"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
+              {STRINGS.navHome[lang]}
+            </Link>
+            <Link
+              href="/general"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
               {pt(lang, "backToSources")} →
             </Link>
             <Link
@@ -444,10 +450,16 @@ export default function ProductDashboard({
               {STRINGS.navProducts[lang]}
             </Link>
             <Link
-              href="/api"
+              href="/docs"
               className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
             >
-              {STRINGS.navApi[lang]} →
+              {STRINGS.navDocs[lang]}
+            </Link>
+            <Link
+              href="/pricing"
+              className="rounded-md border border-c-border bg-c-surface px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:border-c-brand hover:text-c-brand"
+            >
+              {STRINGS.navPricing[lang]}
             </Link>
             <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
               {(["fr", "en"] as Lang[]).map((l) => (
@@ -1075,7 +1087,7 @@ export default function ProductDashboard({
             </span>
             <span className="flex flex-wrap items-center gap-x-2">
               <Link
-                href="/"
+                href="/general"
                 className="text-c-text-muted hover:text-c-brand"
               >
                 {pt(lang, "backToSources")}

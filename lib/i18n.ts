@@ -225,6 +225,67 @@ export const STRINGS = {
   },
   privacyLink: { fr: "Confidentialité", en: "Privacy" },
   navProducts: { fr: "Produits", en: "Products" },
+  navHome: { fr: "Accueil", en: "Home" },
+  navDocs: { fr: "Docs", en: "Docs" },
+  navPricing: { fr: "Tarifs", en: "Pricing" },
+  navGeneral: { fr: "Atlas général", en: "General Atlas" },
+  /* ── Home chooser (landing) ── */
+  homeNavAtlas: { fr: "Atlas", en: "Atlas" },
+  homeNavDocs: { fr: "Documentation", en: "API Docs" },
+  homeNavPricing: { fr: "Tarifs", en: "Pricing" },
+  homeNavLogin: { fr: "Connexion", en: "Login" },
+  homeNavApiKey: { fr: "Obtenir une clé", en: "Get API key" },
+  homeHeroTitleA: { fr: "Deux atlas.", en: "Two atlases." },
+  homeHeroTitleB: { fr: "Une seule plateforme.", en: "One platform." },
+  homeHeroSubtitle: {
+    fr: "Choisissez l'atlas Cleo qui correspond à votre besoin — conformité produit ou cartographie mondiale du droit. Même API, même qualité de donnée.",
+    en: "Pick the Cleo atlas that fits your need — product compliance or worldwide legal mapping. One API, one data quality bar.",
+  },
+  homeProductCardTitle: {
+    fr: "Atlas conformité produit",
+    en: "Product Compliance Atlas",
+  },
+  homeProductCardDesc: {
+    fr: "Chaque réglementation à laquelle votre produit doit se conformer, dans chaque pays. 46 031 réglementations produit dans 15 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile…",
+    en: "Every regulation your product needs to comply with, in every country. 46,031 product regulations across 15 categories — cosmetics, electronics, toys, medical devices, food, textile…",
+  },
+  homeProductCardStats: {
+    fr: "46 031 régs · 15 catégories · 50 juridictions · 1,7M docs",
+    en: "46,031 regs · 15 categories · 50 jurisdictions · 1.7M docs",
+  },
+  homeProductCardCta: {
+    fr: "Explorer l'atlas produit",
+    en: "Explore Product Atlas",
+  },
+  homeGeneralCardTitle: {
+    fr: "Atlas du droit mondial",
+    en: "Legal Data Atlas",
+  },
+  homeGeneralCardDesc: {
+    fr: "Le droit du monde, lisible par machine. 1 479 sources officielles dans 177 juridictions. Législation, jurisprudence, doctrine, travaux parlementaires — de Légifrance à la Cour Suprême indienne.",
+    en: "The world's law, machine-readable. 1,479 official legal sources across 177 jurisdictions. Legislation, case law, doctrine, parliamentary proceedings — from Légifrance to the Indian Supreme Court.",
+  },
+  homeGeneralCardStats: {
+    fr: "1 479 sources · 177 juridictions · 658 opérationnels",
+    en: "1,479 sources · 177 jurisdictions · 658 operational",
+  },
+  homeGeneralCardCta: {
+    fr: "Explorer l'atlas général",
+    en: "Explore Legal Data Atlas",
+  },
+  homeSharedTitle: {
+    fr: "Les deux atlas partagent la même API",
+    en: "Both atlases share the same API",
+  },
+  homeSharedBody: {
+    fr: "Une seule clé, une seule documentation, un seul SLA. Les endpoints couvrent le catalogue général et la conformité produit, accessibles depuis votre produit, vos pipelines de veille ou vos agents IA.",
+    en: "One key, one documentation, one SLA. Endpoints cover both the general catalog and product compliance, accessible from your product, monitoring pipelines or AI agents.",
+  },
+  homeSharedCta: { fr: "Voir la doc API", en: "Read the API docs" },
+  homeFooterTagline: {
+    fr: "Cartographie publique des sources de données juridiques — Cleo Comply",
+    en: "Public map of legal data sources — Cleo Comply",
+  },
   noResults: { fr: "Aucune source ne correspond aux filtres.", en: "No source matches the filters." },
   resultCount: {
     fr: (n: number) => `${n.toLocaleString("fr-FR")} source${n > 1 ? "s" : ""}`,
@@ -253,6 +314,117 @@ export const STRINGS = {
   generatedAt: { fr: "Données du", en: "Data as of" },
   filtersHeader: { fr: "Filtres", en: "Filters" },
   resetFilters: { fr: "Réinitialiser", en: "Reset" },
+
+  /* ── Pricing page ── */
+  pricingPageNavHome: { fr: "Accueil", en: "Home" },
+  pricingPageNavAtlas: { fr: "Atlas", en: "Atlas" },
+  pricingPageNavDocs: { fr: "Docs", en: "Docs" },
+  pricingPageNavPricing: { fr: "Tarifs", en: "Pricing" },
+  pricingPageNavGetKey: { fr: "Obtenir une clé", en: "Get API key" },
+
+  pricingHeroTitle: {
+    fr: "Tarification simple et transparente.",
+    en: "Simple, transparent pricing.",
+  },
+  pricingHeroSubtitle: {
+    fr: "Vous ne payez que ce que vous consommez. Aucun frais caché. Résiliation à tout moment.",
+    en: "Pay only for what you use. No hidden fees. Cancel anytime.",
+  },
+  pricingBillingMonthly: { fr: "Mensuel", en: "Monthly" },
+  pricingBillingYearly: { fr: "Annuel", en: "Yearly" },
+  pricingYearlySaveBadge: { fr: "−20%", en: "−20%" },
+  pricingPerMonth: { fr: "/mois", en: "/month" },
+  pricingBilledYearly: {
+    fr: "facturé annuellement",
+    en: "billed yearly",
+  },
+
+  pricingTabProduct: {
+    fr: "Product Compliance API",
+    en: "Product Compliance API",
+  },
+  pricingTabLegal: { fr: "Legal Data API", en: "Legal Data API" },
+
+  pricingPopular: { fr: "Le plus populaire", en: "Most popular" },
+  pricingFree: { fr: "Gratuit", en: "Free" },
+  pricingCustomPrice: { fr: "Sur devis", en: "Custom" },
+
+  /* Product Compliance plans */
+  pricingProductStarterName: { fr: "Starter", en: "Starter" },
+  pricingProductStarterTagline: {
+    fr: "Pour évaluer la donnée avant de brancher en prod.",
+    en: "Test the data before you wire it into production.",
+  },
+  pricingProductStarterCta: { fr: "Démarrer gratuitement", en: "Start free" },
+
+  pricingProductProName: { fr: "Pro", en: "Pro" },
+  pricingProductProTagline: {
+    fr: "Pour scale-ups e-commerce, marketplaces, vendors RegTech.",
+    en: "For e-commerce scale-ups, marketplaces, RegTech vendors.",
+  },
+  pricingProductProCta: { fr: "Choisir Pro", en: "Get Pro" },
+
+  pricingProductBusinessName: { fr: "Business", en: "Business" },
+  pricingProductBusinessTagline: {
+    fr: "Pour retailers multi-pays, ERP, équipes conformité.",
+    en: "For multi-country retailers, ERP, compliance teams.",
+  },
+  pricingProductBusinessCta: { fr: "Choisir Business", en: "Get Business" },
+
+  pricingProductEnterpriseName: { fr: "Enterprise", en: "Enterprise" },
+  pricingProductEnterpriseTagline: {
+    fr: "Pour groupes industriels, big retail, agences globales.",
+    en: "For industrial groups, big retail, global agencies.",
+  },
+  pricingProductEnterpriseCta: { fr: "Contacter le commercial", en: "Contact sales" },
+
+  /* Legal Data plans */
+  pricingLegalFreeName: { fr: "Free", en: "Free" },
+  pricingLegalFreeTagline: {
+    fr: "Pour tester l'API en lecture seule.",
+    en: "Try the API in read-only mode.",
+  },
+  pricingLegalFreeCta: { fr: "Démarrer gratuitement", en: "Start free" },
+
+  pricingLegalProName: { fr: "Pro", en: "Pro" },
+  pricingLegalProTagline: {
+    fr: "Pour SaaS legal-tech, cabinets, agents IA.",
+    en: "For legal-tech SaaS, law firms, AI agents.",
+  },
+  pricingLegalProCta: { fr: "Choisir Pro", en: "Get Pro" },
+
+  pricingLegalEnterpriseName: { fr: "Enterprise", en: "Enterprise" },
+  pricingLegalEnterpriseTagline: {
+    fr: "Pour banques, Big 4, AI labs, agences réglementaires.",
+    en: "For banks, Big 4, AI labs, regulatory agencies.",
+  },
+  pricingLegalEnterpriseCta: { fr: "Contacter le commercial", en: "Contact sales" },
+
+  /* Compare section */
+  pricingCompareHeader: {
+    fr: "Comparer les plans en détail",
+    en: "Compare plans in detail",
+  },
+  pricingCompareSubtitle: {
+    fr: "Toutes les fonctionnalités, sans surprise.",
+    en: "Every feature, side by side. No surprises.",
+  },
+  pricingCompareFeature: { fr: "Fonctionnalité", en: "Feature" },
+  pricingCompareIncluded: { fr: "Inclus", en: "Included" },
+  pricingCompareExcluded: { fr: "Non inclus", en: "Not included" },
+
+  /* FAQ */
+  pricingFaqHeader: { fr: "Questions fréquentes", en: "Frequently asked questions" },
+  pricingFaqSubtitle: {
+    fr: "Tout ce que vous voulez savoir avant de signer.",
+    en: "Everything you want to know before signing.",
+  },
+
+  /* Footer text */
+  pricingFooterTagline: {
+    fr: "Tarification claire pour Product Compliance API et Legal Data API — Cleo Comply.",
+    en: "Clear pricing for Product Compliance API and Legal Data API — Cleo Comply.",
+  },
 } as const;
 
 export function t(lang: Lang, key: keyof typeof STRINGS): string {
