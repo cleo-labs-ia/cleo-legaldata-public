@@ -386,6 +386,9 @@ const res = await fetch(u, { headers: { Authorization: "Bearer ld_live_..." } })
       fr: "Génère une description produit défendable à partir d'un code HS — utile pour rédiger une déclaration en douane cohérente.",
       en: "Generates a defensible product description from an HS code — useful to draft a consistent customs declaration.",
     },
+    params: [
+      { name: "code", where: "body", type: "string", required: true, note: { fr: "Code HS (4, 6 ou 8 chiffres).", en: "HS code (4, 6 or 8 digits)." } },
+    ],
     curl: `curl -X POST ${API_BASE}/v2/customs/reverse-classify \\
   -H "Authorization: Bearer ld_live_..." \\
   -H "Content-Type: application/json" \\
@@ -517,6 +520,9 @@ const res = await fetch(u, { headers: { Authorization: "Bearer ld_live_..." } })
       fr: "Exécute jusqu'à 25 recherches sémantiques en un seul appel. Pratique pour évaluer des règles d'un coup ou alimenter un agent IA.",
       en: "Runs up to 25 semantic searches in a single call. Useful to evaluate a set of rules at once or feed an AI agent.",
     },
+    params: [
+      { name: "queries", where: "body", type: "array", required: true, note: { fr: "Tableau de 1 à 25 objets avec les mêmes filtres que /v2/search (q, country, type, lang, limit).", en: "Array of 1-25 objects with the same filters as /v2/search (q, country, type, lang, limit)." } },
+    ],
     curl: `curl -X POST ${API_BASE}/v2/search/bulk \\
   -H "Authorization: Bearer ld_live_..." \\
   -H "Content-Type: application/json" \\
@@ -606,6 +612,9 @@ const res = await fetch(u, { headers: { Authorization: "Bearer ld_live_..." } })
       fr: "Récupère jusqu'à 50 documents en un seul appel via un tableau d'identifiants.",
       en: "Fetches up to 50 documents in a single call via an array of IDs.",
     },
+    params: [
+      { name: "ids", where: "body", type: "array", required: true, note: { fr: "Tableau de 1 à 50 identifiants de documents.", en: "Array of 1 to 50 document IDs." } },
+    ],
     curl: `curl -X POST ${API_BASE}/v2/documents/bulk \\
   -H "Authorization: Bearer ld_live_..." \\
   -H "Content-Type: application/json" \\
@@ -661,6 +670,11 @@ const res = await fetch(u, { headers: { Authorization: "Bearer ld_live_..." } })
       fr: "Traduit un fragment de texte juridique entre langues. Optimisé pour préserver la terminologie technique et les références d'articles.",
       en: "Translates a legal text fragment between languages. Tuned to preserve technical terminology and article references.",
     },
+    params: [
+      { name: "text", where: "body", type: "string", required: true, note: { fr: "Texte à traduire.", en: "Text to translate." } },
+      { name: "target_lang", where: "body", type: "string", required: true, note: { fr: "Code ISO 639-1 cible (en, fr, de, …).", en: "Target ISO 639-1 code (en, fr, de, …)." } },
+      { name: "source_lang", where: "body", type: "string", note: { fr: "Détecté automatiquement si omis.", en: "Auto-detected if omitted." } },
+    ],
     curl: `curl -X POST ${API_BASE}/v2/translate \\
   -H "Authorization: Bearer ld_live_..." \\
   -H "Content-Type: application/json" \\
