@@ -47,6 +47,9 @@ const PS = {
   kpiSources: { fr: "sources officielles", en: "official sources" },
   kpiCategories: { fr: "categories produit", en: "product categories" },
   kpiDocs: { fr: "documents juridiques", en: "legal documents" },
+  kpiAuditedRegs: { fr: "réglementations auditées", en: "audited regulations" },
+  kpiInApi: { fr: "dans l'API", en: "in API" },
+  kpiCoverage: { fr: "couverture vérifiée", en: "verified coverage" },
   allCategories: { fr: "Toutes categories", en: "All categories" },
   categoriesHeader: {
     fr: "Couverture par categorie",
@@ -516,9 +519,9 @@ export default function ProductDashboard({
             </div>
           </div>
 
-          {/* 5 KPI cards — all from data.totals */}
+          {/* 5 KPI cards — 100% product compliance focused (not platform-wide) */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+            <div className="rounded-2xl border border-c-brand bg-c-brand-soft/40 p-5">
               <div className="text-3xl font-bold tabular-nums text-c-brand">
                 <AnimatedNumber
                   value={data.totals.platform_product_regs}
@@ -527,28 +530,6 @@ export default function ProductDashboard({
               </div>
               <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
                 {pt(lang, "kpiProductRegs")}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text">
-                <AnimatedNumber
-                  value={data.totals.platform_products_tracked}
-                  format={(n) => formatNumber(n, lang)}
-                />
-              </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
-                {pt(lang, "kpiProducts")}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-text">
-                <AnimatedNumber
-                  value={data.totals.platform_sources}
-                  format={(n) => formatNumber(n, lang)}
-                />
-              </div>
-              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
-                {pt(lang, "kpiSources")}
               </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
@@ -563,17 +544,48 @@ export default function ProductDashboard({
               </div>
             </div>
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-              <div className="text-3xl font-bold tabular-nums text-c-brand">
+              <div className="text-3xl font-bold tabular-nums text-c-text">
                 <AnimatedNumber
-                  value={data.totals.platform_documents}
-                  format={(n) => formatVolume(n, lang)}
+                  value={data.totals.jurisdictions_audited}
+                  format={(n) => formatNumber(n, lang)}
                 />
-                <span className="text-c-glow">+</span>
               </div>
               <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
-                {pt(lang, "kpiDocs")}
+                {lang === "fr" ? "juridictions" : "jurisdictions"}
               </div>
             </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-3xl font-bold tabular-nums text-c-text">
+                <AnimatedNumber
+                  value={data.totals.product_regs_in_api}
+                  format={(n) => formatNumber(n, lang)}
+                />
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiInApi")}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+              <div className="text-3xl font-bold tabular-nums text-c-success">
+                {data.totals.product_coverage_pct}%
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+                {pt(lang, "kpiCoverage")}
+              </div>
+            </div>
+          </div>
+
+          {/* Distinguish from general Legal Data */}
+          <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-c-border bg-c-surface-2 px-4 py-2">
+            <p className="text-xs text-c-text-muted">
+              {lang === "fr"
+                ? "Pour le droit mondial complet (santé, finance, environnement…) : "
+                : "Looking for full worldwide law (health, finance, environment…)? "}
+              <Link href="/general" className="font-semibold text-c-brand hover:underline">
+                {lang === "fr" ? "Legal Data Atlas →" : "Legal Data Atlas →"}
+              </Link>
+            </p>
+            <span className="text-[10px] text-c-text-subtle">209 498 régs · 1,94M docs · 177 juridictions</span>
           </div>
         </section>
 

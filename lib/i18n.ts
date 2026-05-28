@@ -246,12 +246,12 @@ export const STRINGS = {
     en: "Product Compliance Atlas",
   },
   homeProductCardDesc: {
-    fr: "Chaque réglementation à laquelle votre produit doit se conformer, dans chaque pays. 46 031 réglementations produit dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
-    en: "Every regulation your product needs to comply with, in every country. 46,031 product regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
+    fr: "Spécialisé conformité produit : 46 031 réglementations dédiées aux produits dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
+    en: "Specialized for product compliance: 46,031 product-specific regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
   },
   homeProductCardStats: {
-    fr: "46 031 régs · 20 catégories · 50 juridictions · 1,94M docs",
-    en: "46,031 regs · 20 categories · 50 jurisdictions · 1.94M docs",
+    fr: "46 031 régs produit · 20 catégories · 50 juridictions",
+    en: "46,031 product regs · 20 categories · 50 jurisdictions",
   },
   homeProductCardCta: {
     fr: "Explorer l'atlas produit",
@@ -262,12 +262,12 @@ export const STRINGS = {
     en: "Legal Data Atlas",
   },
   homeGeneralCardDesc: {
-    fr: "Le droit du monde, lisible par machine. 1 479 sources officielles dans 177 juridictions. Législation, jurisprudence, doctrine, travaux parlementaires — de Légifrance à la Cour Suprême indienne.",
-    en: "The world's law, machine-readable. 1,479 official legal sources across 177 jurisdictions. Legislation, case law, doctrine, parliamentary proceedings — from Légifrance to the Indian Supreme Court.",
+    fr: "Toute la donnée juridique mondiale, machine-readable. 209 498 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
+    en: "The world's complete legal data, machine-readable. 209,498 regulations across 177 jurisdictions — health, finance, environment, AI, data privacy, labor, tax, all topics. Legislation, case law, doctrine.",
   },
   homeGeneralCardStats: {
-    fr: "1 479 sources · 177 juridictions · 658 opérationnels",
-    en: "1,479 sources · 177 jurisdictions · 658 operational",
+    fr: "209 498 régs · 1,94M docs · 158 sources · 177 juridictions",
+    en: "209,498 regs · 1.94M docs · 158 sources · 177 jurisdictions",
   },
   homeGeneralCardCta: {
     fr: "Explorer l'atlas général",
