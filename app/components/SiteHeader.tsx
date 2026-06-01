@@ -67,6 +67,22 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
           </Link>
         </nav>
 
+        {/* Shared utilities (Docs / Tarifs) */}
+        <nav aria-label="Tools" className="hidden items-center gap-1 md:flex">
+          <Link
+            href="/docs"
+            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
+          >
+            {STRINGS.navDocs[lang]}
+          </Link>
+          <Link
+            href="/pricing"
+            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
+          >
+            {STRINGS.navPricing[lang]}
+          </Link>
+        </nav>
+
         {/* Push right: lang switcher + CTA */}
         <div className="ml-auto flex items-center gap-2">
           <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
