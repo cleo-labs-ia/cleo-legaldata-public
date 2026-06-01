@@ -1,13 +1,15 @@
-import HomeChooser from "./components/HomeChooser";
+import Dashboard from "./components/Dashboard";
+import { loadDashboardData } from "@/lib/data";
 
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "Cleo Legal Data — Two atlases. One platform.",
+  title: "Cleo Legal Data Atlas",
   description:
-    "Pick the Cleo atlas that fits your need — product compliance (46,031 regs across 15 categories) or worldwide legal mapping (1,494 sources across 177 jurisdictions). One API.",
+    "Public map of open legal data sources tracked by Cleo Comply — 1,494 official portals, 177 jurisdictions, 234M+ legal documents.",
 };
 
 export default function Page() {
-  return <HomeChooser />;
+  const data = loadDashboardData();
+  return <Dashboard data={data} />;
 }
