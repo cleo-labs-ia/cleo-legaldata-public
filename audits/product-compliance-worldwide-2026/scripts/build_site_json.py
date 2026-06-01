@@ -148,8 +148,19 @@ def main():
         })
 
     # Build categories (preserve descriptions/images, override stats)
+    # Order by canonical product_id (P1→P20) to match the original design
+    PRODUCT_ORDER = [
+        "Shampoo & Hair Care", "Sunscreen & Sun Care", "Smartphones & Mobile",
+        "Stuffed Toys (0-3 years)", "Adhesive Bandages (Class I)", "E-cigarettes & Vaping",
+        "Laundry Detergent Pods", "Dietary Supplements", "Athletic Apparel & Textile",
+        "Bicycle Helmets (PPE)", "Wine & Spirits", "Fresh Meat (Animal Food)",
+        "OTC Pharmaceuticals", "Tyres & Automotive", "Household Insecticides",
+        "Consumer Drones", "Smart Connected Appliances", "Dental Implants (Class III)",
+        "Interior Paints & Coatings", "Pet Food",
+    ]
+    cat_order_idx = {n: i for i, n in enumerate(PRODUCT_ORDER)}
     categories = []
-    for cat_name in sorted(cat_stats, key=lambda x: -cat_stats[x]["total_regs"]):
+    for cat_name in sorted(cat_stats, key=lambda x: cat_order_idx.get(x, 99)):
         s = cat_stats[cat_name]
         prev_cat = cat_meta.get(cat_name, {})
         pct = round(s["found"] * 100 / s["cross_checked"]) if s["cross_checked"] else 0
