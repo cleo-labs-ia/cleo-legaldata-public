@@ -10,7 +10,7 @@ interface Props {
   lang: Lang;
   setLang: (lang: Lang) => void;
   /** Which atlas the current page belongs to (highlights the toggle). */
-  active?: "atlas" | "atlas-product" | null;
+  active?: "atlas" | "atlas-product" | "legal-api" | null;
 }
 
 /**
@@ -40,7 +40,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
           </span>
         </Link>
 
-        {/* Atlas toggle — clearly grouped */}
+        {/* Atlas toggle — Legal Atlas | Legal Product Physical Atlas */}
         <nav
           aria-label="Atlas"
           className="hidden items-center gap-0.5 rounded-full border border-c-border bg-c-surface-2 p-0.5 text-[12px] font-semibold md:flex"
@@ -64,22 +64,6 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             }`}
           >
             {STRINGS.navProducts[lang]}
-          </Link>
-        </nav>
-
-        {/* Shared utilities (Docs / Tarifs) — separated by margin */}
-        <nav aria-label="Tools" className="hidden items-center gap-1 md:flex">
-          <Link
-            href="/docs"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navDocs[lang]}
-          </Link>
-          <Link
-            href="/pricing"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navPricing[lang]}
           </Link>
         </nav>
 

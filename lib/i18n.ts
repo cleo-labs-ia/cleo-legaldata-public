@@ -224,11 +224,16 @@ export const STRINGS = {
     en: "Reply within 1 business day, integration support",
   },
   privacyLink: { fr: "Confidentialité", en: "Privacy" },
-  navProducts: { fr: "Atlas Produit", en: "Product Atlas" },
+  navProducts: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
+  navLegalApi: {
+    fr: "Légal API produit physique",
+    en: "Physical Product Legal API",
+  },
+  navLegalApiShort: { fr: "Produit physique", en: "Physical product" },
   navHome: { fr: "Accueil", en: "Home" },
   navDocs: { fr: "Docs", en: "Docs" },
   navPricing: { fr: "Tarifs", en: "Pricing" },
-  navGeneral: { fr: "Atlas", en: "Atlas" },
+  navGeneral: { fr: "Legal Atlas", en: "Legal Atlas" },
   /* ── Home chooser (landing) ── */
   homeNavAtlas: { fr: "Atlas", en: "Atlas" },
   homeNavDocs: { fr: "Documentation", en: "API Docs" },
@@ -242,24 +247,24 @@ export const STRINGS = {
     en: "Pick the Cleo atlas that fits your need — product compliance or worldwide legal mapping. One API, one data quality bar.",
   },
   homeProductCardTitle: {
-    fr: "Atlas Produit",
-    en: "Product Atlas",
+    fr: "Legal Product Physical Atlas",
+    en: "Legal Product Physical Atlas",
   },
   homeProductCardDesc: {
-    fr: "Spécialisé conformité produit : 37 267 réglementations dédiées aux produits dans 20 catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automotive, vapotage…",
-    en: "Specialized for product compliance: 37,267 product-specific regulations across 20 categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, vaping…",
+    fr: "Spécialisé conformité produit physique : 46 031 réglementations dédiées dans 15 grandes catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automobile, drones, tabac…",
+    en: "Specialized for physical-product compliance: 46,031 dedicated regulations across 15 broad categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, drones, tobacco…",
   },
   homeProductCardStats: {
-    fr: "37 267 régs produit · 20 catégories · 50 juridictions",
-    en: "37,267 product regs · 20 categories · 50 jurisdictions",
+    fr: "46 031 régs produit · 15 catégories · 100+ juridictions",
+    en: "46,031 product regs · 15 categories · 100+ jurisdictions",
   },
   homeProductCardCta: {
-    fr: "Ouvrir l'Atlas Produit",
-    en: "Open Product Atlas",
+    fr: "Ouvrir l'atlas produit physique",
+    en: "Open the Physical Product Atlas",
   },
   homeGeneralCardTitle: {
-    fr: "Atlas",
-    en: "Atlas",
+    fr: "Legal Atlas",
+    en: "Legal Atlas",
   },
   homeGeneralCardDesc: {
     fr: "Toute la donnée juridique mondiale, machine-readable. 210 508 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
@@ -357,6 +362,13 @@ export const STRINGS = {
   },
   pricingProductStarterCta: { fr: "Démarrer gratuitement", en: "Start free" },
 
+  pricingProductLightName: { fr: "Light", en: "Light" },
+  pricingProductLightTagline: {
+    fr: "Pour PME, agents IA, MVP en production.",
+    en: "For SMEs, AI agents, early-stage production.",
+  },
+  pricingProductLightCta: { fr: "Choisir Light", en: "Get Light" },
+
   pricingProductProName: { fr: "Pro", en: "Pro" },
   pricingProductProTagline: {
     fr: "Pour scale-ups e-commerce, marketplaces, vendors RegTech.",
@@ -386,12 +398,26 @@ export const STRINGS = {
   },
   pricingLegalFreeCta: { fr: "Démarrer gratuitement", en: "Start free" },
 
+  pricingLegalLightName: { fr: "Light", en: "Light" },
+  pricingLegalLightTagline: {
+    fr: "Pour PME, agents IA, MVP en production.",
+    en: "For SMEs, AI agents, early-stage production.",
+  },
+  pricingLegalLightCta: { fr: "Choisir Light", en: "Get Light" },
+
   pricingLegalProName: { fr: "Pro", en: "Pro" },
   pricingLegalProTagline: {
     fr: "Pour SaaS legal-tech, cabinets, agents IA.",
     en: "For legal-tech SaaS, law firms, AI agents.",
   },
   pricingLegalProCta: { fr: "Choisir Pro", en: "Get Pro" },
+
+  pricingLegalBusinessName: { fr: "Business", en: "Business" },
+  pricingLegalBusinessTagline: {
+    fr: "Pour grands cabinets, RegTech, plateformes IA.",
+    en: "For large law firms, RegTech, AI platforms.",
+  },
+  pricingLegalBusinessCta: { fr: "Choisir Business", en: "Get Business" },
 
   pricingLegalEnterpriseName: { fr: "Enterprise", en: "Enterprise" },
   pricingLegalEnterpriseTagline: {

@@ -54,6 +54,21 @@ const COMPLIANCE_PLANS: Plan[] = [
     ctaHref: "/api",
   },
   {
+    id: "light",
+    name: STRINGS.pricingProductLightName,
+    tagline: STRINGS.pricingProductLightTagline,
+    price: { kind: "fixed", monthly: 100, yearly: 80, currency: "EUR" },
+    features: [
+      { fr: "1 000 vérifications / mois", en: "1,000 compliance checks / month" },
+      { fr: "5 catégories produit", en: "5 product categories" },
+      { fr: "20 juridictions clés", en: "20 key jurisdictions" },
+      { fr: "Connecteur MCP pour Claude / Cursor", en: "MCP connector for Claude / Cursor" },
+      { fr: "Support email", en: "Email support" },
+    ],
+    cta: STRINGS.pricingProductLightCta,
+    ctaHref: MEET_URL,
+  },
+  {
     id: "pro",
     name: STRINGS.pricingProductProName,
     tagline: STRINGS.pricingProductProTagline,
@@ -140,11 +155,25 @@ const LEGAL_PLANS: Plan[] = [
     ctaHref: "/api",
   },
   {
+    id: "light",
+    name: STRINGS.pricingLegalLightName,
+    tagline: STRINGS.pricingLegalLightTagline,
+    price: { kind: "fixed", monthly: 100, yearly: 80, currency: "EUR" },
+    features: [
+      { fr: "100 000 requêtes / mois", en: "100,000 requests / month" },
+      { fr: "60 requêtes / minute", en: "60 requests / minute" },
+      { fr: "Endpoints sources + juridictions", en: "Sources + jurisdictions endpoints" },
+      { fr: "Connecteur MCP pour Claude / Cursor", en: "MCP connector for Claude / Cursor" },
+      { fr: "Support email", en: "Email support" },
+    ],
+    cta: STRINGS.pricingLegalLightCta,
+    ctaHref: MEET_URL,
+  },
+  {
     id: "pro",
     name: STRINGS.pricingLegalProName,
     tagline: STRINGS.pricingLegalProTagline,
     price: { kind: "fixed", monthly: 349, yearly: 279, currency: "EUR" },
-    featured: true,
     features: [
       { fr: "1 million de requêtes / mois", en: "1M requests / month" },
       { fr: "300 requêtes / minute", en: "300 requests / minute" },
@@ -163,6 +192,23 @@ const LEGAL_PLANS: Plan[] = [
       },
     ],
     cta: STRINGS.pricingLegalProCta,
+    ctaHref: MEET_URL,
+  },
+  {
+    id: "business",
+    name: STRINGS.pricingLegalBusinessName,
+    tagline: STRINGS.pricingLegalBusinessTagline,
+    price: { kind: "fixed", monthly: 999, yearly: 799, currency: "EUR" },
+    featured: true,
+    features: [
+      { fr: "5 millions de requêtes / mois", en: "5M requests / month" },
+      { fr: "Tous les endpoints API", en: "All API endpoints" },
+      { fr: "Rate-limits sur mesure", en: "Custom rate limits" },
+      { fr: "Support prioritaire (SLA 24h)", en: "Priority support (24h SLA)" },
+      { fr: "Dashboard analytics", en: "Dashboard analytics" },
+      { fr: "DPA signé inclus", en: "Signed DPA included" },
+    ],
+    cta: STRINGS.pricingLegalBusinessCta,
     ctaHref: MEET_URL,
   },
   {
@@ -195,36 +241,37 @@ type CompareRow = {
 const COMPLIANCE_COMPARE: CompareRow[] = [
   {
     label: { fr: "Vérifications / mois", en: "Checks / month" },
-    values: ["100", "10 000", "50 000", { fr: "Illimité", en: "Unlimited" } as unknown as string],
+    values: ["100", "1 000", "10 000", "50 000", { fr: "Illimité", en: "Unlimited" } as unknown as string],
   },
   {
     label: { fr: "Catégories produit", en: "Product categories" },
-    values: ["1", "15", "15", "15"],
+    values: ["1", "5", "15", "15", "15"],
   },
   {
     label: { fr: "Juridictions couvertes", en: "Jurisdictions covered" },
-    values: ["5", "50", "50", "50"],
+    values: ["5", "20", "50", "50", "50"],
   },
   {
     label: { fr: "Endpoints API", en: "API endpoints" },
-    values: ["Catalog", "Full", "Full", "Full"],
+    values: ["Catalog", "Standard", "Full", "Full", "Full"],
   },
   {
     label: { fr: "Webhooks", en: "Webhooks" },
-    values: [false, true, true, true],
+    values: [false, false, true, true, true],
   },
   {
     label: { fr: "Dashboard analytics", en: "Dashboard analytics" },
-    values: [false, false, true, true],
+    values: [false, false, false, true, true],
   },
   {
     label: { fr: "SLA contractuel", en: "Contractual SLA" },
-    values: [false, false, "24h", "99,9%"],
+    values: [false, false, false, "24h", "99,9%"],
   },
   {
     label: { fr: "Support", en: "Support" },
     values: [
       { fr: "Communauté", en: "Community" } as unknown as string,
+      { fr: "Email", en: "Email" } as unknown as string,
       { fr: "Email (1j ouvré)", en: "Email (1 BD)" } as unknown as string,
       { fr: "Prioritaire", en: "Priority" } as unknown as string,
       { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string,
@@ -232,58 +279,62 @@ const COMPLIANCE_COMPARE: CompareRow[] = [
   },
   {
     label: { fr: "DPA signé", en: "Signed DPA" },
-    values: [false, false, true, true],
+    values: [false, false, false, true, true],
   },
   {
     label: { fr: "On-premise / VPC", en: "On-premise / VPC" },
-    values: [false, false, false, true],
+    values: [false, false, false, false, true],
   },
 ];
 
 const LEGAL_COMPARE: CompareRow[] = [
   {
     label: { fr: "Requêtes / mois", en: "Requests / month" },
-    values: ["100", "1M", { fr: "Illimité", en: "Unlimited" } as unknown as string],
+    values: ["100", "100 000", "1M", "5M", { fr: "Illimité", en: "Unlimited" } as unknown as string],
   },
   {
     label: { fr: "Requêtes / minute", en: "Requests / minute" },
-    values: ["10", "300", { fr: "Sur mesure", en: "Custom" } as unknown as string],
+    values: ["10", "60", "300", { fr: "Sur mesure", en: "Custom" } as unknown as string, { fr: "Sur mesure", en: "Custom" } as unknown as string],
   },
   {
     label: { fr: "Endpoints", en: "Endpoints" },
     values: [
       { fr: "Lecture seule", en: "Read-only" } as unknown as string,
+      "Standard",
       "Full",
+      "Full + bulk",
       "Full + bulk",
     ],
   },
   {
     label: { fr: "Webhooks", en: "Webhooks" },
-    values: [false, true, true],
+    values: [false, false, true, true, true],
   },
   {
     label: { fr: "Export bulk / dumps", en: "Bulk export / dumps" },
-    values: [false, false, true],
+    values: [false, false, false, true, true],
   },
   {
     label: { fr: "Connecteur MCP", en: "MCP connector" },
-    values: [false, true, true],
+    values: [false, true, true, true, true],
   },
   {
     label: { fr: "SLA contractuel", en: "Contractual SLA" },
-    values: [false, false, "99,9%"],
+    values: [false, false, false, "24h", "99,9%"],
   },
   {
     label: { fr: "Support", en: "Support" },
     values: [
       { fr: "Communauté", en: "Community" } as unknown as string,
+      { fr: "Email", en: "Email" } as unknown as string,
       { fr: "Email (1j ouvré)", en: "Email (1 BD)" } as unknown as string,
+      { fr: "Prioritaire", en: "Priority" } as unknown as string,
       { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string,
     ],
   },
   {
     label: { fr: "DPA signé", en: "Signed DPA" },
-    values: [false, true, true],
+    values: [false, false, false, true, true],
   },
 ];
 

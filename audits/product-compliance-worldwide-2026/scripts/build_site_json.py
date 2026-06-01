@@ -211,7 +211,7 @@ def main():
         "platform_regulations": prev_totals.get("platform_regulations", 210508),
         "platform_documents": prev_totals.get("platform_documents", 1940751),
         "platform_sources": prev_totals.get("platform_sources", 158),
-        "platform_product_regs": prev_totals.get("platform_product_regs", 37267),
+        "platform_product_regs": prev_totals.get("platform_product_regs", 46031),
         "platform_products_tracked": prev_totals.get("platform_products_tracked", 2851),
         "platform_authorities": prev_totals.get("platform_authorities", 55924),
     }

@@ -38,8 +38,8 @@ const PS = {
     en: "product compliance database.",
   },
   subtitle: {
-    fr: "37 267 reglementations produit dans 158 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
-    en: "37,267 product regulations across 158 official sources. Check any product against any country's requirements in one API call.",
+    fr: "46 031 reglementations produit dans 158 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
+    en: "46,031 product regulations across 158 official sources. Check any product against any country's requirements in one API call.",
   },
   ctaApi: { fr: "Obtenir un acces API", en: "Get API access" },
   ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
@@ -127,27 +127,45 @@ const PS = {
 /* ================================================================
    Category images (40px sidebar, 28px matrix, 32px drawer)
    ================================================================ */
+const FAM = "/images/categories/family";
 const CAT_IMAGES: Record<string, string> = {
-  "Shampoo & Hair Care": "/images/categories/cosmetics.png",
-  "Sunscreen & Sun Care": "/images/categories/sunscreen.png",
-  "Smartphones & Mobile": "/images/categories/electronics.png",
-  "Stuffed Toys (0-3 years)": "/images/categories/toys.png",
-  "Adhesive Bandages (Class I)": "/images/categories/medical-devices.png",
-  "E-cigarettes & Vaping": "/images/categories/tobacco.png",
-  "Laundry Detergent Pods": "/images/categories/chemicals.png",
-  "Dietary Supplements": "/images/categories/food.png",
-  "Athletic Apparel & Textile": "/images/categories/textile.png",
-  "Bicycle Helmets (PPE)": "/images/categories/ppe.png",
-  "Wine & Spirits": "/images/categories/alcohol.png",
-  "Fresh Meat (Animal Food)": "/images/categories/food.png",
-  "OTC Pharmaceuticals": "/images/categories/pharma.png",
-  "Tyres & Automotive": "/images/categories/automotive.png",
-  "Household Insecticides": "/images/categories/chemicals.png",
-  "Consumer Drones": "/images/categories/drones.png",
-  "Smart Connected Appliances": "/images/categories/electronics.png",
-  "Dental Implants (Class III)": "/images/categories/medical-devices.png",
-  "Interior Paints & Coatings": "/images/categories/paints.png",
-  "Pet Food": "/images/categories/petfood.png",
+  /* ── 15 broad families (Légal API produit physique) ── */
+  "Alcool & boissons": `${FAM}/alcohol-beverages.jpg`,
+  "Pièces automobiles": `${FAM}/automotive-parts.jpg`,
+  "Cosmétiques & soins": `${FAM}/cosmetics-personal-care.jpg`,
+  "Drones & aviation": `${FAM}/drones-aviation.jpg`,
+  "Électronique & télécom": `${FAM}/electronics-telecom.jpg`,
+  "Alimentaire & compléments": `${FAM}/food-supplements.jpg`,
+  "Produits chimiques ménagers": `${FAM}/household-chemicals.jpg`,
+  "Dispositifs médicaux": `${FAM}/medical-devices.jpg`,
+  "Peintures & revêtements": `${FAM}/paints-coatings.jpg`,
+  "Alimentation animale": `${FAM}/pet-food.jpg`,
+  "Médicaments": `${FAM}/pharmaceuticals.jpg`,
+  "EPI & équipements de sécurité": `${FAM}/ppe-safety.jpg`,
+  "Textile & habillement": `${FAM}/textile-apparel.jpg`,
+  "Tabac & vapotage": `${FAM}/tobacco-vaping.jpg`,
+  Jouets: `${FAM}/toys.jpg`,
+  /* ── 20 specific products (Atlas Produit) — reuse family renders ── */
+  "Robot aspirateur connecté": `${FAM}/electronics-telecom.jpg`,
+  Smartphone: `${FAM}/electronics-telecom.jpg`,
+  "Paracétamol OTC": `${FAM}/pharmaceuticals.jpg`,
+  "Insecticide spray maison": `${FAM}/household-chemicals.jpg`,
+  "Pneumatique voiture": `${FAM}/automotive-parts.jpg`,
+  "Capsule lessive (pod)": `${FAM}/household-chemicals.jpg`,
+  "Legging sport synthétique": `${FAM}/textile-apparel.jpg`,
+  "Pansement adhésif": `${FAM}/medical-devices.jpg`,
+  "Steak emballé (viande fraîche)": `${FAM}/food-supplements.jpg`,
+  "Bouteille de vin": `${FAM}/alcohol-beverages.jpg`,
+  "Drone grand public": `${FAM}/drones-aviation.jpg`,
+  "Peluche bébé 0-3 ans": `${FAM}/toys.jpg`,
+  "Complément alimentaire vitamines": `${FAM}/food-supplements.jpg`,
+  "Peinture déco intérieure": `${FAM}/paints-coatings.jpg`,
+  Shampoing: `${FAM}/cosmetics-personal-care.jpg`,
+  "Crème solaire": `${FAM}/cosmetics-personal-care.jpg`,
+  "Implant dentaire": `${FAM}/medical-devices.jpg`,
+  "Croquettes pour chien": `${FAM}/pet-food.jpg`,
+  "Casque vélo adulte": `${FAM}/ppe-safety.jpg`,
+  "Vape / e-cigarette": `${FAM}/tobacco-vaping.jpg`,
 };
 
 /* ================================================================
@@ -222,9 +240,28 @@ const PAGE_SIZE = 100;
    ================================================================ */
 export default function ProductDashboard({
   data,
+  variant = "atlas-product",
 }: {
   data: ProductComplianceData;
+  variant?: "atlas-product" | "legal-api";
 }) {
+  const isLegalApi = variant === "legal-api";
+  const hero = isLegalApi
+    ? {
+        badge: { fr: "Légal API produit physique", en: "Physical Product Legal API" },
+        titleA: { fr: "Une API légale pour chaque", en: "One legal API for every" },
+        titleB: { fr: "produit physique.", en: "physical product." },
+        subtitle: {
+          fr: "15 grandes familles de produits physiques, des cosmétiques aux drones. Cliquez une catégorie pour voir toutes les réglementations applicables, pays par pays — accessibles en un appel API.",
+          en: "15 broad families of physical products, from cosmetics to drones. Click a category to see every applicable regulation, country by country — available in one API call.",
+        },
+      }
+    : {
+        badge: { fr: "Atlas Produit", en: "Product Atlas" },
+        titleA: PS.titleA,
+        titleB: PS.titleB,
+        subtitle: PS.subtitle,
+      };
   const [lang, setLang] = useState<Lang>("fr");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [drawerJur, setDrawerJur] = useState<string | null>(null);
@@ -411,7 +448,11 @@ export default function ProductDashboard({
      ================================================================ */
   return (
     <div className="min-h-screen pb-16">
-      <SiteHeader lang={lang} setLang={setLang} active="atlas-product" />
+      <SiteHeader
+        lang={lang}
+        setLang={setLang}
+        active={isLegalApi ? "legal-api" : "atlas-product"}
+      />
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
         {/* ── 2. Badge + Title + Subtitle + 5 KPI cards + CTAs ── */}
@@ -419,16 +460,16 @@ export default function ProductDashboard({
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-c-brand/20 bg-c-brand-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
-              {lang === "fr" ? "Atlas Produit" : "Product Atlas"}
+              {hero.badge[lang]}
             </div>
             <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
-              {pt(lang, "titleA")}{" "}
+              {hero.titleA[lang]}{" "}
               <span className="italic text-c-brand">
-                {pt(lang, "titleB")}
+                {hero.titleB[lang]}
               </span>
             </h1>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-c-text-muted">
-              {pt(lang, "subtitle")}
+              {hero.subtitle[lang]}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
