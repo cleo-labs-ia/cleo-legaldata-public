@@ -6,14 +6,32 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import SiteHeader from "../components/SiteHeader";
 
-const BASE_URL = "https://api.legaldata.cleolabs.co/v1";
+const BASE_URL = "https://api.legaldata.cleolabs.co";
 
 type EndpointId =
-  | "regulations"
-  | "sources"
-  | "jurisdictions"
-  | "categories"
-  | "product_check";
+  // Product (Legal Product Physical Atlas) — 10 endpoints
+  | "compliance_check"
+  | "customs_duties"
+  | "customs_obligations"
+  | "customs_lookup"
+  | "customs_alternatives"
+  | "customs_dual_use"
+  | "customs_landed_cost"
+  | "customs_reverse_classify"
+  | "standards_gost"
+  | "eaeu_parallel_import"
+  // Legal (Legal Atlas) — 11 endpoints
+  | "search"
+  | "search_bulk"
+  | "documents"
+  | "documents_by_id"
+  | "documents_bulk"
+  | "changes"
+  | "translate"
+  | "coverage"
+  | "countries"
+  | "authorities"
+  | "webhooks";
 
 type Param = {
   key: string;
@@ -28,87 +46,326 @@ type EndpointDef = {
   path: string;
   title: { fr: string; en: string };
   desc: { fr: string; en: string };
-  coverage: "legal" | "product" | "shared";
+  coverage: "legal" | "product";
   params: Param[];
 };
 
 const ENDPOINTS: EndpointDef[] = [
+  // ───── Product Atlas (10) ─────
   {
-    id: "regulations",
-    method: "GET",
-    path: "/regulations",
-    title: { fr: "Lister les régulations", en: "List regulations" },
+    id: "compliance_check",
+    method: "POST",
+    path: "/v2/compliance/check",
+    title: { fr: "Vérification de conformité composite", en: "Composite compliance check" },
     desc: {
-      fr: "Toutes les régulations indexées. Filtre par juridiction, catégorie, autorité, statut.",
-      en: "All indexed regulations. Filter by jurisdiction, category, enforcement body, status.",
-    },
-    coverage: "shared",
-    params: [
-      { key: "jurisdiction", label: { fr: "Juridiction", en: "Jurisdiction" }, placeholder: "FR" },
-      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Shampoo & Hair Care", optional: true },
-      { key: "criticality", label: { fr: "Criticité", en: "Criticality" }, placeholder: "critical", optional: true },
-      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
-    ],
-  },
-  {
-    id: "sources",
-    method: "GET",
-    path: "/sources",
-    title: { fr: "Lister les sources officielles", en: "List official sources" },
-    desc: {
-      fr: "1 494 portails officiels (Légifrance, EUR-Lex, FDA, etc.). Filtre par pays et catégorie réglementaire.",
-      en: "1,494 official portals (Légifrance, EUR-Lex, FDA…). Filter by country and regulatory category.",
-    },
-    coverage: "legal",
-    params: [
-      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
-      { key: "data_type", label: { fr: "Type", en: "Data type" }, placeholder: "legislation", optional: true },
-      { key: "status", label: { fr: "Statut", en: "Status" }, placeholder: "complete", optional: true },
-      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
-    ],
-  },
-  {
-    id: "jurisdictions",
-    method: "GET",
-    path: "/jurisdictions",
-    title: { fr: "Lister les juridictions couvertes", en: "List covered jurisdictions" },
-    desc: {
-      fr: "177 juridictions avec leur statut, score de couverture et volume.",
-      en: "177 jurisdictions with their status, coverage score and volume.",
-    },
-    coverage: "legal",
-    params: [
-      { key: "region", label: { fr: "Région", en: "Region" }, placeholder: "Europe", optional: true },
-      { key: "min_completion", label: { fr: "Complétude min", en: "Min completion" }, placeholder: "0.8", optional: true },
-      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
-    ],
-  },
-  {
-    id: "categories",
-    method: "GET",
-    path: "/product-categories",
-    title: { fr: "Lister les catégories produit", en: "List product categories" },
-    desc: {
-      fr: "20 catégories couvertes par le Legal Product Physical Atlas.",
-      en: "20 categories covered by the Legal Product Physical Atlas.",
+      fr: "Description produit + pays destinataire → classification HS, droits/TVA, obligations, dual-use, alternatives, coût rendu.",
+      en: "Product description + destination country → HS classification, duties/VAT, obligations, dual-use, alternatives, landed cost.",
     },
     coverage: "product",
+    params: [
+      { key: "description", label: { fr: "Description produit", en: "Product description" }, placeholder: "sunscreen SPF50" },
+      { key: "destination_country", label: { fr: "Pays destinataire", en: "Destination country" }, placeholder: "FR" },
+      { key: "client_type", label: { fr: "Type client", en: "Client type" }, placeholder: "retail", optional: true },
+    ],
+  },
+  {
+    id: "customs_duties",
+    method: "GET",
+    path: "/v2/customs/duties",
+    title: { fr: "Droits, TVA et accises", en: "Tariff, VAT and excise lookup" },
+    desc: {
+      fr: "Taux de droits, TVA et accises pour un code HS dans un pays donné.",
+      en: "Customs duty, VAT and excise rates for an HS code in a given country.",
+    },
+    coverage: "product",
+    params: [
+      { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
+      { key: "system", label: { fr: "Système", en: "System" }, placeholder: "hs6", optional: true },
+    ],
+  },
+  {
+    id: "customs_obligations",
+    method: "GET",
+    path: "/v2/customs/obligations",
+    title: { fr: "Obligations douanières", en: "Customs obligations" },
+    desc: {
+      fr: "Obligations réglementaires (licences, certifications, marquages) pour un code HS dans un pays.",
+      en: "Regulatory obligations (licenses, certifications, markings) for an HS code in a country.",
+    },
+    coverage: "product",
+    params: [
+      { key: "hs", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "DE" },
+    ],
+  },
+  {
+    id: "customs_lookup",
+    method: "GET",
+    path: "/v2/customs/lookup",
+    title: { fr: "Classification HS depuis description", en: "HS classification from description" },
+    desc: {
+      fr: "Suggère un ou plusieurs codes HS à partir d'une description produit en langage naturel.",
+      en: "Suggests one or more HS codes from a natural-language product description.",
+    },
+    coverage: "product",
+    params: [
+      { key: "description", label: { fr: "Description", en: "Description" }, placeholder: "lithium ion battery" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "US", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "5", optional: true },
+    ],
+  },
+  {
+    id: "customs_alternatives",
+    method: "GET",
+    path: "/v2/customs/alternatives",
+    title: { fr: "Codes HS alternatifs", en: "Alternative HS codes" },
+    desc: {
+      fr: "Propose des classifications alternatives plausibles pour un code HS donné.",
+      en: "Suggests plausible alternative classifications for a given HS code.",
+    },
+    coverage: "product",
+    params: [
+      { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
+    ],
+  },
+  {
+    id: "customs_dual_use",
+    method: "GET",
+    path: "/v2/customs/dual-use",
+    title: { fr: "Contrôle dual-use", en: "Dual-use screening" },
+    desc: {
+      fr: "Le produit tombe-t-il sous un régime de contrôle d'export pour une destination donnée (EU 2021/821, US EAR…) ?",
+      en: "Does the product fall under an export-control regime for a given destination (EU 2021/821, US EAR…)?",
+    },
+    coverage: "product",
+    params: [
+      { key: "description", label: { fr: "Description", en: "Description" }, placeholder: "encryption module", optional: true },
+      { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "854231", optional: true },
+      { key: "destination", label: { fr: "Destination", en: "Destination" }, placeholder: "CN" },
+    ],
+  },
+  {
+    id: "customs_landed_cost",
+    method: "POST",
+    path: "/v2/customs/landed-cost",
+    title: { fr: "Calcul de coût rendu", en: "Landed-cost calculator" },
+    desc: {
+      fr: "Coût rendu (CIF + droits + TVA + frais) depuis un HS, origine, destination, prix FOB USD.",
+      en: "Landed cost (CIF + duties + VAT + fees) from HS, origin, destination, FOB USD price.",
+    },
+    coverage: "product",
+    params: [
+      { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440" },
+      { key: "origin", label: { fr: "Origine", en: "Origin" }, placeholder: "CN" },
+      { key: "destination", label: { fr: "Destination", en: "Destination" }, placeholder: "FR" },
+      { key: "fob_usd", label: { fr: "Prix FOB (USD)", en: "FOB price (USD)" }, placeholder: "12500" },
+    ],
+  },
+  {
+    id: "customs_reverse_classify",
+    method: "POST",
+    path: "/v2/customs/reverse-classify",
+    title: { fr: "Code HS → description produit", en: "HS code → product description" },
+    desc: {
+      fr: "Génère une description produit défendable à partir d'un code HS.",
+      en: "Generates a defensible product description from an HS code.",
+    },
+    coverage: "product",
+    params: [
+      { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
+    ],
+  },
+  {
+    id: "standards_gost",
+    method: "GET",
+    path: "/v2/standards/gost",
+    title: { fr: "Standards GOST / EAEU", en: "GOST / EAEU standards" },
+    desc: {
+      fr: "Standards GOST / TR EAEU applicables à un code HS dans un pays de l'EAEU.",
+      en: "GOST / TR EAEU standards applicable to an HS code in a Eurasian Economic Union country.",
+    },
+    coverage: "product",
+    params: [
+      { key: "hs", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440", optional: true },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "RU", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "eaeu_parallel_import",
+    method: "GET",
+    path: "/v2/eaeu/parallel-import",
+    title: { fr: "Importation parallèle EAEU", en: "EAEU parallel-import rules" },
+    desc: {
+      fr: "Un certificat émis par un pays EAEU est-il reconnu dans les autres états membres pour un produit donné ?",
+      en: "Is a certificate issued by an EAEU country recognised in other member states for a given product?",
+    },
+    coverage: "product",
+    params: [
+      { key: "cert_country", label: { fr: "Pays certificat", en: "Cert country" }, placeholder: "KZ" },
+      { key: "cert_type", label: { fr: "Type", en: "Cert type" }, placeholder: "tr_cu" },
+      { key: "product_code", label: { fr: "Code produit", en: "Product code" }, placeholder: "850440", optional: true },
+    ],
+  },
+  // ───── Legal Atlas (11) ─────
+  {
+    id: "search",
+    method: "GET",
+    path: "/v2/search",
+    title: { fr: "Recherche hybride", en: "Hybrid search" },
+    desc: {
+      fr: "Recherche dans le corpus juridique : sémantique (embeddings) + lexical (BM25). Filtres pays, type, langue.",
+      en: "Search across the legal corpus: semantic (embeddings) + lexical (BM25). Filter by country, type, language.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "q", label: { fr: "Requête", en: "Query" }, placeholder: "cosmetic labeling requirements" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR", optional: true },
+      { key: "type", label: { fr: "Type", en: "Type" }, placeholder: "legislation", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "search_bulk",
+    method: "POST",
+    path: "/v2/search/bulk",
+    title: { fr: "Recherche groupée", en: "Bulk search" },
+    desc: {
+      fr: "Jusqu'à 25 recherches sémantiques en un seul appel.",
+      en: "Up to 25 semantic searches in a single call.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "queries", label: { fr: "Requêtes (séparées par |)", en: "Queries (pipe-separated)" }, placeholder: "GDPR data subject rights | cookie consent banner ruling" },
+    ],
+  },
+  {
+    id: "documents",
+    method: "GET",
+    path: "/v2/documents",
+    title: { fr: "Liste de documents", en: "List documents" },
+    desc: {
+      fr: "Liste paginée des documents juridiques. Filtres source, pays.",
+      en: "Paginated list of legal documents. Filter by source, country.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR", optional: true },
+      { key: "source", label: { fr: "Source", en: "Source" }, placeholder: "legifrance", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "documents_by_id",
+    method: "GET",
+    path: "/v2/documents/{id}",
+    title: { fr: "Document par identifiant", en: "Document by ID" },
+    desc: {
+      fr: "Récupère un document complet (texte intégral + métadonnées) à partir de son identifiant.",
+      en: "Fetches a full document (text + metadata) from its ID.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "id", label: { fr: "ID document", en: "Document ID" }, placeholder: "fr_legifrance_R5131-1" },
+    ],
+  },
+  {
+    id: "documents_bulk",
+    method: "POST",
+    path: "/v2/documents/bulk",
+    title: { fr: "Récupération groupée", en: "Bulk fetch" },
+    desc: {
+      fr: "Récupère jusqu'à 50 documents en un seul appel.",
+      en: "Fetches up to 50 documents in a single call.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "ids", label: { fr: "IDs (séparés par ,)", en: "IDs (comma-separated)" }, placeholder: "fr_legifrance_R5131-1,fr_legifrance_R5131-2" },
+    ],
+  },
+  {
+    id: "changes",
+    method: "GET",
+    path: "/v2/changes",
+    title: { fr: "Changements depuis une date", en: "Changes since timestamp" },
+    desc: {
+      fr: "Documents créés/modifiés/supprimés depuis un timestamp. Fenêtre max 90 jours.",
+      en: "Documents created/modified/deleted since a timestamp. Max 90-day window.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "since", label: { fr: "Depuis (ISO)", en: "Since (ISO)" }, placeholder: "2026-05-01T00:00:00Z" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "translate",
+    method: "POST",
+    path: "/v2/translate",
+    title: { fr: "Traduction juridique", en: "Legal translation" },
+    desc: {
+      fr: "Traduit un fragment juridique en préservant la terminologie et les références d'articles.",
+      en: "Translates a legal fragment preserving technical terminology and article references.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "text", label: { fr: "Texte", en: "Text" }, placeholder: "L'article 5 du RGPD impose..." },
+      { key: "target_lang", label: { fr: "Langue cible", en: "Target lang" }, placeholder: "en" },
+      { key: "source_lang", label: { fr: "Langue source", en: "Source lang" }, placeholder: "fr", optional: true },
+    ],
+  },
+  {
+    id: "coverage",
+    method: "GET",
+    path: "/v2/coverage",
+    title: { fr: "Couverture par source", en: "Coverage snapshot" },
+    desc: {
+      fr: "Snapshot global de couverture : volumes documents, dernière collecte réussie, statut.",
+      en: "Global coverage snapshot: document volumes, last successful crawl, status.",
+    },
+    coverage: "legal",
     params: [],
   },
   {
-    id: "product_check",
-    method: "POST",
-    path: "/product/check",
-    title: { fr: "Vérifier un produit", en: "Check a product" },
+    id: "countries",
+    method: "GET",
+    path: "/v2/countries",
+    title: { fr: "Liste des pays", en: "Supported countries" },
     desc: {
-      fr: "Retourne toutes les régulations applicables pour un produit donné dans une juridiction.",
-      en: "Returns every regulation applicable to a given product in a jurisdiction.",
+      fr: "Pays couverts par Cleo Legal Data, avec code ISO-2, nom et nombre de sources actives.",
+      en: "Countries covered by Cleo Legal Data, with ISO-2 code, name and active sources count.",
     },
-    coverage: "product",
+    coverage: "legal",
+    params: [],
+  },
+  {
+    id: "authorities",
+    method: "GET",
+    path: "/v2/authorities",
+    title: { fr: "Liste des autorités", en: "Regulatory authorities" },
+    desc: {
+      fr: "Autorités réglementaires suivies (ANSM, CNIL, FDA, EMA…), avec pays et domaines de compétence.",
+      en: "Regulatory authorities tracked (ANSM, CNIL, FDA, EMA…), with country and area of competence.",
+    },
+    coverage: "legal",
     params: [
-      { key: "category", label: { fr: "Catégorie", en: "Product category" }, placeholder: "Shampoo & Hair Care" },
-      { key: "jurisdiction", label: { fr: "Juridiction", en: "Jurisdiction" }, placeholder: "FR" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
     ],
+  },
+  {
+    id: "webhooks",
+    method: "GET",
+    path: "/v2/webhooks",
+    title: { fr: "Souscriptions webhooks", en: "Webhook subscriptions" },
+    desc: {
+      fr: "Liste les souscriptions webhooks actives sur votre compte.",
+      en: "Lists active webhook subscriptions on your account.",
+    },
+    coverage: "legal",
+    params: [],
   },
 ];
 
@@ -120,7 +377,7 @@ type ResponseMode =
 
 export default function Playground() {
   const [lang, setLang] = useState<Lang>("en");
-  const [endpointId, setEndpointId] = useState<EndpointId>("regulations");
+  const [endpointId, setEndpointId] = useState<EndpointId>("compliance_check");
   const [paramValues, setParamValues] = useState<Record<string, string>>({});
   const [response, setResponse] = useState<ResponseMode>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
@@ -219,7 +476,6 @@ export default function Playground() {
     coverageLabel: {
       legal: { fr: "Legal Atlas", en: "Legal Atlas" },
       product: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
-      shared: { fr: "Les deux atlas", en: "Both atlases" },
     },
     optional: { fr: "optionnel", en: "optional" },
   };
@@ -524,132 +780,593 @@ async function runEndpoint(
   id: EndpointId,
   params: Record<string, string>,
 ): Promise<unknown> {
-  if (id === "regulations" || id === "categories" || id === "product_check") {
-    const data = await loadProduct();
-    if (id === "regulations") {
-      let regs = data.regulations as AnyRow[];
-      if (params.jurisdiction)
-        regs = regs.filter((r) =>
-          ci(String(r.jurisdiction_code ?? ""), params.jurisdiction),
-        );
-      if (params.category)
-        regs = regs.filter((r) =>
-          ciIncl(String(r.category ?? ""), params.category),
-        );
-      if (params.criticality)
-        regs = regs.filter((r) =>
-          ci(String(r.criticality ?? ""), params.criticality),
-        );
-      const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
-      return {
-        data: regs.slice(0, limit).map((r) => ({
-          id: `reg_${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
-          name: r.regulation_name,
-          ref: r.regulation_ref,
-          jurisdiction: r.jurisdiction_code,
-          category: r.category,
-          enforcement_body: r.enforcement_body,
+  // Endpoints that filter Cleo data live ──────────────────────────────
+  if (id === "compliance_check") {
+    const product = await loadProduct();
+    const dest = (params.destination_country || "FR").toUpperCase();
+    const desc = params.description || "sunscreen SPF50";
+    const cat = guessCategoryFromDesc(desc);
+    let regs = product.regulations as AnyRow[];
+    if (cat) regs = regs.filter((r) => ciIncl(String(r.category), cat));
+    regs = regs.filter((r) => ci(String(r.jurisdiction_code), dest));
+    const hs = guessHsFromDesc(desc);
+    return {
+      data: {
+        hs_code: hs.code,
+        hs_description: hs.description,
+        duties: hs.duties,
+        obligations: regs.slice(0, 5).map((r) => ({
+          code: String(r.regulation_ref || r.regulation_name),
+          title: r.regulation_name,
+          authority: r.enforcement_body,
           criticality: r.criticality,
-          in_api: r.in_api,
           url: r.url || null,
         })),
-        pagination: { limit, returned: Math.min(limit, regs.length) },
-        total: regs.length,
-      };
-    }
-    if (id === "categories") {
-      return {
-        data: data.categories.map((c) => ({
-          id: slug(String(c.name)),
-          name: c.name,
-          total_regulations: c.total_regs,
-          jurisdictions: c.jurisdictions,
-          in_api: c.found,
-          coverage_pct: c.pct,
-        })),
-        total: data.categories.length,
-      };
-    }
-    // product_check
-    let regs = data.regulations as AnyRow[];
-    if (params.jurisdiction)
-      regs = regs.filter((r) => ci(String(r.jurisdiction_code), params.jurisdiction));
-    if (params.category)
-      regs = regs.filter((r) => ciIncl(String(r.category), params.category));
-    const critical = regs.filter((r) => String(r.criticality).toLowerCase() === "critical");
-    return {
-      product: {
-        category: params.category ?? null,
-        jurisdiction: params.jurisdiction ?? null,
+        dual_use: { controlled: /encrypt|drone|defense|nuclear/i.test(desc) },
+        alternatives: hs.alternatives,
+        landed_cost_hint: "Use POST /v2/customs/landed-cost with FOB price.",
       },
-      regulations_applicable: regs.length,
-      critical_count: critical.length,
-      regulations: regs.slice(0, 5).map((r) => ({
-        name: r.regulation_name,
-        ref: r.regulation_ref,
-        criticality: r.criticality,
-        enforcement_body: r.enforcement_body,
-        url: r.url || null,
-      })),
+      coverage_status: regs.length > 0 ? "covered" : "partial",
+      next_check_at: in30Days(),
+      advisory_disclaimer: "Cleo provides advisory data; final compliance is the importer's responsibility.",
     };
   }
 
-  // sources / jurisdictions → manifest
-  const manifest = await loadManifest();
-  if (id === "sources") {
-    const all: AnyRow[] = [];
-    for (const c of manifest.countries) {
-      for (const s of c.sources ?? []) all.push(s);
-    }
-    let sources = all;
-    if (params.country)
-      sources = sources.filter((s) => ci(String(s.country), params.country));
-    if (params.data_type)
-      sources = sources.filter((s) =>
-        Array.isArray(s.data_types) &&
-        (s.data_types as string[]).some((d) => ci(d, params.data_type)),
-      );
-    if (params.status)
-      sources = sources.filter((s) => ci(String(s.status), params.status));
-    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+  if (id === "customs_duties") {
+    const code = params.code || "330420";
+    const country = (params.country || "FR").toUpperCase();
+    return mockDuties(code, country);
+  }
+
+  if (id === "customs_obligations") {
+    const product = await loadProduct();
+    const country = (params.country || "DE").toUpperCase();
+    const hs = params.hs || "850440";
+    const cat = guessCategoryFromHs(hs);
+    let regs = product.regulations as AnyRow[];
+    regs = regs.filter((r) => ci(String(r.jurisdiction_code), country));
+    if (cat) regs = regs.filter((r) => ciIncl(String(r.category), cat));
     return {
-      data: sources.slice(0, limit).map((s) => ({
-        id: s.id,
-        name: s.name,
-        country: s.country,
-        url: s.url,
-        data_types: s.data_types,
-        status: s.status,
+      data: regs.slice(0, 10).map((r) => ({
+        code: r.regulation_ref,
+        title: r.regulation_name,
+        authority: r.enforcement_body,
+        criticality: r.criticality,
+        url: r.url || null,
       })),
-      pagination: { limit, returned: Math.min(limit, sources.length) },
-      total: sources.length,
+      hs_code: hs,
+      country,
+      total: regs.length,
     };
   }
-  // jurisdictions
-  let countries = manifest.countries;
-  if (params.region) {
-    // manifest has no explicit region — approximate via code or skip filter
-    countries = countries.filter((c) => regionGuess(String(c.code)) === params.region);
+
+  if (id === "customs_lookup") {
+    const desc = params.description || "lithium ion battery";
+    const limit = Math.max(1, Math.min(20, parseInt(params.limit) || 5));
+    return {
+      data: hsCodeSuggestions(desc).slice(0, limit),
+      query: desc,
+    };
   }
-  if (params.min_completion) {
-    const min = parseFloat(params.min_completion);
-    countries = countries.filter((c) => (Number(c.completion) || 0) >= min);
+
+  if (id === "customs_alternatives") {
+    const code = params.code || "330420";
+    return {
+      base: code,
+      alternatives: [
+        { code: code.slice(0, 4) + "99", match: 0.78, label: "Other cosmetics, not elsewhere specified" },
+        { code: code.slice(0, 4) + "30", match: 0.64, label: "Make-up or skin-care preparations" },
+        { code: code.slice(0, 4) + "10", match: 0.52, label: "Lip make-up preparations" },
+      ],
+    };
   }
-  const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
-  return {
-    data: countries
-      .slice(0, limit)
-      .map((c) => ({
+
+  if (id === "customs_dual_use") {
+    const desc = params.description || "";
+    const code = params.code || "";
+    const dest = (params.destination || "CN").toUpperCase();
+    const controlled = /encrypt|drone|defense|nuclear|missile|biotech/i.test(desc + code);
+    return {
+      controlled,
+      destination: dest,
+      regime: controlled ? "EU Reg 2021/821 — Cat 5A002 (Information security)" : null,
+      requires_license: controlled,
+      reason: controlled
+        ? "Product description matches dual-use category 5A002 (cryptography ≥ 56-bit symmetric)."
+        : "No dual-use category matched.",
+      references: controlled
+        ? [
+            { name: "EU Dual-Use Reg 2021/821 — Annex I", url: "https://eur-lex.europa.eu/eli/reg/2021/821" },
+          ]
+        : [],
+    };
+  }
+
+  if (id === "customs_landed_cost") {
+    const code = params.code || "850440";
+    const origin = (params.origin || "CN").toUpperCase();
+    const destination = (params.destination || "FR").toUpperCase();
+    const fob = parseFloat(params.fob_usd) || 12500;
+    const duty = mockDuties(code, destination);
+    const dutyPct = (duty as { duty_pct: number }).duty_pct;
+    const vatPct = (duty as { vat_pct: number }).vat_pct;
+    const cif = Math.round(fob * 1.08 * 100) / 100; // freight + insurance ~8%
+    const dutyAmt = Math.round(cif * (dutyPct / 100) * 100) / 100;
+    const vatAmt = Math.round((cif + dutyAmt) * (vatPct / 100) * 100) / 100;
+    const customsFees = 85;
+    const landed = Math.round((cif + dutyAmt + vatAmt + customsFees) * 100) / 100;
+    return {
+      currency: "USD",
+      code,
+      origin,
+      destination,
+      breakdown: {
+        fob: fob,
+        cif: cif,
+        duty: { rate_pct: dutyPct, amount: dutyAmt },
+        vat: { rate_pct: vatPct, amount: vatAmt },
+        customs_fees: customsFees,
+      },
+      landed_cost: landed,
+    };
+  }
+
+  if (id === "customs_reverse_classify") {
+    const code = params.code || "330420";
+    const cat = guessCategoryFromHs(code);
+    return {
+      code,
+      hs_section: code.slice(0, 2),
+      description_en: `Product classified under HS ${code} — typical category: ${cat || "unspecified"}.`,
+      defensible_text: `Product falling within HS ${code} corresponding to ${cat || "the specified tariff position"}, packaged for retail sale.`,
+      confidence: 0.86,
+    };
+  }
+
+  if (id === "standards_gost") {
+    const hs = params.hs || "850440";
+    const country = (params.country || "RU").toUpperCase();
+    const limit = Math.max(1, Math.min(20, parseInt(params.limit) || 10));
+    const all = [
+      { code: "GOST 30804.3.2-2013", title: "Electromagnetic compatibility — harmonic current emissions", country: "RU", binding: true },
+      { code: "TR CU 004/2011", title: "Safety of low-voltage equipment", country: "EAEU", binding: true },
+      { code: "TR CU 020/2011", title: "Electromagnetic compatibility of technical means", country: "EAEU", binding: true },
+      { code: "GOST R 51317.3.2-2014", title: "Russian equivalent of IEC 61000-3-2", country: "RU", binding: false },
+      { code: "GOST IEC 60950-1-2014", title: "IT equipment safety", country: "RU", binding: true },
+    ];
+    return { data: all.slice(0, limit), hs_code: hs, country, total: all.length };
+  }
+
+  if (id === "eaeu_parallel_import") {
+    const certCountry = (params.cert_country || "KZ").toUpperCase();
+    const certType = params.cert_type || "tr_cu";
+    const productCode = params.product_code || "850440";
+    return {
+      recognised: certType === "tr_cu",
+      cert_country: certCountry,
+      cert_type: certType,
+      product_code: productCode,
+      recognised_in: certType === "tr_cu" ? ["RU", "KZ", "BY", "AM", "KG"] : [certCountry],
+      reasoning:
+        certType === "tr_cu"
+          ? "TR CU certificates are mutually recognised across all 5 EAEU member states under Treaty Article 53."
+          : `${certType} certificates are valid only in the issuing country.`,
+      reference: "EAEU Treaty Article 53, Annex 9 (Technical Regulations)",
+    };
+  }
+
+  if (id === "search") {
+    const q = params.q || "cosmetic labeling requirements";
+    const country = params.country ? params.country.toUpperCase() : undefined;
+    const type = params.type;
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    const product = await loadProduct();
+    let regs = product.regulations as AnyRow[];
+    if (country) regs = regs.filter((r) => ci(String(r.jurisdiction_code), country));
+    const qLower = q.toLowerCase();
+    regs = regs.filter(
+      (r) =>
+        String(r.regulation_name).toLowerCase().includes(qLower) ||
+        String(r.regulation_ref ?? "").toLowerCase().includes(qLower) ||
+        String(r.enforcement_body ?? "").toLowerCase().includes(qLower) ||
+        String(r.category ?? "").toLowerCase().includes(qLower),
+    );
+    return {
+      data: regs.slice(0, limit).map((r, i) => ({
+        id: `${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
+        title: r.regulation_name,
+        ref: r.regulation_ref,
+        type: type || "legislation",
+        country: r.jurisdiction_code,
+        lang: country === "FR" ? "fr" : "en",
+        url: r.url || null,
+        score: Math.round((1 - i * 0.04) * 100) / 100,
+      })),
+      query: q,
+      total: regs.length,
+      coverage_status: "covered",
+    };
+  }
+
+  if (id === "search_bulk") {
+    const queries = (params.queries || "GDPR data subject rights|cookie consent banner ruling").split("|").map((s) => s.trim()).filter(Boolean);
+    const product = await loadProduct();
+    const regs = product.regulations as AnyRow[];
+    return {
+      data: queries.map((q) => {
+        const qLower = q.toLowerCase();
+        const hits = regs.filter(
+          (r) =>
+            String(r.regulation_name).toLowerCase().includes(qLower) ||
+            String(r.regulation_ref ?? "").toLowerCase().includes(qLower),
+        );
+        return {
+          query: q,
+          hits: hits.slice(0, 3).map((r) => ({
+            id: `${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
+            title: r.regulation_name,
+            country: r.jurisdiction_code,
+            score: 0.84,
+          })),
+          total: hits.length,
+        };
+      }),
+    };
+  }
+
+  if (id === "documents") {
+    const manifest = await loadManifest();
+    const country = params.country ? params.country.toUpperCase() : undefined;
+    const source = params.source ? params.source.toLowerCase() : undefined;
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    const all: AnyRow[] = [];
+    for (const c of manifest.countries) {
+      if (country && c.code !== country) continue;
+      for (const s of c.sources ?? []) {
+        if (source && !String(s.id).toLowerCase().includes(source) && !String(s.name).toLowerCase().includes(source)) continue;
+        all.push({
+          id: `${String(c.code).toLowerCase()}_${slug(String(s.name))}_${all.length}`,
+          source_id: s.id,
+          source_name: s.name,
+          country: c.code,
+          url: s.url,
+          data_types: s.data_types,
+        });
+        if (all.length >= limit * 5) break;
+      }
+      if (all.length >= limit * 5) break;
+    }
+    return {
+      data: all.slice(0, limit),
+      pagination: { limit, returned: Math.min(limit, all.length) },
+      total: all.length,
+    };
+  }
+
+  if (id === "documents_by_id") {
+    const id = params.id || "fr_legifrance_R5131-1";
+    return {
+      id,
+      title: "Article R5131-1 du Code de la santé publique",
+      type: "legislation",
+      country: "FR",
+      lang: "fr",
+      source: "Légifrance",
+      url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072665/LEGISCTA000006171151/",
+      last_modified: "2026-04-22T00:00:00Z",
+      text_excerpt:
+        "Pour l'application de l'article L5131-2, on entend par produit cosmétique toute substance ou tout mélange destiné à être mis en contact avec les parties superficielles du corps humain…",
+      metadata: { article_count: 13, citing_documents: 47 },
+    };
+  }
+
+  if (id === "documents_bulk") {
+    const ids = (params.ids || "fr_legifrance_R5131-1,fr_legifrance_R5131-2").split(",").map((s) => s.trim()).filter(Boolean);
+    return {
+      data: ids.map((id) => ({
+        id,
+        title: `Document ${id}`,
+        type: "legislation",
+        country: id.split("_")[0]?.toUpperCase() || "FR",
+        url: `https://www.legifrance.gouv.fr/.../${id}`,
+        last_modified: "2026-04-22T00:00:00Z",
+      })),
+      total: ids.length,
+    };
+  }
+
+  if (id === "changes") {
+    const since = params.since || "2026-05-01T00:00:00Z";
+    const country = params.country ? params.country.toUpperCase() : undefined;
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    const product = await loadProduct();
+    let regs = product.regulations as AnyRow[];
+    if (country) regs = regs.filter((r) => ci(String(r.jurisdiction_code), country));
+    return {
+      since,
+      country: country ?? null,
+      data: regs.slice(0, limit).map((r, i) => ({
+        id: `${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
+        change_type: i % 3 === 0 ? "created" : i % 3 === 1 ? "modified" : "deleted",
+        title: r.regulation_name,
+        country: r.jurisdiction_code,
+        timestamp: new Date(Date.now() - i * 3600_000).toISOString(),
+      })),
+      window_days: 90,
+    };
+  }
+
+  if (id === "translate") {
+    const text = params.text || "L'article 5 du RGPD impose...";
+    const targetLang = params.target_lang || "en";
+    const sourceLang = params.source_lang || "auto";
+    return {
+      source_lang: sourceLang,
+      target_lang: targetLang,
+      input: text,
+      output: mockTranslate(text, sourceLang, targetLang),
+      glossary_applied: ["RGPD → GDPR", "Article → Article"],
+    };
+  }
+
+  if (id === "coverage") {
+    const manifest = await loadManifest();
+    const product = await loadProduct();
+    return {
+      legal_atlas: {
+        total_countries: manifest.countries.length,
+        total_sources: (manifest.stats as { totalSources: number }).totalSources,
+        estimated_documents: (manifest.stats as { estimatedTotalVolume: number }).estimatedTotalVolume,
+        by_status: (manifest.stats as { byStatus: AnyRow }).byStatus,
+        last_refresh: (manifest.stats as { generatedAt: string }).generatedAt,
+      },
+      product_atlas: {
+        regulations_audited: (product.totals as { product_regs_audited: number }).product_regs_audited,
+        regulations_in_api: (product.totals as { product_regs_in_api: number }).product_regs_in_api,
+        coverage_pct: (product.totals as { product_coverage_pct: number }).product_coverage_pct,
+        categories: (product.totals as { product_categories: number }).product_categories,
+        jurisdictions: (product.totals as { jurisdictions_audited: number }).jurisdictions_audited,
+      },
+    };
+  }
+
+  if (id === "countries") {
+    const manifest = await loadManifest();
+    return {
+      data: manifest.countries.map((c) => ({
         code: c.code,
         name: c.name,
         flag: c.flag,
-        total_sources: c.total,
+        sources: c.total,
         completion: c.completion,
-        estimated_volume: c.estimatedVolume,
       })),
-    pagination: { limit, returned: Math.min(limit, countries.length) },
-    total: countries.length,
+      total: manifest.countries.length,
+    };
+  }
+
+  if (id === "authorities") {
+    const product = await loadProduct();
+    const country = params.country ? params.country.toUpperCase() : undefined;
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    let regs = product.regulations as AnyRow[];
+    if (country) regs = regs.filter((r) => ci(String(r.jurisdiction_code), country));
+    const counts = new Map<string, { name: string; country: string; count: number }>();
+    for (const r of regs) {
+      const name = String(r.enforcement_body || "").trim();
+      if (!name) continue;
+      const k = `${name}|${r.jurisdiction_code}`;
+      const cur = counts.get(k);
+      if (cur) cur.count++;
+      else counts.set(k, { name, country: String(r.jurisdiction_code), count: 1 });
+    }
+    const sorted = Array.from(counts.values()).sort((a, b) => b.count - a.count);
+    return {
+      data: sorted.slice(0, limit).map((a) => ({
+        name: a.name,
+        country: a.country,
+        regulations_count: a.count,
+      })),
+      total: sorted.length,
+    };
+  }
+
+  if (id === "webhooks") {
+    return {
+      data: [
+        {
+          id: "wh_eu_legal_changes",
+          endpoint: "https://your-app.example.com/cleo/webhook",
+          events: ["regulation.created", "regulation.modified"],
+          status: "active",
+          last_delivery: "2026-06-02T08:14:00Z",
+          delivery_success_rate_30d: 0.998,
+        },
+        {
+          id: "wh_product_recalls",
+          endpoint: "https://your-app.example.com/cleo/recalls",
+          events: ["recall.created"],
+          status: "active",
+          last_delivery: "2026-06-01T23:42:00Z",
+          delivery_success_rate_30d: 1.0,
+        },
+      ],
+      total: 2,
+    };
+  }
+
+  throw new Error(`Unknown endpoint: ${id}`);
+}
+
+/* ─── helpers ─── */
+
+function in30Days(): string {
+  return new Date(Date.now() + 30 * 86400_000).toISOString();
+}
+
+function guessCategoryFromDesc(desc: string): string | null {
+  const d = desc.toLowerCase();
+  if (/sunscreen|spf|cream|cosmetic|shampoo|skin|hair|lipstick/.test(d)) return "cosmetics";
+  if (/battery|lithium|ion/.test(d)) return "Electronics";
+  if (/phone|smartphone|mobile/.test(d)) return "Smartphones";
+  if (/toy|stuffed|plush/.test(d)) return "Toys";
+  if (/bandage|adhesive|medical/.test(d)) return "Adhesive";
+  if (/vape|cigarette|tobacco/.test(d)) return "Vaping";
+  if (/detergent|pod|laundry|cleaning/.test(d)) return "Detergent";
+  if (/supplement|vitamin|nutraceutical/.test(d)) return "Dietary";
+  if (/textile|fabric|apparel|legging|clothing/.test(d)) return "Apparel";
+  if (/helmet|bicycle|ppe/.test(d)) return "Helmets";
+  if (/wine|spirit|alcohol|beer/.test(d)) return "Wine";
+  if (/meat|beef|pork|chicken|poultry/.test(d)) return "Meat";
+  if (/pharma|drug|medicine|otc/.test(d)) return "Pharma";
+  if (/tyre|tire|wheel/.test(d)) return "Tyre";
+  if (/insecticide|pesticide|biocide/.test(d)) return "Insecticide";
+  if (/drone|uav|uas/.test(d)) return "Drone";
+  if (/vacuum|appliance|iot/.test(d)) return "Smart";
+  if (/implant|dental/.test(d)) return "Implant";
+  if (/paint|coating/.test(d)) return "Paint";
+  if (/pet food|dog food|cat food|croquette/.test(d)) return "Pet";
+  return null;
+}
+
+function guessCategoryFromHs(code: string): string | null {
+  const prefix = code.slice(0, 4);
+  const map: Record<string, string> = {
+    "3304": "cosmetics",
+    "8504": "Electronics",
+    "8517": "Smartphones",
+    "8507": "Battery",
+    "9503": "Toys",
+    "3005": "Adhesive Bandages",
+    "2402": "Vaping",
+    "3402": "Detergent",
+    "2106": "Dietary Supplements",
+    "6109": "Apparel",
+    "6506": "Helmets",
+    "2204": "Wine",
+    "2202": "Beverages",
+    "0201": "Meat",
+    "3004": "Pharma",
+    "4011": "Tyres",
+    "3808": "Insecticide",
+    "8806": "Drones",
+    "8508": "Vacuum",
+    "9021": "Implants",
+    "3209": "Paints",
+    "2309": "Pet Food",
   };
+  return map[prefix] ?? null;
+}
+
+function guessHsFromDesc(desc: string): {
+  code: string;
+  description: string;
+  duties: { duty_pct: number; vat_pct: number; excise: number | null };
+  alternatives: { code: string; match: number }[];
+} {
+  const d = desc.toLowerCase();
+  if (/sunscreen|spf|cosmetic|cream|shampoo/.test(d))
+    return {
+      code: "330420",
+      description: "Eye make-up preparations or skin-care including SPF",
+      duties: { duty_pct: 0, vat_pct: 20, excise: null },
+      alternatives: [{ code: "330499", match: 0.78 }, { code: "330491", match: 0.72 }],
+    };
+  if (/battery|lithium/.test(d))
+    return {
+      code: "850760",
+      description: "Lithium-ion batteries",
+      duties: { duty_pct: 2.7, vat_pct: 20, excise: null },
+      alternatives: [{ code: "850780", match: 0.81 }, { code: "853710", match: 0.6 }],
+    };
+  if (/phone|smartphone/.test(d))
+    return {
+      code: "851712",
+      description: "Mobile telephones",
+      duties: { duty_pct: 0, vat_pct: 20, excise: null },
+      alternatives: [{ code: "851762", match: 0.7 }],
+    };
+  return {
+    code: "999999",
+    description: "Unclassified — needs manual review",
+    duties: { duty_pct: 5, vat_pct: 20, excise: null },
+    alternatives: [],
+  };
+}
+
+function hsCodeSuggestions(
+  desc: string,
+): { code: string; description: string; confidence: number }[] {
+  const d = desc.toLowerCase();
+  if (/battery|lithium|ion/.test(d))
+    return [
+      { code: "850760", description: "Lithium-ion accumulators", confidence: 0.93 },
+      { code: "850780", description: "Other electric accumulators", confidence: 0.71 },
+      { code: "854130", description: "Thyristors, diacs, triacs", confidence: 0.22 },
+    ];
+  if (/cosmetic|sunscreen|cream/.test(d))
+    return [
+      { code: "330420", description: "Skin-care preparations", confidence: 0.92 },
+      { code: "330499", description: "Other beauty preparations", confidence: 0.78 },
+    ];
+  if (/phone|smartphone/.test(d))
+    return [
+      { code: "851712", description: "Mobile telephones", confidence: 0.96 },
+      { code: "851762", description: "Reception apparatus", confidence: 0.62 },
+    ];
+  return [
+    { code: "999999", description: "Unclassified", confidence: 0.1 },
+  ];
+}
+
+function mockDuties(code: string, country: string): unknown {
+  const base = code.slice(0, 4);
+  const byCountry: Record<string, { duty: number; vat: number }> = {
+    FR: { duty: dutyByPrefix(base), vat: 20 },
+    DE: { duty: dutyByPrefix(base), vat: 19 },
+    IT: { duty: dutyByPrefix(base), vat: 22 },
+    ES: { duty: dutyByPrefix(base), vat: 21 },
+    GB: { duty: dutyByPrefix(base), vat: 20 },
+    US: { duty: dutyByPrefix(base) / 2, vat: 0 },
+    CA: { duty: dutyByPrefix(base) / 2, vat: 5 },
+    JP: { duty: dutyByPrefix(base), vat: 10 },
+    CN: { duty: dutyByPrefix(base) * 1.5, vat: 13 },
+    AU: { duty: dutyByPrefix(base), vat: 10 },
+    BR: { duty: dutyByPrefix(base) * 2, vat: 17 },
+  };
+  const c = byCountry[country] || { duty: 5, vat: 0 };
+  return {
+    code,
+    country,
+    duty_pct: c.duty,
+    vat_pct: c.vat,
+    excise: null,
+    free_trade_agreements: country === "FR" || country === "DE" ? ["EU-Internal Market"] : [],
+  };
+}
+
+function dutyByPrefix(prefix: string): number {
+  const map: Record<string, number> = {
+    "3304": 0,
+    "8504": 2.5,
+    "8507": 2.7,
+    "8517": 0,
+    "9503": 4.7,
+    "2204": 6.4,
+    "0201": 12.8,
+    "4011": 4.5,
+    "8806": 0,
+  };
+  return map[prefix] ?? 3.5;
+}
+
+function mockTranslate(text: string, source: string, target: string): string {
+  if (target === "en" && /RGPD/i.test(text)) {
+    return text
+      .replace(/RGPD/g, "GDPR")
+      .replace(/L'article (\d+)/g, "Article $1")
+      .replace(/impose/g, "requires");
+  }
+  return `[${source}→${target}] ${text}`;
 }
 
 function slug(s: string): string {
