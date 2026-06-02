@@ -320,22 +320,12 @@ export default function Playground() {
               </p>
             </div>
 
-            {/* Params + Run */}
+            {/* Params */}
             {endpoint.params.length > 0 ? (
               <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-                <div className="mb-3 flex items-center justify-between">
-                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
-                    {T.paramsHeader[lang]}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={handleRun}
-                    disabled={response.kind === "loading"}
-                    className="inline-flex items-center gap-2 rounded-full bg-c-brand px-4 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink disabled:opacity-60"
-                  >
-                    {response.kind === "loading" ? T.running[lang] : `▶ ${T.run[lang]}`}
-                  </button>
-                </div>
+                <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+                  {T.paramsHeader[lang]}
+                </h3>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {endpoint.params.map((p) => (
                     <label key={p.key} className="block">
@@ -361,20 +351,30 @@ export default function Playground() {
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-between rounded-2xl border border-c-border bg-c-surface px-5 py-4">
-                <span className="text-[13px] text-c-text-muted">
-                  {lang === "fr" ? "Pas de paramètre nécessaire." : "No parameters required."}
-                </span>
-                <button
-                  type="button"
-                  onClick={handleRun}
-                  disabled={response.kind === "loading"}
-                  className="inline-flex items-center gap-2 rounded-full bg-c-brand px-4 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink disabled:opacity-60"
-                >
-                  {response.kind === "loading" ? T.running[lang] : `▶ ${T.run[lang]}`}
-                </button>
+              <div className="rounded-2xl border border-c-border bg-c-surface px-5 py-4 text-[13px] text-c-text-muted">
+                {lang === "fr" ? "Pas de paramètre nécessaire." : "No parameters required."}
               </div>
             )}
+
+            {/* BIG RUN BUTTON */}
+            <button
+              type="button"
+              onClick={handleRun}
+              disabled={response.kind === "loading"}
+              className="flex w-full items-center justify-center gap-3 rounded-2xl bg-c-brand px-6 py-4 text-base font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md disabled:opacity-60"
+            >
+              {response.kind === "loading" ? (
+                <>
+                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                  {T.running[lang]}
+                </>
+              ) : (
+                <>
+                  <span className="text-lg">▶</span>
+                  {lang === "fr" ? "Lancer la requête" : "Send request"}
+                </>
+              )}
+            </button>
 
             {/* curl */}
             <div className="overflow-hidden rounded-2xl border border-c-border bg-[#0b0b1a]">
