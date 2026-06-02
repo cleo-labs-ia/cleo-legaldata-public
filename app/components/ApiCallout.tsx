@@ -5,6 +5,7 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
+const SIGNUP_URL = "https://cleo-legal-public.vercel.app/signup";
 
 export default function ApiCallout({ lang }: { lang: Lang }) {
   return (
@@ -31,22 +32,31 @@ export default function ApiCallout({ lang }: { lang: Lang }) {
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/70 md:text-[15px]">
               {STRINGS.apiCalloutBody[lang]}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {/* PRIMARY CTA — try the API live */}
-              <Link
-                href="/playground"
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              {/* PRIMARY — self-serve signup */}
+              <a
+                href={SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
               >
-                {lang === "fr" ? "Tester l'API" : "Try the API"} →
+                {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
+              </a>
+              {/* secondary — try first */}
+              <Link
+                href="/playground"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:border-white/40 hover:bg-white/10"
+              >
+                {lang === "fr" ? "Tester d'abord" : "Try first"}
               </Link>
-              {/* secondary */}
+              {/* tertiary — talk */}
               <a
                 href={MEET_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:border-white/40 hover:bg-white/10"
+                className="text-sm font-medium text-white/60 underline-offset-2 hover:text-white hover:underline"
               >
-                {STRINGS.apiCtaPrimary[lang]}
+                {lang === "fr" ? "ou parler à l'équipe" : "or talk to the team"}
               </a>
             </div>
           </div>

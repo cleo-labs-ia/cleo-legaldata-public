@@ -8,6 +8,7 @@ import { NUMBERS, fmt } from "@/lib/numbers";
 import SiteHeader from "./SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
+const SIGNUP_URL = "https://cleo-legal-public.vercel.app/signup";
 
 const PRODUCT_CATEGORY_IMAGES = [
   "/images/categories/family/cosmetics-personal-care.jpg",
@@ -120,15 +121,15 @@ export default function HomeChooser() {
             {t("heroSub")}
           </p>
 
-          {/* CTAs */}
+          {/* CTAs — primary self-serve, secondary talk to team */}
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={MEET_URL}
+              href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
+              className="inline-flex items-center rounded-full bg-c-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
             >
-              {t("ctaBookCall")} →
+              {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
             </a>
             <Link
               href="/docs"
@@ -136,6 +137,14 @@ export default function HomeChooser() {
             >
               {t("ctaSeeDocs")} →
             </Link>
+            <a
+              href={MEET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-c-text-subtle underline-offset-2 hover:text-c-brand hover:underline"
+            >
+              {lang === "fr" ? "ou parler à l'équipe" : "or talk to the team"}
+            </a>
           </div>
 
           {/* 4 combined KPIs */}

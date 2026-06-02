@@ -61,3 +61,18 @@ export function loadProductComplianceData(): ProductComplianceData {
   cache = JSON.parse(fs.readFileSync(file, "utf8")) as ProductComplianceData;
   return cache;
 }
+
+let familiesCache: ProductComplianceData | null = null;
+
+/**
+ * 15 broad physical-product families (rolled up from the 20 specific products)
+ * powering the "Légal API produit physique" page.
+ */
+export function loadProductFamiliesData(): ProductComplianceData {
+  if (familiesCache) return familiesCache;
+  const file = path.join(process.cwd(), "public", "data", "product-families.json");
+  familiesCache = JSON.parse(
+    fs.readFileSync(file, "utf8"),
+  ) as ProductComplianceData;
+  return familiesCache;
+}

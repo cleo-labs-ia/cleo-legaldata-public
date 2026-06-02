@@ -103,7 +103,19 @@ for (const [code, list] of grouped) {
   });
 }
 
-countries.sort((a, b) => b.total - a.total);
+// Sort by coverage first (most-covered jurisdictions on top — best showcase),
+// then by volume to break ties. Jurisdictions with < 10 tracked sources are
+// pushed below the showcase tier (they often score 100% with only 2 sources,
+// which is not as compelling for a B2B prospect as "UK at 82% with 45 sources").
+const MIN_SHOWCASE_SOURCES = 10;
+countries.sort((a, b) => {
+  const aShowcase = a.total >= MIN_SHOWCASE_SOURCES ? 1 : 0;
+  const bShowcase = b.total >= MIN_SHOWCASE_SOURCES ? 1 : 0;
+  if (aShowcase !== bShowcase) return bShowcase - aShowcase;
+  const diff = b.completion - a.completion;
+  if (Math.abs(diff) > 0.005) return diff;
+  return b.total - a.total;
+});
 
 const stats = {
   totalSources: sources.length,

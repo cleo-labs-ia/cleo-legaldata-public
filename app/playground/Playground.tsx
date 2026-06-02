@@ -736,10 +736,11 @@ export default function Playground() {
     livePill: { fr: "Live · données réelles", en: "Live · real data" },
     errorPill: { fr: "Erreur", en: "Error" },
     needsKey: {
-      fr: "Pour appeler l'API depuis votre propre code, il vous faut une clé. Réservez 20 min pour onboarder votre équipe.",
-      en: "To call the API from your own code you need a key. Book 20 min to onboard your team.",
+      fr: "Pour appeler l'API depuis votre propre code, créez votre clé en self-serve. Paiement par carte, clé livrée immédiatement.",
+      en: "To call the API from your own code, create your key self-serve. Pay by card, key delivered instantly.",
     },
-    bookCall: { fr: "Prendre un call", en: "Book a call" },
+    getKey: { fr: "Obtenir une clé API", en: "Get API key" },
+    talkTeam: { fr: "ou parler à l'équipe", en: "or talk to the team" },
     coverageLabel: {
       legal: { fr: "Legal Atlas", en: "Legal Atlas" },
       product: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
@@ -1023,18 +1024,28 @@ export default function Playground() {
               )}
             </div>
 
-            {/* CTA */}
+            {/* CTA — self-serve primary, talk-to-team secondary */}
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-[14px] text-c-text-muted">{T.needsKey[lang]}</p>
-                <a
-                  href="https://www.cleolabs.co/en/meet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-c-text px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-c-brand"
-                >
-                  {T.bookCall[lang]} →
-                </a>
+                <p className="max-w-md text-[14px] text-c-text-muted">{T.needsKey[lang]}</p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://cleo-legal-public.vercel.app/signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full bg-c-brand px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
+                  >
+                    {T.getKey[lang]} →
+                  </a>
+                  <a
+                    href="https://www.cleolabs.co/en/meet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[13px] font-medium text-c-text-subtle underline-offset-2 hover:text-c-brand hover:underline"
+                  >
+                    {T.talkTeam[lang]}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
-const MEET_URL = "https://www.cleolabs.co/en/meet";
+const SIGNUP_URL = "https://cleo-legal-public.vercel.app/signup";
 
 interface Props {
   lang: Lang;
@@ -108,12 +108,12 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             ))}
           </div>
           <a
-            href={MEET_URL}
+            href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-full bg-c-text px-3.5 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-ink-deep"
+            className="inline-flex items-center rounded-full bg-c-brand px-3.5 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink"
           >
-            {lang === "fr" ? "Get API key" : "Get API key"} →
+            Get API key →
           </a>
         </div>
       </div>
