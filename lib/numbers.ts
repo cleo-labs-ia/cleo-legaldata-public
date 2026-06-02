@@ -30,7 +30,7 @@ export const NUMBERS = {
   // Estimated volume declared by source portals (Légifrance says 50M, EUR-Lex says 10M…)
   legalDeclaredVolume: 234_502_471,
 
-  // Legal Product Physical Atlas
+  // Product Compliance Atlas
   productRegsPlatform: 46_031,
   productCategories: 20,
   productJurisdictions: 103,

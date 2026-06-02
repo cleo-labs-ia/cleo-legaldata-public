@@ -9,7 +9,7 @@ import SiteHeader from "../components/SiteHeader";
 const BASE_URL = "https://api.legaldata.cleolabs.co";
 
 type EndpointId =
-  // Product (Legal Product Physical Atlas) — 10 endpoints
+  // Product (Product Compliance Atlas) — 10 endpoints
   | "compliance_check"
   | "customs_duties"
   | "customs_obligations"
@@ -744,7 +744,7 @@ export default function Playground() {
     talkTeam: { fr: "ou parler à l'équipe", en: "or talk to the team" },
     coverageLabel: {
       legal: { fr: "Legal Atlas", en: "Legal Atlas" },
-      product: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
+      product: { fr: "Product Compliance Atlas", en: "Product Compliance Atlas" },
       hs: { fr: "HS Code", en: "HS Code" },
     },
     optional: { fr: "optionnel", en: "optional" },
@@ -788,7 +788,7 @@ export default function Playground() {
         <section className="mt-8 grid gap-6 lg:grid-cols-[320px_1fr]">
           {/* Endpoint picker — collapsible dropdowns by atlas */}
           <aside className="lg:sticky lg:top-6 lg:self-start space-y-3">
-            {/* Dropdown 1: Legal Product Physical Atlas */}
+            {/* Dropdown 1: Product Compliance Atlas */}
             <div className="overflow-hidden rounded-xl border-2 border-c-brand/40">
               <button
                 type="button"
@@ -798,7 +798,7 @@ export default function Playground() {
               >
                 <span className="h-2 w-2 rounded-full bg-c-brand" />
                 <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-c-brand-ink">
-                  Legal Product Physical Atlas
+                  Product Compliance Atlas
                 </span>
                 <span className="ml-auto rounded-full bg-c-brand/15 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-c-brand-ink">
                   {ENDPOINTS.filter((e) => e.coverage === "product").length}

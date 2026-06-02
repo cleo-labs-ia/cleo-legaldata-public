@@ -237,7 +237,7 @@ export const STRINGS = {
     en: "Reply within 1 business day, integration support",
   },
   privacyLink: { fr: "Confidentialité", en: "Privacy" },
-  navProducts: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
+  navProducts: { fr: "Product Compliance Atlas", en: "Product Compliance Atlas" },
   navLegalApi: {
     fr: "Légal API produit physique",
     en: "Physical Product Legal API",
@@ -262,8 +262,8 @@ export const STRINGS = {
     en: "Pick the Cleo atlas that fits your need — product compliance or worldwide legal mapping. One API, one data quality bar.",
   },
   homeProductCardTitle: {
-    fr: "Legal Product Physical Atlas",
-    en: "Legal Product Physical Atlas",
+    fr: "Product Compliance Atlas",
+    en: "Product Compliance Atlas",
   },
   homeProductCardDesc: {
     fr: `Spécialisé conformité produit physique : ${N.productRegs.fr} réglementations dédiées dans ${N.productCats.fr} catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automobile, drones, tabac…`,
@@ -275,7 +275,7 @@ export const STRINGS = {
   },
   homeProductCardCta: {
     fr: "Ouvrir l'atlas produit physique",
-    en: "Open the Physical Product Atlas",
+    en: "Open the Product Compliance Atlas",
   },
   homeGeneralCardTitle: {
     fr: "Legal Atlas",

@@ -410,7 +410,7 @@ export default function HomeChooser() {
               </div>
             </Link>
 
-            {/* Card 2 — Legal Product Physical Atlas */}
+            {/* Card 2 — Product Compliance Atlas */}
             <Link
               href="/products"
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"

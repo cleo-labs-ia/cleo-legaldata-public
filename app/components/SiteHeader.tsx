@@ -41,7 +41,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
           </span>
         </Link>
 
-        {/* Atlas toggle — Legal Atlas | Legal Product Physical Atlas */}
+        {/* Atlas toggle — Legal Atlas | Product Compliance Atlas */}
         <nav
           aria-label="Atlas"
           className="hidden items-center gap-0.5 rounded-full border border-c-border bg-c-surface-2 p-0.5 text-[12px] font-semibold md:flex"

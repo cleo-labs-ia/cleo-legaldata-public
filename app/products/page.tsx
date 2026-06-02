@@ -6,7 +6,7 @@ import { NUMBERS, fmt } from "@/lib/numbers";
 export const dynamic = "force-static";
 
 const URL = "https://legaldata-public.cleolabs.co/products";
-const TITLE = `Legal Product Physical Atlas — ${fmt(NUMBERS.productRegsPlatform, "en")} product regulations across ${NUMBERS.productCategories} categories | Cleo Legal Data`;
+const TITLE = `Product Compliance Atlas — ${fmt(NUMBERS.productRegsPlatform, "en")} product regulations across ${NUMBERS.productCategories} categories | Cleo Legal Data`;
 const DESC = `The world's largest physical-product compliance database: ${fmt(NUMBERS.productRegsPlatform, "en")} regulations across ${NUMBERS.productCategories} categories and ${NUMBERS.productJurisdictions} jurisdictions. Cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, drones, tobacco — one API call per product.`;
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESC,
     siteName: "Cleo Legal Data",
-    images: [{ url: "/cleo-icon.svg", alt: "Cleo Legal Product Physical Atlas" }],
+    images: [{ url: "/cleo-icon.svg", alt: "Cleo Product Compliance Atlas" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -75,7 +75,7 @@ const JSONLD = {
   "@graph": [
     {
       "@type": "Product",
-      name: "Cleo Legal Product Physical Atlas API",
+      name: "Cleo Product Compliance Atlas API",
       description: DESC,
       brand: { "@type": "Brand", name: "Cleo Labs" },
       category: "Product Compliance API",
@@ -101,7 +101,7 @@ const JSONLD = {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://legaldata-public.cleolabs.co/" },
-        { "@type": "ListItem", position: 2, name: "Legal Product Physical Atlas", item: URL },
+        { "@type": "ListItem", position: 2, name: "Product Compliance Atlas", item: URL },
       ],
     },
   ],
