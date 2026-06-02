@@ -151,3 +151,113 @@
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%);
 }
+
+/* ════════════════════════════════════════════════════════════════
+   CLEO DESIGN SYSTEM V4 — COMPONENT UTILITIES
+   Mirrors the DSV4 spec ("Mars 2026") classes so any page in this
+   repo can use the same building blocks as cleo-comply / cleo-landing.
+   Reference: docs/cleo-design-system-v4.html
+   ════════════════════════════════════════════════════════════════ */
+
+@layer components {
+  /* ── DSV4 spacing tokens (CSS custom props, usable inline) ── */
+  :root {
+    --s-2: 2px;   --s-4: 4px;   --s-8: 8px;   --s-12: 12px;
+    --s-16: 16px; --s-24: 24px; --s-32: 32px; --s-48: 48px;
+    --s-64: 64px; --s-96: 96px; --s-128: 128px;
+
+    --r-sm: 8px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-pill: 9999px;
+  }
+
+  /* ── Typography (7 levels) ── */
+  .t-display { font-family: var(--font-sans); font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; color: var(--color-c-text); }
+  .t-h1      { font-family: var(--font-sans); font-size: 2.25rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; color: var(--color-c-text); }
+  .t-h2      { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--color-c-text); }
+  .t-h3      { font-family: var(--font-sans); font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: var(--color-c-text); }
+  .t-body    { font-family: var(--font-sans); font-size: 1rem; font-weight: 400; line-height: 1.7; color: var(--color-c-text-muted); }
+  .t-caption { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 400; color: var(--color-c-text-subtle); }
+  .t-label   { font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-c-text-subtle); }
+
+  /* ── Buttons (landing pill + app square) ── */
+  .btn          { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; font-family: var(--font-sans); font-weight: 600; text-decoration: none; transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); min-height: 44px; border: none; }
+  .btn:hover    { transform: translateY(-1px); }
+  .btn:active   { transform: translateY(0); }
+  .btn:disabled { opacity: 0.35; pointer-events: none; transform: none; }
+
+  /* Landing (pill) */
+  .btn-primary   { background: var(--color-c-text); color: #fff; font-size: 15px; padding: 14px 28px; border-radius: 9999px; }
+  .btn-primary:hover { background: #333; }
+  .btn-secondary { background: var(--color-c-surface); color: var(--color-c-text); font-size: 15px; padding: 14px 28px; border-radius: 9999px; border: 1px solid var(--color-c-border); }
+  .btn-secondary:hover { border-color: var(--color-c-border-strong); }
+
+  /* App (square r-sm) */
+  .btn-app          { background: var(--color-c-text); color: #fff; font-size: 14px; padding: 10px 20px; border-radius: 8px; }
+  .btn-app:hover    { background: #333; }
+  .btn-app-accent   { background: var(--color-c-brand); color: #fff; font-size: 14px; padding: 10px 20px; border-radius: 8px; }
+  .btn-app-accent:hover { background: var(--color-c-brand-ink); }
+  .btn-app-outline  { background: var(--color-c-surface); color: var(--color-c-text); font-size: 14px; padding: 10px 20px; border-radius: 8px; border: 1px solid var(--color-c-border); }
+  .btn-app-outline:hover { border-color: var(--color-c-border-strong); }
+
+  /* ── Cards ── */
+  .card-warm  { background: var(--color-c-surface-2); border-radius: 16px; padding: 24px; }
+  .card-white { background: var(--color-c-surface); border: 1px solid var(--color-c-border); border-radius: 16px; padding: 24px; transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .card-white:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); }
+
+  /* ── Gradient canvases (mono per family) ── */
+  .gc      { border-radius: 24px; position: relative; padding: 48px; }
+  .gc-hero { background:
+    radial-gradient(ellipse at 30% 60%, rgba(255, 200, 160, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 30%, rgba(255, 185, 140, 0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 85%, rgba(255, 210, 170, 0.15) 0%, transparent 45%),
+    var(--color-c-surface-2); }
+  .gc-blue { background:
+    radial-gradient(ellipse at 25% 50%, rgba(0, 8, 207, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 40%, rgba(0, 8, 207, 0.06) 0%, transparent 50%),
+    #eeedf5; }
+  .gc-warm { background:
+    radial-gradient(ellipse at 40% 50%, rgba(255, 200, 150, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 60%, rgba(255, 195, 140, 0.12) 0%, transparent 45%),
+    var(--color-c-surface-2); }
+  .gc-mint { background:
+    radial-gradient(ellipse at 35% 50%, rgba(110, 201, 160, 0.20) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 40%, rgba(110, 201, 160, 0.08) 0%, transparent 50%),
+    #edf5f0; }
+
+  /* ── Glass ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: saturate(180%) blur(28px);
+    -webkit-backdrop-filter: saturate(180%) blur(28px);
+    border: 0.5px solid rgba(255, 255, 255, 0.65);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  }
+  .glass-heavy {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(200%) blur(40px);
+    -webkit-backdrop-filter: saturate(200%) blur(40px);
+    border: 0.5px solid rgba(255, 255, 255, 0.75);
+    border-radius: 24px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass       { background: rgba(255, 255, 255, 0.88); }
+    .glass-heavy { background: rgba(255, 255, 255, 0.92); }
+  }
+
+  /* ── Badges & tags ── */
+  .badge         { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
+  .badge-pass    { background: rgba(0,0,0,0.04); color: var(--color-c-text); }
+  .badge-risk    { background: var(--color-c-warn-soft); color: var(--color-c-warn); }
+  .badge-block   { background: rgba(0,0,0,0.06); color: var(--color-c-text); }
+  .badge-info    { background: rgba(0,0,0,0.04); color: var(--color-c-text); }
+  .badge-neutral { background: rgba(0,0,0,0.04); color: var(--color-c-text-subtle); }
+  .tag           { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 9999px; font-size: 12px; font-weight: 600; }
+  .tag-solid     { background: var(--color-c-surface-2); color: var(--color-c-text-muted); }
+
+  /* ── Misc helpers ── */
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+}
