@@ -10,6 +10,7 @@ import type {
 } from "@/lib/product-data";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import { NUMBERS, fmt } from "@/lib/numbers";
 import AnimatedNumber from "../components/AnimatedNumber";
 import ApiCallout from "../components/ApiCallout";
 import SiteHeader from "../components/SiteHeader";
@@ -38,8 +39,8 @@ const PS = {
     en: "product compliance database.",
   },
   subtitle: {
-    fr: "46 031 reglementations produit dans 158 sources officielles. Verifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.",
-    en: "46,031 product regulations across 158 official sources. Check any product against any country's requirements in one API call.",
+    fr: `${fmt(NUMBERS.productRegsPlatform, "fr")} réglementations produit dans ${NUMBERS.productJurisdictions} juridictions. Vérifiez n'importe quel produit contre les exigences de n'importe quel pays en un seul appel API.`,
+    en: `${fmt(NUMBERS.productRegsPlatform, "en")} product regulations across ${NUMBERS.productJurisdictions} jurisdictions. Check any product against any country's requirements in one API call.`,
   },
   ctaApi: { fr: "Obtenir un acces API", en: "Get API access" },
   ctaCoverage: { fr: "Voir la couverture", en: "See coverage" },
@@ -559,7 +560,7 @@ export default function ProductDashboard({
                 {lang === "fr" ? "Atlas →" : "Atlas →"}
               </Link>
             </p>
-            <span className="text-[10px] text-c-text-subtle">210 508 régs · 1,94M docs · 177 juridictions</span>
+            <span className="text-[10px] text-c-text-subtle">{fmt(NUMBERS.legalRegulations, lang)} régs · 1,94M docs · {NUMBERS.legalJurisdictions} juridictions</span>
           </div>
         </section>
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import { NUMBERS, fmt } from "@/lib/numbers";
 import SiteHeader from "./SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
@@ -27,8 +28,8 @@ export default function HomeChooser() {
     heroTitleA: { fr: "Le droit du monde,", en: "The world's law," },
     heroTitleB: { fr: "par une API.", en: "via one API." },
     heroSub: {
-      fr: "Une API REST + connecteur MCP pour interroger 46 031 réglementations produit et 210 508 régulations légales dans 177 juridictions — depuis votre produit, vos pipelines de veille, ou vos agents IA.",
-      en: "A REST API + MCP connector to query 46,031 product regulations and 210,508 legal regulations across 177 jurisdictions — from your product, monitoring pipelines, or AI agents.",
+      fr: `Une API REST + connecteur MCP pour interroger ${fmt(NUMBERS.productRegsPlatform, "fr")} réglementations produit et ${fmt(NUMBERS.legalRegulations, "fr")} régulations légales dans ${NUMBERS.legalJurisdictions} juridictions — depuis votre produit, vos pipelines de veille, ou vos agents IA.`,
+      en: `A REST API + MCP connector to query ${fmt(NUMBERS.productRegsPlatform, "en")} product regulations and ${fmt(NUMBERS.legalRegulations, "en")} legal regulations across ${NUMBERS.legalJurisdictions} jurisdictions — from your product, monitoring pipelines, or AI agents.`,
     },
     kpiProduct: { fr: "régs produit", en: "product regs" },
     kpiLegal: { fr: "régs légales", en: "legal regs" },
@@ -139,9 +140,9 @@ export default function HomeChooser() {
 
           {/* 4 combined KPIs */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <Kpi value="46 031" label={t("kpiProduct")} accent />
-            <Kpi value="210 508" label={t("kpiLegal")} />
-            <Kpi value="177" label={t("kpiJurisdictions")} />
+            <Kpi value={fmt(NUMBERS.productRegsPlatform, lang)} label={t("kpiProduct")} accent />
+            <Kpi value={fmt(NUMBERS.legalRegulations, lang)} label={t("kpiLegal")} />
+            <Kpi value={fmt(NUMBERS.legalJurisdictions, lang)} label={t("kpiJurisdictions")} />
             <Kpi value="234M+" label={t("kpiDocs")} />
           </div>
         </section>
@@ -357,7 +358,7 @@ export default function HomeChooser() {
                   <div className="relative grid grid-cols-3 gap-2 text-center">
                     <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
                       <div className="font-display text-xl font-light tabular-nums text-white">
-                        1 494
+                        {fmt(NUMBERS.legalSources, lang)}
                       </div>
                       <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
                         sources

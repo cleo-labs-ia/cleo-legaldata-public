@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import { NUMBERS, fmt } from "@/lib/numbers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cleo Legal Data Atlas — 1,494 open legal sources across 177 jurisdictions",
-  description:
-    "Public, exhaustive map of every open legal data source tracked by Cleo Comply. Browse legislation, case law, and doctrine from 177 jurisdictions worldwide.",
+  title: `Cleo Legal Data Atlas — ${fmt(NUMBERS.legalSources, "en")} open legal sources across ${NUMBERS.legalJurisdictions} jurisdictions`,
+  description: `Public map of every open legal data source tracked by Cleo Comply: ${fmt(NUMBERS.legalSources, "en")} sources across ${NUMBERS.legalJurisdictions} jurisdictions — ${NUMBERS.sourcesComplete} fully indexed, ${NUMBERS.sourcesBlocked} in progress, ${NUMBERS.sourcesPlanned} planned. Browse legislation, case law and doctrine.`,
   icons: {
     icon: [
       { url: "/cleo-icon.svg", type: "image/svg+xml" },
@@ -14,8 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Cleo Legal Data Atlas",
-    description:
-      "1,494 open legal sources across 177 jurisdictions, tracked by Cleo Comply.",
+    description: `${fmt(NUMBERS.legalSources, "en")} open legal sources across ${NUMBERS.legalJurisdictions} jurisdictions, tracked by Cleo Comply.`,
     type: "website",
     images: [{ url: "/cleo-icon.svg" }],
   },

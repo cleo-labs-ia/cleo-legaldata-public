@@ -1,5 +1,18 @@
 export type Lang = "fr" | "en";
 
+import { NUMBERS, fmt } from "./numbers";
+
+const N = {
+  legalRegs: { fr: fmt(NUMBERS.legalRegulations, "fr"), en: fmt(NUMBERS.legalRegulations, "en") },
+  legalDocs: { fr: "1,94M", en: "1.94M" },
+  legalSources: { fr: fmt(NUMBERS.legalSources, "fr"), en: fmt(NUMBERS.legalSources, "en") },
+  legalJurs: { fr: fmt(NUMBERS.legalJurisdictions, "fr"), en: fmt(NUMBERS.legalJurisdictions, "en") },
+  productRegs: { fr: fmt(NUMBERS.productRegsPlatform, "fr"), en: fmt(NUMBERS.productRegsPlatform, "en") },
+  productCats: { fr: fmt(NUMBERS.productCategories, "fr"), en: fmt(NUMBERS.productCategories, "en") },
+  productJurs: { fr: fmt(NUMBERS.productJurisdictions, "fr"), en: fmt(NUMBERS.productJurisdictions, "en") },
+  docsCompact: "234M+",
+};
+
 export const STRINGS = {
   brand: { fr: "Cleo Legal Data Atlas", en: "Cleo Legal Data Atlas" },
   tagline: {
@@ -13,8 +26,8 @@ export const STRINGS = {
   heroTitleA: { fr: "Le droit du monde,", en: "The world's law," },
   heroTitleB: { fr: "lisible par machine.", en: "machine-readable." },
   heroSubtitleClean: {
-    fr: "De Légifrance aux décisions de la Cour Suprême indienne — un inventaire public, exhaustif, vérifié à la source.",
-    en: "From Légifrance to the Indian Supreme Court — a public, exhaustive inventory, verified at source.",
+    fr: `${N.legalSources.fr} sources officielles suivies dans ${N.legalJurs.fr} juridictions — ${NUMBERS.sourcesComplete} entièrement indexées, ${NUMBERS.sourcesBlocked} en cours, ${NUMBERS.sourcesPlanned} planifiées. De Légifrance à la Cour Suprême indienne, vérifié à la source.`,
+    en: `${N.legalSources.en} official sources tracked across ${N.legalJurs.en} jurisdictions — ${NUMBERS.sourcesComplete} fully indexed, ${NUMBERS.sourcesBlocked} in progress, ${NUMBERS.sourcesPlanned} planned. From Légifrance to the Indian Supreme Court, verified at source.`,
   },
   heroKpiSources: { fr: "portails officiels", en: "official portals" },
   heroKpiCountries: { fr: "juridictions", en: "jurisdictions" },
@@ -143,8 +156,8 @@ export const STRINGS = {
     en: "Cleo Legal Data API — documentation",
   },
   apiDocsIntro: {
-    fr: "Une API REST pour accéder par programmation à l'intégralité du catalogue Cleo : 1 494 portails officiels, 177 juridictions, 234M+ documents juridiques recensés, classés en 7 catégories réglementaires.",
-    en: "A REST API for programmatic access to the entire Cleo catalog: 1,494 official portals, 177 jurisdictions, 234M+ legal documents recensed, classified into 7 regulatory categories.",
+    fr: `Une API REST pour accéder par programmation à l'intégralité du catalogue Cleo : ${N.legalSources.fr} portails officiels, ${N.legalJurs.fr} juridictions, ${N.docsCompact} documents juridiques recensés, classés en 7 catégories réglementaires.`,
+    en: `A REST API for programmatic access to the entire Cleo catalog: ${N.legalSources.en} official portals, ${N.legalJurs.en} jurisdictions, ${N.docsCompact} legal documents recensed, classified into 7 regulatory categories.`,
   },
   apiAuthHeader: { fr: "Comment ça marche", en: "How it works" },
   apiAuthBody: {
@@ -252,12 +265,12 @@ export const STRINGS = {
     en: "Legal Product Physical Atlas",
   },
   homeProductCardDesc: {
-    fr: "Spécialisé conformité produit physique : 46 031 réglementations dédiées dans 15 grandes catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automobile, drones, tabac…",
-    en: "Specialized for physical-product compliance: 46,031 dedicated regulations across 15 broad categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, drones, tobacco…",
+    fr: `Spécialisé conformité produit physique : ${N.productRegs.fr} réglementations dédiées dans ${N.productCats.fr} catégories — cosmétiques, électronique, jouets, dispositifs médicaux, alimentaire, textile, pharma, automobile, drones, tabac…`,
+    en: `Specialized for physical-product compliance: ${N.productRegs.en} dedicated regulations across ${N.productCats.en} categories — cosmetics, electronics, toys, medical devices, food, textile, pharma, automotive, drones, tobacco…`,
   },
   homeProductCardStats: {
-    fr: "46 031 régs produit · 15 catégories · 100+ juridictions",
-    en: "46,031 product regs · 15 categories · 100+ jurisdictions",
+    fr: `${N.productRegs.fr} régs produit · ${N.productCats.fr} catégories · ${N.productJurs.fr} juridictions`,
+    en: `${N.productRegs.en} product regs · ${N.productCats.en} categories · ${N.productJurs.en} jurisdictions`,
   },
   homeProductCardCta: {
     fr: "Ouvrir l'atlas produit physique",
@@ -268,12 +281,12 @@ export const STRINGS = {
     en: "Legal Atlas",
   },
   homeGeneralCardDesc: {
-    fr: "Toute la donnée juridique mondiale, machine-readable. 210 508 réglementations dans 177 juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.",
-    en: "The world's complete legal data, machine-readable. 210,508 regulations across 177 jurisdictions — health, finance, environment, AI, data privacy, labor, tax, all topics. Legislation, case law, doctrine.",
+    fr: `Cartographie publique du droit mondial, machine-readable. ${N.legalRegs.fr} régulations recensées dans ${N.legalJurs.fr} juridictions — santé, finance, environnement, IA, données personnelles, travail, fiscal, toutes thématiques. Législation, jurisprudence, doctrine.`,
+    en: `Public map of worldwide law, machine-readable. ${N.legalRegs.en} regulations indexed across ${N.legalJurs.en} jurisdictions — health, finance, environment, AI, data privacy, labor, tax, all topics. Legislation, case law, doctrine.`,
   },
   homeGeneralCardStats: {
-    fr: "210 508 régs · 1,94M docs · 1 494 sources · 177 juridictions",
-    en: "210,508 regs · 1.94M docs · 1,494 sources · 177 jurisdictions",
+    fr: `${N.legalRegs.fr} régs · ${N.legalDocs.fr} docs · ${N.legalSources.fr} sources · ${N.legalJurs.fr} juridictions`,
+    en: `${N.legalRegs.en} regs · ${N.legalDocs.en} docs · ${N.legalSources.en} sources · ${N.legalJurs.en} jurisdictions`,
   },
   homeGeneralCardCta: {
     fr: "Ouvrir l'Atlas",

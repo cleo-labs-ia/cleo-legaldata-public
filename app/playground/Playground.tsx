@@ -761,16 +761,25 @@ export default function Playground() {
       <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       <main className="mx-auto max-w-7xl px-6 pt-10 pb-16">
-        <section className="max-w-2xl">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
-            {T.eyebrow[lang]}
+        <section className="flex flex-wrap items-start justify-between gap-4">
+          <div className="max-w-2xl">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
+              {T.eyebrow[lang]}
+            </div>
+            <h1 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+              {T.title[lang]}
+            </h1>
+            <p className="mt-3 text-[15px] leading-relaxed text-c-text-muted">
+              {T.sub[lang]}
+            </p>
           </div>
-          <h1 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
-            {T.title[lang]}
-          </h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-c-text-muted">
-            {T.sub[lang]}
-          </p>
+          {/* PRIMARY CTA — see pricing without leaving */}
+          <Link
+            href="/pricing"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-c-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
+          >
+            {lang === "fr" ? "Voir les tarifs" : "See pricing"} →
+          </Link>
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[320px_1fr]">

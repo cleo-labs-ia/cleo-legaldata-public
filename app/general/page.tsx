@@ -1,12 +1,12 @@
 import Dashboard from "../components/Dashboard";
 import { loadDashboardData } from "@/lib/data";
+import { NUMBERS, fmt } from "@/lib/numbers";
 
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "Atlas | Cleo Legal Data",
-  description:
-    "The world's complete legal data atlas. 210,508 regulations across 177 jurisdictions — all topics, machine-readable.",
+  title: "Legal Atlas | Cleo Legal Data",
+  description: `${fmt(NUMBERS.legalSources, "en")} official sources across ${NUMBERS.legalJurisdictions} jurisdictions, ${fmt(NUMBERS.legalRegulations, "en")} regulations indexed. ${NUMBERS.sourcesComplete} fully indexed, ${NUMBERS.sourcesBlocked} in progress, ${NUMBERS.sourcesPlanned} planned — machine-readable.`,
 };
 
 export default function GeneralPage() {

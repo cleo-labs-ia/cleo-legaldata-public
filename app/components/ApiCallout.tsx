@@ -32,20 +32,22 @@ export default function ApiCallout({ lang }: { lang: Lang }) {
               {STRINGS.apiCalloutBody[lang]}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
+              {/* PRIMARY CTA — try the API live */}
+              <Link
+                href="/playground"
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
+              >
+                {lang === "fr" ? "Tester l'API" : "Try the API"} →
+              </Link>
+              {/* secondary */}
               <a
                 href={MEET_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
-              >
-                {STRINGS.apiCtaPrimary[lang]} →
-              </a>
-              <Link
-                href="/api"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:border-white/40 hover:bg-white/10"
               >
-                {STRINGS.apiCtaSecondary[lang]}
-              </Link>
+                {STRINGS.apiCtaPrimary[lang]}
+              </a>
             </div>
           </div>
 
