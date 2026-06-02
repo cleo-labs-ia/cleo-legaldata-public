@@ -13,10 +13,10 @@ let _stripe: Stripe | null = null;
 
 export function getStripe(): Stripe | null {
   if (_stripe) return _stripe;
-  const key = process.env.STRIPE_SECRET_KEY;
+  // Trim — some env-var pipelines (vercel env add via stdin) leave a trailing
+  // newline that breaks Stripe's exact-string lookups ("No such price: 'price_xxx\\n'").
+  const key = process.env.STRIPE_SECRET_KEY?.trim();
   if (!key) return null;
-  // Pin API version to avoid SDK-vs-account version drift, and use fetch
-  // (smaller cold-start in Vercel serverless than the default Node HTTP).
   _stripe = new Stripe(key, {
     httpClient: Stripe.createFetchHttpClient(),
   });
@@ -67,5 +67,6 @@ function priceIdEnv(plan: Plan, cadence: Cadence): string | undefined {
 }
 
 export function getPriceId(plan: Plan, cadence: Cadence): string | undefined {
-  return priceIdEnv(plan, cadence);
+  // Trim — see comment in getStripe() above.
+  return priceIdEnv(plan, cadence)?.trim();
 }
