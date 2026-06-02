@@ -128,46 +128,52 @@ const PS = {
 /* ================================================================
    Category images (40px sidebar, 28px matrix, 32px drawer)
    ================================================================ */
-const FAM = "/images/categories/family";
+const V2 = "/images/categories/v2";
+const FAM = "/images/categories/family"; // legacy fallback
 const CAT_IMAGES: Record<string, string> = {
-  /* ── 15 broad families (Légal API produit physique) ── */
-  "Alcool & boissons": `${FAM}/alcohol-beverages.jpg`,
-  "Pièces automobiles": `${FAM}/automotive-parts.jpg`,
-  "Cosmétiques & soins": `${FAM}/cosmetics-personal-care.jpg`,
-  "Drones & aviation": `${FAM}/drones-aviation.jpg`,
-  "Électronique & télécom": `${FAM}/electronics-telecom.jpg`,
-  "Alimentaire & compléments": `${FAM}/food-supplements.jpg`,
-  "Produits chimiques ménagers": `${FAM}/household-chemicals.jpg`,
-  "Dispositifs médicaux": `${FAM}/medical-devices.jpg`,
-  "Peintures & revêtements": `${FAM}/paints-coatings.jpg`,
-  "Alimentation animale": `${FAM}/pet-food.jpg`,
-  "Médicaments": `${FAM}/pharmaceuticals.jpg`,
-  "EPI & équipements de sécurité": `${FAM}/ppe-safety.jpg`,
-  "Textile & habillement": `${FAM}/textile-apparel.jpg`,
-  "Tabac & vapotage": `${FAM}/tobacco-vaping.jpg`,
-  Jouets: `${FAM}/toys.jpg`,
-  /* ── 20 specific products (Atlas Produit) — canonical EN names ── */
-  "Shampoo & Hair Care": `${FAM}/cosmetics-personal-care.jpg`,
-  "Sunscreen & Sun Care": `${FAM}/cosmetics-personal-care.jpg`,
-  "Smartphones & Mobile": `${FAM}/electronics-telecom.jpg`,
-  "Stuffed Toys (0-3 years)": `${FAM}/toys.jpg`,
-  "Adhesive Bandages (Class I)": `${FAM}/medical-devices.jpg`,
-  "E-cigarettes & Vaping": `${FAM}/tobacco-vaping.jpg`,
-  "Laundry Detergent Pods": `${FAM}/household-chemicals.jpg`,
-  "Dietary Supplements": `${FAM}/food-supplements.jpg`,
-  "Athletic Apparel & Textile": `${FAM}/textile-apparel.jpg`,
-  "Bicycle Helmets (PPE)": `${FAM}/ppe-safety.jpg`,
-  "Wine & Spirits": `${FAM}/alcohol-beverages.jpg`,
-  "Fresh Meat (Animal Food)": `${FAM}/food-supplements.jpg`,
-  "OTC Pharmaceuticals": `${FAM}/pharmaceuticals.jpg`,
-  "Tyres & Automotive": `${FAM}/automotive-parts.jpg`,
-  "Household Insecticides": `${FAM}/household-chemicals.jpg`,
-  "Consumer Drones": `${FAM}/drones-aviation.jpg`,
-  "Smart Connected Appliances": `${FAM}/electronics-telecom.jpg`,
-  "Dental Implants (Class III)": `${FAM}/medical-devices.jpg`,
-  "Interior Paints & Coatings": `${FAM}/paints-coatings.jpg`,
-  "Pet Food": `${FAM}/pet-food.jpg`,
-  "Vape / e-cigarette": `${FAM}/tobacco-vaping.jpg`,
+  /* ── 20 specific products (Atlas Produit) — new v2 photography ── */
+  "Shampoo & Hair Care":         `${V2}/shampoo-hair-care.jpg`,
+  "Sunscreen & Sun Care":        `${V2}/sunscreen-sun-care.jpg`,
+  "Smartphones & Mobile":        `${V2}/smartphones-mobile.jpg`,
+  "Stuffed Toys (0-3 years)":    `${V2}/stuffed-toys.jpg`,
+  "Adhesive Bandages (Class I)": `${V2}/adhesive-bandages.jpg`,
+  "E-cigarettes & Vaping":       `${FAM}/tobacco-vaping.jpg`, // no v2 yet
+  "Laundry Detergent Pods":      `${V2}/laundry-detergent-pods.jpg`,
+  "Dietary Supplements":         `${V2}/dietary-supplements.jpg`,
+  "Athletic Apparel & Textile":  `${V2}/athletic-apparel-textile.jpg`,
+  "Bicycle Helmets (PPE)":       `${V2}/bicycle-helmets.jpg`,
+  "Wine & Spirits":              `${V2}/wine-spirits.jpg`,
+  "Fresh Meat (Animal Food)":    `${V2}/household-chemicals.jpg`, // closest neutral, no v2 yet
+  "OTC Pharmaceuticals":         `${V2}/otc-pharma.jpg`,
+  "Tyres & Automotive":          `${V2}/tyres-automotive.jpg`,
+  "Household Insecticides":      `${V2}/household-insecticides.jpg`,
+  "Consumer Drones":             `${FAM}/drones-aviation.jpg`, // no v2 yet
+  "Smart Connected Appliances":  `${V2}/smart-appliances.jpg`,
+  "Dental Implants (Class III)": `${V2}/dental-implants.jpg`,
+  "Interior Paints & Coatings":  `${V2}/paints-coatings.jpg`,
+  "Pet Food":                    `${V2}/pet-food.jpg`,
+  /* ── Generic fallbacks (broad families on /legal-api) ── */
+  "Cosmetics & Personal Care":   `${V2}/cosmetics.jpg`,
+  "Medical Devices":             `${V2}/medical-devices.jpg`,
+  "Household Chemicals":         `${V2}/household-chemicals.jpg`,
+  "PPE Safety Equipment":        `${V2}/ppe-safety.jpg`,
+  /* ── 15 broad families (legacy /legal-api FR labels) ── */
+  "Alcool & boissons":           `${V2}/wine-spirits.jpg`,
+  "Pièces automobiles":          `${V2}/tyres-automotive.jpg`,
+  "Cosmétiques & soins":         `${V2}/cosmetics.jpg`,
+  "Drones & aviation":           `${FAM}/drones-aviation.jpg`,
+  "Électronique & télécom":      `${V2}/smartphones-mobile.jpg`,
+  "Alimentaire & compléments":   `${V2}/dietary-supplements.jpg`,
+  "Produits chimiques ménagers": `${V2}/household-chemicals.jpg`,
+  "Dispositifs médicaux":        `${V2}/medical-devices.jpg`,
+  "Peintures & revêtements":     `${V2}/paints-coatings.jpg`,
+  "Alimentation animale":        `${V2}/pet-food.jpg`,
+  "Médicaments":                 `${V2}/otc-pharma.jpg`,
+  "EPI & équipements de sécurité": `${V2}/ppe-safety.jpg`,
+  "Textile & habillement":       `${V2}/athletic-apparel-textile.jpg`,
+  "Tabac & vapotage":            `${FAM}/tobacco-vaping.jpg`,
+  Jouets:                        `${V2}/stuffed-toys.jpg`,
+  "Vape / e-cigarette":          `${FAM}/tobacco-vaping.jpg`,
 };
 
 /* ================================================================

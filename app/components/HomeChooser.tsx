@@ -11,14 +11,14 @@ const MEET_URL = "https://www.cleolabs.co/en/meet";
 const SIGNUP_URL = "/api/checkout?plan=pro";
 
 const PRODUCT_CATEGORY_IMAGES = [
-  "/images/categories/family/cosmetics-personal-care.jpg",
-  "/images/categories/family/electronics-telecom.jpg",
-  "/images/categories/family/toys.jpg",
-  "/images/categories/family/medical-devices.jpg",
-  "/images/categories/family/food-supplements.jpg",
-  "/images/categories/family/textile-apparel.jpg",
-  "/images/categories/family/pharmaceuticals.jpg",
-  "/images/categories/family/household-chemicals.jpg",
+  "/images/categories/v2/shampoo-hair-care.jpg",
+  "/images/categories/v2/smartphones-mobile.jpg",
+  "/images/categories/v2/stuffed-toys.jpg",
+  "/images/categories/v2/dental-implants.jpg",
+  "/images/categories/v2/dietary-supplements.jpg",
+  "/images/categories/v2/athletic-apparel-textile.jpg",
+  "/images/categories/v2/otc-pharma.jpg",
+  "/images/categories/v2/laundry-detergent-pods.jpg",
 ];
 
 export default function HomeChooser() {
