@@ -76,6 +76,12 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             {STRINGS.navDocs[lang]}
           </Link>
           <Link
+            href="/playground"
+            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
+          >
+            {STRINGS.navPlayground[lang]}
+          </Link>
+          <Link
             href="/pricing"
             className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
           >

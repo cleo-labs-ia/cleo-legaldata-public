@@ -232,6 +232,7 @@ export const STRINGS = {
   navLegalApiShort: { fr: "Produit physique", en: "Physical product" },
   navHome: { fr: "Accueil", en: "Home" },
   navDocs: { fr: "Docs", en: "Docs" },
+  navPlayground: { fr: "Playground", en: "Playground" },
   navPricing: { fr: "Tarifs", en: "Pricing" },
   navGeneral: { fr: "Legal Atlas", en: "Legal Atlas" },
   /* ── Home chooser (landing) ── */
