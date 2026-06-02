@@ -48,6 +48,32 @@ export default function HomeChooser() {
       en: "Filter by jurisdiction, product category, or enforcement body. Pagination, webhooks and MCP included.",
     },
 
+    playgroundEyebrow: { fr: "Playground", en: "Playground" },
+    playgroundTitle: {
+      fr: "Composez votre appel en 30 secondes.",
+      en: "Compose your call in 30 seconds.",
+    },
+    playgroundSub: {
+      fr: "Choisissez un endpoint, ajustez les filtres, copiez le curl ou voyez la réponse type. Aucune clé requise pour tester.",
+      en: "Pick an endpoint, tune the filters, copy the curl or see the sample response. No API key required to try.",
+    },
+    playgroundFeat1: { fr: "5 endpoints prêts", en: "5 ready endpoints" },
+    playgroundFeat1Desc: {
+      fr: "regulations · sources · jurisdictions · product-categories · product/check",
+      en: "regulations · sources · jurisdictions · product-categories · product/check",
+    },
+    playgroundFeat2: { fr: "curl généré en live", en: "Live curl generation" },
+    playgroundFeat2Desc: {
+      fr: "Avec authentification, query strings et JSON body — copiez-collez dans votre terminal.",
+      en: "With authentication, query strings and JSON body — paste right into your terminal.",
+    },
+    playgroundFeat3: { fr: "Réponse type complète", en: "Full sample response" },
+    playgroundFeat3Desc: {
+      fr: "Voyez la forme exacte du JSON avant même d'écrire une ligne de code côté client.",
+      en: "See the exact JSON shape before writing a line of client-side code.",
+    },
+    openPlayground: { fr: "Ouvrir le playground", en: "Open the playground" },
+
     coveragesEyebrow: { fr: "Deux coverages, une API", en: "Two coverages, one API" },
     coveragesTitle: {
       fr: "Choisissez votre atlas",
@@ -192,7 +218,104 @@ export default function HomeChooser() {
           </div>
         </section>
 
-        {/* ── 3. TWO COVERAGES ── */}
+        {/* ── 3. PLAYGROUND ── */}
+        <section className="mt-12 overflow-hidden rounded-3xl border border-c-border bg-c-surface">
+          <div className="grid gap-0 lg:grid-cols-[1.05fr_1fr]">
+            {/* Left: pitch + features + CTA */}
+            <div className="p-8 md:p-12">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-c-brand-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
+                <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
+                {t("playgroundEyebrow")}
+              </div>
+              <h2 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+                {t("playgroundTitle")}
+              </h2>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-c-text-muted">
+                {t("playgroundSub")}
+              </p>
+
+              <ul className="mt-7 space-y-4">
+                <PlaygroundFeat title={t("playgroundFeat1")} desc={t("playgroundFeat1Desc")} />
+                <PlaygroundFeat title={t("playgroundFeat2")} desc={t("playgroundFeat2Desc")} />
+                <PlaygroundFeat title={t("playgroundFeat3")} desc={t("playgroundFeat3Desc")} />
+              </ul>
+
+              <div className="mt-8">
+                <Link
+                  href="/playground"
+                  className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
+                >
+                  {t("openPlayground")} →
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: visual preview of the playground UI */}
+            <div className="border-t border-c-border bg-c-surface-2 p-6 md:p-8 lg:border-l lg:border-t-0">
+              <div className="space-y-3">
+                {/* Endpoint pill */}
+                <div className="flex items-center gap-2">
+                  <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-800">
+                    GET
+                  </span>
+                  <code className="font-mono text-[11.5px] text-c-text">
+                    /v1/regulations
+                  </code>
+                </div>
+
+                {/* Params row */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-lg border border-c-border bg-c-surface px-3 py-2">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-c-text-subtle">
+                      jurisdiction
+                    </div>
+                    <div className="mt-0.5 font-mono text-[12px] text-c-text">FR</div>
+                  </div>
+                  <div className="rounded-lg border border-c-border bg-c-surface px-3 py-2">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-c-text-subtle">
+                      category
+                    </div>
+                    <div className="mt-0.5 font-mono text-[12px] text-c-text">cosmetics</div>
+                  </div>
+                </div>
+
+                {/* curl block (dark) */}
+                <div className="overflow-hidden rounded-lg border border-c-border bg-[#0b0b1a]">
+                  <div className="border-b border-white/10 px-3 py-1.5 font-mono text-[9.5px] uppercase tracking-wider text-white/40">
+                    curl
+                  </div>
+                  <pre className="overflow-hidden px-3 py-2.5 text-[11px] leading-relaxed text-white/90">
+                    <code>{`curl ${"https://api.legaldata.cleolabs.co/v1/regulations"} \\
+  -H "Authorization: Bearer $CLEO_KEY" -G \\
+  -d "jurisdiction=FR" -d "category=cosmetics"`}</code>
+                  </pre>
+                </div>
+
+                {/* Response preview (light) */}
+                <div className="overflow-hidden rounded-lg border border-c-border bg-c-surface">
+                  <div className="border-b border-c-border px-3 py-1.5 font-mono text-[9.5px] uppercase tracking-wider text-c-text-subtle">
+                    200 OK · application/json
+                  </div>
+                  <pre className="overflow-hidden px-3 py-2.5 text-[10.5px] leading-relaxed text-c-text">
+                    <code>{`{
+  "data": [
+    {
+      "id": "reg_eu_1223_2009",
+      "name": "EU Cosmetics Regulation",
+      "ref": "(EC) No 1223/2009",
+      "url": "https://eur-lex.europa.eu/..."
+    }
+  ],
+  "total": 1318
+}`}</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 4. TWO COVERAGES ── */}
         <section className="mt-16">
           <div className="text-center">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
@@ -458,6 +581,20 @@ function PricingTier({
       </div>
       <div className="mt-2 text-[11px] leading-tight text-c-text-muted">{tagline}</div>
     </div>
+  );
+}
+
+function PlaygroundFeat({ title, desc }: { title: string; desc: string }) {
+  return (
+    <li className="flex gap-3">
+      <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-c-brand-soft text-[11px] font-semibold text-c-brand-ink">
+        ✓
+      </span>
+      <div>
+        <div className="text-[14px] font-semibold text-c-text">{title}</div>
+        <div className="mt-0.5 text-[12.5px] leading-relaxed text-c-text-muted">{desc}</div>
+      </div>
+    </li>
   );
 }
 
