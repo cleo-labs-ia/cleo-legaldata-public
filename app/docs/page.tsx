@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import SiteHeader from "../components/SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
 const API_BASE = "https://api.legaldata.cleolabs.co";
@@ -892,57 +893,7 @@ export default function DocsPage() {
 
   return (
     <div className="min-h-screen bg-c-bg text-c-text" style={{ scrollBehavior: "smooth" }}>
-      {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-c-border bg-c-surface/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-          <Link href="/" className="flex items-center gap-3 text-c-text hover:text-c-brand">
-            <img src="/cleo-icon.svg" alt="Cleo" width={36} height={36} className="h-9 w-9 rounded-md" />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">{STRINGS.brand[lang]}</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
-                {T.heroEyebrow[lang]}
-              </div>
-            </div>
-          </Link>
-          <nav className="flex items-center gap-1">
-            <Link
-              href="/"
-              className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
-            >
-              {T.navHome[lang]}
-            </Link>
-            <Link
-              href="/legal-api"
-              className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
-            >
-              {T.navProducts[lang]}
-            </Link>
-            <span className="rounded-md bg-c-brand-soft px-2.5 py-1 text-[11px] font-semibold text-c-brand-ink">
-              {T.navDocs[lang]}
-            </span>
-            <Link
-              href="/pricing"
-              className="ml-2 rounded-md bg-c-brand px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-c-brand-ink"
-            >
-              {T.navGetKey[lang]} →
-            </Link>
-            <div className="ml-2 flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l ? "bg-c-brand text-white" : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       {/* Hero */}
       <section className="border-b border-c-border bg-c-surface">

@@ -127,21 +127,19 @@ export default function HomeChooser() {
               href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
+              className="btn btn-primary"
             >
               {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
             </a>
-            <Link
-              href="/docs"
-              className="btn btn-secondary"
-            >
-              {t("ctaSeeDocs")} →
+            <Link href="/playground" className="btn btn-secondary">
+              {lang === "fr" ? "Tester dans le Playground" : "Try in the Playground"} →
             </Link>
             <a
               href={MEET_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-c-text-subtle underline-offset-2 hover:text-c-brand hover:underline"
+              className="t-caption hover:text-c-brand hover:underline"
+              style={{ textUnderlineOffset: 2 }}
             >
               {lang === "fr" ? "ou parler à l'équipe" : "or talk to the team"}
             </a>

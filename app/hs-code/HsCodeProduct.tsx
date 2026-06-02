@@ -215,11 +215,7 @@ export default function HsCodeProduct({ faq, useCases }: { faq: FaqItem[]; useCa
             <Link href="/playground" className="btn btn-secondary">
               {fr ? "Ouvrir le Playground" : "Open the Playground"} →
             </Link>
-            <a
-              href="/api/checkout?plan=pro"
-              className="btn"
-              style={{ background: "var(--color-c-brand)", color: "#fff", fontSize: 15, padding: "14px 28px", borderRadius: 9999 }}
-            >
+            <a href="/api/checkout?plan=pro" className="btn btn-primary">
               {fr ? "Obtenir une clé API" : "Get API key"} →
             </a>
           </div>

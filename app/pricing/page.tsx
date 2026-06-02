@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import SiteHeader from "../components/SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
 const CHECKOUT_BASE = "/api/checkout";
@@ -465,83 +466,7 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-c-bg pb-20">
-      {/* ── Header ── */}
-      <header className="border-b border-c-border bg-c-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-          <Link
-            href="/"
-            className="flex items-center gap-3 text-c-text hover:text-c-brand"
-          >
-            <img
-              src="/cleo-icon.svg"
-              alt="Cleo"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-md"
-            />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">
-                {STRINGS.brand[lang]}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-c-text-subtle">
-                {STRINGS.heroEyebrow[lang]}
-              </div>
-            </div>
-          </Link>
-
-          <nav className="flex items-center gap-1">
-            <Link
-              href="/"
-              className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
-            >
-              {STRINGS.pricingPageNavHome[lang]}
-            </Link>
-            <Link
-              href="/"
-              className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
-            >
-              {STRINGS.pricingPageNavAtlas[lang]}
-            </Link>
-            <Link
-              href="/api"
-              className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
-            >
-              {STRINGS.pricingPageNavDocs[lang]}
-            </Link>
-            <Link
-              href="/pricing"
-              aria-current="page"
-              className="rounded-md border border-c-brand bg-c-brand-soft px-2.5 py-1 text-[11px] font-medium text-c-brand-ink"
-            >
-              {STRINGS.pricingPageNavPricing[lang]}
-            </Link>
-            <a
-              href={MEET_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-1 rounded-md bg-c-text px-2.5 py-1 text-[11px] font-medium text-white hover:bg-c-ink-deep"
-            >
-              {STRINGS.pricingPageNavGetKey[lang]} →
-            </a>
-            <div className="ml-2 flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-              {(["fr", "en"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={`rounded px-2 py-0.5 transition-colors ${
-                    lang === l
-                      ? "bg-c-brand text-white"
-                      : "text-c-text-muted hover:text-c-text"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       <main className="mx-auto max-w-7xl px-6 pt-16">
         {/* ── Hero ── */}

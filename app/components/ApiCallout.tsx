@@ -33,28 +33,31 @@ export default function ApiCallout({ lang }: { lang: Lang }) {
               {STRINGS.apiCalloutBody[lang]}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              {/* PRIMARY — self-serve signup */}
+              {/* PRIMARY — white pill on dark gradient (DSV4 btn-primary inverted) */}
               <a
                 href={SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-c-brand-ink transition-all hover:bg-white/90 hover:shadow-lg"
+                className="btn"
+                style={{ background: "#fff", color: "var(--color-c-text)", fontSize: 15, padding: "14px 28px", borderRadius: 9999 }}
               >
                 {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
               </a>
-              {/* secondary — try first */}
+              {/* SECONDARY — ghost pill (DSV4 btn-secondary inverted) */}
               <Link
                 href="/playground"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur transition-colors hover:border-white/40 hover:bg-white/10"
+                className="btn"
+                style={{ background: "rgba(255,255,255,0.05)", color: "#fff", fontSize: 15, padding: "14px 28px", borderRadius: 9999, border: "1px solid rgba(255,255,255,0.2)" }}
               >
-                {lang === "fr" ? "Tester d'abord" : "Try first"}
+                {lang === "fr" ? "Tester dans le Playground" : "Try in the Playground"} →
               </Link>
-              {/* tertiary — talk */}
+              {/* TERTIARY — text link */}
               <a
                 href={MEET_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-white/60 underline-offset-2 hover:text-white hover:underline"
+                className="t-caption hover:underline"
+                style={{ color: "rgba(255,255,255,0.6)", textUnderlineOffset: 2 }}
               >
                 {lang === "fr" ? "ou parler à l'équipe" : "or talk to the team"}
               </a>
