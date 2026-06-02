@@ -41,56 +41,57 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
           </span>
         </Link>
 
-        {/* Atlas toggle — Legal Atlas | Product Compliance Atlas */}
-        <nav
-          aria-label="Atlas"
-          className="hidden items-center gap-0.5 rounded-full border border-c-border bg-c-surface-2 p-0.5 text-[12px] font-semibold md:flex"
-        >
-          <Link
-            href="/general"
-            className={`rounded-full px-3 py-1.5 transition-colors ${
-              active === "atlas"
-                ? "bg-c-text text-white shadow-sm"
-                : "text-c-text-muted hover:text-c-text"
-            }`}
-          >
-            {STRINGS.navGeneral[lang]}
-          </Link>
-          <Link
-            href="/products"
-            className={`rounded-full px-3 py-1.5 transition-colors ${
-              active === "atlas-product"
-                ? "bg-c-text text-white shadow-sm"
-                : "text-c-text-muted hover:text-c-text"
-            }`}
-          >
-            {STRINGS.navProducts[lang]}
-          </Link>
-          <Link
-            href="/hs-code"
-            className={`rounded-full px-3 py-1.5 transition-colors ${
-              active === "atlas-hs"
-                ? "bg-c-text text-white shadow-sm"
-                : "text-c-text-muted hover:text-c-text"
-            }`}
-          >
-            {STRINGS.navHsCode[lang]}
-          </Link>
-        </nav>
+        {/* Products dropdown — clarifies that the 3 atlases are 3 products */}
+        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+          <details className="group relative">
+            <summary
+              className={`flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                active === "atlas" || active === "atlas-product" || active === "atlas-hs"
+                  ? "text-c-text"
+                  : "text-c-text-muted hover:text-c-text"
+              }`}
+            >
+              {lang === "fr" ? "Produits" : "Products"}
+              <span className="text-[9px] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <div
+              className="absolute left-0 top-full z-40 mt-2 w-[420px] overflow-hidden rounded-2xl border border-c-border bg-c-surface shadow-lg"
+            >
+              <ProductMenuItem
+                href="/general"
+                icon="📚"
+                title={STRINGS.navGeneral[lang]}
+                desc={lang === "fr" ? "Données juridiques transverses · 1 494 sources · 177 juridictions" : "Cross-topic legal data · 1,494 sources · 177 jurisdictions"}
+                active={active === "atlas"}
+              />
+              <ProductMenuItem
+                href="/products"
+                icon="📦"
+                title={STRINGS.navProducts[lang]}
+                desc={lang === "fr" ? "Conformité produit physique · 46 031 régs · 20 catégories" : "Physical-product compliance · 46,031 regs · 20 categories"}
+                active={active === "atlas-product"}
+              />
+              <ProductMenuItem
+                href="/hs-code"
+                icon="🛃"
+                title={STRINGS.navHsCode[lang]}
+                desc={lang === "fr" ? "Douane · classification HS, droits, dual-use & sanctions" : "Customs · HS classification, duties, dual-use & sanctions"}
+                active={active === "atlas-hs"}
+              />
+            </div>
+          </details>
 
-        {/* Shared utilities (Docs / Tarifs) */}
-        <nav aria-label="Tools" className="hidden items-center gap-1 md:flex">
-          <Link
-            href="/docs"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navDocs[lang]}
-          </Link>
           <Link
             href="/playground"
             className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
           >
             {STRINGS.navPlayground[lang]}
+          </Link>
+          <Link
+            href="/docs"
+            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
+          >
+            {STRINGS.navDocs[lang]}
           </Link>
           <Link
             href="/pricing"
@@ -129,5 +130,37 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
         </div>
       </div>
     </header>
+  );
+}
+
+function ProductMenuItem({
+  href,
+  icon,
+  title,
+  desc,
+  active,
+}: {
+  href: string;
+  icon: string;
+  title: string;
+  desc: string;
+  active: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`flex items-start gap-3 px-4 py-3 transition-colors ${
+        active ? "bg-c-surface-2" : "hover:bg-c-surface-2"
+      }`}
+    >
+      <span className="text-xl leading-none">{icon}</span>
+      <div className="min-w-0 flex-1">
+        <div className="text-[13px] font-semibold text-c-text">{title}</div>
+        <div className="mt-0.5 text-[11.5px] leading-snug text-c-text-muted">{desc}</div>
+      </div>
+      <span className={`text-c-text-subtle transition-opacity ${active ? "opacity-100" : "opacity-0 group-hover/item:opacity-100"}`}>
+        →
+      </span>
+    </Link>
   );
 }
