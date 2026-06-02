@@ -265,7 +265,7 @@ export default function HomeChooser() {
               <div className="space-y-3">
                 {/* Endpoint pill */}
                 <div className="flex items-center gap-2">
-                  <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-800">
+                  <span className="rounded-md bg-c-surface-2 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-c-text">
                     GET
                   </span>
                   <code className="font-mono text-[11.5px] text-c-text">

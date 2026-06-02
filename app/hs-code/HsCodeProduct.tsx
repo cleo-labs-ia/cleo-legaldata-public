@@ -66,7 +66,7 @@ export default function HsCodeProduct({
         {/* ── 1. HERO ── */}
         <section className="mx-auto max-w-4xl pt-16 pb-10 text-center md:pt-24">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-c-text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
             {fr ? "Douane & HS Code · Cleo Legal Data" : "Customs & HS Code · Cleo Legal Data"}
           </div>
           <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-6xl">
@@ -133,7 +133,7 @@ export default function HsCodeProduct({
                 key={s.k}
                 className="rounded-2xl border border-c-border bg-c-surface p-5"
               >
-                <div className="mb-2 font-mono text-[10px] font-semibold text-emerald-600">
+                <div className="mb-2 font-mono text-[10px] font-semibold text-c-brand">
                   0{i + 1}
                 </div>
                 <div className="font-display text-lg text-c-text">{s.k}</div>
@@ -243,7 +243,7 @@ export default function HsCodeProduct({
         </section>
 
         {/* ── 7. CTA ── */}
-        <section className="mx-auto mt-16 max-w-3xl rounded-3xl border-2 border-emerald-500/40 bg-emerald-50 p-8 text-center md:p-12">
+        <section className="mx-auto mt-16 max-w-3xl rounded-3xl border-2 border-c-brand/40 bg-c-brand-soft/60 p-8 text-center md:p-12">
           <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
             {fr ? "Prêt à classer votre premier produit ?" : "Ready to classify your first product?"}
           </h2>
@@ -255,13 +255,13 @@ export default function HsCodeProduct({
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/playground"
-              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand-ink"
             >
               {fr ? "Ouvrir le Playground" : "Open the Playground"} →
             </Link>
             <a
               href="/api/checkout?plan=pro"
-              className="inline-flex items-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md"
+              className="inline-flex items-center rounded-full bg-c-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
             >
               {fr ? "Obtenir une clé API" : "Get API key"} →
             </a>

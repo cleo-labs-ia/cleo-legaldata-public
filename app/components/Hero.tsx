@@ -95,7 +95,7 @@ export default function Hero({ stats, lang, onLangChange }: Props) {
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 pt-16 pb-24 lg:pt-24 lg:pb-32">
         <div className="hero-fade hero-fade-1 mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.6)]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-c-brand shadow-[0_0_10px_2px_rgba(0,8,207,0.45)]" />
           {STRINGS.heroEyebrow[lang]}
         </div>
 

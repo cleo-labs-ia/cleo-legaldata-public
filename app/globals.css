@@ -4,24 +4,28 @@
 @import "leaflet/dist/leaflet.css";
 
 @theme {
-  --color-c-bg: #fafafa;
-  --color-c-surface: #ffffff;
-  --color-c-surface-2: #f4f4f6;
-  --color-c-border: #e6e6ea;
-  --color-c-border-strong: #d4d4dc;
-  --color-c-text: #0a0a14;
-  --color-c-text-muted: #5e5e6e;
-  --color-c-text-subtle: #8e8e9c;
-  --color-c-brand: #0008cf;
-  --color-c-brand-soft: #e5e6fb;
-  --color-c-brand-ink: #060686;
+  /* Aligned with Cleo Design System V4 (Mars 2026):
+     warm beige background, Cleo blue brand, monochrome semantic palette. */
+  --color-c-bg: #f9f8f6;        /* DSV4 --c-surface */
+  --color-c-surface: #ffffff;   /* DSV4 --c-white */
+  --color-c-surface-2: #f0efec; /* DSV4 --c-card (warm) */
+  --color-c-border: #e3e0d8;
+  --color-c-border-strong: #d4d0c6;
+  --color-c-text: #1a1a1a;      /* DSV4 --c-ink */
+  --color-c-text-muted: #5e5e5e;   /* DSV4 --c-text-2 approx (0.62 alpha on beige) */
+  --color-c-text-subtle: #8c8c8c;  /* DSV4 --c-text-3 approx */
+  --color-c-brand: #0008cf;     /* DSV4 --c-blue */
+  --color-c-brand-soft: #eeedf5; /* DSV4 gc-blue background */
+  --color-c-brand-ink: #0006a8; /* DSV4 --c-blue-hover */
   --color-c-ink-deep: #02021a;
   --color-c-ink-night: #06061a;
   --color-c-glow: #6b74ff;
+  /* Semantic — kept for explicit success/error states only.
+     Landing pages should rely on brand + ink, not these. */
   --color-c-success: #1a8a4a;
   --color-c-success-soft: #d6f0e1;
-  --color-c-warn: #c47a00;
-  --color-c-warn-soft: #fcedcc;
+  --color-c-warn: #946b2d;       /* DSV4 --c-risk (warm brown, not orange) */
+  --color-c-warn-soft: rgba(148, 107, 45, 0.08);
   --color-c-danger: #c4302b;
   --color-c-danger-soft: #fadbd9;
   --color-c-info: #2563eb;

@@ -825,22 +825,22 @@ export default function Playground() {
             </div>
 
             {/* Dropdown 2: HS Code */}
-            <div className="overflow-hidden rounded-xl border-2 border-emerald-500/40">
+            <div className="overflow-hidden rounded-xl border-2 border-c-brand/40">
               <button
                 type="button"
                 onClick={() => setHsOpen((v) => !v)}
-                className="flex w-full items-center gap-2 bg-emerald-50 px-3 py-2.5 text-left transition-colors hover:bg-emerald-100"
+                className="flex w-full items-center gap-2 bg-c-brand-soft/60 px-3 py-2.5 text-left transition-colors hover:bg-c-brand-soft"
                 aria-expanded={hsOpen}
               >
-                <span className="h-2 w-2 rounded-full bg-emerald-600" />
-                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-emerald-900">
+                <span className="h-2 w-2 rounded-full bg-c-brand" />
+                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-c-brand-ink">
                   HS Code
                 </span>
-                <span className="ml-auto rounded-full bg-emerald-600/15 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-emerald-900">
+                <span className="ml-auto rounded-full bg-c-brand/15 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-c-brand-ink">
                   {ENDPOINTS.filter((e) => e.coverage === "hs").length}
                 </span>
                 <span
-                  className={`text-emerald-900 transition-transform ${hsOpen ? "rotate-180" : ""}`}
+                  className={`text-c-brand-ink transition-transform ${hsOpen ? "rotate-180" : ""}`}
                 >
                   ▾
                 </span>
@@ -905,7 +905,7 @@ export default function Playground() {
                 endpoint.coverage === "product"
                   ? "border-c-brand bg-c-brand-soft/30"
                   : endpoint.coverage === "hs"
-                    ? "border-emerald-500 bg-emerald-50"
+                    ? "border-c-brand bg-c-brand-soft/60"
                     : "border-c-text/40 bg-c-surface-2"
               }`}
             >
@@ -915,7 +915,7 @@ export default function Playground() {
                   endpoint.coverage === "product"
                     ? "bg-c-brand text-white"
                     : endpoint.coverage === "hs"
-                      ? "bg-emerald-600 text-white"
+                      ? "bg-c-brand text-white"
                       : "bg-c-text text-white"
                 }`}
               >
@@ -927,8 +927,8 @@ export default function Playground() {
                 <span
                   className={`rounded-md px-2 py-0.5 text-[10px] font-mono font-semibold ${
                     endpoint.method === "GET"
-                      ? "bg-emerald-100 text-emerald-800"
-                      : "bg-amber-100 text-amber-800"
+                      ? "bg-c-surface-2 text-c-text"
+                      : "bg-c-text text-white"
                   }`}
                 >
                   {endpoint.method}
@@ -1030,7 +1030,7 @@ export default function Playground() {
                 <div className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
                   <span>{T.responseHeader[lang]}</span>
                   {response.kind === "success" && (
-                    <span className="ml-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-semibold text-emerald-800">
+                    <span className="ml-1 rounded-full bg-c-surface-2 px-2 py-0.5 text-[9px] font-semibold text-c-text">
                       200 OK
                     </span>
                   )}
@@ -1135,8 +1135,8 @@ function EndpointButton({
       : "border-c-border bg-c-surface hover:border-c-brand/60";
   } else if (endpoint.coverage === "hs") {
     accent = active
-      ? "border-emerald-600 bg-emerald-50"
-      : "border-c-border bg-c-surface hover:border-emerald-500/60";
+      ? "border-c-brand bg-c-brand-soft/60"
+      : "border-c-border bg-c-surface hover:border-c-brand/60";
   } else {
     accent = active
       ? "border-c-text bg-c-surface-2"
@@ -1152,8 +1152,8 @@ function EndpointButton({
         <span
           className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono font-semibold ${
             endpoint.method === "GET"
-              ? "bg-emerald-100 text-emerald-800"
-              : "bg-amber-100 text-amber-800"
+              ? "bg-c-surface-2 text-c-text"
+              : "bg-c-text text-white"
           }`}
         >
           {endpoint.method}
