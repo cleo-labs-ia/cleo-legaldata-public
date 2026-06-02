@@ -5,7 +5,7 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
-const SIGNUP_URL = "https://cleo-legal-public.vercel.app/pricing";
+const SIGNUP_URL = "/api/checkout?plan=pro";
 
 export default function ApiCallout({ lang }: { lang: Lang }) {
   return (

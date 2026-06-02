@@ -1030,7 +1030,7 @@ export default function Playground() {
                 <p className="max-w-md text-[14px] text-c-text-muted">{T.needsKey[lang]}</p>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://cleo-legal-public.vercel.app/pricing"
+                    href="/api/checkout?plan=pro"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center rounded-full bg-c-brand px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"

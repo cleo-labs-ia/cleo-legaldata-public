@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
-const SIGNUP_URL = "https://cleo-legal-public.vercel.app/pricing";
+const SIGNUP_URL = "/api/checkout?plan=pro";
 
 interface Props {
   lang: Lang;

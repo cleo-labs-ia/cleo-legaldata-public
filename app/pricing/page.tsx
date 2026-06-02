@@ -6,8 +6,8 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
-const CHECKOUT_BASE = "https://cleo-legal-public.vercel.app/pricing";
-const checkout = (plan: string) => `${CHECKOUT_BASE}?plan=${plan}#choose`;
+const CHECKOUT_BASE = "/api/checkout";
+const checkout = (plan: string) => `${CHECKOUT_BASE}?plan=${plan}`;
 
 /* ================================================================
    Types
@@ -53,7 +53,7 @@ const COMPLIANCE_PLANS: Plan[] = [
       { fr: "Support communautaire", en: "Community support" },
     ],
     cta: STRINGS.pricingProductStarterCta,
-    ctaHref: checkout("starter"),
+    ctaHref: "https://cleo-legal-public.vercel.app/signup",
   },
   {
     id: "light",
@@ -154,7 +154,7 @@ const LEGAL_PLANS: Plan[] = [
       { fr: "Support communautaire", en: "Community support" },
     ],
     cta: STRINGS.pricingLegalFreeCta,
-    ctaHref: checkout("free"),
+    ctaHref: "https://cleo-legal-public.vercel.app/signup",
   },
   {
     id: "light",
