@@ -76,20 +76,20 @@ export default function HomeChooser() {
     },
     openPlayground: { fr: "Ouvrir le playground", en: "Open the playground" },
 
-    coveragesEyebrow: { fr: "Deux coverages, une API", en: "Two coverages, one API" },
+    coveragesEyebrow: { fr: "Trois coverages, une API", en: "Three coverages, one API" },
     coveragesTitle: {
       fr: "Choisissez votre atlas",
       en: "Pick your atlas",
     },
     coveragesSub: {
-      fr: "Le même catalogue, deux points de vue : transverse (toute thématique) ou spécialisé conformité produit physique.",
-      en: "Same catalog, two viewpoints: cross-topic (all subjects) or specialized for physical-product compliance.",
+      fr: "Le même catalogue, trois points de vue : transverse (toute thématique), conformité produit physique, ou douane & HS code.",
+      en: "Same catalog, three viewpoints: cross-topic (all subjects), physical-product compliance, or customs & HS code.",
     },
 
     pricingEyebrow: { fr: "Tarification", en: "Pricing" },
     pricingTitle: {
-      fr: "Cinq plans, mêmes prix sur les deux atlas",
-      en: "Five plans, same prices on both atlases",
+      fr: "Cinq plans, mêmes prix sur les trois atlas",
+      en: "Five plans, same prices across all three atlases",
     },
     pricingSub: {
       fr: "Démarrez gratuitement, montez en charge progressivement. Pas d'engagement annuel obligatoire.",
@@ -339,7 +339,7 @@ export default function HomeChooser() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {/* Card 1 — Legal Atlas (general) */}
             <Link
               href="/general"
@@ -446,6 +446,63 @@ export default function HomeChooser() {
                 </span>
               </div>
             </Link>
+
+            {/* Card 3 — HS Code */}
+            <Link
+              href="/hs-code"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
+            >
+              <div className="mb-7 overflow-hidden rounded-xl">
+                <div
+                  className="relative flex h-[156px] items-center justify-center overflow-hidden"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse 80% 60% at 25% 10%, rgba(15,182,122,0.35), transparent 60%), radial-gradient(ellipse 60% 50% at 90% 95%, rgba(0,8,207,0.55), transparent 70%), linear-gradient(180deg,#02021a 0%,#06061a 100%)",
+                  }}
+                >
+                  <div className="relative grid grid-cols-3 gap-2 text-center">
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">177</div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        {lang === "fr" ? "juridictions" : "jurisdictions"}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">HS6→10</div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        {lang === "fr" ? "chiffres" : "digits"}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">1</div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        {lang === "fr" ? "appel" : "call"}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-2 inline-flex w-fit items-center gap-2 rounded-full bg-c-brand-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
+                {lang === "fr" ? "Coverage douane & HS" : "Customs & HS coverage"}
+              </div>
+              <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+                HS Code
+              </h3>
+              <p className="mt-4 text-[15px] leading-relaxed text-c-text-muted">
+                {lang === "fr"
+                  ? "Classez un produit en code HS, calculez droits et coût rendu, screenez dual-use & sanctions — en un seul appel."
+                  : "Classify a product to its HS code, compute duties and landed cost, screen dual-use & sanctions — in one call."}
+              </p>
+              <div className="mt-6 rounded-xl border border-c-border bg-c-surface-2 px-4 py-3 text-[13px] font-medium tabular-nums text-c-text-muted">
+                lookup · duties · landed-cost · dual-use · sanctions
+              </div>
+              <div className="mt-auto pt-7">
+                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                  {lang === "fr" ? "Explorer HS Code" : "Explore HS Code"} →
+                </span>
+              </div>
+            </Link>
           </div>
         </section>
 
@@ -542,6 +599,10 @@ export default function HomeChooser() {
               <span>·</span>
               <Link href="/products" className="text-c-text-muted hover:text-c-brand">
                 {STRINGS.navProducts[lang]}
+              </Link>
+              <span>·</span>
+              <Link href="/hs-code" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.navHsCode[lang]}
               </Link>
               <span>·</span>
               <Link href="/docs" className="text-c-text-muted hover:text-c-brand">

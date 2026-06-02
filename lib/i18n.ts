@@ -248,6 +248,7 @@ export const STRINGS = {
   navPlayground: { fr: "Playground", en: "Playground" },
   navPricing: { fr: "Tarifs", en: "Pricing" },
   navGeneral: { fr: "Legal Atlas", en: "Legal Atlas" },
+  navHsCode: { fr: "HS Code", en: "HS Code" },
   /* ── Home chooser (landing) ── */
   homeNavAtlas: { fr: "Atlas", en: "Atlas" },
   homeNavDocs: { fr: "Documentation", en: "API Docs" },
@@ -293,12 +294,12 @@ export const STRINGS = {
     en: "Open Atlas",
   },
   homeSharedTitle: {
-    fr: "Les deux atlas partagent la même API",
-    en: "Both atlases share the same API",
+    fr: "Les trois atlas partagent la même API",
+    en: "All three atlases share the same API",
   },
   homeSharedBody: {
-    fr: "Une seule clé, une seule documentation, un seul SLA. Les endpoints couvrent le catalogue général et la conformité produit, accessibles depuis votre produit, vos pipelines de veille ou vos agents IA.",
-    en: "One key, one documentation, one SLA. Endpoints cover both the general catalog and product compliance, accessible from your product, monitoring pipelines or AI agents.",
+    fr: "Une seule clé, une seule documentation, un seul SLA. Les endpoints couvrent le catalogue général, la conformité produit et la douane / HS code, accessibles depuis votre produit, vos pipelines de veille ou vos agents IA.",
+    en: "One key, one documentation, one SLA. Endpoints cover the general catalog, product compliance and customs / HS code, accessible from your product, monitoring pipelines or AI agents.",
   },
   homeSharedCta: { fr: "Voir la doc API", en: "Read the API docs" },
   homeFooterTagline: {
@@ -368,14 +369,7 @@ export const STRINGS = {
   pricingFree: { fr: "Gratuit", en: "Free" },
   pricingCustomPrice: { fr: "Sur devis", en: "Custom" },
 
-  /* Product Compliance plans */
-  pricingProductStarterName: { fr: "Starter", en: "Starter" },
-  pricingProductStarterTagline: {
-    fr: "Pour évaluer la donnée avant de brancher en prod.",
-    en: "Test the data before you wire it into production.",
-  },
-  pricingProductStarterCta: { fr: "Démarrer gratuitement", en: "Start free" },
-
+  /* Product Compliance plans (Free/Starter tier replaced by /playground) */
   pricingProductLightName: { fr: "Light", en: "Light" },
   pricingProductLightTagline: {
     fr: "Pour PME, agents IA, MVP en production.",
@@ -404,14 +398,7 @@ export const STRINGS = {
   },
   pricingProductEnterpriseCta: { fr: "Contacter le commercial", en: "Contact sales" },
 
-  /* Legal Data plans */
-  pricingLegalFreeName: { fr: "Free", en: "Free" },
-  pricingLegalFreeTagline: {
-    fr: "Pour tester l'API en lecture seule.",
-    en: "Try the API in read-only mode.",
-  },
-  pricingLegalFreeCta: { fr: "Démarrer gratuitement", en: "Start free" },
-
+  /* Legal Data plans (Free tier replaced by /playground) */
   pricingLegalLightName: { fr: "Light", en: "Light" },
   pricingLegalLightTagline: {
     fr: "Pour PME, agents IA, MVP en production.",

@@ -3,14 +3,15 @@
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import { checkoutUrl } from "@/lib/urls";
 
-const SIGNUP_URL = "/api/checkout?plan=pro";
+const SIGNUP_URL = checkoutUrl("pro");
 
 interface Props {
   lang: Lang;
   setLang: (lang: Lang) => void;
   /** Which atlas the current page belongs to (highlights the toggle). */
-  active?: "atlas" | "atlas-product" | "legal-api" | null;
+  active?: "atlas" | "atlas-product" | "atlas-hs" | "legal-api" | null;
 }
 
 /**
@@ -64,6 +65,16 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             }`}
           >
             {STRINGS.navProducts[lang]}
+          </Link>
+          <Link
+            href="/hs-code"
+            className={`rounded-full px-3 py-1.5 transition-colors ${
+              active === "atlas-hs"
+                ? "bg-c-text text-white shadow-sm"
+                : "text-c-text-muted hover:text-c-text"
+            }`}
+          >
+            {STRINGS.navHsCode[lang]}
           </Link>
         </nav>
 
