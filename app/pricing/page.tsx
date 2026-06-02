@@ -6,8 +6,8 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
-const SIGNUP_BASE = "https://cleo-legal-public.vercel.app/signup";
-const signup = (plan: string) => `${SIGNUP_BASE}?plan=${plan}`;
+const CHECKOUT_BASE = "https://cleo-legal-public.vercel.app/pricing";
+const checkout = (plan: string) => `${CHECKOUT_BASE}?plan=${plan}#choose`;
 
 /* ================================================================
    Types
@@ -53,7 +53,7 @@ const COMPLIANCE_PLANS: Plan[] = [
       { fr: "Support communautaire", en: "Community support" },
     ],
     cta: STRINGS.pricingProductStarterCta,
-    ctaHref: signup("starter"),
+    ctaHref: checkout("starter"),
   },
   {
     id: "light",
@@ -68,7 +68,7 @@ const COMPLIANCE_PLANS: Plan[] = [
       { fr: "Support email", en: "Email support" },
     ],
     cta: STRINGS.pricingProductLightCta,
-    ctaHref: signup("product-light"),
+    ctaHref: checkout("product-light"),
   },
   {
     id: "pro",
@@ -96,7 +96,7 @@ const COMPLIANCE_PLANS: Plan[] = [
       },
     ],
     cta: STRINGS.pricingProductProCta,
-    ctaHref: signup("product-pro"),
+    ctaHref: checkout("product-pro"),
   },
   {
     id: "business",
@@ -119,7 +119,7 @@ const COMPLIANCE_PLANS: Plan[] = [
       { fr: "DPA signé inclus", en: "Signed DPA included" },
     ],
     cta: STRINGS.pricingProductBusinessCta,
-    ctaHref: signup("product-business"),
+    ctaHref: checkout("product-business"),
   },
   {
     id: "enterprise",
@@ -154,7 +154,7 @@ const LEGAL_PLANS: Plan[] = [
       { fr: "Support communautaire", en: "Community support" },
     ],
     cta: STRINGS.pricingLegalFreeCta,
-    ctaHref: signup("free"),
+    ctaHref: checkout("free"),
   },
   {
     id: "light",
@@ -169,7 +169,7 @@ const LEGAL_PLANS: Plan[] = [
       { fr: "Support email", en: "Email support" },
     ],
     cta: STRINGS.pricingLegalLightCta,
-    ctaHref: signup("legal-light"),
+    ctaHref: checkout("legal-light"),
   },
   {
     id: "pro",
@@ -194,7 +194,7 @@ const LEGAL_PLANS: Plan[] = [
       },
     ],
     cta: STRINGS.pricingLegalProCta,
-    ctaHref: signup("legal-pro"),
+    ctaHref: checkout("legal-pro"),
   },
   {
     id: "business",
@@ -211,7 +211,7 @@ const LEGAL_PLANS: Plan[] = [
       { fr: "DPA signé inclus", en: "Signed DPA included" },
     ],
     cta: STRINGS.pricingLegalBusinessCta,
-    ctaHref: signup("legal-business"),
+    ctaHref: checkout("legal-business"),
   },
   {
     id: "enterprise",

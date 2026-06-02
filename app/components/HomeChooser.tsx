@@ -8,7 +8,7 @@ import { NUMBERS, fmt } from "@/lib/numbers";
 import SiteHeader from "./SiteHeader";
 
 const MEET_URL = "https://www.cleolabs.co/en/meet";
-const SIGNUP_URL = "https://cleo-legal-public.vercel.app/signup";
+const SIGNUP_URL = "https://cleo-legal-public.vercel.app/pricing";
 
 const PRODUCT_CATEGORY_IMAGES = [
   "/images/categories/family/cosmetics-personal-care.jpg",

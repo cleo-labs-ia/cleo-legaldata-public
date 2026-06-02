@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import type { DashboardData, DomainGroup } from "@/lib/types";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
-import { NUMBERS, fmt, fmtCompact } from "@/lib/numbers";
+import { NUMBERS } from "@/lib/numbers";
 import SiteHeader from "./SiteHeader";
 import AnimatedNumber from "./AnimatedNumber";
 import Link from "next/link";
@@ -82,7 +82,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
       <SiteHeader lang={lang} setLang={setLang} active="atlas" />
 
       <main className="mx-auto max-w-7xl px-6 pt-6">
-        {/* Compact intro: title + 3 animated KPIs inline + tagline. No full-screen hero. */}
+        {/* Compact intro: title + 3 KPIs (live, real, no double-counting) */}
         <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
@@ -94,38 +94,14 @@ export default function Dashboard({ data }: { data: DashboardData }) {
             </p>
           </div>
           <div className="flex flex-wrap items-end gap-x-8 gap-y-2">
-            <Kpi value={data.stats.estimatedTotalVolume} label={STRINGS.heroKpiDocuments[lang]} format={(n) => formatVolume(n, lang)} accent />
+            <Kpi
+              value={NUMBERS.legalDocuments}
+              label={lang === "fr" ? "documents indexés" : "documents indexed"}
+              format={(n) => formatVolume(n, lang)}
+              accent
+            />
             <Kpi value={data.stats.totalSources} label={STRINGS.heroKpiSources[lang]} format={(n) => formatNumber(n, lang)} />
             <Kpi value={data.stats.totalCountries} label={STRINGS.heroKpiCountries[lang]} format={(n) => formatNumber(n, lang)} />
-          </div>
-        </section>
-
-        {/* Real ingestion volumes (live from Supabase) */}
-        <section className="mb-5 grid gap-3 rounded-2xl border border-c-border bg-c-surface-2 p-4 sm:grid-cols-2 md:grid-cols-5">
-          <ScrapedKpi
-            value={fmtCompact(NUMBERS.legalDocuments, lang)}
-            label={lang === "fr" ? "documents indexés" : "documents indexed"}
-          />
-          <ScrapedKpi
-            value={fmtCompact(NUMBERS.legalRegulations, lang)}
-            label={lang === "fr" ? "régulations extraites" : "regulations extracted"}
-          />
-          <ScrapedKpi
-            value={fmtCompact(NUMBERS.legalArticles, lang)}
-            label={lang === "fr" ? "articles" : "articles"}
-          />
-          <ScrapedKpi
-            value={fmtCompact(NUMBERS.legalEnrichedArticles, lang)}
-            label={lang === "fr" ? "articles enrichis" : "enriched articles"}
-          />
-          <ScrapedKpi
-            value={fmtCompact(NUMBERS.legalAuthorities, lang)}
-            label={lang === "fr" ? "autorités" : "authorities"}
-          />
-          <div className="sm:col-span-2 md:col-span-5 text-[10.5px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
-            {lang === "fr"
-              ? `Volumes réels indexés en base — vérifiés au ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}. Les "${formatVolume(data.stats.estimatedTotalVolume, lang)} documents" au-dessus sont les volumes annoncés par les portails sources.`
-              : `Real volumes indexed in the database — verified ${new Date().toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}. The "${formatVolume(data.stats.estimatedTotalVolume, lang)} documents" above are the volumes declared by source portals.`}
           </div>
         </section>
 
@@ -253,15 +229,3 @@ function Kpi({
   );
 }
 
-function ScrapedKpi({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex flex-col">
-      <div className="tabular-display text-xl font-light leading-none text-c-text md:text-2xl">
-        {value}
-      </div>
-      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
-        {label}
-      </div>
-    </div>
-  );
-}
