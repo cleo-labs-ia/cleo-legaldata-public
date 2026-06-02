@@ -10,126 +10,177 @@ const SIGNUP_URL = checkoutUrl("pro");
 interface Props {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  /** Which atlas the current page belongs to (highlights the toggle). */
   active?: "atlas" | "atlas-product" | "atlas-hs" | "legal-api" | null;
 }
 
 /**
- * Shared site header used on /, /general, /products, /docs, /pricing.
- *
- * Layout (left → right):
- *   1. Logo cleo  →  /
- *   2. Atlas toggle (Atlas | Atlas Produit) — visually grouped, distinct from utilities
- *   3. Shared utilities (Docs · Tarifs) — separated from atlas toggle
- *   4. Lang switcher  +  Get API key CTA
+ * Translucent fixed header inspired by cleolabs.co/en/blog:
+ *   – glass / blurred white background, hairline border bottom
+ *   – compact 44 px row (touch target), 13 px nav links
+ *   – inline underline indicates the active page
+ *   – Products ▾ dropdown groups the three atlases
+ *   – right CTA pill in Cleo blue
  */
 export default function SiteHeader({ lang, setLang, active = null }: Props) {
+  const productActive =
+    active === "atlas" || active === "atlas-product" || active === "atlas-hs";
+
   return (
-    <header className="border-b border-c-border bg-c-surface">
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3">
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <img
-            src="/cleo-icon.svg"
-            alt="Cleo"
-            width={32}
-            height={32}
-            className="h-8 w-8 rounded-md"
-          />
-          <span className="hidden font-display text-lg font-medium tracking-tight text-c-text sm:inline">
-            cleo
-          </span>
-        </Link>
-
-        {/* Products dropdown — clarifies that the 3 atlases are 3 products */}
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-          <details className="group relative">
-            <summary
-              className={`flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors ${
-                active === "atlas" || active === "atlas-product" || active === "atlas-hs"
-                  ? "text-c-text"
-                  : "text-c-text-muted hover:text-c-text"
-              }`}
-            >
-              {lang === "fr" ? "Produits" : "Products"}
-              <span className="text-[9px] transition-transform group-open:rotate-180">▼</span>
-            </summary>
-            <div
-              className="absolute left-0 top-full z-40 mt-2 w-[420px] overflow-hidden rounded-2xl border border-c-border bg-c-surface shadow-lg"
-            >
-              <ProductMenuItem
-                href="/general"
-                icon="📚"
-                title={STRINGS.navGeneral[lang]}
-                desc={lang === "fr" ? "Données juridiques transverses · 1 494 sources · 177 juridictions" : "Cross-topic legal data · 1,494 sources · 177 jurisdictions"}
-                active={active === "atlas"}
-              />
-              <ProductMenuItem
-                href="/products"
-                icon="📦"
-                title={STRINGS.navProducts[lang]}
-                desc={lang === "fr" ? "Conformité produit physique · 46 031 régs · 20 catégories" : "Physical-product compliance · 46,031 regs · 20 categories"}
-                active={active === "atlas-product"}
-              />
-              <ProductMenuItem
-                href="/hs-code"
-                icon="🛃"
-                title={STRINGS.navHsCode[lang]}
-                desc={lang === "fr" ? "Douane · classification HS, droits, dual-use & sanctions" : "Customs · HS classification, duties, dual-use & sanctions"}
-                active={active === "atlas-hs"}
-              />
-            </div>
-          </details>
-
-          <Link
-            href="/playground"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navPlayground[lang]}
+    <>
+      <header
+        className="fixed inset-x-0 top-0 z-50 border-b border-c-border/60"
+        style={{
+          background: "rgba(255, 255, 255, 0.6)",
+          backdropFilter: "saturate(180%) blur(20px)",
+          WebkitBackdropFilter: "saturate(180%) blur(20px)",
+        }}
+      >
+        <div className="mx-auto flex h-11 max-w-[1280px] items-center justify-between px-5 lg:px-12">
+          {/* Logo */}
+          <Link href="/" className="mr-10 shrink-0">
+            <img
+              src="/cleo-icon.svg"
+              alt="Cleo"
+              width={28}
+              height={28}
+              className="h-5 w-auto"
+            />
           </Link>
-          <Link
-            href="/docs"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navDocs[lang]}
-          </Link>
-          <Link
-            href="/pricing"
-            className="rounded-md px-3 py-1.5 text-[13px] font-medium text-c-text-muted transition-colors hover:text-c-text"
-          >
-            {STRINGS.navPricing[lang]}
-          </Link>
-        </nav>
 
-        {/* Push right: lang switcher + CTA */}
-        <div className="ml-auto flex items-center gap-2">
-          <div className="flex rounded-md border border-c-border bg-c-surface p-0.5 text-[11px] font-medium">
-            {(["fr", "en"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={`rounded px-2 py-0.5 transition-colors ${
-                  lang === l
-                    ? "bg-c-brand text-white"
-                    : "text-c-text-muted hover:text-c-text"
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
+          {/* Left nav */}
+          <div className="hidden flex-1 items-center gap-7 md:flex">
+            <ProductsDropdown lang={lang} active={productActive} activeKey={active} />
+            <NavLink href="/playground" label={STRINGS.navPlayground[lang]} />
+            <NavLink href="/docs" label={STRINGS.navDocs[lang]} />
+            <NavLink href="/pricing" label={STRINGS.navPricing[lang]} />
           </div>
+
+          {/* Right side */}
+          <div className="hidden items-center gap-4 md:flex">
+            <button
+              type="button"
+              onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+              className="text-[12px] font-normal text-c-text-subtle transition-colors hover:text-c-text"
+              title={lang === "fr" ? "Switch to English" : "Passer en français"}
+            >
+              {lang === "fr" ? "EN" : "FR"}
+            </button>
+            <a
+              href={SIGNUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 min-w-[140px] items-center justify-center rounded-full text-[13px] font-semibold text-white transition-colors"
+              style={{ background: "#0008CF", letterSpacing: "-0.02em" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#0006A8")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#0008CF")}
+            >
+              {lang === "fr" ? "Obtenir une clé" : "Get API key"}
+            </a>
+          </div>
+
+          {/* Mobile: simplified — just CTA */}
           <a
             href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-full bg-c-brand px-3.5 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink"
+            className="inline-flex h-9 items-center justify-center rounded-full px-4 text-[12px] font-semibold text-white md:hidden"
+            style={{ background: "#0008CF" }}
           >
-            Get API key →
+            {lang === "fr" ? "Obtenir une clé" : "Get API key"}
           </a>
         </div>
+      </header>
+      {/* Spacer to offset the fixed header — same height (44px) */}
+      <div aria-hidden className="h-11" />
+    </>
+  );
+}
+
+function NavLink({ href, label, active }: { href: string; label: string; active?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`relative py-1 text-[13px] font-normal transition-colors ${
+        active ? "text-c-text" : "text-c-text-subtle hover:text-c-text"
+      }`}
+    >
+      <span className="relative">
+        {label}
+        <span
+          className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity ${
+            active ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </span>
+    </Link>
+  );
+}
+
+function ProductsDropdown({
+  lang,
+  active,
+  activeKey,
+}: {
+  lang: Lang;
+  active: boolean;
+  activeKey: Props["active"];
+}) {
+  return (
+    <details className="group relative">
+      <summary
+        className={`flex cursor-pointer list-none items-center gap-1 py-1 text-[13px] font-normal transition-colors ${
+          active ? "text-c-text" : "text-c-text-subtle hover:text-c-text"
+        }`}
+      >
+        <span className="relative">
+          {lang === "fr" ? "Produits" : "Products"}
+          <span
+            className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity ${
+              active ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </span>
+        <span className="text-[9px] transition-transform group-open:rotate-180">▼</span>
+      </summary>
+      <div
+        className="absolute left-0 top-full z-40 mt-3 w-[440px] overflow-hidden rounded-2xl border border-c-border bg-c-surface"
+        style={{ boxShadow: "0 16px 48px rgba(0,0,0,0.08)" }}
+      >
+        <ProductMenuItem
+          href="/general"
+          icon="📚"
+          title={STRINGS.navGeneral[lang]}
+          desc={
+            lang === "fr"
+              ? "Données juridiques transverses · 1 494 sources · 177 juridictions"
+              : "Cross-topic legal data · 1,494 sources · 177 jurisdictions"
+          }
+          active={activeKey === "atlas"}
+        />
+        <ProductMenuItem
+          href="/products"
+          icon="📦"
+          title={STRINGS.navProducts[lang]}
+          desc={
+            lang === "fr"
+              ? "Conformité produit physique · 46 031 régs · 20 catégories"
+              : "Physical-product compliance · 46,031 regs · 20 categories"
+          }
+          active={activeKey === "atlas-product"}
+        />
+        <ProductMenuItem
+          href="/hs-code"
+          icon="🛃"
+          title={STRINGS.navHsCode[lang]}
+          desc={
+            lang === "fr"
+              ? "Douane · classification HS, droits, dual-use & sanctions"
+              : "Customs · HS classification, duties, dual-use & sanctions"
+          }
+          active={activeKey === "atlas-hs"}
+        />
       </div>
-    </header>
+    </details>
   );
 }
 
@@ -155,10 +206,13 @@ function ProductMenuItem({
     >
       <span className="text-xl leading-none">{icon}</span>
       <div className="min-w-0 flex-1">
-        <div className="text-[13px] font-semibold text-c-text">{title}</div>
-        <div className="mt-0.5 text-[11.5px] leading-snug text-c-text-muted">{desc}</div>
+        <div className="text-[13.5px] font-semibold text-c-text">{title}</div>
+        <div className="mt-0.5 text-[12px] leading-snug text-c-text-muted">{desc}</div>
       </div>
-      <span className={`text-c-text-subtle transition-opacity ${active ? "opacity-100" : "opacity-0 group-hover/item:opacity-100"}`}>
+      <span
+        className={`text-c-text-subtle ${active ? "opacity-100" : "opacity-60"}`}
+        aria-hidden
+      >
         →
       </span>
     </Link>
