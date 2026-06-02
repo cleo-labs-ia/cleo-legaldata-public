@@ -62,7 +62,7 @@ type EndpointDef = {
   path: string;
   title: { fr: string; en: string };
   desc: { fr: string; en: string };
-  coverage: "legal" | "product";
+  coverage: "legal" | "product" | "hs";
   params: Param[];
 };
 
@@ -93,7 +93,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Taux de droits, TVA et accises pour un code HS dans un pays donné.",
       en: "Customs duty, VAT and excise rates for an HS code in a given country.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
@@ -109,7 +109,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Obligations réglementaires (licences, certifications, marquages) pour un code HS dans un pays.",
       en: "Regulatory obligations (licenses, certifications, markings) for an HS code in a country.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "hs", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440" },
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "DE" },
@@ -124,7 +124,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Suggère un ou plusieurs codes HS à partir d'une description produit en langage naturel.",
       en: "Suggests one or more HS codes from a natural-language product description.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "description", label: { fr: "Description", en: "Description" }, placeholder: "lithium ion battery" },
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "US", optional: true },
@@ -140,7 +140,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Propose des classifications alternatives plausibles pour un code HS donné.",
       en: "Suggests plausible alternative classifications for a given HS code.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
     ],
@@ -154,7 +154,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Le produit tombe-t-il sous un régime de contrôle d'export pour une destination donnée (EU 2021/821, US EAR…) ?",
       en: "Does the product fall under an export-control regime for a given destination (EU 2021/821, US EAR…)?",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "description", label: { fr: "Description", en: "Description" }, placeholder: "encryption module", optional: true },
       { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "854231", optional: true },
@@ -170,7 +170,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Coût rendu (CIF + droits + TVA + frais) depuis un HS, origine, destination, prix FOB USD.",
       en: "Landed cost (CIF + duties + VAT + fees) from HS, origin, destination, FOB USD price.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440" },
       { key: "origin", label: { fr: "Origine", en: "Origin" }, placeholder: "CN" },
@@ -187,7 +187,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Génère une description produit défendable à partir d'un code HS.",
       en: "Generates a defensible product description from an HS code.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "code", label: { fr: "Code HS", en: "HS code" }, placeholder: "330420" },
     ],
@@ -201,7 +201,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Standards GOST / TR EAEU applicables à un code HS dans un pays de l'EAEU.",
       en: "GOST / TR EAEU standards applicable to an HS code in a Eurasian Economic Union country.",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "hs", label: { fr: "Code HS", en: "HS code" }, placeholder: "850440", optional: true },
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "RU", optional: true },
@@ -217,7 +217,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Un certificat émis par un pays EAEU est-il reconnu dans les autres états membres pour un produit donné ?",
       en: "Is a certificate issued by an EAEU country recognised in other member states for a given product?",
     },
-    coverage: "product",
+    coverage: "hs",
     params: [
       { key: "cert_country", label: { fr: "Pays certificat", en: "Cert country" }, placeholder: "KZ" },
       { key: "cert_type", label: { fr: "Type", en: "Cert type" }, placeholder: "tr_cu" },
@@ -594,7 +594,7 @@ const ENDPOINTS: EndpointDef[] = [
       fr: "Vérifie une entité (personne, société) contre les listes EU, US OFAC, UN, UK HMT, etc.",
       en: "Screens an entity (person, company) against EU, US OFAC, UN, UK HMT, etc. lists.",
     },
-    coverage: "legal",
+    coverage: "hs",
     params: [
       { key: "name", label: { fr: "Nom", en: "Name" }, placeholder: "Acme Corp" },
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "RU", optional: true },
@@ -647,6 +647,7 @@ export default function Playground() {
   const [response, setResponse] = useState<ResponseMode>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
   const [productOpen, setProductOpen] = useState(true);
+  const [hsOpen, setHsOpen] = useState(true);
   const [legalOpen, setLegalOpen] = useState(true);
 
   const endpoint = useMemo(
@@ -744,6 +745,7 @@ export default function Playground() {
     coverageLabel: {
       legal: { fr: "Legal Atlas", en: "Legal Atlas" },
       product: { fr: "Legal Product Physical Atlas", en: "Legal Product Physical Atlas" },
+      hs: { fr: "HS Code", en: "HS Code" },
     },
     optional: { fr: "optionnel", en: "optional" },
   };
@@ -822,7 +824,43 @@ export default function Playground() {
               )}
             </div>
 
-            {/* Dropdown 2: Legal Atlas */}
+            {/* Dropdown 2: HS Code */}
+            <div className="overflow-hidden rounded-xl border-2 border-emerald-500/40">
+              <button
+                type="button"
+                onClick={() => setHsOpen((v) => !v)}
+                className="flex w-full items-center gap-2 bg-emerald-50 px-3 py-2.5 text-left transition-colors hover:bg-emerald-100"
+                aria-expanded={hsOpen}
+              >
+                <span className="h-2 w-2 rounded-full bg-emerald-600" />
+                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-emerald-900">
+                  HS Code
+                </span>
+                <span className="ml-auto rounded-full bg-emerald-600/15 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-emerald-900">
+                  {ENDPOINTS.filter((e) => e.coverage === "hs").length}
+                </span>
+                <span
+                  className={`text-emerald-900 transition-transform ${hsOpen ? "rotate-180" : ""}`}
+                >
+                  ▾
+                </span>
+              </button>
+              {hsOpen && (
+                <div className="space-y-1.5 bg-c-surface px-2 py-2">
+                  {ENDPOINTS.filter((e) => e.coverage === "hs").map((e) => (
+                    <EndpointButton
+                      key={e.id}
+                      endpoint={e}
+                      active={e.id === endpointId}
+                      onClick={() => selectEndpoint(e.id)}
+                      lang={lang}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Dropdown 3: Legal Atlas */}
             <div className="overflow-hidden rounded-xl border-2 border-c-text/30">
               <button
                 type="button"
@@ -866,7 +904,9 @@ export default function Playground() {
               className={`rounded-2xl border-2 p-5 ${
                 endpoint.coverage === "product"
                   ? "border-c-brand bg-c-brand-soft/30"
-                  : "border-c-text/40 bg-c-surface-2"
+                  : endpoint.coverage === "hs"
+                    ? "border-emerald-500 bg-emerald-50"
+                    : "border-c-text/40 bg-c-surface-2"
               }`}
             >
               {/* Atlas pill */}
@@ -874,7 +914,9 @@ export default function Playground() {
                 className={`mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] ${
                   endpoint.coverage === "product"
                     ? "bg-c-brand text-white"
-                    : "bg-c-text text-white"
+                    : endpoint.coverage === "hs"
+                      ? "bg-emerald-600 text-white"
+                      : "bg-c-text text-white"
                 }`}
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
@@ -1086,14 +1128,20 @@ function EndpointButton({
   onClick: () => void;
   lang: Lang;
 }) {
-  const accent =
-    endpoint.coverage === "product"
-      ? active
-        ? "border-c-brand bg-c-brand-soft/60"
-        : "border-c-border bg-c-surface hover:border-c-brand/60"
-      : active
-        ? "border-c-text bg-c-surface-2"
-        : "border-c-border bg-c-surface hover:border-c-text-subtle";
+  let accent: string;
+  if (endpoint.coverage === "product") {
+    accent = active
+      ? "border-c-brand bg-c-brand-soft/60"
+      : "border-c-border bg-c-surface hover:border-c-brand/60";
+  } else if (endpoint.coverage === "hs") {
+    accent = active
+      ? "border-emerald-600 bg-emerald-50"
+      : "border-c-border bg-c-surface hover:border-emerald-500/60";
+  } else {
+    accent = active
+      ? "border-c-text bg-c-surface-2"
+      : "border-c-border bg-c-surface hover:border-c-text-subtle";
+  }
   return (
     <button
       type="button"
