@@ -85,7 +85,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
         {/* Compact intro: title + 3 KPIs (live, real, no double-counting) */}
         <section className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <h1 className="font-display text-3xl font-light leading-[1.05] tracking-tight text-c-text md:text-4xl">
+            <h1 className="t-h1">
               {STRINGS.heroTitleA[lang]}{" "}
               <span className="italic text-c-brand">{STRINGS.heroTitleB[lang]}</span>
             </h1>

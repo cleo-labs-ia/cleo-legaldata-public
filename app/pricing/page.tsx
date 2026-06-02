@@ -550,10 +550,10 @@ export default function PricingPage() {
             <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
             {STRINGS.pricingHeader[lang]}
           </div>
-          <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-6xl">
+          <h1 className="t-display">
             {STRINGS.pricingHeroTitle[lang]}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-c-text-muted md:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl t-body">
             {STRINGS.pricingHeroSubtitle[lang]}
           </p>
 
@@ -842,7 +842,7 @@ function PlanCard({
   return (
     <div
       id={plan.id}
-      className={`relative flex flex-col scroll-mt-24 rounded-2xl border p-8 transition-shadow ${
+      className={`relative flex flex-col scroll-mt-24 card-white p-8 ${
         plan.featured
           ? "border-c-brand bg-c-brand-soft/30 shadow-sm"
           : "border-c-border bg-c-surface"

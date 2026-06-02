@@ -113,11 +113,11 @@ export default function HomeChooser() {
             <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
             {t("heroEyebrow")}
           </div>
-          <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-6xl">
+          <h1 className="t-display">
             {t("heroTitleA")}{" "}
             <span className="italic text-c-brand">{t("heroTitleB")}</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-c-text-muted md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl t-body">
             {t("heroSub")}
           </p>
 
@@ -127,13 +127,13 @@ export default function HomeChooser() {
               href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-c-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
+              className="btn"
             >
               {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
             </a>
             <Link
               href="/docs"
-              className="inline-flex items-center rounded-full border border-c-border bg-c-surface px-5 py-2.5 text-sm font-semibold text-c-text-muted transition-colors hover:border-c-brand hover:text-c-brand"
+              className="btn btn-secondary"
             >
               {t("ctaSeeDocs")} →
             </Link>
@@ -159,7 +159,7 @@ export default function HomeChooser() {
         {/* ── 2. HOW THE API WORKS ── */}
         <section className="mt-8 rounded-3xl border border-c-border bg-c-surface p-8 md:p-12">
           <div className="text-center">
-            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+            <h2 className="t-h1">
               {t("howTitle")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
@@ -253,7 +253,7 @@ export default function HomeChooser() {
               <div className="mt-8">
                 <Link
                   href="/playground"
-                  className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
+                  className="btn btn-primary"
                 >
                   {t("openPlayground")} →
                 </Link>
@@ -331,7 +331,7 @@ export default function HomeChooser() {
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
               {t("coveragesEyebrow")}
             </div>
-            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+            <h2 className="t-h1">
               {t("coveragesTitle")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
@@ -406,7 +406,7 @@ export default function HomeChooser() {
                 {STRINGS.homeGeneralCardStats[lang]}
               </div>
               <div className="mt-auto pt-7">
-                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                <span className="btn btn-primary group-hover:bg-c-brand">
                   {STRINGS.homeGeneralCardCta[lang]} →
                 </span>
               </div>
@@ -441,7 +441,7 @@ export default function HomeChooser() {
                 {STRINGS.homeProductCardStats[lang]}
               </div>
               <div className="mt-auto pt-7">
-                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                <span className="btn btn-primary group-hover:bg-c-brand">
                   {STRINGS.homeProductCardCta[lang]} →
                 </span>
               </div>
@@ -498,7 +498,7 @@ export default function HomeChooser() {
                 lookup · duties · landed-cost · dual-use · sanctions
               </div>
               <div className="mt-auto pt-7">
-                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                <span className="btn btn-primary group-hover:bg-c-brand">
                   {lang === "fr" ? "Explorer HS Code" : "Explore HS Code"} →
                 </span>
               </div>
@@ -512,7 +512,7 @@ export default function HomeChooser() {
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
               {t("pricingEyebrow")}
             </div>
-            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+            <h2 className="t-h1">
               {t("pricingTitle")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
@@ -567,7 +567,7 @@ export default function HomeChooser() {
 
         {/* ── 5. TRUST BADGES ── */}
         <section className="mt-16">
-          <h2 className="text-center font-display text-2xl font-light tracking-tight text-c-text md:text-3xl">
+          <h2 className="text-center t-h2">
             {t("trustTitle")}
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -626,7 +626,7 @@ export default function HomeChooser() {
 
 function Kpi({ value, label, accent }: { value: string; label: string; accent?: boolean }) {
   return (
-    <div className="rounded-2xl border border-c-border bg-c-surface px-4 py-3 text-center">
+    <div className="card-warm">
       <div
         className={`tabular-display text-2xl font-light leading-none md:text-3xl ${accent ? "text-c-brand" : "text-c-text"}`}
       >

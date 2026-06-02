@@ -464,7 +464,7 @@ export default function ProductDashboard({
               <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
               {hero.badge[lang]}
             </div>
-            <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-5xl">
+            <h1 className="t-display">
               {hero.titleA[lang]}{" "}
               <span className="italic text-c-brand">
                 {hero.titleB[lang]}

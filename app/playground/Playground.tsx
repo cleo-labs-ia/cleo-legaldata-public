@@ -769,10 +769,10 @@ export default function Playground() {
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
               {T.eyebrow[lang]}
             </div>
-            <h1 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+            <h1 className="t-h1">
               {T.title[lang]}
             </h1>
-            <p className="mt-3 text-[15px] leading-relaxed text-c-text-muted">
+            <p className="mt-3 t-body">
               {T.sub[lang]}
             </p>
           </div>
