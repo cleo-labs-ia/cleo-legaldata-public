@@ -45,12 +45,7 @@ export async function GET(req: NextRequest) {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: successUrl,
       cancel_url: cancelUrl,
-      payment_method_types: ["card", "sepa_debit", "link"],
-      automatic_tax: { enabled: true },
-      tax_id_collection: { enabled: true },
-      billing_address_collection: "required",
       allow_promotion_codes: true,
-      customer_creation: "always",
       metadata: { plan, cadence, source: "legaldata-public" },
       subscription_data: {
         metadata: { plan, cadence, source: "legaldata-public" },
