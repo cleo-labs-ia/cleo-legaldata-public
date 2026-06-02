@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe, getPriceId, type Plan, type Cadence } from "@/lib/stripe";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 /**
  * GET /api/checkout?plan=pro&cadence=monthly
  *
@@ -58,10 +61,17 @@ export async function GET(req: NextRequest) {
     }
     return NextResponse.redirect(session.url, 303);
   } catch (e) {
+    // Log the full error server-side so it shows in Vercel function logs
+    console.error("[checkout] Stripe session create failed", {
+      plan,
+      cadence,
+      priceId: priceId?.slice(0, 12),
+      error: e instanceof Error ? { name: e.name, message: e.message, stack: e.stack?.slice(0, 500) } : e,
+    });
     fallback.searchParams.set("checkout", "error");
     fallback.searchParams.set(
       "message",
-      e instanceof Error ? e.message.slice(0, 120) : "unknown",
+      e instanceof Error ? `${e.name}: ${e.message}`.slice(0, 200) : "unknown",
     );
     return NextResponse.redirect(fallback);
   }

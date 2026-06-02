@@ -15,7 +15,11 @@ export function getStripe(): Stripe | null {
   if (_stripe) return _stripe;
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return null;
-  _stripe = new Stripe(key);
+  // Pin API version to avoid SDK-vs-account version drift, and use fetch
+  // (smaller cold-start in Vercel serverless than the default Node HTTP).
+  _stripe = new Stripe(key, {
+    httpClient: Stripe.createFetchHttpClient(),
+  });
   return _stripe;
 }
 
