@@ -463,22 +463,49 @@ export default function HomeChooser() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            <PricingTier name="Free" price={lang === "fr" ? "0 €" : "€0"} tagline={lang === "fr" ? "100 req/mois" : "100 req/mo"} />
-            <PricingTier name="Light" price={lang === "fr" ? "100 € /mois" : "€100 /mo"} tagline={lang === "fr" ? "1k vérifs ou 100k req" : "1k checks or 100k req"} />
-            <PricingTier name="Pro" price={lang === "fr" ? "349 € /mois" : "€349 /mo"} tagline={lang === "fr" ? "10k vérifs ou 1M req" : "10k checks or 1M req"} featured />
-            <PricingTier name="Business" price={lang === "fr" ? "999 € /mois" : "€999 /mo"} tagline={lang === "fr" ? "50k vérifs ou 5M req" : "50k checks or 5M req"} />
-            <PricingTier name="Enterprise" price={lang === "fr" ? "Sur devis" : "Custom"} tagline={lang === "fr" ? "Volumes illimités · SLA" : "Unlimited · SLA"} />
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <PricingTier
+              name="Light"
+              price={lang === "fr" ? "100 € /mois" : "€100 /mo"}
+              tagline={lang === "fr" ? "1k vérifs ou 100k req" : "1k checks or 100k req"}
+              href="/pricing#light"
+              cta={lang === "fr" ? "Get Light" : "Get Light"}
+            />
+            <PricingTier
+              name="Pro"
+              price={lang === "fr" ? "349 € /mois" : "€349 /mo"}
+              tagline={lang === "fr" ? "10k vérifs ou 1M req" : "10k checks or 1M req"}
+              featured
+              href="/pricing#pro"
+              cta={lang === "fr" ? "Get Pro" : "Get Pro"}
+            />
+            <PricingTier
+              name="Business"
+              price={lang === "fr" ? "999 € /mois" : "€999 /mo"}
+              tagline={lang === "fr" ? "50k vérifs ou 5M req" : "50k checks or 5M req"}
+              href="/pricing#business"
+              cta={lang === "fr" ? "Get Business" : "Get Business"}
+            />
+            <PricingTier
+              name="Enterprise"
+              price={lang === "fr" ? "Sur devis" : "Custom"}
+              tagline={lang === "fr" ? "Volumes illimités · SLA" : "Unlimited · SLA"}
+              href="/pricing#enterprise"
+              cta={lang === "fr" ? "Contact" : "Contact"}
+            />
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <Link
-              href="/pricing"
-              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
-            >
-              {t("seePricing")} →
+          <p className="mt-6 text-center text-[13px] text-c-text-muted">
+            {lang === "fr"
+              ? "Vous voulez tester sans payer ? Le "
+              : "Want to try before paying? The "}
+            <Link href="/playground" className="font-semibold text-c-brand hover:underline">
+              {lang === "fr" ? "Playground" : "Playground"}
             </Link>
-          </div>
+            {lang === "fr"
+              ? " est gratuit, aucune clé nécessaire."
+              : " is free, no API key needed."}
+          </p>
         </section>
 
         {/* ── 5. TRUST BADGES ── */}
@@ -569,18 +596,23 @@ function PricingTier({
   price,
   tagline,
   featured,
+  href,
+  cta,
 }: {
   name: string;
   price: string;
   tagline: string;
   featured?: boolean;
+  href: string;
+  cta: string;
 }) {
   return (
-    <div
-      className={`rounded-2xl p-5 text-center transition-colors ${
+    <Link
+      href={href}
+      className={`group flex flex-col rounded-2xl p-5 text-center transition-all ${
         featured
-          ? "border-2 border-c-brand bg-c-brand-soft/30"
-          : "border border-c-border bg-c-surface hover:border-c-text-subtle"
+          ? "border-2 border-c-brand bg-c-brand-soft/30 hover:shadow-md"
+          : "border border-c-border bg-c-surface hover:border-c-brand hover:shadow-sm"
       }`}
     >
       <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
@@ -590,7 +622,16 @@ function PricingTier({
         {price}
       </div>
       <div className="mt-2 text-[11px] leading-tight text-c-text-muted">{tagline}</div>
-    </div>
+      <div
+        className={`mt-3 inline-flex items-center justify-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold ${
+          featured
+            ? "bg-c-brand text-white"
+            : "bg-c-surface-2 text-c-text group-hover:bg-c-brand group-hover:text-white"
+        }`}
+      >
+        {cta} →
+      </div>
+    </Link>
   );
 }
 

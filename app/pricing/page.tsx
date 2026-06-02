@@ -36,26 +36,6 @@ type Plan = {
    ================================================================ */
 const COMPLIANCE_PLANS: Plan[] = [
   {
-    id: "starter",
-    name: STRINGS.pricingProductStarterName,
-    tagline: STRINGS.pricingProductStarterTagline,
-    price: { kind: "free" },
-    features: [
-      {
-        fr: "100 vérifications de conformité / mois",
-        en: "100 compliance checks / month",
-      },
-      { fr: "1 catégorie produit", en: "1 product category" },
-      {
-        fr: "Documentation publique + atlas complet",
-        en: "Public docs + full atlas access",
-      },
-      { fr: "Support communautaire", en: "Community support" },
-    ],
-    cta: STRINGS.pricingProductStarterCta,
-    ctaHref: "https://cleo-legal-public.vercel.app/signup",
-  },
-  {
     id: "light",
     name: STRINGS.pricingProductLightName,
     tagline: STRINGS.pricingProductLightTagline,
@@ -143,20 +123,6 @@ const COMPLIANCE_PLANS: Plan[] = [
 
 const LEGAL_PLANS: Plan[] = [
   {
-    id: "free",
-    name: STRINGS.pricingLegalFreeName,
-    tagline: STRINGS.pricingLegalFreeTagline,
-    price: { kind: "free" },
-    features: [
-      { fr: "100 requêtes / mois", en: "100 requests / month" },
-      { fr: "Lecture seule (catalog read-only)", en: "Read-only (catalog read-only)" },
-      { fr: "Atlas public complet", en: "Full public atlas" },
-      { fr: "Support communautaire", en: "Community support" },
-    ],
-    cta: STRINGS.pricingLegalFreeCta,
-    ctaHref: "https://cleo-legal-public.vercel.app/signup",
-  },
-  {
     id: "light",
     name: STRINGS.pricingLegalLightName,
     tagline: STRINGS.pricingLegalLightTagline,
@@ -243,27 +209,27 @@ type CompareRow = {
 const COMPLIANCE_COMPARE: CompareRow[] = [
   {
     label: { fr: "Vérifications / mois", en: "Checks / month" },
-    values: ["100", "1 000", "10 000", "50 000", { fr: "Illimité", en: "Unlimited" } as unknown as string],
+    values: [ "1 000", "10 000", "50 000", { fr: "Illimité", en: "Unlimited" } as unknown as string],
   },
   {
     label: { fr: "Catégories produit", en: "Product categories" },
-    values: ["1", "5", "15", "15", "15"],
+    values: [ "5", "15", "15", "15"],
   },
   {
     label: { fr: "Juridictions couvertes", en: "Jurisdictions covered" },
-    values: ["5", "20", "50", "50", "50"],
+    values: [ "20", "50", "50", "50"],
   },
   {
     label: { fr: "Endpoints API", en: "API endpoints" },
-    values: ["Catalog", "Standard", "Full", "Full", "Full"],
+    values: [ "Standard", "Full", "Full", "Full"],
   },
   {
     label: { fr: "Webhooks", en: "Webhooks" },
-    values: [false, false, true, true, true],
+    values: [ false, true, true, true],
   },
   {
     label: { fr: "Dashboard analytics", en: "Dashboard analytics" },
-    values: [false, false, false, true, true],
+    values: [ false, false, true, true],
   },
   {
     label: { fr: "SLA contractuel", en: "Contractual SLA" },
@@ -272,53 +238,49 @@ const COMPLIANCE_COMPARE: CompareRow[] = [
   {
     label: { fr: "Support", en: "Support" },
     values: [
-      { fr: "Communauté", en: "Community" } as unknown as string,
       { fr: "Email", en: "Email" } as unknown as string,
       { fr: "Email (1j ouvré)", en: "Email (1 BD)" } as unknown as string,
       { fr: "Prioritaire", en: "Priority" } as unknown as string,
-      { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string,
-    ],
+      { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string],
   },
   {
     label: { fr: "DPA signé", en: "Signed DPA" },
-    values: [false, false, false, true, true],
+    values: [ false, false, true, true],
   },
   {
     label: { fr: "On-premise / VPC", en: "On-premise / VPC" },
-    values: [false, false, false, false, true],
+    values: [ false, false, false, true],
   },
 ];
 
 const LEGAL_COMPARE: CompareRow[] = [
   {
     label: { fr: "Requêtes / mois", en: "Requests / month" },
-    values: ["100", "100 000", "1M", "5M", { fr: "Illimité", en: "Unlimited" } as unknown as string],
+    values: [ "100 000", "1M", "5M", { fr: "Illimité", en: "Unlimited" } as unknown as string],
   },
   {
     label: { fr: "Requêtes / minute", en: "Requests / minute" },
-    values: ["10", "60", "300", { fr: "Sur mesure", en: "Custom" } as unknown as string, { fr: "Sur mesure", en: "Custom" } as unknown as string],
+    values: [ "60", "300", { fr: "Sur mesure", en: "Custom" } as unknown as string, { fr: "Sur mesure", en: "Custom" } as unknown as string],
   },
   {
     label: { fr: "Endpoints", en: "Endpoints" },
     values: [
-      { fr: "Lecture seule", en: "Read-only" } as unknown as string,
       "Standard",
       "Full",
       "Full + bulk",
-      "Full + bulk",
-    ],
+      "Full + bulk"],
   },
   {
     label: { fr: "Webhooks", en: "Webhooks" },
-    values: [false, false, true, true, true],
+    values: [ false, true, true, true],
   },
   {
     label: { fr: "Export bulk / dumps", en: "Bulk export / dumps" },
-    values: [false, false, false, true, true],
+    values: [ false, false, true, true],
   },
   {
     label: { fr: "Connecteur MCP", en: "MCP connector" },
-    values: [false, true, true, true, true],
+    values: [ true, true, true, true],
   },
   {
     label: { fr: "SLA contractuel", en: "Contractual SLA" },
@@ -327,16 +289,14 @@ const LEGAL_COMPARE: CompareRow[] = [
   {
     label: { fr: "Support", en: "Support" },
     values: [
-      { fr: "Communauté", en: "Community" } as unknown as string,
       { fr: "Email", en: "Email" } as unknown as string,
       { fr: "Email (1j ouvré)", en: "Email (1 BD)" } as unknown as string,
       { fr: "Prioritaire", en: "Priority" } as unknown as string,
-      { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string,
-    ],
+      { fr: "CSM dédié", en: "Dedicated CSM" } as unknown as string],
   },
   {
     label: { fr: "DPA signé", en: "Signed DPA" },
-    values: [false, false, false, true, true],
+    values: [ false, false, true, true],
   },
 ];
 
@@ -596,6 +556,23 @@ export default function PricingPage() {
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-c-text-muted md:text-lg">
             {STRINGS.pricingHeroSubtitle[lang]}
           </p>
+
+          {/* Playground teaser (replaces the Free tier) */}
+          <div className="mx-auto mt-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-4 py-2 text-[13px] text-c-text-muted">
+            <span>
+              {lang === "fr"
+                ? "Tester sans payer ?"
+                : "Want to try first?"}
+            </span>
+            <Link
+              href="/playground"
+              className="font-semibold text-c-brand hover:underline"
+            >
+              {lang === "fr"
+                ? "Le Playground est gratuit, aucune clé requise →"
+                : "The Playground is free, no key needed →"}
+            </Link>
+          </div>
 
           {/* Billing toggle */}
           <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-c-border bg-c-surface p-1">
@@ -864,7 +841,8 @@ function PlanCard({
 
   return (
     <div
-      className={`relative flex flex-col rounded-2xl border p-8 transition-shadow ${
+      id={plan.id}
+      className={`relative flex flex-col scroll-mt-24 rounded-2xl border p-8 transition-shadow ${
         plan.featured
           ? "border-c-brand bg-c-brand-soft/30 shadow-sm"
           : "border-c-border bg-c-surface"
