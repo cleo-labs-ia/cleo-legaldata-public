@@ -77,22 +77,18 @@ const USE_CASES = [
   {
     title: "E-commerce checkout",
     desc: "Show the all-in landed cost to international customers before they pay. Reduce cart abandonment caused by surprise duty bills at delivery.",
-    icon: "🛒",
   },
   {
     title: "AI agent",
     desc: "Plug Cleo's MCP connector into Claude or Cursor. Your agent classifies products, quotes duties and screens sanctions in one tool call.",
-    icon: "🤖",
   },
   {
     title: "Customs broker / freight forwarder",
     desc: "Pre-classify shipments before the broker desk. Cut declaration time by 60% and reduce reclassification disputes.",
-    icon: "📦",
   },
   {
     title: "Marketplace seller onboarding",
     desc: "When a seller lists a product, auto-suggest the HS code, flag dual-use issues and tell them which markets they can ship to.",
-    icon: "🏪",
   },
 ];
 

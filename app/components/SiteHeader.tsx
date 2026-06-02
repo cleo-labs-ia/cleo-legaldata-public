@@ -143,12 +143,12 @@ function ProductsDropdown({
         <span className="text-[9px] transition-transform group-open:rotate-180">▼</span>
       </summary>
       <div
-        className="absolute left-0 top-full z-40 mt-3 w-[440px] overflow-hidden rounded-2xl border border-c-border bg-c-surface"
-        style={{ boxShadow: "0 16px 48px rgba(0,0,0,0.08)" }}
+        className="absolute left-0 top-full z-40 mt-3 w-[460px] overflow-hidden rounded-xl border border-c-border bg-c-surface"
+        style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.06)" }}
       >
         <ProductMenuItem
           href="/general"
-          icon="📚"
+          icon={<IconScale />}
           title={STRINGS.navGeneral[lang]}
           desc={
             lang === "fr"
@@ -159,7 +159,7 @@ function ProductsDropdown({
         />
         <ProductMenuItem
           href="/products"
-          icon="📦"
+          icon={<IconBox />}
           title={STRINGS.navProducts[lang]}
           desc={
             lang === "fr"
@@ -170,7 +170,7 @@ function ProductsDropdown({
         />
         <ProductMenuItem
           href="/hs-code"
-          icon="🛃"
+          icon={<IconCustoms />}
           title={STRINGS.navHsCode[lang]}
           desc={
             lang === "fr"
@@ -192,7 +192,7 @@ function ProductMenuItem({
   active,
 }: {
   href: string;
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   desc: string;
   active: boolean;
@@ -200,21 +200,72 @@ function ProductMenuItem({
   return (
     <Link
       href={href}
-      className={`flex items-start gap-3 px-4 py-3 transition-colors ${
+      className={`group/item flex items-start gap-4 px-5 py-4 transition-colors ${
         active ? "bg-c-surface-2" : "hover:bg-c-surface-2"
       }`}
     >
-      <span className="text-xl leading-none">{icon}</span>
+      <span
+        className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors ${
+          active
+            ? "border-c-text/10 bg-c-surface text-c-text"
+            : "border-c-border bg-c-surface text-c-text-subtle group-hover/item:border-c-text/15 group-hover/item:text-c-text"
+        }`}
+      >
+        {icon}
+      </span>
       <div className="min-w-0 flex-1">
-        <div className="text-[13.5px] font-semibold text-c-text">{title}</div>
-        <div className="mt-0.5 text-[12px] leading-snug text-c-text-muted">{desc}</div>
+        <div className="text-[13.5px] font-semibold tracking-tight text-c-text">
+          {title}
+        </div>
+        <div className="mt-1 text-[12px] leading-relaxed text-c-text-muted">{desc}</div>
       </div>
       <span
-        className={`text-c-text-subtle ${active ? "opacity-100" : "opacity-60"}`}
         aria-hidden
+        className={`mt-1 shrink-0 text-c-text-subtle transition-all ${
+          active
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-1 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+        }`}
       >
         →
       </span>
     </Link>
+  );
+}
+
+/* ─── Icons (Lucide-style, 18 px, stroke-1.5) ─── */
+function IconScale() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 16.5h4l-2-5-2 5Z" />
+      <path d="M4 16.5h4l-2-5-2 5Z" />
+      <path d="M6 11.5V6" />
+      <path d="M18 11.5V6" />
+      <path d="M6 6c2 0 4-1 6-1s4 1 6 1" />
+      <path d="M12 5v15" />
+      <path d="M9 20h6" />
+    </svg>
+  );
+}
+
+function IconBox() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+      <path d="m3.27 6.96 8.73 5.05 8.73-5.05" />
+      <path d="M12 22.08V12" />
+    </svg>
+  );
+}
+
+function IconCustoms() {
+  // Globe with arrows = cross-border / customs
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a14 14 0 0 1 0 18" />
+      <path d="M12 3a14 14 0 0 0 0 18" />
+    </svg>
   );
 }

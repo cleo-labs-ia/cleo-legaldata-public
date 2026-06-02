@@ -21,7 +21,7 @@ const SIGNALS = [
 ];
 
 type FaqItem = { q: string; a: string };
-type UseCase = { title: string; desc: string; icon: string };
+type UseCase = { title: string; desc: string };
 
 export default function HsCodeProduct({ faq, useCases }: { faq: FaqItem[]; useCases: UseCase[] }) {
   const [lang, setLang] = useState<Lang>("en");
@@ -162,9 +162,20 @@ export default function HsCodeProduct({ faq, useCases }: { faq: FaqItem[]; useCa
             <h2 className="t-h1">{fr ? "Pour qui c'est fait" : "Built for"}</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {useCases.map((u) => (
+            {useCases.map((u, i) => (
               <div key={u.title} className="card-warm">
-                <div style={{ fontSize: 24, marginBottom: "var(--s-8)" }}>{u.icon}</div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "var(--color-c-brand)",
+                    marginBottom: "var(--s-8)",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  0{i + 1}
+                </div>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-8)" }}>{u.title}</h3>
                 <p className="t-body" style={{ fontSize: 14, lineHeight: 1.65 }}>{u.desc}</p>
               </div>
