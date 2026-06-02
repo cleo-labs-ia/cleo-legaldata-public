@@ -10,7 +10,7 @@ const N = {
   productRegs: { fr: fmt(NUMBERS.productRegsPlatform, "fr"), en: fmt(NUMBERS.productRegsPlatform, "en") },
   productCats: { fr: fmt(NUMBERS.productCategories, "fr"), en: fmt(NUMBERS.productCategories, "en") },
   productJurs: { fr: fmt(NUMBERS.productJurisdictions, "fr"), en: fmt(NUMBERS.productJurisdictions, "en") },
-  docsCompact: "234M+",
+  docsCompact: "1.9M+",
 };
 
 export const STRINGS = {

@@ -125,6 +125,33 @@ for (const c of countries) {
   stats.sourcesWithVolume += c.sourcesWithVolume;
 }
 
+// The sum above (~234M) is a per-source ESTIMATE parsed from free-text notes
+// (only ~257/1494 sources declare a volume) and badly overstates reality.
+// Replace it with the REAL ingested document count from the live API so the
+// atlas headline matches the rest of the site (product dashboard already shows
+// 1.94M). Falls back to the numbers.ts snapshot when the API/key is unavailable
+// at build (local dev, preview builds without DEMO_API_KEY). Mirrors the fix
+// already shipped in cleo-legal-public (#12).
+{
+  let realDocuments = 1_940_751; // keep in sync with NUMBERS.legalDocuments in lib/numbers.ts
+  try {
+    const apiBase = (process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.legaldata.cleolabs.co").replace(/\/$/, "");
+    const key = process.env.DEMO_API_KEY;
+    if (key) {
+      const res = await fetch(`${apiBase}/v2/coverage`, { headers: { Authorization: `Bearer ${key}` } });
+      if (res.ok) {
+        const cov = await res.json();
+        if (cov && cov.totals && typeof cov.totals.documents === "number") {
+          realDocuments = cov.totals.documents;
+        }
+      }
+    }
+  } catch {
+    /* network/API unavailable at build — keep the snapshot fallback */
+  }
+  stats.estimatedTotalVolume = realDocuments;
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(OUT_FILE, JSON.stringify({ stats, countries }));
 

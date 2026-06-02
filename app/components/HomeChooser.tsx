@@ -143,7 +143,7 @@ export default function HomeChooser() {
             <Kpi value={fmt(NUMBERS.productRegsPlatform, lang)} label={t("kpiProduct")} accent />
             <Kpi value={fmt(NUMBERS.legalRegulations, lang)} label={t("kpiLegal")} />
             <Kpi value={fmt(NUMBERS.legalJurisdictions, lang)} label={t("kpiJurisdictions")} />
-            <Kpi value="234M+" label={t("kpiDocs")} />
+            <Kpi value="1.9M+" label={t("kpiDocs")} />
           </div>
         </section>
 
@@ -374,7 +374,7 @@ export default function HomeChooser() {
                     </div>
                     <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
                       <div className="font-display text-xl font-light tabular-nums text-white">
-                        234M+
+                        1.9M+
                       </div>
                       <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
                         docs
