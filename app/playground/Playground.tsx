@@ -506,56 +506,80 @@ export default function Playground() {
           </p>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
-          {/* Endpoint picker */}
-          <aside className="lg:sticky lg:top-6 lg:self-start">
-            <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
-              {T.endpointsHeader[lang]}
-            </h2>
-            <div className="space-y-1.5">
-              {ENDPOINTS.map((e) => {
-                const active = e.id === endpointId;
-                return (
-                  <button
+        <section className="mt-8 grid gap-6 lg:grid-cols-[300px_1fr]">
+          {/* Endpoint picker — grouped by atlas */}
+          <aside className="lg:sticky lg:top-6 lg:self-start space-y-5">
+            {/* Group 1: Legal Product Physical Atlas */}
+            <div>
+              <div className="mb-2 flex items-center gap-2 rounded-lg bg-c-brand-soft px-3 py-1.5">
+                <span className="h-2 w-2 rounded-full bg-c-brand" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-c-brand-ink">
+                  Legal Product Physical Atlas
+                </span>
+                <span className="ml-auto rounded-full bg-c-brand/15 px-2 py-0.5 text-[10px] font-semibold text-c-brand-ink">
+                  {ENDPOINTS.filter((e) => e.coverage === "product").length}
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {ENDPOINTS.filter((e) => e.coverage === "product").map((e) => (
+                  <EndpointButton
                     key={e.id}
-                    type="button"
+                    endpoint={e}
+                    active={e.id === endpointId}
                     onClick={() => selectEndpoint(e.id)}
-                    className={`w-full rounded-xl border px-3 py-2.5 text-left transition-colors ${
-                      active
-                        ? "border-c-brand bg-c-brand-soft/40"
-                        : "border-c-border bg-c-surface hover:border-c-text-subtle"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono font-semibold ${
-                          e.method === "GET"
-                            ? "bg-emerald-100 text-emerald-800"
-                            : "bg-amber-100 text-amber-800"
-                        }`}
-                      >
-                        {e.method}
-                      </span>
-                      <code className="font-mono text-[11px] text-c-text-muted">
-                        {e.path}
-                      </code>
-                    </div>
-                    <div className="mt-1.5 text-sm font-medium text-c-text">
-                      {e.title[lang]}
-                    </div>
-                    <div className="mt-0.5 text-[11px] uppercase tracking-wider text-c-text-subtle">
-                      {T.coverageLabel[e.coverage][lang]}
-                    </div>
-                  </button>
-                );
-              })}
+                    lang={lang}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Group 2: Legal Atlas */}
+            <div>
+              <div className="mb-2 flex items-center gap-2 rounded-lg bg-c-surface-2 px-3 py-1.5">
+                <span className="h-2 w-2 rounded-full bg-c-text" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-c-text">
+                  Legal Atlas
+                </span>
+                <span className="ml-auto rounded-full bg-c-text/10 px-2 py-0.5 text-[10px] font-semibold text-c-text">
+                  {ENDPOINTS.filter((e) => e.coverage === "legal").length}
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {ENDPOINTS.filter((e) => e.coverage === "legal").map((e) => (
+                  <EndpointButton
+                    key={e.id}
+                    endpoint={e}
+                    active={e.id === endpointId}
+                    onClick={() => selectEndpoint(e.id)}
+                    lang={lang}
+                  />
+                ))}
+              </div>
             </div>
           </aside>
 
           {/* Right panel */}
           <div className="space-y-6">
             {/* Endpoint header */}
-            <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+            <div
+              className={`rounded-2xl border-2 p-5 ${
+                endpoint.coverage === "product"
+                  ? "border-c-brand bg-c-brand-soft/30"
+                  : "border-c-text/40 bg-c-surface-2"
+              }`}
+            >
+              {/* Atlas pill */}
+              <div
+                className={`mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] ${
+                  endpoint.coverage === "product"
+                    ? "bg-c-brand text-white"
+                    : "bg-c-text text-white"
+                }`}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
+                {T.coverageLabel[endpoint.coverage][lang]}
+              </div>
+
               <div className="flex items-center gap-2">
                 <span
                   className={`rounded-md px-2 py-0.5 text-[10px] font-mono font-semibold ${
@@ -571,7 +595,10 @@ export default function Playground() {
                   {endpoint.path}
                 </code>
               </div>
-              <p className="mt-3 text-[14px] leading-relaxed text-c-text-muted">
+              <h2 className="mt-2 font-display text-xl font-medium tracking-tight text-c-text">
+                {endpoint.title[lang]}
+              </h2>
+              <p className="mt-2 text-[14px] leading-relaxed text-c-text-muted">
                 {endpoint.desc[lang]}
               </p>
             </div>
@@ -733,6 +760,53 @@ export default function Playground() {
         </footer>
       </main>
     </div>
+  );
+}
+
+/* ─── Endpoint sidebar button ─── */
+function EndpointButton({
+  endpoint,
+  active,
+  onClick,
+  lang,
+}: {
+  endpoint: EndpointDef;
+  active: boolean;
+  onClick: () => void;
+  lang: Lang;
+}) {
+  const accent =
+    endpoint.coverage === "product"
+      ? active
+        ? "border-c-brand bg-c-brand-soft/60"
+        : "border-c-border bg-c-surface hover:border-c-brand/60"
+      : active
+        ? "border-c-text bg-c-surface-2"
+        : "border-c-border bg-c-surface hover:border-c-text-subtle";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full rounded-xl border px-3 py-2.5 text-left transition-colors ${accent}`}
+    >
+      <div className="flex items-center gap-2">
+        <span
+          className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono font-semibold ${
+            endpoint.method === "GET"
+              ? "bg-emerald-100 text-emerald-800"
+              : "bg-amber-100 text-amber-800"
+          }`}
+        >
+          {endpoint.method}
+        </span>
+        <code className="font-mono text-[11px] text-c-text-muted">
+          {endpoint.path}
+        </code>
+      </div>
+      <div className="mt-1.5 text-sm font-medium text-c-text">
+        {endpoint.title[lang]}
+      </div>
+    </button>
   );
 }
 
