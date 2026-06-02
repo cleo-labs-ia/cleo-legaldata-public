@@ -54,6 +54,11 @@
 .leaflet-container {
   background: var(--color-c-surface-2);
   font-family: var(--font-sans);
+  /* isolate the Leaflet stacking context so its internal z-index (up to 1000
+     for .leaflet-top/.leaflet-bottom) never overlaps the fixed site header. */
+  position: relative;
+  isolation: isolate;
+  z-index: 0;
 }
 
 .leaflet-control-attribution {

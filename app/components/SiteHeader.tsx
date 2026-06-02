@@ -36,7 +36,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
     <>
       <nav
         aria-label="Main"
-        className="fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-c-border/60"
+        className="fixed inset-x-0 top-0 z-[1100] transition-all duration-300 border-b border-c-border/60"
         style={{
           background: "rgba(255, 255, 255, 0.6)",
           backdropFilter: "saturate(180%) blur(20px)",
