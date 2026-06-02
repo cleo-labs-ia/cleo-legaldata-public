@@ -20,7 +20,15 @@ type EndpointId =
   | "customs_reverse_classify"
   | "standards_gost"
   | "eaeu_parallel_import"
-  // Legal (Legal Atlas) — 11 endpoints
+  | "compliance_batch"
+  | "labeling_check"
+  | "ingredients_screen"
+  | "substances_reach"
+  | "recalls_list"
+  | "recalls_subscribe"
+  | "standards_iso"
+  | "conformity_marks"
+  // Legal (Legal Atlas)
   | "search"
   | "search_bulk"
   | "documents"
@@ -31,7 +39,15 @@ type EndpointId =
   | "coverage"
   | "countries"
   | "authorities"
-  | "webhooks";
+  | "webhooks"
+  | "summarize"
+  | "qa"
+  | "extract_entities"
+  | "citations"
+  | "articles"
+  | "sanctions_screen"
+  | "treaties"
+  | "case_law";
 
 type Param = {
   key: string;
@@ -367,6 +383,255 @@ const ENDPOINTS: EndpointDef[] = [
     coverage: "legal",
     params: [],
   },
+  // ───── Product Atlas — additional 8 ─────
+  {
+    id: "compliance_batch",
+    method: "POST",
+    path: "/v2/compliance/batch-check",
+    title: { fr: "Vérification batch", en: "Batch compliance check" },
+    desc: {
+      fr: "Vérifie jusqu'à 100 produits en un seul appel, retourne la conformité par produit.",
+      en: "Checks up to 100 products in one call, returns compliance per product.",
+    },
+    coverage: "product",
+    params: [
+      { key: "products", label: { fr: "Produits (séparés par |)", en: "Products (pipe-separated)" }, placeholder: "sunscreen SPF50|lithium battery 18650|wireless speaker" },
+      { key: "destination_country", label: { fr: "Pays destinataire", en: "Destination country" }, placeholder: "FR" },
+    ],
+  },
+  {
+    id: "labeling_check",
+    method: "POST",
+    path: "/v2/labeling/check",
+    title: { fr: "Conformité étiquetage", en: "Labeling compliance" },
+    desc: {
+      fr: "Vérifie qu'une étiquette produit contient toutes les mentions obligatoires (allergènes, INCI, nutrition, langues, pictogrammes).",
+      en: "Checks that a product label contains all mandatory mentions (allergens, INCI, nutrition, languages, pictograms).",
+    },
+    coverage: "product",
+    params: [
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "cosmetics" },
+      { key: "destination_country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
+      { key: "label_text", label: { fr: "Texte étiquette", en: "Label text" }, placeholder: "Aqua, Sodium Laureth Sulfate, Parfum...", optional: true },
+    ],
+  },
+  {
+    id: "ingredients_screen",
+    method: "POST",
+    path: "/v2/ingredients/screen",
+    title: { fr: "Screening ingrédients", en: "Ingredient screening" },
+    desc: {
+      fr: "Détecte ingrédients interdits ou restreints par juridiction (Annexes II/III/V/VI cosmétiques, ingrédients toxiques, allergènes).",
+      en: "Detects ingredients banned or restricted by jurisdiction (Annexes II/III/V/VI cosmetics, toxic ingredients, allergens).",
+    },
+    coverage: "product",
+    params: [
+      { key: "ingredients", label: { fr: "Ingrédients (INCI, séparés par ,)", en: "Ingredients (INCI, comma-separated)" }, placeholder: "Aqua,Sodium Laureth Sulfate,Methylisothiazolinone,Parfum" },
+      { key: "destination_country", label: { fr: "Pays", en: "Country" }, placeholder: "EU" },
+    ],
+  },
+  {
+    id: "substances_reach",
+    method: "POST",
+    path: "/v2/substances/reach",
+    title: { fr: "Vérification REACH SVHC", en: "REACH SVHC check" },
+    desc: {
+      fr: "Vérifie si une substance figure sur la Candidate List ECHA (SVHC), Annex XIV ou Annex XVII.",
+      en: "Checks whether a substance is on the ECHA Candidate List (SVHC), Annex XIV or Annex XVII.",
+    },
+    coverage: "product",
+    params: [
+      { key: "cas_or_name", label: { fr: "CAS ou nom", en: "CAS or name" }, placeholder: "85535-84-8" },
+    ],
+  },
+  {
+    id: "recalls_list",
+    method: "GET",
+    path: "/v2/recalls",
+    title: { fr: "Rappels produit", en: "Product recalls" },
+    desc: {
+      fr: "Liste les rappels produit récents (Safety Gate UE, CPSC, RASFF, etc.) avec filtre par catégorie et pays.",
+      en: "Lists recent product recalls (EU Safety Gate, CPSC, RASFF, etc.) filtered by category and country.",
+    },
+    coverage: "product",
+    params: [
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Stuffed Toys (0-3 years)", optional: true },
+      { key: "country", label: { fr: "Pays notifiant", en: "Notifying country" }, placeholder: "FR", optional: true },
+      { key: "since", label: { fr: "Depuis (ISO)", en: "Since (ISO)" }, placeholder: "2026-01-01", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "recalls_subscribe",
+    method: "POST",
+    path: "/v2/recalls/subscribe",
+    title: { fr: "S'abonner aux rappels", en: "Subscribe to recalls" },
+    desc: {
+      fr: "Crée un webhook qui notifie en temps réel chaque nouveau rappel matchant les filtres.",
+      en: "Creates a webhook that pushes every new recall matching the filters in real time.",
+    },
+    coverage: "product",
+    params: [
+      { key: "endpoint", label: { fr: "URL webhook", en: "Webhook URL" }, placeholder: "https://your-app.example.com/cleo/recalls" },
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Toys", optional: true },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "EU", optional: true },
+    ],
+  },
+  {
+    id: "standards_iso",
+    method: "GET",
+    path: "/v2/standards/iso",
+    title: { fr: "Standards ISO / EN", en: "ISO / EN standards" },
+    desc: {
+      fr: "Recherche les normes ISO et EN applicables à une catégorie produit ou un code HS.",
+      en: "Searches ISO and EN standards applicable to a product category or HS code.",
+    },
+    coverage: "product",
+    params: [
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Stuffed Toys", optional: true },
+      { key: "hs", label: { fr: "Code HS", en: "HS code" }, placeholder: "9503", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "conformity_marks",
+    method: "GET",
+    path: "/v2/conformity-marks",
+    title: { fr: "Marquages de conformité", en: "Conformity marks" },
+    desc: {
+      fr: "Liste les marquages obligatoires pour mettre un produit sur le marché d'un pays (CE, UKCA, CCC, EAC, RCM, NOM, INMETRO, etc.).",
+      en: "Lists the mandatory conformity marks for placing a product on a country's market (CE, UKCA, CCC, EAC, RCM, NOM, INMETRO, etc.).",
+    },
+    coverage: "product",
+    params: [
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Electronics", optional: true },
+    ],
+  },
+  // ───── Legal Atlas — additional 8 ─────
+  {
+    id: "summarize",
+    method: "POST",
+    path: "/v2/summarize",
+    title: { fr: "Résumé juridique", en: "Legal summarisation" },
+    desc: {
+      fr: "Résume un document ou un extrait juridique en gardant les obligations, dates limites et autorités.",
+      en: "Summarises a legal document or excerpt keeping obligations, deadlines and authorities.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "document_id", label: { fr: "ID document", en: "Document ID" }, placeholder: "fr_legifrance_R5131-1", optional: true },
+      { key: "text", label: { fr: "Texte libre", en: "Raw text" }, placeholder: "L'article 5 du RGPD impose...", optional: true },
+      { key: "length", label: { fr: "Longueur", en: "Length" }, placeholder: "short", optional: true },
+    ],
+  },
+  {
+    id: "qa",
+    method: "POST",
+    path: "/v2/qa",
+    title: { fr: "Q&A juridique (RAG)", en: "Legal Q&A (RAG)" },
+    desc: {
+      fr: "Pose une question en langage naturel sur le corpus indexé — réponse + citations sourcées.",
+      en: "Ask a natural-language question on the indexed corpus — answer + sourced citations.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "question", label: { fr: "Question", en: "Question" }, placeholder: "What are the labeling requirements for cosmetics sold in France?" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR", optional: true },
+      { key: "max_citations", label: { fr: "Citations max", en: "Max citations" }, placeholder: "5", optional: true },
+    ],
+  },
+  {
+    id: "extract_entities",
+    method: "POST",
+    path: "/v2/extract",
+    title: { fr: "Extraction d'entités", en: "Entity extraction" },
+    desc: {
+      fr: "Extrait dates limites, montants, articles cités, autorités, organisations et obligations d'un texte juridique.",
+      en: "Extracts deadlines, amounts, cited articles, authorities, organisations and obligations from a legal text.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "text", label: { fr: "Texte", en: "Text" }, placeholder: "Article 5 of the GDPR requires data minimisation. Penalties up to €20M or 4% of global turnover." },
+    ],
+  },
+  {
+    id: "citations",
+    method: "GET",
+    path: "/v2/citations/{id}",
+    title: { fr: "Citations entrantes", en: "Incoming citations" },
+    desc: {
+      fr: "Liste les documents qui citent un document donné — utile pour évaluer son autorité juridique.",
+      en: "Lists documents that cite a given document — useful to assess its legal authority.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "id", label: { fr: "ID document", en: "Document ID" }, placeholder: "eu_celex_32016R0679" },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "articles",
+    method: "GET",
+    path: "/v2/articles",
+    title: { fr: "Articles d'une régulation", en: "Articles of a regulation" },
+    desc: {
+      fr: "Liste les articles d'une régulation indexée, avec leur texte et métadonnées.",
+      en: "Lists the articles of an indexed regulation, with text and metadata.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "regulation_id", label: { fr: "ID régulation", en: "Regulation ID" }, placeholder: "eu_celex_32016R0679" },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
+  {
+    id: "sanctions_screen",
+    method: "POST",
+    path: "/v2/sanctions/screen",
+    title: { fr: "Screening sanctions", en: "Sanctions screening" },
+    desc: {
+      fr: "Vérifie une entité (personne, société) contre les listes EU, US OFAC, UN, UK HMT, etc.",
+      en: "Screens an entity (person, company) against EU, US OFAC, UN, UK HMT, etc. lists.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "name", label: { fr: "Nom", en: "Name" }, placeholder: "Acme Corp" },
+      { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "RU", optional: true },
+    ],
+  },
+  {
+    id: "treaties",
+    method: "GET",
+    path: "/v2/treaties",
+    title: { fr: "Traités applicables", en: "Applicable treaties" },
+    desc: {
+      fr: "Liste les traités internationaux applicables entre deux pays (commerce, fiscalité, propriété intellectuelle…).",
+      en: "Lists international treaties between two countries (trade, tax, intellectual property…).",
+    },
+    coverage: "legal",
+    params: [
+      { key: "country_a", label: { fr: "Pays A", en: "Country A" }, placeholder: "FR" },
+      { key: "country_b", label: { fr: "Pays B", en: "Country B" }, placeholder: "US" },
+      { key: "topic", label: { fr: "Thème", en: "Topic" }, placeholder: "tax", optional: true },
+    ],
+  },
+  {
+    id: "case_law",
+    method: "GET",
+    path: "/v2/case-law",
+    title: { fr: "Recherche jurisprudence", en: "Case law search" },
+    desc: {
+      fr: "Recherche dans la jurisprudence indexée (CJUE, Cour de cassation, ECHR, SCOTUS, etc.). Filtres juridiction et thème.",
+      en: "Searches indexed case law (CJEU, French Court of Cassation, ECHR, SCOTUS, etc.). Filter by jurisdiction and topic.",
+    },
+    coverage: "legal",
+    params: [
+      { key: "q", label: { fr: "Requête", en: "Query" }, placeholder: "right to be forgotten" },
+      { key: "court", label: { fr: "Cour", en: "Court" }, placeholder: "CJEU", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
+    ],
+  },
 ];
 
 type ResponseMode =
@@ -381,6 +646,8 @@ export default function Playground() {
   const [paramValues, setParamValues] = useState<Record<string, string>>({});
   const [response, setResponse] = useState<ResponseMode>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
+  const [productOpen, setProductOpen] = useState(true);
+  const [legalOpen, setLegalOpen] = useState(true);
 
   const endpoint = useMemo(
     () => ENDPOINTS.find((e) => e.id === endpointId)!,
@@ -506,55 +773,79 @@ export default function Playground() {
           </p>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[300px_1fr]">
-          {/* Endpoint picker — grouped by atlas */}
-          <aside className="lg:sticky lg:top-6 lg:self-start space-y-5">
-            {/* Group 1: Legal Product Physical Atlas */}
-            <div>
-              <div className="mb-2 flex items-center gap-2 rounded-lg bg-c-brand-soft px-3 py-1.5">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[320px_1fr]">
+          {/* Endpoint picker — collapsible dropdowns by atlas */}
+          <aside className="lg:sticky lg:top-6 lg:self-start space-y-3">
+            {/* Dropdown 1: Legal Product Physical Atlas */}
+            <div className="overflow-hidden rounded-xl border-2 border-c-brand/40">
+              <button
+                type="button"
+                onClick={() => setProductOpen((v) => !v)}
+                className="flex w-full items-center gap-2 bg-c-brand-soft px-3 py-2.5 text-left transition-colors hover:bg-c-brand-soft/80"
+                aria-expanded={productOpen}
+              >
                 <span className="h-2 w-2 rounded-full bg-c-brand" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-c-brand-ink">
+                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-c-brand-ink">
                   Legal Product Physical Atlas
                 </span>
-                <span className="ml-auto rounded-full bg-c-brand/15 px-2 py-0.5 text-[10px] font-semibold text-c-brand-ink">
+                <span className="ml-auto rounded-full bg-c-brand/15 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-c-brand-ink">
                   {ENDPOINTS.filter((e) => e.coverage === "product").length}
                 </span>
-              </div>
-              <div className="space-y-1.5">
-                {ENDPOINTS.filter((e) => e.coverage === "product").map((e) => (
-                  <EndpointButton
-                    key={e.id}
-                    endpoint={e}
-                    active={e.id === endpointId}
-                    onClick={() => selectEndpoint(e.id)}
-                    lang={lang}
-                  />
-                ))}
-              </div>
+                <span
+                  className={`text-c-brand-ink transition-transform ${productOpen ? "rotate-180" : ""}`}
+                >
+                  ▾
+                </span>
+              </button>
+              {productOpen && (
+                <div className="space-y-1.5 bg-c-surface px-2 py-2">
+                  {ENDPOINTS.filter((e) => e.coverage === "product").map((e) => (
+                    <EndpointButton
+                      key={e.id}
+                      endpoint={e}
+                      active={e.id === endpointId}
+                      onClick={() => selectEndpoint(e.id)}
+                      lang={lang}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Group 2: Legal Atlas */}
-            <div>
-              <div className="mb-2 flex items-center gap-2 rounded-lg bg-c-surface-2 px-3 py-1.5">
+            {/* Dropdown 2: Legal Atlas */}
+            <div className="overflow-hidden rounded-xl border-2 border-c-text/30">
+              <button
+                type="button"
+                onClick={() => setLegalOpen((v) => !v)}
+                className="flex w-full items-center gap-2 bg-c-surface-2 px-3 py-2.5 text-left transition-colors hover:bg-c-bg"
+                aria-expanded={legalOpen}
+              >
                 <span className="h-2 w-2 rounded-full bg-c-text" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-c-text">
+                <span className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-c-text">
                   Legal Atlas
                 </span>
-                <span className="ml-auto rounded-full bg-c-text/10 px-2 py-0.5 text-[10px] font-semibold text-c-text">
+                <span className="ml-auto rounded-full bg-c-text/10 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-c-text">
                   {ENDPOINTS.filter((e) => e.coverage === "legal").length}
                 </span>
-              </div>
-              <div className="space-y-1.5">
-                {ENDPOINTS.filter((e) => e.coverage === "legal").map((e) => (
-                  <EndpointButton
-                    key={e.id}
-                    endpoint={e}
-                    active={e.id === endpointId}
-                    onClick={() => selectEndpoint(e.id)}
-                    lang={lang}
-                  />
-                ))}
-              </div>
+                <span
+                  className={`text-c-text transition-transform ${legalOpen ? "rotate-180" : ""}`}
+                >
+                  ▾
+                </span>
+              </button>
+              {legalOpen && (
+                <div className="space-y-1.5 bg-c-surface px-2 py-2">
+                  {ENDPOINTS.filter((e) => e.coverage === "legal").map((e) => (
+                    <EndpointButton
+                      key={e.id}
+                      endpoint={e}
+                      active={e.id === endpointId}
+                      onClick={() => selectEndpoint(e.id)}
+                      lang={lang}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </aside>
 
@@ -1266,6 +1557,423 @@ async function runEndpoint(
       ],
       total: 2,
     };
+  }
+
+  // ───── Product Atlas (additional) ─────
+  if (id === "compliance_batch") {
+    const product = await loadProduct();
+    const products = (params.products || "sunscreen SPF50|lithium battery 18650|wireless speaker")
+      .split("|")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const dest = (params.destination_country || "FR").toUpperCase();
+    return {
+      destination_country: dest,
+      data: products.map((desc, i) => {
+        const cat = guessCategoryFromDesc(desc);
+        let regs = product.regulations as AnyRow[];
+        if (cat) regs = regs.filter((r) => ciIncl(String(r.category), cat));
+        regs = regs.filter((r) => ci(String(r.jurisdiction_code), dest));
+        return {
+          batch_index: i,
+          product_description: desc,
+          hs_code: guessHsFromDesc(desc).code,
+          regulations_count: regs.length,
+          critical_count: regs.filter((r) => String(r.criticality).toLowerCase() === "critical").length,
+          coverage_status: regs.length > 0 ? "covered" : "partial",
+        };
+      }),
+      total: products.length,
+    };
+  }
+
+  if (id === "labeling_check") {
+    const cat = params.category || "cosmetics";
+    const country = (params.destination_country || "FR").toUpperCase();
+    const labelText = params.label_text || "";
+    const checks: { rule: string; status: "ok" | "missing" | "warning"; required: boolean; reference: string }[] = [
+      {
+        rule: cat === "cosmetics" ? "INCI ingredient list present" : "Ingredient list present",
+        status: /aqua|water|ingredients/i.test(labelText) ? "ok" : labelText ? "missing" : "warning",
+        required: true,
+        reference: cat === "cosmetics" ? "EU Reg 1223/2009 Art. 19" : "Reg (EU) 1169/2011 Art. 9",
+      },
+      {
+        rule: `Local language (${country === "FR" ? "French" : country})`,
+        status: country === "FR" ? "warning" : "warning",
+        required: true,
+        reference: "Loi Toubon (FR) / equivalent",
+      },
+      {
+        rule: "Allergen disclosure",
+        status: /citral|geraniol|limonene|fragrance|parfum/i.test(labelText) ? "ok" : "warning",
+        required: true,
+        reference: "EU 26 fragrance allergens regulation",
+      },
+      {
+        rule: "Open-jar / PAO symbol",
+        status: /\d+M/i.test(labelText) ? "ok" : "missing",
+        required: true,
+        reference: "EU Reg 1223/2009 Art. 19(1)(c)",
+      },
+      {
+        rule: "Country of origin (if outside EU)",
+        status: "warning",
+        required: false,
+        reference: "EU Reg 1223/2009 Art. 19(1)(a)",
+      },
+    ];
+    const missing = checks.filter((c) => c.required && c.status === "missing").length;
+    return {
+      category: cat,
+      destination_country: country,
+      compliant: missing === 0,
+      missing_required: missing,
+      checks,
+    };
+  }
+
+  if (id === "ingredients_screen") {
+    const ingredients = (params.ingredients || "Aqua,Sodium Laureth Sulfate,Methylisothiazolinone,Parfum")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const dest = (params.destination_country || "EU").toUpperCase();
+    const flagged: { ingredient: string; status: string; max_concentration?: string; reference: string }[] = [];
+    for (const ing of ingredients) {
+      const lower = ing.toLowerCase();
+      if (lower.includes("methylisothiazolinone")) {
+        flagged.push({
+          ingredient: ing,
+          status: "restricted",
+          max_concentration: "0.0015% in rinse-off; banned in leave-on (EU)",
+          reference: "EU Reg 1223/2009 Annex V #57 + Annex II #1024",
+        });
+      }
+      if (lower.includes("parfum") || lower.includes("fragrance")) {
+        flagged.push({
+          ingredient: ing,
+          status: "disclosure_required",
+          reference: "EU 26 fragrance allergens (Annex III)",
+        });
+      }
+      if (lower.includes("formaldehyde")) {
+        flagged.push({
+          ingredient: ing,
+          status: "banned",
+          reference: "EU Reg 1223/2009 Annex II #1577 (cosmetics)",
+        });
+      }
+      if (lower.includes("oxybenzone") || lower.includes("octinoxate")) {
+        flagged.push({
+          ingredient: ing,
+          status: dest === "US-HI" || dest === "MX" ? "banned" : "restricted",
+          reference: "Hawaii SB-2571 / Mexico (Quintana Roo) reef-safe",
+        });
+      }
+    }
+    return {
+      destination: dest,
+      total_ingredients: ingredients.length,
+      flagged_count: flagged.length,
+      flagged,
+      compliant: flagged.filter((f) => f.status === "banned").length === 0,
+    };
+  }
+
+  if (id === "substances_reach") {
+    const q = params.cas_or_name || "85535-84-8";
+    const isMcca = /85535-84-8|c10-13|short.?chain.?chlorinated.?paraffin/i.test(q);
+    return {
+      query: q,
+      matches: isMcca
+        ? [
+            {
+              name: "Short-chain chlorinated paraffins (SCCPs)",
+              cas: "85535-84-8",
+              ec: "287-476-5",
+              candidate_list: { listed: true, inclusion_date: "2008-10-28" },
+              annex_xiv: { listed: true, sunset_date: "2017-08-21" },
+              annex_xvii: { listed: true, entry: "42" },
+              hazards: ["PBT", "vPvB"],
+              authority: "ECHA",
+              url: "https://echa.europa.eu/substance-information/-/substanceinfo/100.078.609",
+            },
+          ]
+        : [
+            {
+              name: q,
+              candidate_list: { listed: false },
+              annex_xiv: { listed: false },
+              annex_xvii: { listed: false },
+              authority: "ECHA",
+              note: "No SVHC match found.",
+            },
+          ],
+      total: isMcca ? 1 : 1,
+    };
+  }
+
+  if (id === "recalls_list") {
+    const cat = params.category || "";
+    const country = params.country?.toUpperCase() || "";
+    const since = params.since || "2026-01-01";
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    const samples = [
+      { id: "EU-RAPEX-2026-A12-00214", category: "Stuffed Toys (0-3 years)", country: "FR", hazard: "Choking", date: "2026-05-22", url: "https://ec.europa.eu/safety-gate-alerts/" },
+      { id: "US-CPSC-26-103", category: "Adhesive Bandages (Class I)", country: "US", hazard: "Allergic reaction", date: "2026-05-14", url: "https://www.cpsc.gov/Recalls" },
+      { id: "EU-RAPEX-2026-A18-00337", category: "Smartphones & Mobile", country: "DE", hazard: "Battery overheating", date: "2026-04-30", url: "https://ec.europa.eu/safety-gate-alerts/" },
+      { id: "AU-PROD-2026-552", category: "Bicycle Helmets (PPE)", country: "AU", hazard: "Impact-absorption failure", date: "2026-04-12", url: "https://www.productsafety.gov.au/recalls" },
+      { id: "FR-DGCCRF-2026-118", category: "Sunscreen & Sun Care", country: "FR", hazard: "Banned UV filter (oxybenzone)", date: "2026-03-29", url: "https://www.economie.gouv.fr/dgccrf/" },
+    ];
+    let recalls = samples;
+    if (cat) recalls = recalls.filter((r) => ciIncl(r.category, cat));
+    if (country) recalls = recalls.filter((r) => ci(r.country, country));
+    if (since) recalls = recalls.filter((r) => r.date >= since.slice(0, 10));
+    return { data: recalls.slice(0, limit), total: recalls.length, since };
+  }
+
+  if (id === "recalls_subscribe") {
+    return {
+      subscription_id: `wh_recalls_${slug(params.endpoint || "ep")}_${Math.floor(Math.random() * 1e6)}`,
+      endpoint: params.endpoint || "https://your-app.example.com/cleo/recalls",
+      events: ["recall.created"],
+      filters: {
+        category: params.category || null,
+        country: params.country || null,
+      },
+      status: "active",
+      created_at: new Date().toISOString(),
+    };
+  }
+
+  if (id === "standards_iso") {
+    const cat = params.category || "";
+    const hs = params.hs || "";
+    const limit = Math.max(1, Math.min(20, parseInt(params.limit) || 10));
+    const samples = [
+      { code: "ISO 8124-1:2018", title: "Safety of toys — Part 1: Safety aspects related to mechanical and physical properties", category: "Toys", binding_in: ["AU", "NZ", "BR"], voluntary_elsewhere: true },
+      { code: "EN 71-1:2014+A1:2018", title: "Safety of toys — Mechanical and physical properties", category: "Toys", binding_in: ["EU"], voluntary_elsewhere: false },
+      { code: "ISO 22716:2007", title: "Cosmetics — Good Manufacturing Practices (GMP)", category: "Cosmetics", binding_in: ["EU"] },
+      { code: "EN 1078:2012+A1:2012", title: "Bicycle helmets", category: "Helmets", binding_in: ["EU"] },
+      { code: "ISO 13485:2016", title: "Medical devices — Quality management systems", category: "Medical Devices", binding_in: ["EU", "US", "CN", "JP", "BR", "AU", "CA"] },
+    ];
+    let standards = samples;
+    if (cat) standards = standards.filter((s) => ciIncl(s.category, cat));
+    if (hs)
+      standards = standards.filter((s) =>
+        ciIncl(s.category, guessCategoryFromHs(hs) || ""),
+      );
+    return { data: standards.slice(0, limit), total: standards.length };
+  }
+
+  if (id === "conformity_marks") {
+    const country = (params.country || "FR").toUpperCase();
+    const cat = params.category || "";
+    const byCountry: Record<string, { mark: string; description: string; mandatory_for: string[]; reference: string }[]> = {
+      FR: [
+        { mark: "CE", description: "Conformité Européenne", mandatory_for: ["Electronics", "Toys", "Medical Devices", "PPE", "Machinery"], reference: "EU New Approach Directives" },
+      ],
+      DE: [
+        { mark: "CE", description: "Conformité Européenne", mandatory_for: ["Electronics", "Toys", "Medical Devices", "PPE", "Machinery"], reference: "EU New Approach Directives" },
+      ],
+      GB: [
+        { mark: "UKCA", description: "UK Conformity Assessed", mandatory_for: ["Electronics", "Toys", "Medical Devices", "PPE"], reference: "UKCA legislation post-Brexit" },
+        { mark: "UKNI", description: "UK / Northern Ireland", mandatory_for: ["NI-bound products"], reference: "Windsor Framework" },
+      ],
+      CN: [
+        { mark: "CCC", description: "China Compulsory Certification", mandatory_for: ["Electronics", "Toys", "Automotive"], reference: "GB Standards + CNCA" },
+      ],
+      RU: [
+        { mark: "EAC", description: "Eurasian Conformity", mandatory_for: ["Electronics", "Toys", "Cosmetics"], reference: "TR CU technical regulations" },
+      ],
+      AU: [
+        { mark: "RCM", description: "Regulatory Compliance Mark", mandatory_for: ["Electronics", "Telecom"], reference: "ACMA / EESS" },
+      ],
+      MX: [
+        { mark: "NOM", description: "Norma Oficial Mexicana", mandatory_for: ["Electronics", "Toys", "Food", "Cosmetics"], reference: "DGN / Secretaría de Economía" },
+      ],
+      BR: [
+        { mark: "INMETRO", description: "Instituto Nacional de Metrologia", mandatory_for: ["Electronics", "Toys", "Helmets"], reference: "INMETRO Portarias" },
+      ],
+      US: [
+        { mark: "FCC ID", description: "Federal Communications Commission identifier", mandatory_for: ["Telecom", "Wireless"], reference: "47 CFR Part 15" },
+        { mark: "UL Listed", description: "Underwriters Laboratories certification", mandatory_for: ["Electronics safety"], reference: "OSHA NRTL" },
+      ],
+    };
+    let marks = byCountry[country] || [];
+    if (cat) marks = marks.filter((m) => m.mandatory_for.some((c) => ciIncl(c, cat)));
+    return { country, category: cat || null, data: marks, total: marks.length };
+  }
+
+  // ───── Legal Atlas (additional) ─────
+  if (id === "summarize") {
+    const text = params.text || "L'article 5 du RGPD impose le principe de minimisation des données. Les amendes peuvent atteindre 20 millions d'euros ou 4% du chiffre d'affaires mondial.";
+    const docId = params.document_id;
+    const lengthHint = params.length || "short";
+    return {
+      document_id: docId ?? null,
+      length: lengthHint,
+      summary: `Article 5 GDPR sets the data minimisation principle. Penalties can reach €20M or 4% of global turnover.`,
+      key_obligations: [
+        "Limit personal data collection to what is necessary.",
+        "Document the legal basis for each processing.",
+      ],
+      authorities: ["CNIL", "EDPB"],
+      deadlines: [],
+      penalties: { max_amount_eur: 20_000_000, max_pct_turnover: 0.04 },
+      source_excerpt_length: text.length,
+    };
+  }
+
+  if (id === "qa") {
+    const question = params.question || "What are the labeling requirements for cosmetics sold in France?";
+    const country = params.country?.toUpperCase() || "FR";
+    const max = Math.max(1, Math.min(10, parseInt(params.max_citations) || 5));
+    const product = await loadProduct();
+    const regs = (product.regulations as AnyRow[])
+      .filter((r) => ci(String(r.jurisdiction_code), country))
+      .filter((r) => ciIncl(String(r.category), "cosmetics") || ciIncl(String(r.regulation_name), "label"))
+      .slice(0, max);
+    return {
+      question,
+      answer:
+        "In France, cosmetic products must comply with EU Reg 1223/2009 plus the French Code de la santé publique. Mandatory label items include the responsible person's name and address, batch number, function of the product, list of ingredients in INCI, period after opening (PAO) symbol, precautions and country of origin if outside the EU.",
+      citations: regs.map((r) => ({
+        id: `${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
+        title: r.regulation_name,
+        ref: r.regulation_ref,
+        url: r.url || null,
+        relevance: 0.91,
+      })),
+      country,
+    };
+  }
+
+  if (id === "extract_entities") {
+    const text = params.text || "Article 5 of the GDPR requires data minimisation. Penalties up to €20M or 4% of global turnover.";
+    return {
+      input: text,
+      entities: {
+        articles_cited: [...text.matchAll(/article\s+(\d+[A-Za-z\-\.]*)/gi)].map((m) => m[1]),
+        amounts: [...text.matchAll(/[€$£]\s?\d+(?:[,.]\d+)?\s?(?:M|million|bn|billion|%)?/gi)].map((m) => m[0]),
+        percentages: [...text.matchAll(/\b\d+(?:[.,]\d+)?\s*%/g)].map((m) => m[0]),
+        organisations: [...text.matchAll(/\b(?:GDPR|RGPD|CNIL|FDA|EMA|ECHA|EPA|OFAC|EFSA)\b/g)].map((m) => m[0]),
+        deadlines: [],
+      },
+    };
+  }
+
+  if (id === "citations") {
+    const docId = params.id || "eu_celex_32016R0679";
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    return {
+      document_id: docId,
+      data: Array.from({ length: Math.min(limit, 12) }, (_, i) => ({
+        id: `cite_${docId}_${i}`,
+        title:
+          i === 0
+            ? "CJEU C-311/18 — Schrems II"
+            : i === 1
+              ? "CJEU C-131/12 — Google Spain v AEPD"
+              : `Case ${1000 + i}/24 referring to ${docId}`,
+        type: "case_law",
+        country: ["EU", "FR", "DE", "IT", "ES"][i % 5],
+        cited_provision: i === 0 ? "Article 45" : i === 1 ? "Article 17" : `Article ${(i % 30) + 1}`,
+        date: `2026-${String((i % 12) + 1).padStart(2, "0")}-15`,
+      })),
+      total: 12,
+    };
+  }
+
+  if (id === "articles") {
+    const regId = params.regulation_id || "eu_celex_32016R0679";
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    const titles = [
+      "Subject-matter and objectives",
+      "Material scope",
+      "Territorial scope",
+      "Definitions",
+      "Principles relating to processing of personal data",
+      "Lawfulness of processing",
+      "Conditions for consent",
+      "Conditions applicable to child's consent",
+      "Processing of special categories of data",
+      "Processing of personal data relating to criminal convictions",
+    ];
+    return {
+      regulation_id: regId,
+      data: titles.slice(0, limit).map((title, i) => ({
+        article_number: i + 1,
+        title,
+        id: `${regId}_art${i + 1}`,
+      })),
+      total: titles.length,
+    };
+  }
+
+  if (id === "sanctions_screen") {
+    const name = params.name || "Acme Corp";
+    const country = params.country?.toUpperCase() || "";
+    const flagged = /rosneft|gazprom|sberbank|wagner|kim/i.test(name) || country === "RU" || country === "IR" || country === "KP";
+    return {
+      query: { name, country: country || null },
+      flagged,
+      matches: flagged
+        ? [
+            {
+              list: "EU Council Decision 2014/145/CFSP",
+              entity: name,
+              match_score: 0.96,
+              sanctions_applied: ["asset freeze", "travel ban"],
+              listed_since: "2022-02-25",
+            },
+            {
+              list: "US OFAC SDN",
+              entity: name,
+              match_score: 0.94,
+              sanctions_applied: ["asset freeze"],
+              listed_since: "2022-04-06",
+            },
+          ]
+        : [],
+      lists_screened: ["EU", "US OFAC SDN", "UN Consolidated", "UK HMT", "Swiss SECO"],
+    };
+  }
+
+  if (id === "treaties") {
+    const a = (params.country_a || "FR").toUpperCase();
+    const b = (params.country_b || "US").toUpperCase();
+    const topic = params.topic || "";
+    const all = [
+      { name: "France–US Tax Treaty", topic: "tax", parties: ["FR", "US"], signed: "1994-08-31", in_force: "1995-12-30", url: "https://www.economie.gouv.fr/dgfip/" },
+      { name: "WTO Agreement", topic: "trade", parties: ["FR", "US", "MULTI"], signed: "1994-04-15", in_force: "1995-01-01" },
+      { name: "Paris Agreement on Climate Change", topic: "environment", parties: ["MULTI"], signed: "2016-04-22", in_force: "2016-11-04" },
+      { name: "Berne Convention", topic: "ip", parties: ["MULTI"], signed: "1886-09-09", in_force: "1887-12-05" },
+      { name: "Hague Service Convention", topic: "judicial", parties: ["MULTI"], signed: "1965-11-15", in_force: "1969-02-10" },
+    ];
+    let treaties = all.filter((t) =>
+      t.parties.includes(a) && t.parties.includes(b) || t.parties.includes("MULTI"),
+    );
+    if (topic) treaties = treaties.filter((t) => ciIncl(t.topic, topic));
+    return { country_a: a, country_b: b, topic: topic || null, data: treaties, total: treaties.length };
+  }
+
+  if (id === "case_law") {
+    const q = params.q || "right to be forgotten";
+    const court = params.court || "";
+    const limit = Math.max(1, Math.min(20, parseInt(params.limit) || 10));
+    const samples = [
+      { id: "cjeu_c131_12", title: "Google Spain v AEPD (C-131/12)", court: "CJEU", date: "2014-05-13", topic: "right to be forgotten", url: "https://curia.europa.eu/" },
+      { id: "cjeu_c311_18", title: "Data Protection Commissioner v Facebook (Schrems II, C-311/18)", court: "CJEU", date: "2020-07-16", topic: "data transfer" },
+      { id: "fr_cass_civ1_2024_211", title: "Cass. 1re civ., 14 fév. 2024, n° 22-21.211", court: "Cour de cassation FR", date: "2024-02-14", topic: "GDPR damages" },
+      { id: "uk_uksc_2024_18", title: "Lloyd v Google [2021] UKSC 18", court: "UK Supreme Court", date: "2021-11-10", topic: "representative action" },
+      { id: "us_scotus_dobbs_2022", title: "Dobbs v. Jackson Women's Health (2022)", court: "SCOTUS", date: "2022-06-24", topic: "constitutional" },
+    ];
+    let cases = samples;
+    if (q) cases = cases.filter((c) => ciIncl(c.title, q) || ciIncl(c.topic, q));
+    if (court) cases = cases.filter((c) => ciIncl(c.court, court));
+    return { query: q, data: cases.slice(0, limit), total: cases.length };
   }
 
   throw new Error(`Unknown endpoint: ${id}`);
