@@ -14,12 +14,19 @@ interface Props {
 }
 
 /**
- * Translucent fixed header inspired by cleolabs.co/en/blog:
- *   – glass / blurred white background, hairline border bottom
- *   – compact 44 px row (touch target), 13 px nav links
- *   – inline underline indicates the active page
- *   – Products ▾ dropdown groups the three atlases
- *   – right CTA pill in Cleo blue
+ * Pixel-aligned with the cleolabs.co/en/blog navbar
+ * (src/components/Navbar.tsx + NavbarDesktop.tsx in cleo-academy/cleo-landing).
+ *
+ * Spec:
+ *  - Fixed translucent bar, white/60 background, backdrop blur
+ *  - 44 px row, max-width 1280, px-5 lg:px-12
+ *  - Logo 20 px tall (h-5), 40 px right margin
+ *  - Nav items: text-[13px] font-normal slate-500, underline -bottom-0.5
+ *    appears (opacity 0→100) when active or on hover, gap-7 between items
+ *  - Products ▾ opens a 540-wide white card with rounded-3xl shadow,
+ *    rows are pill-rounded with 36 px icon badge that turns blue on hover
+ *  - Right side: small WhatsApp/Globe icons + lang switch + blue pill CTA
+ *    (h-10, min-w-160, rounded-full, #0008CF → #0006A8 on hover)
  */
 export default function SiteHeader({ lang, setLang, active = null }: Props) {
   const productActive =
@@ -27,8 +34,9 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
 
   return (
     <>
-      <header
-        className="fixed inset-x-0 top-0 z-50 border-b border-c-border/60"
+      <nav
+        aria-label="Main"
+        className="fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-c-border/60"
         style={{
           background: "rgba(255, 255, 255, 0.6)",
           backdropFilter: "saturate(180%) blur(20px)",
@@ -47,7 +55,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             />
           </Link>
 
-          {/* Left nav */}
+          {/* Center nav */}
           <div className="hidden flex-1 items-center gap-7 md:flex">
             <ProductsDropdown lang={lang} active={productActive} activeKey={active} />
             <NavLink href="/playground" label={STRINGS.navPlayground[lang]} />
@@ -60,17 +68,22 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             <button
               type="button"
               onClick={() => setLang(lang === "fr" ? "en" : "fr")}
-              className="text-[12px] font-normal text-c-text-subtle transition-colors hover:text-c-text"
+              className="flex items-center gap-1 text-[12px] font-normal text-c-text-subtle transition-all hover:text-c-text"
               title={lang === "fr" ? "Switch to English" : "Passer en français"}
             >
+              <IconGlobe />
               {lang === "fr" ? "EN" : "FR"}
             </button>
             <a
               href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 min-w-[140px] items-center justify-center rounded-full text-[13px] font-semibold text-white transition-colors"
-              style={{ background: "#0008CF", letterSpacing: "-0.02em" }}
+              className="relative inline-flex h-10 min-w-[160px] items-center justify-center overflow-hidden rounded-full text-[13px] font-semibold text-white"
+              style={{
+                background: "#0008CF",
+                letterSpacing: "-0.02em",
+                transition: "background 0.2s cubic-bezier(.77,0,.18,1)",
+              }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#0006A8")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "#0008CF")}
             >
@@ -78,7 +91,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             </a>
           </div>
 
-          {/* Mobile: simplified — just CTA */}
+          {/* Mobile */}
           <a
             href={SIGNUP_URL}
             target="_blank"
@@ -86,28 +99,30 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             className="inline-flex h-9 items-center justify-center rounded-full px-4 text-[12px] font-semibold text-white md:hidden"
             style={{ background: "#0008CF" }}
           >
-            {lang === "fr" ? "Obtenir une clé" : "Get API key"}
+            {lang === "fr" ? "Clé API" : "API key"}
           </a>
         </div>
-      </header>
-      {/* Spacer to offset the fixed header — same height (44px) */}
+      </nav>
+      {/* 44 px spacer to offset the fixed header */}
       <div aria-hidden className="h-11" />
     </>
   );
 }
 
+/* ───────── Nav primitives ───────── */
+
 function NavLink({ href, label, active }: { href: string; label: string; active?: boolean }) {
   return (
     <Link
       href={href}
-      className={`relative py-1 text-[13px] font-normal transition-colors ${
+      className={`relative py-1 text-[13px] font-normal transition-colors duration-150 ${
         active ? "text-c-text" : "text-c-text-subtle hover:text-c-text"
       }`}
     >
       <span className="relative">
         {label}
         <span
-          className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity ${
+          className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity duration-200 ${
             active ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -128,54 +143,60 @@ function ProductsDropdown({
   return (
     <details className="group relative">
       <summary
-        className={`flex cursor-pointer list-none items-center gap-1 py-1 text-[13px] font-normal transition-colors ${
+        className={`flex cursor-pointer list-none items-center gap-1 py-1 text-[13px] font-normal transition-colors duration-150 ${
           active ? "text-c-text" : "text-c-text-subtle hover:text-c-text"
         }`}
       >
         <span className="relative">
           {lang === "fr" ? "Produits" : "Products"}
           <span
-            className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity ${
+            className={`absolute -bottom-0.5 left-0 right-0 h-px bg-c-text transition-opacity duration-200 ${
               active ? "opacity-100" : "opacity-0"
             }`}
           />
         </span>
-        <span className="text-[9px] transition-transform group-open:rotate-180">▼</span>
+        <IconCaretDown />
       </summary>
+
       <div
-        className="absolute left-0 top-full z-40 mt-3 w-[460px] overflow-hidden rounded-xl border border-c-border bg-c-surface"
-        style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.06)" }}
+        className="absolute left-0 top-full z-40 mt-3 w-[540px] max-w-[calc(100vw-2rem)] rounded-3xl bg-white p-3"
+        style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)" }}
       >
-        <ProductMenuItem
+        <div className="px-3 pb-2 pt-1">
+          <span className="text-[10.5px] font-medium uppercase tracking-[0.1em] text-c-text-subtle">
+            {lang === "fr" ? "Coverages" : "Coverages"}
+          </span>
+        </div>
+        <DropdownItem
           href="/general"
           icon={<IconScale />}
-          title={STRINGS.navGeneral[lang]}
+          label={STRINGS.navGeneral[lang]}
           desc={
             lang === "fr"
-              ? "Données juridiques transverses · 1 494 sources · 177 juridictions"
-              : "Cross-topic legal data · 1,494 sources · 177 jurisdictions"
+              ? "1 494 sources · 177 juridictions · toute thématique"
+              : "1,494 sources · 177 jurisdictions · all topics"
           }
           active={activeKey === "atlas"}
         />
-        <ProductMenuItem
+        <DropdownItem
           href="/products"
           icon={<IconBox />}
-          title={STRINGS.navProducts[lang]}
+          label={STRINGS.navProducts[lang]}
           desc={
             lang === "fr"
-              ? "Conformité produit physique · 46 031 régs · 20 catégories"
-              : "Physical-product compliance · 46,031 regs · 20 categories"
+              ? "46 031 régulations · 20 catégories · produits physiques"
+              : "46,031 regulations · 20 categories · physical products"
           }
           active={activeKey === "atlas-product"}
         />
-        <ProductMenuItem
+        <DropdownItem
           href="/hs-code"
           icon={<IconCustoms />}
-          title={STRINGS.navHsCode[lang]}
+          label={STRINGS.navHsCode[lang]}
           desc={
             lang === "fr"
-              ? "Douane · classification HS, droits, dual-use & sanctions"
-              : "Customs · HS classification, duties, dual-use & sanctions"
+              ? "Classification HS · droits · dual-use · sanctions"
+              : "HS classification · duties · dual-use · sanctions"
           }
           active={activeKey === "atlas-hs"}
         />
@@ -184,66 +205,97 @@ function ProductsDropdown({
   );
 }
 
-function ProductMenuItem({
+function DropdownItem({
   href,
   icon,
-  title,
+  label,
   desc,
   active,
 }: {
   href: string;
   icon: React.ReactNode;
-  title: string;
+  label: string;
   desc: string;
   active: boolean;
 }) {
   return (
     <Link
       href={href}
-      className={`group/item flex items-start gap-4 px-5 py-4 transition-colors ${
-        active ? "bg-c-surface-2" : "hover:bg-c-surface-2"
+      className={`group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors ${
+        active ? "bg-c-surface-2" : "hover:bg-c-surface-2/60"
       }`}
     >
-      <span
-        className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors ${
+      <div
+        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors ${
           active
-            ? "border-c-text/10 bg-c-surface text-c-text"
-            : "border-c-border bg-c-surface text-c-text-subtle group-hover/item:border-c-text/15 group-hover/item:text-c-text"
+            ? "bg-c-brand-soft text-c-brand"
+            : "bg-c-surface-2 text-c-text-subtle group-hover/item:bg-c-brand-soft group-hover/item:text-c-brand"
         }`}
       >
         {icon}
-      </span>
-      <div className="min-w-0 flex-1">
-        <div className="text-[13.5px] font-semibold tracking-tight text-c-text">
-          {title}
-        </div>
-        <div className="mt-1 text-[12px] leading-relaxed text-c-text-muted">{desc}</div>
       </div>
-      <span
-        aria-hidden
-        className={`mt-1 shrink-0 text-c-text-subtle transition-all ${
-          active
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-1 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100"
-        }`}
-      >
-        →
-      </span>
+      <div className="min-w-0 flex-1 pt-0.5">
+        <span className="block text-[13.5px] font-semibold leading-tight text-c-text">
+          {label}
+        </span>
+        <span className="mt-0.5 block text-[12px] leading-snug text-c-text-muted">
+          {desc}
+        </span>
+      </div>
     </Link>
   );
 }
 
-/* ─── Icons (Lucide-style, 18 px, stroke-1.5) ─── */
+/* ───────── Inline icons (Lucide / Phosphor inspired, monoline) ───────── */
+
+function IconCaretDown() {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-c-text-subtle transition-transform duration-200 group-open:rotate-180"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+function IconGlobe() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15 15 0 0 1 0 20" />
+      <path d="M12 2a15 15 0 0 0 0 20" />
+    </svg>
+  );
+}
+
 function IconScale() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 16.5h4l-2-5-2 5Z" />
-      <path d="M4 16.5h4l-2-5-2 5Z" />
-      <path d="M6 11.5V6" />
-      <path d="M18 11.5V6" />
-      <path d="M6 6c2 0 4-1 6-1s4 1 6 1" />
-      <path d="M12 5v15" />
-      <path d="M9 20h6" />
+      <path d="M16 16h5l-2.5-6L16 16Z" />
+      <path d="M3 16h5l-2.5-6L3 16Z" />
+      <path d="M5.5 10V7" />
+      <path d="M18.5 10V7" />
+      <path d="M5.5 7c2.5 0 4.5-1 6.5-1s4 1 6.5 1" />
+      <path d="M12 6v15" />
+      <path d="M8.5 21h7" />
     </svg>
   );
 }
@@ -252,14 +304,13 @@ function IconBox() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-      <path d="m3.27 6.96 8.73 5.05 8.73-5.05" />
-      <path d="M12 22.08V12" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
     </svg>
   );
 }
 
 function IconCustoms() {
-  // Globe with arrows = cross-border / customs
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="9" />
