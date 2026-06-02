@@ -9,178 +9,356 @@ import SiteHeader from "./SiteHeader";
 const MEET_URL = "https://www.cleolabs.co/en/meet";
 
 const PRODUCT_CATEGORY_IMAGES = [
-  "/images/categories/cosmetics.png",
-  "/images/categories/electronics.png",
-  "/images/categories/toys.png",
-  "/images/categories/medical-devices.png",
-  "/images/categories/food.png",
-  "/images/categories/textile.png",
-  "/images/categories/pharma.png",
-  "/images/categories/chemicals.png",
+  "/images/categories/family/cosmetics-personal-care.jpg",
+  "/images/categories/family/electronics-telecom.jpg",
+  "/images/categories/family/toys.jpg",
+  "/images/categories/family/medical-devices.jpg",
+  "/images/categories/family/food-supplements.jpg",
+  "/images/categories/family/textile-apparel.jpg",
+  "/images/categories/family/pharmaceuticals.jpg",
+  "/images/categories/family/household-chemicals.jpg",
 ];
 
 export default function HomeChooser() {
   const [lang, setLang] = useState<Lang>("fr");
+
+  const T = {
+    heroEyebrow: { fr: "Cleo Legal Data API", en: "Cleo Legal Data API" },
+    heroTitleA: { fr: "Le droit du monde,", en: "The world's law," },
+    heroTitleB: { fr: "par une API.", en: "via one API." },
+    heroSub: {
+      fr: "Une API REST + connecteur MCP pour interroger 46 031 réglementations produit et 210 508 régulations légales dans 177 juridictions — depuis votre produit, vos pipelines de veille, ou vos agents IA.",
+      en: "A REST API + MCP connector to query 46,031 product regulations and 210,508 legal regulations across 177 jurisdictions — from your product, monitoring pipelines, or AI agents.",
+    },
+    kpiProduct: { fr: "régs produit", en: "product regs" },
+    kpiLegal: { fr: "régs légales", en: "legal regs" },
+    kpiJurisdictions: { fr: "juridictions", en: "jurisdictions" },
+    kpiDocs: { fr: "documents juridiques", en: "legal documents" },
+    ctaBookCall: { fr: "Prendre un call", en: "Book a call" },
+    ctaSeeDocs: { fr: "Voir la doc", en: "See the docs" },
+
+    howTitle: { fr: "Comment fonctionne l'API", en: "How the API works" },
+    howSub: {
+      fr: "Trois étapes pour brancher Cleo dans votre stack, sans gestion d'infrastructure ni rafraîchissement manuel des données.",
+      en: "Three steps to plug Cleo into your stack, no infrastructure or manual refresh.",
+    },
+    codeTitle: { fr: "Un appel · un résultat", en: "One call · one result" },
+    codeSub: {
+      fr: "Filtrez par juridiction, par catégorie produit, ou par autorité émettrice. Pagination, webhooks et MCP inclus.",
+      en: "Filter by jurisdiction, product category, or enforcement body. Pagination, webhooks and MCP included.",
+    },
+
+    coveragesEyebrow: { fr: "Deux coverages, une API", en: "Two coverages, one API" },
+    coveragesTitle: {
+      fr: "Choisissez votre atlas",
+      en: "Pick your atlas",
+    },
+    coveragesSub: {
+      fr: "Le même catalogue, deux points de vue : transverse (toute thématique) ou spécialisé conformité produit physique.",
+      en: "Same catalog, two viewpoints: cross-topic (all subjects) or specialized for physical-product compliance.",
+    },
+
+    pricingEyebrow: { fr: "Tarification", en: "Pricing" },
+    pricingTitle: {
+      fr: "Cinq plans, mêmes prix sur les deux atlas",
+      en: "Five plans, same prices on both atlases",
+    },
+    pricingSub: {
+      fr: "Démarrez gratuitement, montez en charge progressivement. Pas d'engagement annuel obligatoire.",
+      en: "Start free, scale up gradually. No mandatory annual commitment.",
+    },
+    seePricing: { fr: "Voir tous les plans", en: "See all plans" },
+
+    trustTitle: { fr: "Garanties", en: "Guarantees" },
+  };
+
+  const t = (key: keyof typeof T) => T[key][lang];
 
   return (
     <div className="min-h-screen bg-c-bg">
       <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       <main className="mx-auto max-w-7xl px-6 pb-20">
-        {/* ── Hero ── */}
-        <section className="mx-auto max-w-3xl pt-20 pb-12 text-center md:pt-28 md:pb-16">
+        {/* ── 1. HERO ── */}
+        <section className="mx-auto max-w-4xl pt-16 pb-10 text-center md:pt-24 md:pb-14">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-c-text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-c-brand" />
-            Cleo Legal Data Platform
+            {t("heroEyebrow")}
           </div>
           <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight text-c-text md:text-6xl">
-            {STRINGS.homeHeroTitleA[lang]}{" "}
-            <span className="italic text-c-brand">
-              {STRINGS.homeHeroTitleB[lang]}
-            </span>
+            {t("heroTitleA")}{" "}
+            <span className="italic text-c-brand">{t("heroTitleB")}</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-c-text-muted md:text-lg">
-            {STRINGS.homeHeroSubtitle[lang]}
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-c-text-muted md:text-lg">
+            {t("heroSub")}
           </p>
+
+          {/* CTAs */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={MEET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
+            >
+              {t("ctaBookCall")} →
+            </a>
+            <Link
+              href="/docs"
+              className="inline-flex items-center rounded-full border border-c-border bg-c-surface px-5 py-2.5 text-sm font-semibold text-c-text-muted transition-colors hover:border-c-brand hover:text-c-brand"
+            >
+              {t("ctaSeeDocs")} →
+            </Link>
+          </div>
+
+          {/* 4 combined KPIs */}
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <Kpi value="46 031" label={t("kpiProduct")} accent />
+            <Kpi value="210 508" label={t("kpiLegal")} />
+            <Kpi value="177" label={t("kpiJurisdictions")} />
+            <Kpi value="234M+" label={t("kpiDocs")} />
+          </div>
         </section>
 
-        {/* ── Two cards, 50/50 ── */}
-        <section className="grid gap-5 lg:grid-cols-2">
-          {/* Card 1 — Product Compliance */}
-          <Link
-            href="/products"
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
-          >
-            {/* Visual header: stacked product category images */}
-            <div className="mb-7 flex flex-wrap items-center gap-2">
-              {PRODUCT_CATEGORY_IMAGES.map((src) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt=""
-                  className="h-11 w-11 rounded-xl object-cover ring-1 ring-c-border transition-transform group-hover:scale-105"
-                />
-              ))}
-            </div>
-
-            <div className="mb-2 inline-flex w-fit items-center gap-2 rounded-full bg-c-brand-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
-              Product
-            </div>
-            <h2 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
-              {STRINGS.homeProductCardTitle[lang]}
+        {/* ── 2. HOW THE API WORKS ── */}
+        <section className="mt-8 rounded-3xl border border-c-border bg-c-surface p-8 md:p-12">
+          <div className="text-center">
+            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+              {t("howTitle")}
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-c-text-muted">
-              {STRINGS.homeProductCardDesc[lang]}
+            <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
+              {t("howSub")}
             </p>
+          </div>
 
-            <div className="mt-6 rounded-xl border border-c-border bg-c-surface-2 px-4 py-3 text-[13px] font-medium tabular-nums text-c-text-muted">
-              {STRINGS.homeProductCardStats[lang]}
-            </div>
+          {/* 3 steps */}
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <Step
+              n={1}
+              title={STRINGS.apiStepAccessTitle[lang]}
+              body={STRINGS.apiStepAccessBody[lang]}
+            />
+            <Step
+              n={2}
+              title={STRINGS.apiStepCallTitle[lang]}
+              body={STRINGS.apiStepCallBody[lang]}
+            />
+            <Step
+              n={3}
+              title={STRINGS.apiStepDataTitle[lang]}
+              body={STRINGS.apiStepDataBody[lang]}
+            />
+          </div>
 
-            <div className="mt-auto pt-7">
-              <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
-                {STRINGS.homeProductCardCta[lang]} →
+          {/* Code sample */}
+          <div className="mt-10">
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+                {t("codeTitle")}
+              </h3>
+              <span className="text-[11px] font-medium text-c-text-subtle">
+                {t("codeSub")}
               </span>
             </div>
-          </Link>
+            <div className="overflow-hidden rounded-xl border border-c-border bg-[#0b0b1a]">
+              <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/40">
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+                <span className="ml-3">curl · GET /regulations</span>
+              </div>
+              <pre className="overflow-x-auto px-4 py-4 text-[12.5px] leading-relaxed text-white/90">
+                <code>{`curl https://api.legaldata.cleolabs.co/v1/regulations \\
+  -H "Authorization: Bearer $CLEO_KEY" \\
+  --data-urlencode "jurisdiction=FR" \\
+  --data-urlencode "category=cosmetics" \\
+  --data-urlencode "limit=20"
 
-          {/* Card 2 — Legal Data General */}
-          <Link
-            href="/general"
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
-          >
-            {/* Visual header: dark hero-style block with KPIs */}
-            <div className="mb-7 overflow-hidden rounded-xl">
-              <div
-                className="relative flex h-[156px] items-center justify-center overflow-hidden"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 80% 60% at 25% 10%, rgba(107, 116, 255, 0.35), transparent 60%), radial-gradient(ellipse 60% 50% at 90% 95%, rgba(0, 8, 207, 0.55), transparent 70%), linear-gradient(180deg, #02021a 0%, #06061a 100%)",
-                }}
-              >
-                {/* Subtle grid overlay */}
+# → {
+#   "data": [
+#     {
+#       "id": "reg_eu_1223_2009",
+#       "name": "EU Cosmetics Regulation",
+#       "ref": "(EC) No 1223/2009",
+#       "jurisdiction": "EU",
+#       "enforcement_body": "EC DG GROW + NCAs",
+#       "url": "https://eur-lex.europa.eu/..."
+#     }, ...
+#   ],
+#   "next_page": "/v1/regulations?cursor=..."
+# }`}</code>
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 3. TWO COVERAGES ── */}
+        <section className="mt-16">
+          <div className="text-center">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
+              {t("coveragesEyebrow")}
+            </div>
+            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+              {t("coveragesTitle")}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
+              {t("coveragesSub")}
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {/* Card 1 — Legal Atlas (general) */}
+            <Link
+              href="/general"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
+            >
+              <div className="mb-7 overflow-hidden rounded-xl">
                 <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-50"
+                  className="relative flex h-[156px] items-center justify-center overflow-hidden"
                   style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                    backgroundSize: "32px 32px",
-                    maskImage:
-                      "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%)",
+                    background:
+                      "radial-gradient(ellipse 80% 60% at 25% 10%, rgba(107, 116, 255, 0.35), transparent 60%), radial-gradient(ellipse 60% 50% at 90% 95%, rgba(0, 8, 207, 0.55), transparent 70%), linear-gradient(180deg, #02021a 0%, #06061a 100%)",
                   }}
-                />
-                <div className="relative grid grid-cols-3 gap-2 text-center">
-                  <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
-                    <div className="font-display text-xl font-light tabular-nums text-white">
-                      1 494
+                >
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-50"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                      backgroundSize: "32px 32px",
+                      maskImage:
+                        "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%)",
+                    }}
+                  />
+                  <div className="relative grid grid-cols-3 gap-2 text-center">
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">
+                        1 494
+                      </div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        sources
+                      </div>
                     </div>
-                    <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
-                      sources
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">
+                        177
+                      </div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        {lang === "fr" ? "juridictions" : "jurisdictions"}
+                      </div>
                     </div>
-                  </div>
-                  <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
-                    <div className="font-display text-xl font-light tabular-nums text-white">
-                      177
-                    </div>
-                    <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
-                      {lang === "fr" ? "juridictions" : "jurisdictions"}
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
-                    <div className="font-display text-xl font-light tabular-nums text-white">
-                      234M+
-                    </div>
-                    <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
-                      docs
+                    <div className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur">
+                      <div className="font-display text-xl font-light tabular-nums text-white">
+                        234M+
+                      </div>
+                      <div className="text-[9px] font-medium uppercase tracking-wider text-white/60">
+                        docs
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mb-2 inline-flex w-fit items-center gap-2 rounded-full bg-c-surface-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
-              General
-            </div>
-            <h2 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
-              {STRINGS.homeGeneralCardTitle[lang]}
-            </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-c-text-muted">
-              {STRINGS.homeGeneralCardDesc[lang]}
-            </p>
+              <div className="mb-2 inline-flex w-fit items-center gap-2 rounded-full bg-c-surface-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
+                {lang === "fr" ? "Coverage transverse" : "Cross-topic coverage"}
+              </div>
+              <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+                {STRINGS.homeGeneralCardTitle[lang]}
+              </h3>
+              <p className="mt-4 text-[15px] leading-relaxed text-c-text-muted">
+                {STRINGS.homeGeneralCardDesc[lang]}
+              </p>
+              <div className="mt-6 rounded-xl border border-c-border bg-c-surface-2 px-4 py-3 text-[13px] font-medium tabular-nums text-c-text-muted">
+                {STRINGS.homeGeneralCardStats[lang]}
+              </div>
+              <div className="mt-auto pt-7">
+                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                  {STRINGS.homeGeneralCardCta[lang]} →
+                </span>
+              </div>
+            </Link>
 
-            <div className="mt-6 rounded-xl border border-c-border bg-c-surface-2 px-4 py-3 text-[13px] font-medium tabular-nums text-c-text-muted">
-              {STRINGS.homeGeneralCardStats[lang]}
-            </div>
+            {/* Card 2 — Legal Product Physical Atlas */}
+            <Link
+              href="/products"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
+            >
+              <div className="mb-7 flex flex-wrap items-center gap-2">
+                {PRODUCT_CATEGORY_IMAGES.map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt=""
+                    className="h-11 w-11 rounded-xl object-cover ring-1 ring-c-border transition-transform group-hover:scale-105"
+                  />
+                ))}
+              </div>
 
-            <div className="mt-auto pt-7">
-              <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
-                {STRINGS.homeGeneralCardCta[lang]} →
-              </span>
-            </div>
-          </Link>
+              <div className="mb-2 inline-flex w-fit items-center gap-2 rounded-full bg-c-brand-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-brand-ink">
+                {lang === "fr" ? "Coverage produit physique" : "Physical-product coverage"}
+              </div>
+              <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-c-text md:text-4xl">
+                {STRINGS.homeProductCardTitle[lang]}
+              </h3>
+              <p className="mt-4 text-[15px] leading-relaxed text-c-text-muted">
+                {STRINGS.homeProductCardDesc[lang]}
+              </p>
+              <div className="mt-6 rounded-xl border border-c-border bg-c-surface-2 px-4 py-3 text-[13px] font-medium tabular-nums text-c-text-muted">
+                {STRINGS.homeProductCardStats[lang]}
+              </div>
+              <div className="mt-auto pt-7">
+                <span className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-c-brand">
+                  {STRINGS.homeProductCardCta[lang]} →
+                </span>
+              </div>
+            </Link>
+          </div>
         </section>
 
-        {/* ── Shared API section ── */}
-        <section className="mt-16 rounded-2xl border border-c-border bg-c-surface p-8 md:p-10">
-          <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
-            <div>
-              <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
-                API
-              </div>
-              <h2 className="font-display text-2xl font-light leading-tight tracking-tight text-c-text md:text-3xl">
-                {STRINGS.homeSharedTitle[lang]}
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-c-text-muted md:text-[15px]">
-                {STRINGS.homeSharedBody[lang]}
-              </p>
+        {/* ── 4. PRICING TEASER ── */}
+        <section className="mt-16 rounded-3xl border border-c-border bg-c-surface p-8 md:p-12">
+          <div className="text-center">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
+              {t("pricingEyebrow")}
             </div>
+            <h2 className="font-display text-3xl font-light tracking-tight text-c-text md:text-4xl">
+              {t("pricingTitle")}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-c-text-muted">
+              {t("pricingSub")}
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <PricingTier name="Free" price={lang === "fr" ? "0 €" : "€0"} tagline={lang === "fr" ? "100 req/mois" : "100 req/mo"} />
+            <PricingTier name="Light" price={lang === "fr" ? "100 € /mois" : "€100 /mo"} tagline={lang === "fr" ? "1k vérifs ou 100k req" : "1k checks or 100k req"} />
+            <PricingTier name="Pro" price={lang === "fr" ? "349 € /mois" : "€349 /mo"} tagline={lang === "fr" ? "10k vérifs ou 1M req" : "10k checks or 1M req"} featured />
+            <PricingTier name="Business" price={lang === "fr" ? "999 € /mois" : "€999 /mo"} tagline={lang === "fr" ? "50k vérifs ou 5M req" : "50k checks or 5M req"} />
+            <PricingTier name="Enterprise" price={lang === "fr" ? "Sur devis" : "Custom"} tagline={lang === "fr" ? "Volumes illimités · SLA" : "Unlimited · SLA"} />
+          </div>
+
+          <div className="mt-8 flex justify-center">
             <Link
-              href="/docs"
-              className="inline-flex shrink-0 items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
+              href="/pricing"
+              className="inline-flex items-center rounded-full bg-c-text px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-c-brand"
             >
-              {STRINGS.homeSharedCta[lang]} →
+              {t("seePricing")} →
             </Link>
+          </div>
+        </section>
+
+        {/* ── 5. TRUST BADGES ── */}
+        <section className="mt-16">
+          <h2 className="text-center font-display text-2xl font-light tracking-tight text-c-text md:text-3xl">
+            {t("trustTitle")}
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <TrustBadge title={STRINGS.trustGdpr[lang]} desc={STRINGS.trustGdprDesc[lang]} />
+            <TrustBadge title={STRINGS.trustEu[lang]} desc={STRINGS.trustEuDesc[lang]} />
+            <TrustBadge title={STRINGS.trustDaily[lang]} desc={STRINGS.trustDailyDesc[lang]} />
+            <TrustBadge title={STRINGS.trustSla[lang]} desc={STRINGS.trustSlaDesc[lang]} />
+            <TrustBadge title={STRINGS.trustSupport[lang]} desc={STRINGS.trustSupportDesc[lang]} />
           </div>
         </section>
 
@@ -198,37 +376,96 @@ export default function HomeChooser() {
                 Cleo Labs
               </a>
               <span>·</span>
-              <Link
-                href="/general"
-                className="text-c-text-muted hover:text-c-brand"
-              >
+              <Link href="/general" className="text-c-text-muted hover:text-c-brand">
                 {STRINGS.navGeneral[lang]}
               </Link>
               <span>·</span>
-              <Link
-                href="/products"
-                className="text-c-text-muted hover:text-c-brand"
-              >
+              <Link href="/products" className="text-c-text-muted hover:text-c-brand">
                 {STRINGS.navProducts[lang]}
               </Link>
               <span>·</span>
-              <Link
-                href="/docs"
-                className="text-c-text-muted hover:text-c-brand"
-              >
-                {STRINGS.homeNavDocs[lang]}
+              <Link href="/docs" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.navDocs[lang]}
               </Link>
               <span>·</span>
-              <Link
-                href="/privacy"
-                className="text-c-text-muted hover:text-c-brand"
-              >
+              <Link href="/pricing" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.navPricing[lang]}
+              </Link>
+              <span>·</span>
+              <Link href="/privacy" className="text-c-text-muted hover:text-c-brand">
                 {STRINGS.privacyLink[lang]}
               </Link>
             </span>
           </div>
         </footer>
       </main>
+    </div>
+  );
+}
+
+function Kpi({ value, label, accent }: { value: string; label: string; accent?: boolean }) {
+  return (
+    <div className="rounded-2xl border border-c-border bg-c-surface px-4 py-3 text-center">
+      <div
+        className={`tabular-display text-2xl font-light leading-none md:text-3xl ${accent ? "text-c-brand" : "text-c-text"}`}
+      >
+        {value}
+        {accent ? <span className="text-c-glow">+</span> : null}
+      </div>
+      <div className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function Step({ n, title, body }: { n: number; title: string; body: string }) {
+  return (
+    <div className="rounded-2xl border border-c-border bg-c-surface-2 p-6">
+      <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-c-brand text-sm font-semibold text-white">
+        {n}
+      </div>
+      <h4 className="font-display text-lg font-medium text-c-text">{title}</h4>
+      <p className="mt-2 text-[13.5px] leading-relaxed text-c-text-muted">{body}</p>
+    </div>
+  );
+}
+
+function PricingTier({
+  name,
+  price,
+  tagline,
+  featured,
+}: {
+  name: string;
+  price: string;
+  tagline: string;
+  featured?: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-2xl p-5 text-center transition-colors ${
+        featured
+          ? "border-2 border-c-brand bg-c-brand-soft/30"
+          : "border border-c-border bg-c-surface hover:border-c-text-subtle"
+      }`}
+    >
+      <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+        {name}
+      </div>
+      <div className="mt-2 font-display text-xl font-medium tabular-nums text-c-text">
+        {price}
+      </div>
+      <div className="mt-2 text-[11px] leading-tight text-c-text-muted">{tagline}</div>
+    </div>
+  );
+}
+
+function TrustBadge({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="rounded-2xl border border-c-border bg-c-surface p-5">
+      <h4 className="text-sm font-semibold text-c-text">{title}</h4>
+      <p className="mt-1.5 text-[12.5px] leading-relaxed text-c-text-muted">{desc}</p>
     </div>
   );
 }
