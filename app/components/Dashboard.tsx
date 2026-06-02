@@ -50,7 +50,7 @@ function formatNumber(n: number, lang: Lang): string {
 }
 
 export default function Dashboard({ data }: { data: DashboardData }) {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
   const [drawer, setDrawer] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
 

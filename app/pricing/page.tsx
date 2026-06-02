@@ -488,7 +488,7 @@ function CompareCell({
    PAGE
    ================================================================ */
 export default function PricingPage() {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
   const [billing, setBilling] = useState<Billing>("monthly");
   const [product, setProduct] = useState<Product>("compliance");
   const [openFaq, setOpenFaq] = useState<number | null>(0);

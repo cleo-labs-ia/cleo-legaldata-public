@@ -20,7 +20,7 @@ const PRODUCT_CATEGORY_IMAGES = [
 ];
 
 export default function HomeChooser() {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
 
   const T = {
     heroEyebrow: { fr: "Cleo Legal Data API", en: "Cleo Legal Data API" },

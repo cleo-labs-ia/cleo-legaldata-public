@@ -8,7 +8,7 @@ import { STRINGS } from "@/lib/i18n";
 const LAST_UPDATED = "2026-04-30";
 
 export default function PrivacyPage() {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
 
   return (
     <div className="min-h-screen bg-c-bg pb-20">

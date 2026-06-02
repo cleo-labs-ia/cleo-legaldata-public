@@ -30,7 +30,6 @@ type EndpointDef = {
   desc: { fr: string; en: string };
   coverage: "legal" | "product" | "shared";
   params: Param[];
-  sampleResponse: unknown;
 };
 
 const ENDPOINTS: EndpointDef[] = [
@@ -38,10 +37,7 @@ const ENDPOINTS: EndpointDef[] = [
     id: "regulations",
     method: "GET",
     path: "/regulations",
-    title: {
-      fr: "Lister les régulations",
-      en: "List regulations",
-    },
+    title: { fr: "Lister les régulations", en: "List regulations" },
     desc: {
       fr: "Toutes les régulations indexées. Filtre par juridiction, catégorie, autorité, statut.",
       en: "All indexed regulations. Filter by jurisdiction, category, enforcement body, status.",
@@ -49,40 +45,10 @@ const ENDPOINTS: EndpointDef[] = [
     coverage: "shared",
     params: [
       { key: "jurisdiction", label: { fr: "Juridiction", en: "Jurisdiction" }, placeholder: "FR" },
-      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "cosmetics", optional: true },
-      { key: "status", label: { fr: "Statut", en: "Status" }, placeholder: "in_force", optional: true },
-      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "20", optional: true },
+      { key: "category", label: { fr: "Catégorie", en: "Category" }, placeholder: "Shampoo & Hair Care", optional: true },
+      { key: "criticality", label: { fr: "Criticité", en: "Criticality" }, placeholder: "critical", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
     ],
-    sampleResponse: {
-      data: [
-        {
-          id: "reg_eu_1223_2009",
-          name: "EU Cosmetics Regulation",
-          ref: "(EC) No 1223/2009",
-          jurisdiction: "EU",
-          category: "cosmetics",
-          enforcement_body: "EC DG GROW + NCAs",
-          status: "in_force",
-          criticality: "critical",
-          url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32009R1223",
-          last_updated: "2026-05-12",
-        },
-        {
-          id: "reg_fr_csp_l5131",
-          name: "Code de la santé publique – cosmétiques",
-          ref: "Articles L5131-1 à L5131-13",
-          jurisdiction: "FR",
-          category: "cosmetics",
-          enforcement_body: "ANSM",
-          status: "in_force",
-          criticality: "critical",
-          url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072665/LEGISCTA000006171151/",
-          last_updated: "2026-03-08",
-        },
-      ],
-      pagination: { next_cursor: "eyJpZCI6InJlZ19mcl9hbnNtX2NwbnAifQ", has_more: true },
-      total: 1318,
-    },
   },
   {
     id: "sources",
@@ -96,32 +62,10 @@ const ENDPOINTS: EndpointDef[] = [
     coverage: "legal",
     params: [
       { key: "country", label: { fr: "Pays", en: "Country" }, placeholder: "FR" },
-      { key: "domain", label: { fr: "Domaine", en: "Domain" }, placeholder: "health", optional: true },
       { key: "data_type", label: { fr: "Type", en: "Data type" }, placeholder: "legislation", optional: true },
+      { key: "status", label: { fr: "Statut", en: "Status" }, placeholder: "complete", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
     ],
-    sampleResponse: {
-      data: [
-        {
-          id: "src_fr_legifrance",
-          name: "Légifrance",
-          country: "FR",
-          domain: "generalist",
-          data_type: ["legislation", "case_law", "doctrine"],
-          url: "https://www.legifrance.gouv.fr",
-          status: "operational",
-        },
-        {
-          id: "src_fr_ansm",
-          name: "ANSM",
-          country: "FR",
-          domain: "health",
-          data_type: ["legislation"],
-          url: "https://ansm.sante.fr",
-          status: "operational",
-        },
-      ],
-      total: 47,
-    },
   },
   {
     id: "jurisdictions",
@@ -135,16 +79,9 @@ const ENDPOINTS: EndpointDef[] = [
     coverage: "legal",
     params: [
       { key: "region", label: { fr: "Région", en: "Region" }, placeholder: "Europe", optional: true },
-      { key: "min_coverage", label: { fr: "Couverture min", en: "Min coverage %" }, placeholder: "80", optional: true },
+      { key: "min_completion", label: { fr: "Complétude min", en: "Min completion" }, placeholder: "0.8", optional: true },
+      { key: "limit", label: { fr: "Limite", en: "Limit" }, placeholder: "10", optional: true },
     ],
-    sampleResponse: {
-      data: [
-        { code: "FR", name: "France", region: "Europe", coverage_pct: 94, total_sources: 47, total_regs: 18329 },
-        { code: "DE", name: "Germany", region: "Europe", coverage_pct: 91, total_sources: 38, total_regs: 14702 },
-        { code: "US", name: "United States", region: "Americas", coverage_pct: 89, total_sources: 52, total_regs: 21804 },
-      ],
-      total: 177,
-    },
   },
   {
     id: "categories",
@@ -152,19 +89,11 @@ const ENDPOINTS: EndpointDef[] = [
     path: "/product-categories",
     title: { fr: "Lister les catégories produit", en: "List product categories" },
     desc: {
-      fr: "20 catégories couvertes par le Legal Product Physical Atlas (Atlas Produit).",
+      fr: "20 catégories couvertes par le Legal Product Physical Atlas.",
       en: "20 categories covered by the Legal Product Physical Atlas.",
     },
     coverage: "product",
     params: [],
-    sampleResponse: {
-      data: [
-        { id: 1, name: "Shampoo & Hair Care", regs: 1701, jurisdictions: 103, coverage_pct: 87 },
-        { id: 2, name: "Sunscreen & Sun Care", regs: 1683, jurisdictions: 103, coverage_pct: 91 },
-        { id: 3, name: "Smartphones & Mobile", regs: 2037, jurisdictions: 103, coverage_pct: 92 },
-      ],
-      total: 20,
-    },
   },
   {
     id: "product_check",
@@ -177,41 +106,23 @@ const ENDPOINTS: EndpointDef[] = [
     },
     coverage: "product",
     params: [
-      { key: "product_category", label: { fr: "Catégorie", en: "Product category" }, placeholder: "cosmetics" },
+      { key: "category", label: { fr: "Catégorie", en: "Product category" }, placeholder: "Shampoo & Hair Care" },
       { key: "jurisdiction", label: { fr: "Juridiction", en: "Jurisdiction" }, placeholder: "FR" },
-      { key: "subtype", label: { fr: "Sous-type", en: "Subtype" }, placeholder: "shampoo", optional: true },
     ],
-    sampleResponse: {
-      product: { category: "cosmetics", subtype: "shampoo", jurisdiction: "FR" },
-      regulations_applicable: 23,
-      critical_count: 8,
-      regulations: [
-        {
-          id: "reg_eu_1223_2009",
-          name: "EU Cosmetics Regulation",
-          criticality: "critical",
-          key_requirements: "Enregistrement CPNP, déclaration de mise sur le marché, dossier d'information produit (PIF)",
-          enforcement_body: "ANSM",
-          url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32009R1223",
-        },
-        {
-          id: "reg_fr_csp_l5131",
-          name: "Code de la santé publique – cosmétiques",
-          criticality: "critical",
-          key_requirements: "Cosmétovigilance, étiquetage français obligatoire",
-          enforcement_body: "ANSM",
-          url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072665/LEGISCTA000006171151/",
-        },
-      ],
-      next_to_check: ["packaging waste (FR REP)", "claims regulation"],
-    },
   },
 ];
 
+type ResponseMode =
+  | { kind: "idle" }
+  | { kind: "loading" }
+  | { kind: "success"; data: unknown; took: number }
+  | { kind: "error"; message: string };
+
 export default function Playground() {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
   const [endpointId, setEndpointId] = useState<EndpointId>("regulations");
   const [paramValues, setParamValues] = useState<Record<string, string>>({});
+  const [response, setResponse] = useState<ResponseMode>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
 
   const endpoint = useMemo(
@@ -222,6 +133,7 @@ export default function Playground() {
   function selectEndpoint(id: EndpointId) {
     setEndpointId(id);
     setParamValues({});
+    setResponse({ kind: "idle" });
   }
 
   function setParam(key: string, val: string) {
@@ -261,25 +173,47 @@ export default function Playground() {
     setTimeout(() => setCopied(false), 1500);
   }
 
+  async function handleRun() {
+    setResponse({ kind: "loading" });
+    const start = performance.now();
+    try {
+      const data = await runEndpoint(endpoint.id, filledValues);
+      const took = Math.round(performance.now() - start);
+      setResponse({ kind: "success", data, took });
+    } catch (e) {
+      setResponse({
+        kind: "error",
+        message: e instanceof Error ? e.message : "Unknown error",
+      });
+    }
+  }
+
   const T = {
     eyebrow: { fr: "Playground · API", en: "Playground · API" },
-    title: {
-      fr: "Testez l'API en direct.",
-      en: "Test the API live.",
-    },
+    title: { fr: "Testez l'API en direct.", en: "Test the API live." },
     sub: {
-      fr: "Choisissez un endpoint, ajustez les filtres, copiez la commande curl ou voyez la réponse type.",
-      en: "Pick an endpoint, tune the filters, copy the curl command or see the sample response.",
+      fr: "Choisissez un endpoint, ajustez les filtres, lancez la requête sur les données indexées par Cleo.",
+      en: "Pick an endpoint, tune the filters, run the call against Cleo's indexed data.",
     },
     endpointsHeader: { fr: "Endpoints", en: "Endpoints" },
     paramsHeader: { fr: "Paramètres", en: "Parameters" },
-    requestHeader: { fr: "Requête générée", en: "Generated request" },
-    responseHeader: { fr: "Réponse type", en: "Sample response" },
+    requestHeader: { fr: "Requête curl", en: "curl request" },
+    responseHeader: { fr: "Réponse", en: "Response" },
     copy: { fr: "Copier", en: "Copy" },
     copied: { fr: "Copié", en: "Copied" },
+    run: { fr: "Lancer", en: "Run" },
+    running: { fr: "Chargement…", en: "Loading…" },
+    reset: { fr: "Réinitialiser", en: "Reset" },
+    sampleHint: {
+      fr: "Cliquez sur Lancer pour interroger l'index Cleo.",
+      en: "Click Run to query the Cleo index.",
+    },
+    tookMs: { fr: (ms: number) => `${ms} ms`, en: (ms: number) => `${ms} ms` },
+    livePill: { fr: "Live · données réelles", en: "Live · real data" },
+    errorPill: { fr: "Erreur", en: "Error" },
     needsKey: {
-      fr: "Pas encore de clé API ? Réservez 20 min pour onboarder votre équipe.",
-      en: "No API key yet? Book 20 min to onboard your team.",
+      fr: "Pour appeler l'API depuis votre propre code, il vous faut une clé. Réservez 20 min pour onboarder votre équipe.",
+      en: "To call the API from your own code you need a key. Book 20 min to onboard your team.",
     },
     bookCall: { fr: "Prendre un call", en: "Book a call" },
     coverageLabel: {
@@ -290,12 +224,20 @@ export default function Playground() {
     optional: { fr: "optionnel", en: "optional" },
   };
 
+  const tookStr =
+    response.kind === "success" ? T.tookMs[lang](response.took) : null;
+  const responsePreview =
+    response.kind === "success"
+      ? JSON.stringify(response.data, null, 2)
+      : response.kind === "error"
+        ? `{\n  "error": ${JSON.stringify(response.message)}\n}`
+        : null;
+
   return (
     <div className="min-h-screen bg-c-bg">
       <SiteHeader lang={lang} setLang={setLang} active={null} />
 
       <main className="mx-auto max-w-7xl px-6 pt-10 pb-16">
-        {/* Hero */}
         <section className="max-w-2xl">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-c-border bg-c-surface-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-muted">
             {T.eyebrow[lang]}
@@ -308,9 +250,8 @@ export default function Playground() {
           </p>
         </section>
 
-        {/* Main grid: endpoint picker | request + response */}
         <section className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
-          {/* Left: endpoint list */}
+          {/* Endpoint picker */}
           <aside className="lg:sticky lg:top-6 lg:self-start">
             <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
               {T.endpointsHeader[lang]}
@@ -323,7 +264,7 @@ export default function Playground() {
                     key={e.id}
                     type="button"
                     onClick={() => selectEndpoint(e.id)}
-                    className={`group w-full rounded-xl border px-3 py-2.5 text-left transition-colors ${
+                    className={`w-full rounded-xl border px-3 py-2.5 text-left transition-colors ${
                       active
                         ? "border-c-brand bg-c-brand-soft/40"
                         : "border-c-border bg-c-surface hover:border-c-text-subtle"
@@ -355,9 +296,9 @@ export default function Playground() {
             </div>
           </aside>
 
-          {/* Right: params + request + response */}
+          {/* Right panel */}
           <div className="space-y-6">
-            {/* Endpoint description */}
+            {/* Endpoint header */}
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="flex items-center gap-2">
                 <span
@@ -379,19 +320,28 @@ export default function Playground() {
               </p>
             </div>
 
-            {/* Parameters form */}
-            {endpoint.params.length > 0 && (
+            {/* Params + Run */}
+            {endpoint.params.length > 0 ? (
               <div className="rounded-2xl border border-c-border bg-c-surface p-5">
-                <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
-                  {T.paramsHeader[lang]}
-                </h3>
+                <div className="mb-3 flex items-center justify-between">
+                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+                    {T.paramsHeader[lang]}
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={handleRun}
+                    disabled={response.kind === "loading"}
+                    className="inline-flex items-center gap-2 rounded-full bg-c-brand px-4 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink disabled:opacity-60"
+                  >
+                    {response.kind === "loading" ? T.running[lang] : `▶ ${T.run[lang]}`}
+                  </button>
+                </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {endpoint.params.map((p) => (
                     <label key={p.key} className="block">
                       <span className="flex items-center justify-between text-[12px] font-medium text-c-text-muted">
                         <span>
-                          <code className="font-mono text-c-text">{p.key}</code>{" "}
-                          · {p.label[lang]}
+                          <code className="font-mono text-c-text">{p.key}</code> · {p.label[lang]}
                         </span>
                         {p.optional && (
                           <span className="text-[10px] uppercase tracking-wider text-c-text-subtle">
@@ -410,9 +360,23 @@ export default function Playground() {
                   ))}
                 </div>
               </div>
+            ) : (
+              <div className="flex items-center justify-between rounded-2xl border border-c-border bg-c-surface px-5 py-4">
+                <span className="text-[13px] text-c-text-muted">
+                  {lang === "fr" ? "Pas de paramètre nécessaire." : "No parameters required."}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleRun}
+                  disabled={response.kind === "loading"}
+                  className="inline-flex items-center gap-2 rounded-full bg-c-brand px-4 py-1.5 text-[12px] font-semibold text-white transition-colors hover:bg-c-brand-ink disabled:opacity-60"
+                >
+                  {response.kind === "loading" ? T.running[lang] : `▶ ${T.run[lang]}`}
+                </button>
+              </div>
             )}
 
-            {/* Generated curl */}
+            {/* curl */}
             <div className="overflow-hidden rounded-2xl border border-c-border bg-[#0b0b1a]">
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
                 <div className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-white/40">
@@ -434,17 +398,49 @@ export default function Playground() {
               </pre>
             </div>
 
-            {/* Sample response */}
+            {/* Response */}
             <div className="overflow-hidden rounded-2xl border border-c-border bg-c-surface-2">
-              <div className="border-b border-c-border px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
-                {T.responseHeader[lang]}
+              <div className="flex items-center justify-between border-b border-c-border px-4 py-2.5">
+                <div className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-c-text-subtle">
+                  <span>{T.responseHeader[lang]}</span>
+                  {response.kind === "success" && (
+                    <span className="ml-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-semibold text-emerald-800">
+                      200 OK
+                    </span>
+                  )}
+                  {response.kind === "error" && (
+                    <span className="ml-1 rounded-full bg-red-100 px-2 py-0.5 text-[9px] font-semibold text-red-800">
+                      {T.errorPill[lang]}
+                    </span>
+                  )}
+                  {response.kind === "success" && (
+                    <span className="ml-2 rounded-full bg-c-brand-soft px-2 py-0.5 text-[9px] font-semibold text-c-brand-ink">
+                      {T.livePill[lang]}
+                    </span>
+                  )}
+                </div>
+                {tookStr && (
+                  <span className="font-mono text-[10px] text-c-text-subtle">
+                    {tookStr}
+                  </span>
+                )}
               </div>
-              <pre className="overflow-x-auto px-4 py-4 text-[12.5px] leading-relaxed text-c-text">
-                <code>{JSON.stringify(endpoint.sampleResponse, null, 2)}</code>
-              </pre>
+              {response.kind === "idle" ? (
+                <div className="px-4 py-6 text-center text-[13px] text-c-text-subtle">
+                  {T.sampleHint[lang]}
+                </div>
+              ) : response.kind === "loading" ? (
+                <div className="px-4 py-6 text-center text-[13px] text-c-text-subtle">
+                  {T.running[lang]}
+                </div>
+              ) : (
+                <pre className="max-h-[480px] overflow-auto px-4 py-4 text-[12.5px] leading-relaxed text-c-text">
+                  <code>{responsePreview}</code>
+                </pre>
+              )}
             </div>
 
-            {/* CTA — book a call */}
+            {/* CTA */}
             <div className="rounded-2xl border border-c-border bg-c-surface p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-[14px] text-c-text-muted">{T.needsKey[lang]}</p>
@@ -461,7 +457,6 @@ export default function Playground() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="mt-12 border-t border-c-border pt-6 text-xs text-c-text-subtle">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span>{STRINGS.homeFooterTagline[lang]}</span>
@@ -483,4 +478,194 @@ export default function Playground() {
       </main>
     </div>
   );
+}
+
+/* ─── Live data fetchers (browser, against the static JSON we already ship) ─── */
+
+type AnyRow = Record<string, unknown>;
+type ProductComplianceData = {
+  totals: AnyRow;
+  categories: AnyRow[];
+  jurisdictions: AnyRow[];
+  regulations: AnyRow[];
+};
+type ManifestData = {
+  stats: AnyRow;
+  countries: (AnyRow & { sources?: AnyRow[] })[];
+};
+
+let _productCache: ProductComplianceData | null = null;
+async function loadProduct(): Promise<ProductComplianceData> {
+  if (_productCache) return _productCache;
+  const res = await fetch("/data/product-compliance.json");
+  if (!res.ok) throw new Error(`failed to load product compliance data (${res.status})`);
+  _productCache = await res.json();
+  return _productCache!;
+}
+
+let _manifestCache: ManifestData | null = null;
+async function loadManifest(): Promise<ManifestData> {
+  if (_manifestCache) return _manifestCache;
+  const res = await fetch("/data/manifest.json");
+  if (!res.ok) throw new Error(`failed to load manifest (${res.status})`);
+  _manifestCache = await res.json();
+  return _manifestCache!;
+}
+
+function ci(a: string | undefined, b: string): boolean {
+  return (a ?? "").toLowerCase() === b.toLowerCase();
+}
+
+function ciIncl(a: string | undefined, b: string): boolean {
+  return (a ?? "").toLowerCase().includes(b.toLowerCase());
+}
+
+async function runEndpoint(
+  id: EndpointId,
+  params: Record<string, string>,
+): Promise<unknown> {
+  if (id === "regulations" || id === "categories" || id === "product_check") {
+    const data = await loadProduct();
+    if (id === "regulations") {
+      let regs = data.regulations as AnyRow[];
+      if (params.jurisdiction)
+        regs = regs.filter((r) =>
+          ci(String(r.jurisdiction_code ?? ""), params.jurisdiction),
+        );
+      if (params.category)
+        regs = regs.filter((r) =>
+          ciIncl(String(r.category ?? ""), params.category),
+        );
+      if (params.criticality)
+        regs = regs.filter((r) =>
+          ci(String(r.criticality ?? ""), params.criticality),
+        );
+      const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+      return {
+        data: regs.slice(0, limit).map((r) => ({
+          id: `reg_${String(r.jurisdiction_code).toLowerCase()}_${slug(String(r.regulation_name))}`,
+          name: r.regulation_name,
+          ref: r.regulation_ref,
+          jurisdiction: r.jurisdiction_code,
+          category: r.category,
+          enforcement_body: r.enforcement_body,
+          criticality: r.criticality,
+          in_api: r.in_api,
+          url: r.url || null,
+        })),
+        pagination: { limit, returned: Math.min(limit, regs.length) },
+        total: regs.length,
+      };
+    }
+    if (id === "categories") {
+      return {
+        data: data.categories.map((c) => ({
+          id: slug(String(c.name)),
+          name: c.name,
+          total_regulations: c.total_regs,
+          jurisdictions: c.jurisdictions,
+          in_api: c.found,
+          coverage_pct: c.pct,
+        })),
+        total: data.categories.length,
+      };
+    }
+    // product_check
+    let regs = data.regulations as AnyRow[];
+    if (params.jurisdiction)
+      regs = regs.filter((r) => ci(String(r.jurisdiction_code), params.jurisdiction));
+    if (params.category)
+      regs = regs.filter((r) => ciIncl(String(r.category), params.category));
+    const critical = regs.filter((r) => String(r.criticality).toLowerCase() === "critical");
+    return {
+      product: {
+        category: params.category ?? null,
+        jurisdiction: params.jurisdiction ?? null,
+      },
+      regulations_applicable: regs.length,
+      critical_count: critical.length,
+      regulations: regs.slice(0, 5).map((r) => ({
+        name: r.regulation_name,
+        ref: r.regulation_ref,
+        criticality: r.criticality,
+        enforcement_body: r.enforcement_body,
+        url: r.url || null,
+      })),
+    };
+  }
+
+  // sources / jurisdictions → manifest
+  const manifest = await loadManifest();
+  if (id === "sources") {
+    const all: AnyRow[] = [];
+    for (const c of manifest.countries) {
+      for (const s of c.sources ?? []) all.push(s);
+    }
+    let sources = all;
+    if (params.country)
+      sources = sources.filter((s) => ci(String(s.country), params.country));
+    if (params.data_type)
+      sources = sources.filter((s) =>
+        Array.isArray(s.data_types) &&
+        (s.data_types as string[]).some((d) => ci(d, params.data_type)),
+      );
+    if (params.status)
+      sources = sources.filter((s) => ci(String(s.status), params.status));
+    const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+    return {
+      data: sources.slice(0, limit).map((s) => ({
+        id: s.id,
+        name: s.name,
+        country: s.country,
+        url: s.url,
+        data_types: s.data_types,
+        status: s.status,
+      })),
+      pagination: { limit, returned: Math.min(limit, sources.length) },
+      total: sources.length,
+    };
+  }
+  // jurisdictions
+  let countries = manifest.countries;
+  if (params.region) {
+    // manifest has no explicit region — approximate via code or skip filter
+    countries = countries.filter((c) => regionGuess(String(c.code)) === params.region);
+  }
+  if (params.min_completion) {
+    const min = parseFloat(params.min_completion);
+    countries = countries.filter((c) => (Number(c.completion) || 0) >= min);
+  }
+  const limit = Math.max(1, Math.min(50, parseInt(params.limit) || 10));
+  return {
+    data: countries
+      .slice(0, limit)
+      .map((c) => ({
+        code: c.code,
+        name: c.name,
+        flag: c.flag,
+        total_sources: c.total,
+        completion: c.completion,
+        estimated_volume: c.estimatedVolume,
+      })),
+    pagination: { limit, returned: Math.min(limit, countries.length) },
+    total: countries.length,
+  };
+}
+
+function slug(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 32);
+}
+
+function regionGuess(code: string): string {
+  if (/^(US|US-..|CA|MX|BR|AR|CL|CO|PE|VE|EC|UY|PY|BO|DO|JM|CU)/.test(code)) return "Americas";
+  if (/^(CN|JP|KR|IN|PK|BD|LK|MY|SG|TH|VN|ID|PH|HK|TW|MO|AU|NZ|KH|MM|LA|NP|BT|MV|MN|KP)/.test(code))
+    return "Asia-Pacific";
+  if (/^(SA|AE|QA|KW|BH|OM|YE|IR|IQ|SY|JO|LB|IL|PS|TR|EG|MA|DZ|TN|LY|SD)/.test(code))
+    return "MENA";
+  if (/^(ZA|NG|KE|GH|CI|SN|UG|TZ|ET|CM|MZ|MG|AO|ZM|ZW)/.test(code)) return "Africa";
+  return "Europe";
 }

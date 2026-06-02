@@ -13,7 +13,7 @@ const API_BASE = "https://api.legaldata.cleolabs.co";
    ──────────────────────────────────────────────────────────────────── */
 const T = {
   navHome: { fr: "Atlas", en: "Atlas" },
-  navProducts: { fr: "Atlas Produit", en: "Product Atlas" },
+  navProducts: { fr: "Produit physique", en: "Physical product" },
   navDocs: { fr: "Docs", en: "Docs" },
   navGetKey: { fr: "Obtenir une clé", en: "Get API key" },
   heroEyebrow: { fr: "Documentation", en: "Documentation" },
@@ -855,7 +855,7 @@ const ERROR_ENVELOPE_EXAMPLE = `{
    Page
    ──────────────────────────────────────────────────────────────────── */
 export default function DocsPage() {
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
   const [activeId, setActiveId] = useState<string>("");
 
   // Track scrolled section for the sidebar
@@ -912,7 +912,7 @@ export default function DocsPage() {
               {T.navHome[lang]}
             </Link>
             <Link
-              href="/products"
+              href="/legal-api"
               className="rounded-md px-2.5 py-1 text-[11px] font-medium text-c-text-muted hover:text-c-brand"
             >
               {T.navProducts[lang]}

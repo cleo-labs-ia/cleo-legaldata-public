@@ -263,7 +263,7 @@ export default function ProductDashboard({
         titleB: PS.titleB,
         subtitle: PS.subtitle,
       };
-  const [lang, setLang] = useState<Lang>("fr");
+  const [lang, setLang] = useState<Lang>("en");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [drawerJur, setDrawerJur] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
