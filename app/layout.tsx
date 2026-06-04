@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NUMBERS, fmt } from "@/lib/numbers";
+import PostHogProvider from "@/app/components/PostHogProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,7 +24,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <PostHogProvider>{children}</PostHogProvider>
+      </body>
     </html>
   );
 }

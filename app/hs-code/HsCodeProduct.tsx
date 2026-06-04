@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import SiteHeader from "../components/SiteHeader";
+import { trackGetApiKeyClick } from "@/lib/trackKeyClick";
 
 const STEPS = [
   { k: "Classify",    p: "/v2/customs/lookup",          fr: "Description produit → codes HS classés par confiance.",      en: "Product description → HS codes ranked by confidence." },
@@ -226,7 +227,7 @@ export default function HsCodeProduct({ faq, useCases }: { faq: FaqItem[]; useCa
             <Link href="/playground" className="btn btn-secondary">
               {fr ? "Ouvrir le Playground" : "Open the Playground"} →
             </Link>
-            <a href="/api/checkout?plan=pro" className="btn btn-primary">
+            <a href="/api/checkout?plan=pro" onClick={() => trackGetApiKeyClick("hs-code")} className="btn btn-primary">
               {fr ? "Obtenir une clé API" : "Get API key"} →
             </a>
           </div>

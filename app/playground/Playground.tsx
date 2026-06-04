@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import SiteHeader from "../components/SiteHeader";
+import { trackGetApiKeyClick } from "@/lib/trackKeyClick";
 
 const BASE_URL = "https://api.legaldata.cleolabs.co";
 
@@ -1075,6 +1076,7 @@ export default function Playground() {
                     href="/api/checkout?plan=pro"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackGetApiKeyClick("playground")}
                     className="inline-flex items-center rounded-full bg-c-brand px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition-all hover:bg-c-brand-ink hover:shadow-md"
                   >
                     {T.getKey[lang]} →

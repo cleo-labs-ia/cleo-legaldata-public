@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { URLS } from "@/lib/urls";
+import { trackGetApiKeyClick } from "@/lib/trackKeyClick";
 
 const SIGNUP_URL = URLS.SIGNUP;
 const MEET_URL = URLS.MEET;
@@ -88,6 +89,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
               href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGetApiKeyClick("navbar")}
               className="relative inline-flex h-10 min-w-[160px] items-center justify-center overflow-hidden rounded-full text-[13px] font-semibold text-white"
               style={{
                 background: "#0008CF",
@@ -106,6 +108,7 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
             href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackGetApiKeyClick("navbar-mobile")}
             className="inline-flex h-9 items-center justify-center rounded-full px-4 text-[12px] font-semibold text-white md:hidden"
             style={{ background: "#0008CF" }}
           >

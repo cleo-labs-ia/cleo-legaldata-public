@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { URLS } from "@/lib/urls";
+import { trackGetApiKeyClick } from "@/lib/trackKeyClick";
 
 const MEET_URL = URLS.MEET;
 const SIGNUP_URL = URLS.SIGNUP;
@@ -39,6 +40,7 @@ export default function ApiCallout({ lang }: { lang: Lang }) {
                 href={SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackGetApiKeyClick("api-callout")}
                 className="btn"
                 style={{ background: "#fff", color: "var(--color-c-text)", fontSize: 15, padding: "14px 28px", borderRadius: 9999 }}
               >

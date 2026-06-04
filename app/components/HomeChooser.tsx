@@ -6,6 +6,7 @@ import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { NUMBERS, fmt } from "@/lib/numbers";
 import { URLS } from "@/lib/urls";
+import { trackGetApiKeyClick } from "@/lib/trackKeyClick";
 import SiteHeader from "./SiteHeader";
 
 const MEET_URL = URLS.MEET;
@@ -128,6 +129,7 @@ export default function HomeChooser() {
               href={SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGetApiKeyClick("home-hero")}
               className="btn btn-primary"
             >
               {lang === "fr" ? "Obtenir une clé API" : "Get API key"} →
