@@ -19,11 +19,14 @@ export const dynamic = "force-dynamic";
  *   - Resend send throws            → caught, { ok: false, error: "send_failed" }
  */
 
-const RECIPIENTS = [
-  "naomie@cleolabs.co",
-  "anaelle@cleolabs.co",
-  "alexandre@cleolabs.co",
-];
+// Default to contact@cleolabs.co — the only address Resend can reach until the
+// cleolabs.co domain is verified (resend.com/domains). Once verified, set
+// NOTIFY_TO="naomie@cleolabs.co,anaelle@cleolabs.co,alexandre@cleolabs.co" and
+// NOTIFY_FROM to a @cleolabs.co sender — no code change needed.
+const RECIPIENTS = (process.env.NOTIFY_TO || "contact@cleolabs.co")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 type NotifyBody = {
   source?: string;
