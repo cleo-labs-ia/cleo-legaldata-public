@@ -3,9 +3,10 @@
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
+import { URLS } from "@/lib/urls";
 
-const MEET_URL = "https://www.cleolabs.co/en/meet";
-const SIGNUP_URL = "/api/checkout?plan=pro";
+const MEET_URL = URLS.MEET;
+const SIGNUP_URL = URLS.SIGNUP;
 
 export default function ApiCallout({ lang }: { lang: Lang }) {
   return (

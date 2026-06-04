@@ -249,6 +249,7 @@ export const STRINGS = {
   navPricing: { fr: "Tarifs", en: "Pricing" },
   navGeneral: { fr: "Legal Atlas", en: "Legal Atlas" },
   navHsCode: { fr: "HS Code", en: "HS Code" },
+  navTalkTeam: { fr: "Parler à l'équipe", en: "Talk to the team" },
   /* ── Home chooser (landing) ── */
   homeNavAtlas: { fr: "Atlas", en: "Atlas" },
   homeNavDocs: { fr: "Documentation", en: "API Docs" },

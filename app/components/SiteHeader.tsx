@@ -3,9 +3,10 @@
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
-import { checkoutUrl } from "@/lib/urls";
+import { URLS } from "@/lib/urls";
 
-const SIGNUP_URL = checkoutUrl("pro");
+const SIGNUP_URL = URLS.SIGNUP;
+const MEET_URL = URLS.MEET;
 
 interface Props {
   lang: Lang;
@@ -74,6 +75,15 @@ export default function SiteHeader({ lang, setLang, active = null }: Props) {
               <IconGlobe />
               {lang === "fr" ? "EN" : "FR"}
             </button>
+            <a
+              href={MEET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 items-center justify-center rounded-full border border-c-border bg-white px-5 text-[13px] font-semibold text-c-text transition-colors hover:bg-c-surface-2"
+              style={{ letterSpacing: "-0.02em" }}
+            >
+              {STRINGS.navTalkTeam[lang]}
+            </a>
             <a
               href={SIGNUP_URL}
               target="_blank"

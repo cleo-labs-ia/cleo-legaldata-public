@@ -5,10 +5,11 @@ import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { NUMBERS, fmt } from "@/lib/numbers";
+import { URLS } from "@/lib/urls";
 import SiteHeader from "./SiteHeader";
 
-const MEET_URL = "https://www.cleolabs.co/en/meet";
-const SIGNUP_URL = "/api/checkout?plan=pro";
+const MEET_URL = URLS.MEET;
+const SIGNUP_URL = URLS.SIGNUP;
 
 const PRODUCT_CATEGORY_IMAGES = [
   "/images/categories/v2/shampoo-hair-care.jpg",
