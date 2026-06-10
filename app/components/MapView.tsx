@@ -8,7 +8,7 @@ import { STRINGS } from "@/lib/i18n";
 
 const STATUS_COLOR: Record<string, string> = {
   complete: "#1a8a4a",
-  blocked: "#c4302b",
+  blocked: "#d4a90c",
   planned: "#8e8e9c",
   needs_research: "#c47a00",
   new: "#2563eb",

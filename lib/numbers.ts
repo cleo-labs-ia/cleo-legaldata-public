@@ -4,12 +4,14 @@
  */
 
 import type { Lang } from "./i18n";
+import live from "./live-stats.json";
 
 /**
  * Numbers below are verified against:
  *   - legal-sources / local manifest.yaml (for sources, jurisdictions, source status)
  *   - Supabase production DB (for regulations / documents / authorities / articles)
- * Last verified: 2026-06-02
+ * Last verified: 2026-06-11 — live-verifiable figures now come from lib/live-stats.json,
+ * regenerated at every build by scripts/sync-live-stats.mjs (GET /v2/atlas/stats).
  */
 export const NUMBERS = {
   // Legal Atlas — Sources tracked (from manifest.yaml)
@@ -20,8 +22,14 @@ export const NUMBERS = {
   sourcesPlanned: 236 + 76 + 37, // planned + needs_research + new = 349
 
   // Legal Atlas — What we actually scraped & extracted (Supabase live)
-  legalDocuments: 1_942_111, // legal_documents table
-  legalRegulations: 211_369, // regulations table
+  legalDocuments: live.documents_indexed, // legal_documents (live)
+  legalRegulations: live.regulations_total, // regulations (live)
+  legalRegulationsCanonical: live.regulations_canonical, // distinct fiches post-merge (live)
+  sourcesActive: live.sources_active, // sources actively serving the API (live)
+  jurisdictionsDocumented: live.jurisdictions_documented, // jurisdictions with indexed documents (live)
+  authoritiesSpine: live.authorities_spine, // authority registry (live)
+  authoritiesWithChannel: live.authorities_with_verified_channel, // verified monitoring channel (live)
+  statsAsOf: live.as_of,
   legalArticles: 135_583, // regulation_articles
   legalEnrichedArticles: 413_820, // enriched_articles
   legalChunks: 332_421, // legal_document_chunks (RAG)

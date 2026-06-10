@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposition de taxonomie — Cleo Legal Data Atlas</title>
+<style>
+  :root {
+    --beige: #f9f8f6;
+    --card-warm: #f0efec;
+    --card-white: #ffffff;
+    --ink: #1a1a1a;
+    --ink-muted: #5a5a5a;
+    --ink-subtle: #8a8a8a;
+    --border: rgba(26, 26, 26, 0.08);
+    --border-strong: rgba(26, 26, 26, 0.18);
+    --brand: #0008CF;
+    --brand-soft: #e6e8ff;
+    --green: #1a8a4a;
+    --green-soft: #d6f0e1;
+    --yellow: #d4a90c;
+    --yellow-soft: rgba(212, 169, 12, 0.12);
+    --red: #c4302b;
+    --red-soft: #fadbd9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--beige);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Satoshi", "Segoe UI", sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  header.hero {
+    padding: 96px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 16px;
+  }
+  h1 {
+    font-size: clamp(34px, 4.8vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 20px;
+  }
+  .lead {
+    font-size: 18px;
+    color: var(--ink-muted);
+    max-width: 720px;
+    margin: 0 0 40px;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .kpi {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .kpi-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-subtle);
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi-meta { font-size: 12px; color: var(--ink-muted); margin-top: 4px; }
+  .kpi.good .kpi-value { color: var(--green); }
+  .kpi.warn .kpi-value { color: var(--yellow); }
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  h2 + p.section-lead {
+    font-size: 15.5px;
+    color: var(--ink-muted);
+    margin: 0 0 36px;
+    max-width: 760px;
+  }
+  h3 { font-size: 16px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; }
+
+  /* Diagnostic side by side */
+  .diag {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 740px) { .diag { grid-template-columns: 1fr; } }
+  .diag-card {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .diag-card.before { background: var(--card-warm); }
+  .diag-pct {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .before .diag-pct { color: var(--ink-subtle); }
+  .after .diag-pct { color: var(--green); }
+  .bar {
+    height: 8px;
+    background: var(--card-warm);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 14px 0 8px;
+  }
+  .bar > i { display: block; height: 100%; }
+  .bar.before > i { width: 36.9%; background: var(--ink-subtle); }
+  .bar.after > i { width: 98.8%; background: var(--green); }
+
+  /* Groups */
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 880px) { .groups { grid-template-columns: 1fr; } }
+  .group {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .group-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .group-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand);
+    letter-spacing: 0.08em;
+    background: var(--brand-soft);
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .group-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 10px 0 2px;
+    color: var(--ink);
+  }
+  .group-en { font-size: 12.5px; color: var(--ink-subtle); font-style: italic; }
+  .group-stat {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .group-stat-val {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  .group-stat-lbl {
+    font-size: 10px;
+    color: var(--ink-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .group-share {
+    height: 4px;
+    background: var(--card-warm);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 2px 0 4px;
+  }
+  .group-share i {
+    display: block;
+    height: 100%;
+    background: var(--brand);
+    border-radius: 3px;
+  }
+  .cats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cat {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--card-warm);
+    align-items: center;
+  }
+  .cat-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+  .cat-en { font-size: 11.5px; color: var(--ink-subtle); }
+  .cat-count {
+    font-size: 12.5px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+    background: var(--card-white);
+    padding: 3px 9px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    min-width: 38px;
+    text-align: right;
+  }
+  .cat-count.zero { color: var(--red); border-color: var(--red-soft); background: var(--red-soft); }
+  .cat-examples {
+    font-size: 11px;
+    color: var(--ink-subtle);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* Mapping table */
+  table.mapping {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+  .mapping th, .mapping td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .mapping th {
+    background: var(--card-warm);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+  }
+  .mapping tr:last-child td { border-bottom: none; }
+  .mapping code {
+    background: var(--card-warm);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: "SF Mono", Menlo, monospace;
+  }
+  .arrow { color: var(--brand); font-weight: 600; }
+
+  /* Gaps grid */
+  .gaps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .gap {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .gap.critical { border-left-color: var(--red); }
+  .gap-name { font-size: 14px; font-weight: 600; }
+  .gap-count {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 6px 0 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .gap-count.zero { color: var(--red); }
+  .gap-meta { font-size: 11.5px; color: var(--ink-muted); }
+
+  /* Duplicates */
+  .dup-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px;
+    font-size: 13px;
+  }
+  .dup {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .dup b { color: var(--ink); font-weight: 600; font-family: inherit; }
+
+  /* References */
+  .refs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .ref {
+    background: var(--card-white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .ref-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 4px;
+  }
+  .ref-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .ref-note { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; }
+
+  /* CTA */
+  .cta-card {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 24px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  @media (min-width: 720px) {
+    .cta-card { flex-direction: row; align-items: center; justify-content: space-between; }
+  }
+  .cta-card h3 { font-size: 22px; color: #fff; margin: 0; letter-spacing: -0.02em; }
+  .cta-card p { margin: 0; color: rgba(255,255,255,0.7); font-size: 14px; }
+  .cta-pill {
+    background: #fff;
+    color: var(--ink);
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  footer { padding: 36px 0; font-size: 12px; color: var(--ink-subtle); text-align: center; }
+
+  /* Inline SVG sizing */
+  svg.icon { width: 18px; height: 18px; vertical-align: -3px; color: var(--ink-muted); }
+  .group-icon-wrap {
+    width: 38px; height: 38px;
+    background: var(--brand-soft);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand);
+    flex-shrink: 0;
+  }
+  .group-icon-wrap svg { width: 20px; height: 20px; }
+
+  /* Pill highlight */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-soft);
+    color: var(--green);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .pill.warn { background: var(--yellow-soft); color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Proposition · 2026-06-02</div>
+    <h1>Refonte de la taxonomie<br>Cleo Legal Data Atlas</h1>
+    <p class="lead">
+      La matrice actuelle de <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13.5px">/general</code>
+      ne couvre que <strong>37&nbsp;% des 1&nbsp;494 sources</strong>. 946&nbsp;sources existent mais sont invisibles
+      faute de catégorisation. Voici une nouvelle taxonomie hiérarchique en 8 groupes × 36 catégories
+      qui absorbe <strong>98,8&nbsp;% du corpus</strong>, alignée sur EuroVoc, EUR-Lex et NATLEX.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-label">Sources analysées</div>
+        <div class="kpi-value">1&nbsp;494</div>
+        <div class="kpi-meta">178 juridictions</div>
+      </div>
+      <div class="kpi warn">
+        <div class="kpi-label">Taxonomie actuelle</div>
+        <div class="kpi-value">36,9 %</div>
+        <div class="kpi-meta">548 sources taggées</div>
+      </div>
+      <div class="kpi good">
+        <div class="kpi-label">Nouvelle taxonomie</div>
+        <div class="kpi-value">98,8 %</div>
+        <div class="kpi-meta">1&nbsp;476 sources taggées</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Catégories L2</div>
+        <div class="kpi-value">36</div>
+        <div class="kpi-meta">8 groupes top-level</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- DIAGNOSTIC -->
+<section>
+  <div class="wrap">
+    <h2>1. Diagnostic</h2>
+    <p class="section-lead">
+      Le <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13.5px">manifest.yaml</code> source de vérité (repo <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13.5px">Cleo-Labs-IA/legal-sources</code>)
+      ne contient <strong>aucun</strong> champ <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13.5px">domains</code> pour les 1&nbsp;494 sources.
+      Les 548 sources taggées le sont via un script d'enrichissement séparé qui en oublie 946.
+    </p>
+
+    <div class="diag">
+      <div class="diag-card before">
+        <div class="kpi-label">Avant — 14 domaines actuels</div>
+        <div class="diag-pct">36,9 %</div>
+        <div class="bar before"><i></i></div>
+        <div class="kpi-meta">548 sources sur 1&nbsp;494 catégorisées</div>
+        <div style="margin-top:18px;font-size:12.5px;color:var(--ink-muted);line-height:1.6">
+          <strong style="color:var(--ink)">Catégories actuelles :</strong><br>
+          ai · data_protection · cyber · health · safety · labor · finance ·
+          environment · competition · tax · consumer · ip · telecom · generalist
+          <br><br>
+          <strong style="color:var(--ink)">Manquent complètement :</strong> énergie, transport, immigration,
+          justice pénale/civile/administrative, parlements, agriculture, construction, audiovisuel,
+          marchés publics, droit international, droits humains, professions réglementées.
+        </div>
+      </div>
+      <div class="diag-card after">
+        <div class="kpi-label">Après — 8 groupes / 36 catégories</div>
+        <div class="diag-pct">98,8 %</div>
+        <div class="bar after"><i></i></div>
+        <div class="kpi-meta">1&nbsp;476 sources sur 1&nbsp;494 catégorisées</div>
+        <div style="margin-top:18px;font-size:12.5px;color:var(--ink-muted);line-height:1.6">
+          <strong style="color:var(--ink)">Approche :</strong> 2 niveaux de profondeur, 8 grands groupes
+          top-level (sweet spot identifié par benchmark : EUR-Lex 20, NATLEX 24, FAOLEX 12).
+          <br><br>
+          <strong style="color:var(--ink)">Résidu&nbsp;:</strong> 18 sources spéciales (Cour de Malte, TRF
+          régionaux brésiliens, eGazette Inde) à router manuellement.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE TAXONOMY -->
+<section style="background: linear-gradient(180deg, var(--beige) 0%, var(--card-warm) 100%);">
+  <div class="wrap">
+    <span class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Proposition</span>
+    <h2>2. La nouvelle taxonomie</h2>
+    <p class="section-lead">
+      Ossature dérivée d'EuroVoc (norme UE multilingue, 24 langues, ISO 25964) et de la grammaire EUR-Lex Directory,
+      ré-agrégée en 8 groupes adaptés à un atlas mondial multi-tradition juridique (civil law, common law, droit musulman, droit mixte).
+    </p>
+
+    <div class="groups">
+
+      <!-- GROUP 1 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div>
+              <div class="group-num">01</div>
+              <div class="group-title">Législation &amp; textes officiels</div>
+              <div class="group-en">Legislation &amp; official texts</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">367</div>
+            <div class="group-stat-lbl">24,6 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:24.6%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Portails législatifs nationaux</div><div class="cat-en">National legislative portals</div><div class="cat-examples">Légifrance · Bundesgesetzblatt · USC · Finlex · BOPA</div></div><div class="cat-count">~280</div></div>
+          <div class="cat"><div><div class="cat-name">Codes &amp; consolidations</div><div class="cat-en">Codes &amp; consolidated law</div><div class="cat-examples">Code civil FR · Vlaamse Codex · Bürgerliches Gesetzbuch</div></div><div class="cat-count">~52</div></div>
+          <div class="cat"><div><div class="cat-name">Journaux officiels &amp; gazettes</div><div class="cat-en">Official journals &amp; gazettes</div><div class="cat-examples">EUR-Lex · ARLIS · QBZ Albanie · Open Gazettes ZA</div></div><div class="cat-count">~35</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 2 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16h5l-2.5-6L16 16Z"/><path d="M3 16h5l-2.5-6L3 16Z"/><path d="M5.5 10V7"/><path d="M18.5 10V7"/><path d="M5.5 7c2.5 0 4.5-1 6.5-1s4 1 6.5 1"/><path d="M12 6v15"/><path d="M8.5 21h7"/></svg>
+            </div>
+            <div>
+              <div class="group-num">02</div>
+              <div class="group-title">Justice &amp; jurisprudence</div>
+              <div class="group-en">Justice &amp; case law</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">579</div>
+            <div class="group-stat-lbl">38,8 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:38.8%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Cours suprêmes</div><div class="cat-en">Supreme courts</div><div class="cat-examples">US Supreme Court · BGH · Cour de cassation FR · OGH AT</div></div><div class="cat-count">178</div></div>
+          <div class="cat"><div><div class="cat-name">Cours constitutionnelles</div><div class="cat-en">Constitutional courts</div><div class="cat-examples">Conseil constitutionnel FR · BVerfG · Corte Costituzionale</div></div><div class="cat-count">62</div></div>
+          <div class="cat"><div><div class="cat-name">Justice administrative</div><div class="cat-en">Administrative courts</div><div class="cat-examples">Conseil d'État FR · VwGH AT · Council of State BE</div></div><div class="cat-count">40</div></div>
+          <div class="cat"><div><div class="cat-name">Justice civile &amp; pénale (fonds)</div><div class="cat-en">Civil &amp; criminal case law</div><div class="cat-examples">SAIJ AR · CanLII · Federal Court AU · BAILII</div></div><div class="cat-count">231</div></div>
+          <div class="cat"><div><div class="cat-name">Tribunaux &amp; conventions internationales</div><div class="cat-en">International tribunals &amp; treaties</div><div class="cat-examples">ICJ · ICC · CJEU · HUDOC · AU Treaties · WIPO Lex</div></div><div class="cat-count">68</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 3 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21V13h6v8"/></svg>
+            </div>
+            <div>
+              <div class="group-num">03</div>
+              <div class="group-title">Administration &amp; gouvernance</div>
+              <div class="group-en">Public administration &amp; governance</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">112</div>
+            <div class="group-stat-lbl">7,5 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:7.5%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Parlements &amp; pouvoir législatif</div><div class="cat-en">Parliaments &amp; legislatures</div><div class="cat-examples">Bundestag · National Assembly FR · OpenParliament CA · BCN Chili</div></div><div class="cat-count">68</div></div>
+          <div class="cat"><div><div class="cat-name">Affaires étrangères &amp; sanctions</div><div class="cat-en">Foreign affairs &amp; sanctions</div><div class="cat-examples">OFAC · DG TRADE · ANJ FR · Investment Arbitration</div></div><div class="cat-count">18</div></div>
+          <div class="cat"><div><div class="cat-name">Gouvernement &amp; administration</div><div class="cat-en">Government &amp; executive</div><div class="cat-examples">Service-Public.fr · Procuraduría EC · Flemish Codex</div></div><div class="cat-count">13</div></div>
+          <div class="cat"><div><div class="cat-name">Anti-corruption, audit &amp; éthique</div><div class="cat-en">Anti-corruption &amp; audit</div><div class="cat-examples">HATVP FR · GAO US · NAO UK · Lobbying registers</div></div><div class="cat-count">12</div></div>
+          <div class="cat"><div><div class="cat-name">Professions réglementées</div><div class="cat-en">Regulated professions</div><div class="cat-examples">Ordre des avocats · CSN · Bar Council</div></div><div class="cat-count">6</div></div>
+          <div class="cat"><div><div class="cat-name">Élections</div><div class="cat-en">Elections &amp; political life</div><div class="cat-examples">CNCCFP FR · FEC US · Electoral Commission UK</div></div><div class="cat-count">1</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 4 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="group-num">04</div>
+              <div class="group-title">Économie, commerce &amp; finance</div>
+              <div class="group-en">Economy, trade &amp; finance</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">266</div>
+            <div class="group-stat-lbl">17,8 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:17.8%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Fiscalité &amp; douanes</div><div class="cat-en">Taxation &amp; customs</div><div class="cat-examples">IRS · HMRC · DGFiP · ATO · CARF Brésil · NAP BG</div></div><div class="cat-count">157</div></div>
+          <div class="cat"><div><div class="cat-name">Concurrence &amp; antitrust</div><div class="cat-en">Competition &amp; antitrust</div><div class="cat-examples">FTC · Autorité concurrence · ACCC · BCA · COMCO · DG COMP</div></div><div class="cat-count">38</div></div>
+          <div class="cat"><div><div class="cat-name">Banque centrale &amp; monnaie</div><div class="cat-en">Central banking &amp; monetary</div><div class="cat-examples">ECB · Bank of Italy · IMF Decisions · AMLA · BIS</div></div><div class="cat-count">21</div></div>
+          <div class="cat"><div><div class="cat-name">Marchés financiers</div><div class="cat-en">Financial markets</div><div class="cat-examples">SEC · FSMA BE · CVM Brésil · AMF · FCA · ESMA</div></div><div class="cat-count">21</div></div>
+          <div class="cat"><div><div class="cat-name">Sociétés &amp; gouvernance d'entreprise</div><div class="cat-en">Company &amp; corporate law</div><div class="cat-examples">INPI registre · Companies House · EDGAR · OpenCorporates</div></div><div class="cat-count">~25</div></div>
+          <div class="cat"><div><div class="cat-name">Assurance &amp; retraite</div><div class="cat-en">Insurance &amp; pensions</div><div class="cat-examples">EIOPA · ACPR · FINMA · PRA UK</div></div><div class="cat-count">2</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 5 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="group-num">05</div>
+              <div class="group-title">Travail, social &amp; droits</div>
+              <div class="group-en">Labor, social affairs &amp; rights</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">51</div>
+            <div class="group-stat-lbl">3,4 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:3.4%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Travail &amp; relations professionnelles</div><div class="cat-en">Labor law &amp; industrial relations</div><div class="cat-examples">DOL · DGT FR · CNAT AR · TST Brésil · ILO NATLEX</div></div><div class="cat-count">13</div></div>
+          <div class="cat"><div><div class="cat-name">Sécurité sociale &amp; retraites</div><div class="cat-en">Social security &amp; pensions</div><div class="cat-examples">CNAM · SSA US · DWP UK · Ankestyrelsen DK</div></div><div class="cat-count">13</div></div>
+          <div class="cat"><div><div class="cat-name">Droits humains &amp; libertés</div><div class="cat-en">Human rights &amp; civil liberties</div><div class="cat-examples">EHRC · Défenseur des Droits · GNCHR · Ombudsmen</div></div><div class="cat-count">10</div></div>
+          <div class="cat"><div><div class="cat-name">Immigration, asile &amp; nationalité</div><div class="cat-en">Immigration, asylum &amp; citizenship</div><div class="cat-examples">USCIS · OFPRA · UKVI · OFII</div></div><div class="cat-count">5</div></div>
+          <div class="cat"><div><div class="cat-name">Éducation, recherche &amp; culture</div><div class="cat-en">Education, research &amp; culture</div><div class="cat-examples">DfE UK · UNESCO · DOE US · Ministère Éducation</div></div><div class="cat-count">0</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 6 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div>
+              <div class="group-num">06</div>
+              <div class="group-title">Santé, sécurité &amp; consommation</div>
+              <div class="group-en">Health, safety &amp; consumer</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">17</div>
+            <div class="group-stat-lbl">1,1 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:1.1%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Pharma &amp; dispositifs médicaux</div><div class="cat-en">Pharma &amp; medical devices</div><div class="cat-examples">FDA · EMA · ANSM · MHRA · BfArM</div></div><div class="cat-count">5</div></div>
+          <div class="cat"><div><div class="cat-name">Protection des consommateurs</div><div class="cat-en">Consumer protection</div><div class="cat-examples">DGCCRF · CFPB · ACCC · Verbraucherzentrale</div></div><div class="cat-count">5</div></div>
+          <div class="cat"><div><div class="cat-name">Santé publique</div><div class="cat-en">Public health</div><div class="cat-examples">Santé Publique FR · CDC · DH UK · ECDC</div></div><div class="cat-count">3</div></div>
+          <div class="cat"><div><div class="cat-name">Sécurité alimentaire</div><div class="cat-en">Food safety</div><div class="cat-examples">EFSA · RASFF · DGCCRF · AESAN</div></div><div class="cat-count">3</div></div>
+          <div class="cat"><div><div class="cat-name">Sécurité au travail</div><div class="cat-en">Occupational health &amp; safety</div><div class="cat-examples">OSHA · INRS · HSE UK · EU-OSHA</div></div><div class="cat-count">~6</div></div>
+          <div class="cat"><div><div class="cat-name">Produits chimiques &amp; REACH</div><div class="cat-en">Chemicals &amp; REACH</div><div class="cat-examples">ECHA · EPA chemicals · Prop 65</div></div><div class="cat-count">1</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 7 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c-4-4-7-7-7-12a7 7 0 0 1 14 0c0 5-3 8-7 12z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="group-num">07</div>
+              <div class="group-title">Environnement, énergie &amp; ressources</div>
+              <div class="group-en">Environment, energy &amp; resources</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">28</div>
+            <div class="group-stat-lbl">1,9 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:1.9%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Énergie &amp; nucléaire</div><div class="cat-en">Energy &amp; nuclear</div><div class="cat-examples">CREG BE · ARERA IT · Ofgem · FERC · ASN · ACER</div></div><div class="cat-count">14</div></div>
+          <div class="cat"><div><div class="cat-name">Environnement &amp; climat</div><div class="cat-en">Environment &amp; climate</div><div class="cat-examples">EPA · EEA · ADEME · ECOLEX · UNFCCC</div></div><div class="cat-count">9</div></div>
+          <div class="cat"><div><div class="cat-name">Agriculture, pêche &amp; forêts</div><div class="cat-en">Agriculture, fisheries &amp; forestry</div><div class="cat-examples">USDA · DG AGRI · ONF · FAOLEX · INAO</div></div><div class="cat-count">5</div></div>
+          <div class="cat"><div><div class="cat-name">Mines &amp; ressources naturelles</div><div class="cat-en">Mining &amp; natural resources</div><div class="cat-examples">BRGM · USGS · DREAL · Mining Authority</div></div><div class="cat-count">0</div></div>
+        </div>
+      </div>
+
+      <!-- GROUP 8 -->
+      <div class="group">
+        <div class="group-head">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="group-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            </div>
+            <div>
+              <div class="group-num">08</div>
+              <div class="group-title">Numérique, IP &amp; secteurs régulés</div>
+              <div class="group-en">Digital, IP &amp; regulated sectors</div>
+            </div>
+          </div>
+          <div class="group-stat">
+            <div class="group-stat-val">75</div>
+            <div class="group-stat-lbl">5,0 %</div>
+          </div>
+        </div>
+        <div class="group-share"><i style="width:5.0%"></i></div>
+        <div class="cats">
+          <div class="cat"><div><div class="cat-name">Données personnelles &amp; vie privée</div><div class="cat-en">Data protection &amp; privacy</div><div class="cat-examples">CNIL · ICO · AEPD · Garante · EDPB · APD BE</div></div><div class="cat-count">29</div></div>
+          <div class="cat"><div><div class="cat-name">Propriété intellectuelle</div><div class="cat-en">Intellectual property</div><div class="cat-examples">USPTO · EUIPO · INPI · WIPO Lex · EPO · BPatG</div></div><div class="cat-count">18</div></div>
+          <div class="cat"><div><div class="cat-name">Télécoms</div><div class="cat-en">Telecom regulation</div><div class="cat-examples">ARCEP · FCC · Ofcom · BNetzA · BIPT · ANATEL</div></div><div class="cat-count">15</div></div>
+          <div class="cat"><div><div class="cat-name">Transports (aviation, maritime, rail)</div><div class="cat-en">Transport (air, sea, rail)</div><div class="cat-examples">EASA · DGAC · EMSA · ICAO · IMO · FAA · ERA</div></div><div class="cat-count">10</div></div>
+          <div class="cat"><div><div class="cat-name">Audiovisuel &amp; médias</div><div class="cat-en">Audiovisual &amp; media</div><div class="cat-examples">ARCOM · Ofcom · ERGA · Audiovisual councils</div></div><div class="cat-count">6</div></div>
+          <div class="cat"><div><div class="cat-name">Services numériques (DSA/DMA)</div><div class="cat-en">Digital services (DSA/DMA)</div><div class="cat-examples">DG CNECT · Coimisiún na Meán · ARCOM DSA</div></div><div class="cat-count">5</div></div>
+          <div class="cat"><div><div class="cat-name">Construction &amp; urbanisme</div><div class="cat-en">Construction &amp; planning</div><div class="cat-examples">DGUHC · HUD · RICS · ANIL</div></div><div class="cat-count">3</div></div>
+          <div class="cat"><div><div class="cat-name">Jeux &amp; paris</div><div class="cat-en">Gambling &amp; betting</div><div class="cat-examples">ANJ FR · Gambling Commission UK · MGA Malta</div></div><div class="cat-count">2</div></div>
+          <div class="cat"><div><div class="cat-name">Crypto-actifs</div><div class="cat-en">Crypto &amp; virtual assets</div><div class="cat-examples">AMF MiCA · BaFin crypto · SEC crypto</div></div><div class="cat-count">1</div></div>
+          <div class="cat"><div><div class="cat-name">Intelligence artificielle</div><div class="cat-en">AI &amp; algorithmic governance</div><div class="cat-examples">AI Office EU · AISI UK · NIST AI RMF · Commission IA</div></div><div class="cat-count zero">0</div></div>
+          <div class="cat"><div><div class="cat-name">Cybersécurité</div><div class="cat-en">Cybersecurity &amp; NIS</div><div class="cat-examples">ENISA · ANSSI · CISA · NCSC · BSI</div></div><div class="cat-count zero">0</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAPPING -->
+<section>
+  <div class="wrap">
+    <h2>3. Mapping ancien → nouveau</h2>
+    <p class="section-lead">
+      Les 14 domaines actuels sont conservés sémantiquement et redistribués dans la nouvelle structure.
+      Trois opérations clés : <strong>splitter</strong> les fourre-tout (<code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:12.5px">safety</code>,
+      <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:12.5px">finance</code>),
+      <strong>désamorcer</strong> le <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:12.5px">generalist</code>,
+      <strong>ouvrir</strong> 25 nouvelles catégories.
+    </p>
+    <table class="mapping">
+      <thead>
+        <tr>
+          <th style="width:25%">Domaine Cleo actuel</th>
+          <th style="width:5%"></th>
+          <th style="width:35%">Nouvelle catégorie L2</th>
+          <th>Groupe L1</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ai</code></td><td class="arrow">→</td><td>Intelligence artificielle</td><td>08 Numérique</td><td>Visibilité ++</td></tr>
+        <tr><td><code>data_protection</code></td><td class="arrow">→</td><td>Données personnelles &amp; vie privée</td><td>08 Numérique</td><td>Inchangé</td></tr>
+        <tr><td><code>cyber</code></td><td class="arrow">→</td><td>Cybersécurité</td><td>08 Numérique</td><td>Inchangé</td></tr>
+        <tr><td><code>health</code></td><td class="arrow">→</td><td>Santé publique + Pharma &amp; dispositifs</td><td>06 Santé</td><td>Élargi</td></tr>
+        <tr><td><code>safety</code></td><td class="arrow">→</td><td>Sécurité au travail <em>vs</em> Sécurité produit</td><td>06 Santé</td><td>Split (OSHA ≠ EFSA)</td></tr>
+        <tr><td><code>labor</code></td><td class="arrow">→</td><td>Travail &amp; relations professionnelles</td><td>05 Travail</td><td>Inchangé</td></tr>
+        <tr><td><code>finance</code></td><td class="arrow">→</td><td>Banque centrale + Marchés + Assurance</td><td>04 Économie</td><td>Split en 3</td></tr>
+        <tr><td><code>environment</code></td><td class="arrow">→</td><td>Environnement &amp; climat</td><td>07 Env.</td><td>Énergie séparée</td></tr>
+        <tr><td><code>competition</code></td><td class="arrow">→</td><td>Concurrence &amp; antitrust</td><td>04 Économie</td><td>Inchangé</td></tr>
+        <tr><td><code>tax</code></td><td class="arrow">→</td><td>Fiscalité &amp; douanes</td><td>04 Économie</td><td>Douanes ajoutées</td></tr>
+        <tr><td><code>consumer</code></td><td class="arrow">→</td><td>Protection des consommateurs</td><td>06 Santé</td><td>Recadré</td></tr>
+        <tr><td><code>ip</code></td><td class="arrow">→</td><td>Propriété intellectuelle</td><td>08 Numérique</td><td>Inchangé</td></tr>
+        <tr><td><code>telecom</code></td><td class="arrow">→</td><td>Télécoms + Audiovisuel</td><td>08 Numérique</td><td>Élargi</td></tr>
+        <tr><td><code>generalist</code></td><td class="arrow">→</td><td><strong>Multi-tag</strong> (portails, cours, parlements, gouvernement)</td><td>01, 02, 03</td><td>Désamorcé</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- GAPS -->
+<section style="background: var(--card-warm);">
+  <div class="wrap">
+    <span class="pill warn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Action requise</span>
+    <h2>4. Gaps stratégiques détectés</h2>
+    <p class="section-lead">
+      L'analyse a révélé des catégories où Cleo se positionne (page produit, pricing, communication)
+      mais n'a quasiment aucune source réelle. À combler en priorité pour rester crédible.
+    </p>
+
+    <div class="gaps">
+      <div class="gap critical">
+        <div class="gap-name">Intelligence artificielle</div>
+        <div class="gap-count zero">0</div>
+        <div class="gap-meta">À combler : AI Office UE · UK AISI · NIST AI · Commission IA FR · Korea AI Act</div>
+      </div>
+      <div class="gap critical">
+        <div class="gap-name">Cybersécurité</div>
+        <div class="gap-count zero">0</div>
+        <div class="gap-meta">À combler : ENISA · ANSSI · CISA · NCSC UK · BSI Allemagne</div>
+      </div>
+      <div class="gap critical">
+        <div class="gap-name">Crypto-actifs</div>
+        <div class="gap-count zero">1</div>
+        <div class="gap-meta">À combler : MiCA · AMF crypto · SEC crypto · MAS Singapour · Japan FSA crypto</div>
+      </div>
+      <div class="gap">
+        <div class="gap-name">Assurance &amp; retraites</div>
+        <div class="gap-count">2</div>
+        <div class="gap-meta">À enrichir : EIOPA · ACPR · FINMA · PRA UK · NAIC US</div>
+      </div>
+      <div class="gap">
+        <div class="gap-name">Services numériques (DSA/DMA)</div>
+        <div class="gap-count">5</div>
+        <div class="gap-meta">À enrichir : DG CNECT · BNetzA DSA · ARCOM DSA · Coimisiún na Meán</div>
+      </div>
+      <div class="gap">
+        <div class="gap-name">Construction &amp; urbanisme</div>
+        <div class="gap-count">3</div>
+        <div class="gap-meta">À enrichir : DGUHC · HUD US · RICS · planning portals UK</div>
+      </div>
+      <div class="gap">
+        <div class="gap-name">Produits chimiques &amp; REACH</div>
+        <div class="gap-count">1</div>
+        <div class="gap-meta">À enrichir : ECHA · CLP · Prop 65 · TSCA · K-REACH</div>
+      </div>
+      <div class="gap">
+        <div class="gap-name">Couverture Chine</div>
+        <div class="gap-count">4</div>
+        <div class="gap-meta">CN n'apparaît que sur la justice. Manque : SAMR (concurrence), CAC (data), STA (fiscalité), CSRC (marchés)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUPLICATES -->
+<section>
+  <div class="wrap">
+    <h2>5. Doublons à nettoyer dans <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:20px">manifest.yaml</code></h2>
+    <p class="section-lead">
+      L'analyse a détecté <strong>115 paires suspectes</strong> dont <strong>11 IDs exactement dupliqués</strong>.
+      À fusionner avant la prochaine génération du manifest enrichi — sinon les compteurs sont faux.
+    </p>
+    <div class="dup-list">
+      <div class="dup"><b>US/GovInfo</b> × 2</div>
+      <div class="dup"><b>US/FederalRegister</b> × 2</div>
+      <div class="dup"><b>CA/CanLII</b> × 2</div>
+      <div class="dup"><b>GH/GhanaLII</b> × 2</div>
+      <div class="dup"><b>TZ/TanzLII</b> × 2</div>
+      <div class="dup"><b>RW/RwandaLII</b> × 2</div>
+      <div class="dup"><b>INTL/AfricanLII</b> × 2</div>
+      <div class="dup"><b>INTL/AsianLII</b> × 2</div>
+      <div class="dup"><b>INTL/SAFLII</b> × 2</div>
+      <div class="dup"><b>INTL/WorldLII</b> × 2</div>
+      <div class="dup"><b>IN/CBDT-Circulars</b> × 2</div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--ink-muted)">
+      Plus <strong>104 variations de noms</strong> à fusionner (ex&nbsp;: <code style="font-size:11.5px">FI/Finlex</code> vs <code style="font-size:11.5px">FI/FinlexOD</code>,
+      <code style="font-size:11.5px">CA/BCLaws</code> vs <code style="font-size:11.5px">CA/BC-Laws</code>,
+      <code style="font-size:11.5px">EU/EUR-Lex</code> vs <code style="font-size:11.5px">EU/EUR-Lex-SPARQL</code>).
+    </p>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section style="background: var(--card-warm);">
+  <div class="wrap">
+    <h2>6. Sources d'inspiration de la taxonomie</h2>
+    <p class="section-lead">
+      Cette taxonomie n'invente rien : elle compose ce qui marche déjà chez les meilleurs.
+      Chaque pièce vient d'un standard ouvert testé sur des décennies de classification juridique.
+    </p>
+    <div class="refs">
+      <div class="ref">
+        <div class="ref-tag">Ossature technique</div>
+        <div class="ref-name">EuroVoc</div>
+        <div class="ref-note">21 domaines, 127 microthésaurus, 7 000 descripteurs. Multilingue 24 langues. ISO 25964. Mappé sur EUR-Lex. Gratuit, conforme SKOS.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-tag">Logique opérationnelle</div>
+        <div class="ref-name">EUR-Lex Directory</div>
+        <div class="ref-note">20 chapitres "policy area" numérotés (01 General → 20 People's Europe). Couverture exhaustive sans chevauchement. Codes stables pour API.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-tag">Modèle vertical maîtrisé</div>
+        <div class="ref-name">NATLEX (ILO)</div>
+        <div class="ref-note">24 subject groups A-X, 639 termes hiérarchisés. Mix "thèmes de droit" et "fonctions" — base mondiale du droit du travail.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-tag">Pattern d'évolution</div>
+        <div class="ref-name">FAOLEX</div>
+        <div class="ref-note">12 catégories stables + 15 collections curatées transversales (Gender-Lex, AMR-LEX). Sépare taxo primaire et taxo éditoriale.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-tag">UI multi-juridiction</div>
+        <div class="ref-name">OneTrust DataGuidance</div>
+        <div class="ref-note">300+ juridictions × N topics. Matrice exposée comme primitif UI. Cross-border comparison comme produit dérivé.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-tag">Granularité sectorielle</div>
+        <div class="ref-name">NACE Rev. 2.1</div>
+        <div class="ref-note">21 sections industrie, 88 divisions, 615 classes. Utilisé pour le groupe 08 Numérique &amp; secteurs régulés et le couplage HS code.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section>
+  <div class="wrap">
+    <h2>7. Prochaines étapes</h2>
+    <ol style="font-size:15px;line-height:1.8;color:var(--ink);margin:0;padding-left:24px">
+      <li><strong>Valider la structure 8 × 36</strong> avec l'équipe (libellés FR/EN, couleurs, ordre des groupes).</li>
+      <li><strong>Écrire le script de migration</strong> qui (a) déduplique les 11 IDs identiques, (b) fusionne les 104 variations, (c) tague chaque source sur le nouveau schéma à 2 niveaux.</li>
+      <li><strong>Patcher <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">lib/types.ts</code></strong> avec la nouvelle énumération <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">Domain</code> + <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">Group</code>, et mettre à jour <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">DOMAIN_GROUPS</code> + <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">STRINGS</code> en FR/EN.</li>
+      <li><strong>Régénérer le manifest enrichi</strong> côté <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">public/data/manifest.json</code> avec la nouvelle catégorisation (98,8 % vs 36,9 %).</li>
+      <li><strong>Mettre à jour la DomainMatrix</strong> sur <code style="background:var(--card-warm);padding:2px 6px;border-radius:4px;font-size:13px">/general</code> : 8 colonnes au lieu de 7, libellés alignés, et la heatmap affiche enfin les 1 494 sources.</li>
+      <li><strong>Combler les gaps stratégiques</strong> en parallèle : ajouter 30-50 sources AI/Cyber/Crypto/Chine sur le trimestre.</li>
+    </ol>
+
+    <div style="margin-top:48px;">
+      <div class="cta-card">
+        <div>
+          <h3>Prêt à committer la nouvelle structure ?</h3>
+          <p>Je peux générer le patch <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">lib/types.ts</code> + script de migration en un seul commit.</p>
+        </div>
+        <button class="cta-pill" onclick="window.print()">Imprimer cette proposition</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Cleo Legal Data Atlas · Proposition de taxonomie · Établie le 2026-06-02 ·
+  Analyse de 1&nbsp;494 sources × 178 juridictions
+</footer>
+
+</body>
+</html>

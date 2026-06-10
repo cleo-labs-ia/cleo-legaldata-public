@@ -4,7 +4,7 @@ import type { Lang } from "@/lib/i18n";
 
 const STATUS_CLASS: Record<SourceStatus, string> = {
   complete: "bg-c-success-soft text-c-success",
-  blocked: "bg-c-danger-soft text-c-danger",
+  blocked: "bg-c-warn-soft text-c-warn",
   planned: "bg-c-surface-2 text-c-text-muted",
   needs_research: "bg-c-warn-soft text-c-warn",
   new: "bg-c-info-soft text-c-info",

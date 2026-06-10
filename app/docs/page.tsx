@@ -53,6 +53,37 @@ const T = {
     fr: "Vous n'avez pas encore de clé ? Demandez un accès en 20 minutes.",
     en: "Don't have a key yet? Request access in 20 minutes.",
   },
+  // MCP
+  mcpTitle: { fr: "Utiliser comme serveur MCP", en: "Use as MCP server" },
+  mcpIntro: {
+    fr: "L'API Cleo Legal est également exposée comme serveur Model Context Protocol (MCP). Ajoutez le package à Claude Desktop, Cursor, Cline ou tout autre client MCP : l'agent IA peut interroger 35+ outils — recherche, douane, sanctions, amendements — avec votre clé d'API existante.",
+    en: "The Cleo Legal API is also exposed as a Model Context Protocol (MCP) server. Drop the package into Claude Desktop, Cursor, Cline, or any MCP client and the AI agent can query 35+ tools — search, customs, sanctions, amendments — using your existing API key.",
+  },
+  mcpClaudeTitle: { fr: "Claude Desktop", en: "Claude Desktop" },
+  mcpClaudeBody: {
+    fr: "Éditez le fichier claude_desktop_config.json :",
+    en: "Edit your claude_desktop_config.json:",
+  },
+  mcpCursorTitle: { fr: "Cursor", en: "Cursor" },
+  mcpCursorBody: {
+    fr: "Dans ~/.cursor/mcp.json (global) ou .cursor/mcp.json (workspace) :",
+    en: "In ~/.cursor/mcp.json (global) or workspace .cursor/mcp.json:",
+  },
+  mcpGenericTitle: { fr: "Cline / Continue / autre", en: "Cline / Continue / generic" },
+  mcpGenericBody: {
+    fr: "Pointez le client sur npx -y @cleo-labs/legal-mcp@latest avec CLEO_API_KEY dans l'environnement.",
+    en: "Point the client at npx -y @cleo-labs/legal-mcp@latest with CLEO_API_KEY in the env.",
+  },
+  mcpToolsTitle: { fr: "Outils exposés", en: "Exposed tools" },
+  mcpToolsIntro: {
+    fr: "35 outils répartis en 8 familles. Chaque outil mappe sur un endpoint REST documenté ci-dessous.",
+    en: "35 tools across 8 families. Each tool maps to a documented REST endpoint below.",
+  },
+  mcpNoteTitle: { fr: "Pas encore publié", en: "Coming soon" },
+  mcpNoteBody: {
+    fr: "Le package npm @cleo-labs/legal-mcp arrive sur npm. Suivez la publication sur ",
+    en: "The npm package @cleo-labs/legal-mcp is coming soon. Track the release at ",
+  },
   // Sections
   productApiTitle: { fr: "Product Compliance API", en: "Product Compliance API" },
   productApiIntro: {
@@ -864,6 +895,7 @@ export default function DocsPage() {
     const ids = [
       "quick-start",
       "auth",
+      "mcp",
       "product-api",
       ...PRODUCT_ENDPOINTS.map((e) => e.id),
       "legal-api",
@@ -931,6 +963,9 @@ export default function DocsPage() {
                 </TocLink>
                 <TocLink id="auth" active={activeId}>
                   {T.authTitle[lang]}
+                </TocLink>
+                <TocLink id="mcp" active={activeId}>
+                  {T.mcpTitle[lang]}
                 </TocLink>
 
                 <TocSection label={T.productApiTitle[lang]} />
@@ -1013,6 +1048,172 @@ export default function DocsPage() {
                   {T.navGetKey[lang]} →
                 </Link>
               </p>
+            </Section>
+
+            {/* MCP server */}
+            <Section id="mcp" title={T.mcpTitle[lang]}>
+              <p className="max-w-3xl text-sm leading-relaxed text-c-text-muted">{T.mcpIntro[lang]}</p>
+
+              <div className="mt-8 space-y-8">
+                {/* Claude Desktop */}
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] font-semibold text-c-text-subtle">01</span>
+                    <h3 className="text-base font-semibold tracking-tight">{T.mcpClaudeTitle[lang]}</h3>
+                  </div>
+                  <p className="ml-8 mt-1.5 text-sm text-c-text-muted">{T.mcpClaudeBody[lang]}</p>
+                  <div className="ml-8 mt-3">
+                    <CodeBlock
+                      label="claude_desktop_config.json"
+                      code={`{
+  "mcpServers": {
+    "cleo-legal": {
+      "command": "npx",
+      "args": ["-y", "@cleo-labs/legal-mcp@latest"],
+      "env": {
+        "CLEO_API_KEY": "ld_live_xxxxxxxxxxxxx"
+      }
+    }
+  }
+}`}
+                    />
+                  </div>
+                </div>
+
+                {/* Cursor */}
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] font-semibold text-c-text-subtle">02</span>
+                    <h3 className="text-base font-semibold tracking-tight">{T.mcpCursorTitle[lang]}</h3>
+                  </div>
+                  <p className="ml-8 mt-1.5 text-sm text-c-text-muted">{T.mcpCursorBody[lang]}</p>
+                  <div className="ml-8 mt-3">
+                    <CodeBlock
+                      label="mcp.json"
+                      code={`{
+  "mcpServers": {
+    "cleo-legal": {
+      "command": "npx",
+      "args": ["-y", "@cleo-labs/legal-mcp@latest"],
+      "env": {
+        "CLEO_API_KEY": "ld_live_xxxxxxxxxxxxx"
+      }
+    }
+  }
+}`}
+                    />
+                  </div>
+                </div>
+
+                {/* Cline / generic */}
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] font-semibold text-c-text-subtle">03</span>
+                    <h3 className="text-base font-semibold tracking-tight">{T.mcpGenericTitle[lang]}</h3>
+                  </div>
+                  <p className="ml-8 mt-1.5 text-sm text-c-text-muted">{T.mcpGenericBody[lang]}</p>
+                  <div className="ml-8 mt-3">
+                    <CodeBlock
+                      label="shell"
+                      code={`CLEO_API_KEY=ld_live_xxxxxxxxxxxxx npx -y @cleo-labs/legal-mcp@latest`}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Tools summary */}
+              <div className="mt-12">
+                <h3 className="text-base font-semibold tracking-tight">{T.mcpToolsTitle[lang]}</h3>
+                <p className="mt-1.5 max-w-3xl text-sm text-c-text-muted">{T.mcpToolsIntro[lang]}</p>
+
+                <div className="mt-5 overflow-hidden rounded-xl border border-c-border bg-c-surface">
+                  <table className="w-full text-sm">
+                    <thead className="bg-c-surface-2">
+                      <tr className="text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-c-text-subtle">
+                        <th className="px-4 py-2.5 w-48">{lang === "fr" ? "Famille" : "Family"}</th>
+                        <th className="px-4 py-2.5 w-16 text-right">{lang === "fr" ? "Nb" : "Count"}</th>
+                        <th className="px-4 py-2.5">{lang === "fr" ? "Outils" : "Tools"}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-c-border">
+                      {[
+                        {
+                          fam: { fr: "Recherche & documents", en: "Search & documents" },
+                          n: 10,
+                          tools:
+                            "search_legal, search_legal_bulk, get_document, get_documents_bulk, get_document_text, get_document_article, list_documents, list_countries, list_authorities, list_facets",
+                        },
+                        {
+                          fam: { fr: "Douane", en: "Customs" },
+                          n: 7,
+                          tools:
+                            "customs_lookup, customs_obligations, customs_alternatives, customs_dual_use_check, customs_duties, customs_landed_cost, customs_reverse_classify",
+                        },
+                        {
+                          fam: { fr: "Conformité", en: "Compliance" },
+                          n: 5,
+                          tools:
+                            "compliance_check, eaeu_parallel_import, lookup_standard, get_country_profile, get_authority_profile",
+                        },
+                        {
+                          fam: { fr: "Amendements", en: "Amendments" },
+                          n: 4,
+                          tools:
+                            "search_amendments, get_law_as_of, list_amendments_by_year, traverse_amendment_graph",
+                        },
+                        {
+                          fam: { fr: "Couverture", en: "Coverage" },
+                          n: 4,
+                          tools: "get_coverage, coverage_my_gaps, coverage_gaps, get_changes",
+                        },
+                        {
+                          fam: { fr: "Sanctions", en: "Sanctions" },
+                          n: 3,
+                          tools:
+                            "search_sanctions_by_authority, get_sanctions_overlap, list_sanctions_by_country",
+                        },
+                        {
+                          fam: { fr: "Tarifs", en: "Rates" },
+                          n: 2,
+                          tools: "get_rate_history, list_rate_changes_by_year",
+                        },
+                        {
+                          fam: { fr: "Utilitaires", en: "Utility" },
+                          n: 4,
+                          tools: "translate_text, health, list_endpoints, describe_endpoint",
+                        },
+                      ].map((row) => (
+                        <tr key={row.fam.en} className="align-top">
+                          <td className="px-4 py-3 text-sm font-medium text-c-text">{row.fam[lang]}</td>
+                          <td className="px-4 py-3 text-right font-mono text-sm text-c-text-muted">{row.n}</td>
+                          <td className="px-4 py-3 font-mono text-[12px] leading-relaxed text-c-text-muted">
+                            {row.tools}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Coming soon note */}
+              <div className="mt-8 rounded-xl border border-c-border bg-c-surface-2 p-5">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-c-brand">
+                  {T.mcpNoteTitle[lang]}
+                </div>
+                <p className="mt-1.5 text-sm text-c-text-muted">
+                  {T.mcpNoteBody[lang]}
+                  <a
+                    href="https://github.com/Cleo-Labs-IA/legal-mcp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-c-brand underline-offset-2 hover:underline"
+                  >
+                    github.com/Cleo-Labs-IA/legal-mcp
+                  </a>
+                  .
+                </p>
+              </div>
             </Section>
 
             {/* Product Compliance API */}
@@ -1310,7 +1511,7 @@ function EndpointBlock({ endpoint, lang }: { endpoint: EndpointSpec; lang: Lang 
                         <span
                           className={`rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase ${
                             p.required
-                              ? "bg-c-danger-soft text-c-danger"
+                              ? "bg-c-warn-soft text-c-warn"
                               : "bg-c-surface-2 text-c-text-subtle"
                           }`}
                         >

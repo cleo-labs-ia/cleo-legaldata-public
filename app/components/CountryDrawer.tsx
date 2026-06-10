@@ -157,7 +157,7 @@ export default function CountryDrawer({ country, lang, onClose }: Props) {
                   </details>
                 ) : null}
                 {s.blocked_reason ? (
-                  <div className="mt-2 rounded-md bg-c-danger-soft px-2 py-1 text-xs text-c-danger">
+                  <div className="mt-2 rounded-md bg-c-warn-soft px-2 py-1 text-xs text-c-warn">
                     <span className="font-medium">{STRINGS.blockedReason[lang]}: </span>
                     {s.blocked_reason}
                   </div>
