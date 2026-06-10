@@ -4,7 +4,7 @@ import { STRINGS } from "@/lib/i18n";
 
 const STATUS_DOT: Record<string, string> = {
   complete: "bg-c-success",
-  blocked: "bg-c-danger",
+  blocked: "bg-c-warn",
   planned: "bg-c-text-subtle",
   needs_research: "bg-c-warn",
   new: "bg-c-info",

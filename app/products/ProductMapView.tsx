@@ -67,13 +67,13 @@ const CENTROIDS: Record<string, [number, number]> = {
 
 const COVERAGE_COLOR: Record<string, string> = {
   high: "#1a8a4a",
-  medium: "#c47a00",
+  medium: "#d4a90c",
   low: "#c4302b",
 };
 
 function coverageColor(pct: number): string {
-  if (pct >= 80) return COVERAGE_COLOR.high;
-  if (pct >= 50) return COVERAGE_COLOR.medium;
+  if (pct >= 30) return COVERAGE_COLOR.high;
+  if (pct >= 5) return COVERAGE_COLOR.medium;
   return COVERAGE_COLOR.low;
 }
 
@@ -203,9 +203,9 @@ export default function ProductMapView({
 
 function CoverageLegend({ lang }: { lang: Lang }) {
   const items = [
-    { label: "80%+", color: COVERAGE_COLOR.high },
-    { label: "50-79%", color: COVERAGE_COLOR.medium },
-    { label: "< 50%", color: COVERAGE_COLOR.low },
+    { label: lang === "fr" ? "Élevée" : "High", color: COVERAGE_COLOR.high },
+    { label: lang === "fr" ? "Moyenne" : "Medium", color: COVERAGE_COLOR.medium },
+    { label: lang === "fr" ? "Faible" : "Low", color: COVERAGE_COLOR.low },
   ];
   return (
     <div className="absolute bottom-3 left-3 z-[1000] rounded-xl border border-c-border bg-c-surface/95 px-3 py-2 text-xs shadow-sm backdrop-blur">

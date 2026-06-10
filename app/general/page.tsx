@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Dashboard from "../components/Dashboard";
 import { loadDashboardData } from "@/lib/data";
-import { NUMBERS, fmt } from "@/lib/numbers";
+import { NUMBERS, fmt, fmtCompact } from "@/lib/numbers";
 
 export const dynamic = "force-static";
 
 const URL = "https://legaldata-public.cleolabs.co/general";
 const TITLE = `Legal Atlas — ${fmt(NUMBERS.legalSources, "en")} official legal sources across ${NUMBERS.legalJurisdictions} jurisdictions | Cleo Legal Data`;
-const DESC = `Machine-readable atlas of every open legal data source tracked by Cleo: ${fmt(NUMBERS.legalSources, "en")} portals, ${NUMBERS.legalJurisdictions} jurisdictions, ${fmt(NUMBERS.legalRegulations, "en")} regulations and 1.94M documents indexed. From Légifrance to the Indian Supreme Court, verified at source.`;
+const DESC = `Machine-readable atlas of every open legal data source tracked by Cleo: ${fmt(NUMBERS.legalSources, "en")} portals catalogued, ${NUMBERS.sourcesActive} sources actively serving the API across ${NUMBERS.jurisdictionsDocumented} documented jurisdictions — ${fmt(NUMBERS.legalRegulations, "en")} regulations (${fmt(NUMBERS.legalRegulationsCanonical, "en")} canonical) and ${fmtCompact(NUMBERS.legalDocuments, "en")} documents indexed. From Légifrance to the Indian Supreme Court, verified at source.`;
 
 export const metadata: Metadata = {
   title: TITLE,
