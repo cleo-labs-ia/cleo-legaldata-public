@@ -113,19 +113,17 @@ export interface CoverageData {
 
 /* ── shared presentation helpers ── */
 
-/** capture-rate colour scale (green = well monitored, red = blind spot) */
+/** capture-rate colour scale (traffic light): >=50% green, 5-50% orange, <5% red */
 export function captureColor(pct: number): string {
-  if (pct >= 66) return "#1a8a4a"; // success
-  if (pct >= 33) return "#d4a90c"; // amber
-  if (pct > 0) return "#c4302b"; // danger
-  return "#9ca3af"; // grey — mapped but no live feed at all
+  if (pct >= 50) return "#1a8a4a"; // green — well monitored
+  if (pct >= 5) return "#e8820e"; // orange — partial
+  return "#c4302b"; // red — < 5%, blind spot (includes 0)
 }
 
-export function captureTier(pct: number): "high" | "medium" | "low" | "none" {
-  if (pct >= 66) return "high";
-  if (pct >= 33) return "medium";
-  if (pct > 0) return "low";
-  return "none";
+export function captureTier(pct: number): "high" | "medium" | "low" {
+  if (pct >= 50) return "high";
+  if (pct >= 5) return "medium";
+  return "low";
 }
 
 /** prettify a kebab-case taxonomy slug into a label */

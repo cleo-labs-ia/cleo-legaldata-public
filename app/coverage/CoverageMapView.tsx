@@ -119,10 +119,9 @@ export default function CoverageMapView({
 
 function MapLegend({ lang }: { lang: Lang }) {
   const items = [
-    { label: lang === "fr" ? "≥ 66 % capté" : "≥ 66% captured", color: "#1a8a4a" },
-    { label: "33–66%", color: "#d4a90c" },
-    { label: lang === "fr" ? "< 33 %" : "< 33%", color: "#c4302b" },
-    { label: lang === "fr" ? "aucun flux" : "no live feed", color: "#9ca3af" },
+    { label: lang === "fr" ? "≥ 50 % capté" : "≥ 50% captured", color: "#1a8a4a" },
+    { label: "5–50%", color: "#e8820e" },
+    { label: lang === "fr" ? "< 5 %" : "< 5%", color: "#c4302b" },
   ];
   return (
     <div className="absolute bottom-3 left-3 z-[1000] rounded-xl border border-c-border bg-c-surface/95 px-3 py-2 text-xs shadow-sm backdrop-blur">
