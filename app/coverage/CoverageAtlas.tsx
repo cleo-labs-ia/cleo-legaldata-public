@@ -39,8 +39,8 @@ const T = {
   kMarkets: { en: "markets", fr: "marchés" },
   kCapture: { en: "live-monitored", fr: "veille live" },
   scopeNote: {
-    en: "Scope: Cleo Comply product-monitoring graph (HS-coded). Distinct from the /products regulatory catalog.",
-    fr: "Périmètre : graphe de veille produit Cleo Comply (codé SH). Distinct du catalogue réglementaire /products.",
+    en: "Scope: Cleo Comply product-monitoring graph, keyed by HS code.",
+    fr: "Périmètre : graphe de veille produit Cleo Comply, indexé par code SH.",
   },
   mapTitle: { en: "Live monitoring by market", fr: "Veille live par marché" },
   mapHint: {
@@ -234,8 +234,8 @@ export default function CoverageAtlas({ data }: { data: CoverageData }) {
               {tr("asOf", lang)} {totals.as_of.slice(0, 10)} · {tr("source", lang)}
             </span>
             <span className="flex flex-wrap items-center gap-x-2">
-              <Link href="/products" className="text-c-text-muted hover:text-c-brand">
-                /products
+              <Link href="/general" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.navGeneral[lang]}
               </Link>
               <span>·</span>
               <a

@@ -195,17 +195,6 @@ function ProductsDropdown({
           active={activeKey === "atlas"}
         />
         <DropdownItem
-          href="/products"
-          icon={<IconBox />}
-          label={STRINGS.navProducts[lang]}
-          desc={
-            lang === "fr"
-              ? "46 031 régulations · 20 catégories · produits physiques"
-              : "46,031 regulations · 20 categories · physical products"
-          }
-          active={activeKey === "atlas-product"}
-        />
-        <DropdownItem
           href="/hs-code"
           icon={<IconCustoms />}
           label={STRINGS.navHsCode[lang]}
@@ -323,16 +312,6 @@ function IconScale() {
       <path d="M5.5 7c2.5 0 4.5-1 6.5-1s4 1 6.5 1" />
       <path d="M12 6v15" />
       <path d="M8.5 21h7" />
-    </svg>
-  );
-}
-
-function IconBox() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-      <path d="m3.3 7 8.7 5 8.7-5" />
-      <path d="M12 22V12" />
     </svg>
   );
 }

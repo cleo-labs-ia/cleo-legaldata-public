@@ -415,7 +415,7 @@ export default function HomeChooser() {
 
             {/* Card 2 — Product Compliance Atlas */}
             <Link
-              href="/products"
+              href="/coverage"
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-c-border bg-c-surface p-8 transition-all hover:border-c-brand hover:shadow-lg"
             >
               <div className="mb-7 flex flex-wrap items-center gap-2">
@@ -598,8 +598,8 @@ export default function HomeChooser() {
                 {STRINGS.navGeneral[lang]}
               </Link>
               <span>·</span>
-              <Link href="/products" className="text-c-text-muted hover:text-c-brand">
-                {STRINGS.navProducts[lang]}
+              <Link href="/coverage" className="text-c-text-muted hover:text-c-brand">
+                {STRINGS.navCoverage[lang]}
               </Link>
               <span>·</span>
               <Link href="/hs-code" className="text-c-text-muted hover:text-c-brand">
