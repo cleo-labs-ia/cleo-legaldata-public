@@ -8,7 +8,7 @@ import type {
   CovMarket,
   CovHs6,
 } from "@/lib/coverage-data";
-import { captureColor, pretty } from "@/lib/coverage-data";
+import { captureColor, captureTier, pretty } from "@/lib/coverage-data";
 import type { Lang } from "@/lib/i18n";
 import { STRINGS } from "@/lib/i18n";
 import { URLS } from "@/lib/urls";
@@ -188,12 +188,14 @@ export default function CoverageAtlas({ data }: { data: CoverageData }) {
         {/* ── Map ── */}
         <section className="mt-10">
           <SectionHead title={tr("mapTitle", lang)} hint={tr("mapHint", lang)} />
-          <div className="grid gap-4 lg:grid-cols-[1fr_340px]">
-            <div className="h-[460px]">
-              <MapWithPanel markets={markets} geo={geo} matrix={matrix} lang={lang} />
-            </div>
-            <MarketTopList markets={markets} geo={geo} lang={lang} />
-          </div>
+          <MapSection
+            markets={markets}
+            geo={geo}
+            matrix={matrix}
+            totals={totals}
+            archTotals={archTotals}
+            lang={lang}
+          />
         </section>
 
         {/* ── Matrix ── */}
@@ -283,20 +285,32 @@ function SectionHead({ title, hint }: { title: string; hint: string }) {
   );
 }
 
-/* ── Map + selected-market panel ── */
-function MapWithPanel({
+/* ── Full-width map + side panel (world by default) + ranking below ── */
+type ArchTotals = Map<
+  string,
+  { rows: number; rss: number; regs: number; auth: number; markets: number }
+>;
+
+function MapSection({
   markets,
   geo,
   matrix,
+  totals,
+  archTotals,
   lang,
 }: {
   markets: CovMarket[];
   geo: CoverageData["geo"];
   matrix: CoverageData["matrix"];
+  totals: CoverageData["totals"];
+  archTotals: ArchTotals;
   lang: Lang;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
-  const sel = useMemo(() => markets.find((m) => m.c === selected) ?? null, [markets, selected]);
+  const sel = useMemo(
+    () => markets.find((m) => m.c === selected) ?? null,
+    [markets, selected],
+  );
   const topHere = useMemo(() => {
     if (!selected) return [];
     return matrix
@@ -306,56 +320,171 @@ function MapWithPanel({
   }, [matrix, selected]);
 
   return (
-    <div className="grid h-full gap-4 lg:grid-cols-[1fr_300px]">
-      <CoverageMapView
+    <>
+      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
+        <div className="h-[460px] lg:h-[560px]">
+          <CoverageMapView
+            markets={markets}
+            geo={geo}
+            selected={selected}
+            onSelect={setSelected}
+            lang={lang}
+          />
+        </div>
+        <DetailPanel
+          sel={sel}
+          geo={geo}
+          totals={totals}
+          markets={markets}
+          archTotals={archTotals}
+          topHere={topHere}
+          onClear={() => setSelected(null)}
+          lang={lang}
+        />
+      </div>
+      <MarketTopList
         markets={markets}
         geo={geo}
         selected={selected}
         onSelect={setSelected}
         lang={lang}
       />
-      <div className="rounded-2xl border border-c-border bg-c-surface p-4">
-        {sel && geo[sel.c] ? (
-          <>
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{geo[sel.c].flag}</span>
-              <span className="font-semibold text-c-text">{geo[sel.c].name}</span>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span
-                className="text-3xl font-semibold tabular-nums"
-                style={{ color: captureColor(sel.p) }}
-              >
-                {sel.p}%
-              </span>
-              <span className="text-[12px] text-c-text-muted">{tr("kCapture", lang)}</span>
-            </div>
-            <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[11px] text-c-text-muted">
-              <MiniStat n={sel.h} label={tr("kHs6", lang)} />
-              <MiniStat n={sel.g} label={tr("kRegs", lang)} />
-              <MiniStat n={sel.a} label={tr("kAuth", lang)} />
-            </div>
-            <div className="mt-3 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
-              {tr("topArchetypes", lang)}
-            </div>
-            <ul className="mt-2 space-y-1.5">
-              {topHere.map((c) => (
-                <li key={c.k} className="flex items-center justify-between gap-2 text-[12px]">
-                  <span className="truncate text-c-text">{pretty(c.k)}</span>
-                  <span className="flex items-center gap-1.5 tabular-nums text-c-text-muted">
-                    <span className="h-2 w-2 rounded-full" style={{ background: captureColor(c.p) }} />
-                    {c.p}%
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <div className="flex h-full items-center justify-center text-center text-[13px] text-c-text-subtle">
+    </>
+  );
+}
+
+function DetailPanel({
+  sel,
+  geo,
+  totals,
+  markets,
+  archTotals,
+  topHere,
+  onClear,
+  lang,
+}: {
+  sel: CovMarket | null;
+  geo: CoverageData["geo"];
+  totals: CoverageData["totals"];
+  markets: CovMarket[];
+  archTotals: ArchTotals;
+  topHere: CoverageData["matrix"];
+  onClear: () => void;
+  lang: Lang;
+}) {
+  // world-level breakdowns (used when nothing is selected)
+  const tiers = useMemo(() => {
+    const t = { high: 0, medium: 0, low: 0 };
+    for (const m of markets) t[captureTier(m.p)] += 1;
+    return t;
+  }, [markets]);
+
+  const topArch = useMemo(
+    () =>
+      [...archTotals.entries()]
+        .map(([k, e]) => ({ k, regs: e.regs, p: e.rows ? Math.round((e.rss / e.rows) * 100) : 0 }))
+        .sort((a, b) => b.regs - a.regs)
+        .slice(0, 7),
+    [archTotals],
+  );
+
+  return (
+    <div className="flex flex-col rounded-2xl border border-c-border bg-c-surface p-4">
+      {sel && geo[sel.c] ? (
+        <>
+          <button
+            type="button"
+            onClick={onClear}
+            className="mb-2 self-start text-[11px] text-c-text-subtle hover:text-c-brand"
+          >
+            ← 🌐 {lang === "fr" ? "Vue mondiale" : "World view"}
+          </button>
+          <div className="flex items-center gap-2">
+            <span className="text-xl">{geo[sel.c].flag}</span>
+            <span className="font-semibold text-c-text">{geo[sel.c].name}</span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-semibold tabular-nums" style={{ color: captureColor(sel.p) }}>
+              {sel.p}%
+            </span>
+            <span className="text-[12px] text-c-text-muted">{tr("kCapture", lang)}</span>
+          </div>
+          <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[11px] text-c-text-muted">
+            <MiniStat n={sel.h} label={tr("kHs6", lang)} />
+            <MiniStat n={sel.g} label={tr("kRegs", lang)} />
+            <MiniStat n={sel.a} label={tr("kAuth", lang)} />
+          </div>
+          <div className="mt-3 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+            {tr("topArchetypes", lang)}
+          </div>
+          <ul className="mt-2 space-y-1.5">
+            {topHere.map((c) => (
+              <li key={c.k} className="flex items-center justify-between gap-2 text-[12px]">
+                <span className="truncate text-c-text">{pretty(c.k)}</span>
+                <span className="flex items-center gap-1.5 tabular-nums text-c-text-muted">
+                  <span className="h-2 w-2 rounded-full" style={{ background: captureColor(c.p) }} />
+                  {c.p}%
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🌐</span>
+            <span className="font-semibold text-c-text">
+              {lang === "fr" ? "Couverture mondiale" : "World coverage"}
+            </span>
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span
+              className="text-3xl font-semibold tabular-nums"
+              style={{ color: captureColor(totals.capture_pct) }}
+            >
+              {totals.capture_pct}%
+            </span>
+            <span className="text-[12px] text-c-text-muted">{tr("kCapture", lang)}</span>
+          </div>
+          <div className="mt-1 text-[11px] text-c-text-subtle">
+            {tiers.high} / {totals.marches}{" "}
+            {lang === "fr" ? "marchés ≥ 40 % surveillés" : "markets ≥40% monitored"}
+          </div>
+          {/* market tier breakdown bar */}
+          <div className="mt-3 flex h-2.5 overflow-hidden rounded-full">
+            <span style={{ width: `${(tiers.high / markets.length) * 100}%`, background: "#1a8a4a" }} />
+            <span style={{ width: `${(tiers.medium / markets.length) * 100}%`, background: "#e8820e" }} />
+            <span style={{ width: `${(tiers.low / markets.length) * 100}%`, background: "#c4302b" }} />
+          </div>
+          <div className="mt-1.5 flex justify-between text-[10.5px] tabular-nums text-c-text-subtle">
+            <span>🟢 {tiers.high}</span>
+            <span>🟠 {tiers.medium}</span>
+            <span>🔴 {tiers.low}</span>
+          </div>
+          <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[11px] text-c-text-muted">
+            <MiniStat n={totals.hs6} label={tr("kHs6", lang)} />
+            <MiniStat n={totals.regs} label={tr("kRegs", lang)} />
+            <MiniStat n={totals.autorites} label={tr("kAuth", lang)} />
+          </div>
+          <div className="mt-3 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+            {lang === "fr" ? "Types les plus régulés" : "Most-regulated types"}
+          </div>
+          <ul className="mt-2 space-y-1.5">
+            {topArch.map((a) => (
+              <li key={a.k} className="flex items-center justify-between gap-2 text-[12px]">
+                <span className="truncate text-c-text">{pretty(a.k)}</span>
+                <span className="flex items-center gap-1.5 tabular-nums text-c-text-muted">
+                  <span className="h-2 w-2 rounded-full" style={{ background: captureColor(a.p) }} />
+                  {a.p}%
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 text-center text-[11px] text-c-text-subtle">
             {tr("selectMarket", lang)}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
@@ -369,25 +498,36 @@ function MiniStat({ n, label }: { n: number; label: string }) {
   );
 }
 
-/* ── Right-hand market ranking next to the map ── */
+/* ── Market ranking, full width below the map (clickable) ── */
 function MarketTopList({
   markets,
   geo,
+  selected,
+  onSelect,
   lang,
 }: {
   markets: CovMarket[];
   geo: CoverageData["geo"];
+  selected: string | null;
+  onSelect: (code: string) => void;
   lang: Lang;
 }) {
-  const top = useMemo(() => markets.slice(0, 14), [markets]);
+  const top = useMemo(() => markets.slice(0, 18), [markets]);
   return (
-    <div className="rounded-2xl border border-c-border bg-c-surface p-4">
-      <div className="mb-2 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
+    <div className="mt-4 rounded-2xl border border-c-border bg-c-surface p-4">
+      <div className="mb-3 text-[11px] font-medium uppercase tracking-wider text-c-text-subtle">
         {lang === "fr" ? "Plus gros marchés" : "Largest markets"}
       </div>
-      <ul className="space-y-2">
+      <div className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
         {top.map((m) => (
-          <li key={m.c} className="flex items-center gap-2">
+          <button
+            key={m.c}
+            type="button"
+            onClick={() => onSelect(m.c)}
+            className={`flex items-center gap-2 rounded-md px-1.5 py-1 text-left transition-colors ${
+              selected === m.c ? "bg-c-surface-2" : "hover:bg-c-surface-2/60"
+            }`}
+          >
             <span className="w-5 text-base">{geo[m.c]?.flag ?? "🌐"}</span>
             <span className="w-7 shrink-0 text-[12px] text-c-text-muted">{m.c}</span>
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-c-surface-2">
@@ -399,9 +539,9 @@ function MarketTopList({
             <span className="w-10 shrink-0 text-right text-[12px] tabular-nums text-c-text">
               {m.p}%
             </span>
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
