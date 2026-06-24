@@ -374,7 +374,7 @@ function DetailPanel({
 }) {
   // world-level breakdowns (used when nothing is selected)
   const tiers = useMemo(() => {
-    const t = { high: 0, medium: 0, low: 0 };
+    const t = { high: 0, medium: 0, low: 0, none: 0 };
     for (const m of markets) t[captureTier(m.p)] += 1;
     return t;
   }, [markets]);
@@ -455,11 +455,13 @@ function DetailPanel({
             <span style={{ width: `${(tiers.high / markets.length) * 100}%`, background: "#1a8a4a" }} />
             <span style={{ width: `${(tiers.medium / markets.length) * 100}%`, background: "#e8820e" }} />
             <span style={{ width: `${(tiers.low / markets.length) * 100}%`, background: "#c4302b" }} />
+            <span style={{ width: `${(tiers.none / markets.length) * 100}%`, background: "#9ca3af" }} />
           </div>
           <div className="mt-1.5 flex justify-between text-[10.5px] tabular-nums text-c-text-subtle">
             <span>🟢 {tiers.high}</span>
             <span>🟠 {tiers.medium}</span>
             <span>🔴 {tiers.low}</span>
+            <span>⚪ {tiers.none}</span>
           </div>
           <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[11px] text-c-text-muted">
             <MiniStat n={totals.hs6} label={tr("kHs6", lang)} />

@@ -122,6 +122,7 @@ function MapLegend({ lang }: { lang: Lang }) {
     { label: lang === "fr" ? "≥ 40 % capté" : "≥ 40% captured", color: "#1a8a4a" },
     { label: "5–40%", color: "#e8820e" },
     { label: lang === "fr" ? "< 5 %" : "< 5%", color: "#c4302b" },
+    { label: lang === "fr" ? "0 % (aucun flux)" : "0% (no feed)", color: "#9ca3af" },
   ];
   return (
     <div className="absolute bottom-3 left-3 z-[1000] rounded-xl border border-c-border bg-c-surface/95 px-3 py-2 text-xs shadow-sm backdrop-blur">
