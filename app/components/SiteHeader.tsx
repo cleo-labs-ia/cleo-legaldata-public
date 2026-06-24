@@ -12,7 +12,7 @@ const MEET_URL = URLS.MEET;
 interface Props {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  active?: "atlas" | "atlas-product" | "atlas-hs" | "legal-api" | null;
+  active?: "atlas" | "atlas-product" | "atlas-hs" | "atlas-coverage" | "legal-api" | null;
 }
 
 /**
@@ -32,7 +32,10 @@ interface Props {
  */
 export default function SiteHeader({ lang, setLang, active = null }: Props) {
   const productActive =
-    active === "atlas" || active === "atlas-product" || active === "atlas-hs";
+    active === "atlas" ||
+    active === "atlas-product" ||
+    active === "atlas-hs" ||
+    active === "atlas-coverage";
 
   return (
     <>
@@ -213,6 +216,17 @@ function ProductsDropdown({
           }
           active={activeKey === "atlas-hs"}
         />
+        <DropdownItem
+          href="/coverage"
+          icon={<IconRadar />}
+          label={STRINGS.navCoverage[lang]}
+          desc={
+            lang === "fr"
+              ? "5 520 SH6 · 1 008 autorités · 139 marchés · veille live"
+              : "5,520 HS6 · 1,008 authorities · 139 markets · live monitoring"
+          }
+          active={activeKey === "atlas-coverage"}
+        />
       </div>
     </details>
   );
@@ -330,6 +344,17 @@ function IconCustoms() {
       <path d="M3 12h18" />
       <path d="M12 3a14 14 0 0 1 0 18" />
       <path d="M12 3a14 14 0 0 0 0 18" />
+    </svg>
+  );
+}
+
+function IconRadar() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19.07 4.93A10 10 0 1 0 6.99 20.66" />
+      <path d="M12 12 7 7" />
+      <path d="M12 12a3 3 0 1 0 3 3" />
+      <circle cx="12" cy="12" r="0.5" fill="currentColor" />
     </svg>
   );
 }
