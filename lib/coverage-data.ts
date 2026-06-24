@@ -113,15 +113,15 @@ export interface CoverageData {
 
 /* ── shared presentation helpers ── */
 
-/** capture-rate colour scale (traffic light): >=50% green, 5-50% orange, <5% red */
+/** capture-rate colour scale (traffic light): >=40% green, 5-40% orange, <5% red */
 export function captureColor(pct: number): string {
-  if (pct >= 50) return "#1a8a4a"; // green — well monitored
+  if (pct >= 40) return "#1a8a4a"; // green — well monitored
   if (pct >= 5) return "#e8820e"; // orange — partial
   return "#c4302b"; // red — < 5%, blind spot (includes 0)
 }
 
 export function captureTier(pct: number): "high" | "medium" | "low" {
-  if (pct >= 50) return "high";
+  if (pct >= 40) return "high";
   if (pct >= 5) return "medium";
   return "low";
 }

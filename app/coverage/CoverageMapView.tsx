@@ -119,8 +119,8 @@ export default function CoverageMapView({
 
 function MapLegend({ lang }: { lang: Lang }) {
   const items = [
-    { label: lang === "fr" ? "≥ 50 % capté" : "≥ 50% captured", color: "#1a8a4a" },
-    { label: "5–50%", color: "#e8820e" },
+    { label: lang === "fr" ? "≥ 40 % capté" : "≥ 40% captured", color: "#1a8a4a" },
+    { label: "5–40%", color: "#e8820e" },
     { label: lang === "fr" ? "< 5 %" : "< 5%", color: "#c4302b" },
   ];
   return (
